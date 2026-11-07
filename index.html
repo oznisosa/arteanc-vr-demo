@@ -255,23 +255,32 @@
     </a-entity>
 
     <!-- CÁMARA Y RATÓN -->
-    <a-camera position="0 1.6 0">
-      <a-entity
-        cursor="rayOrigin: mouse"
-        raycaster="objects: .interactivo">
-      </a-entity>
-    </a-camera>
+    
+<!-- JUGADOR: CAMARA Y MANDOS -->
+<a-entity id="jugador" caminar-quest>
 
-    <!-- MANDOS DEL QUEST 3 -->
+  <!-- Camara -->
+  <a-camera id="camara" position="0 1.6 0">
     <a-entity
-      laser-controls="hand: right"
-      raycaster="objects: .interactivo; far: 10">
+      cursor="rayOrigin: mouse"
+      raycaster="objects: .interactivo">
     </a-entity>
+  </a-camera>
 
-    <a-entity
-      laser-controls="hand: left"
-      raycaster="objects: .interactivo; far: 10">
-    </a-entity>
+  <!-- Mando izquierdo: movimiento -->
+  <a-entity
+    id="mando-izquierdo"
+    laser-controls="hand: left"
+    raycaster="objects: .interactivo; far: 10">
+  </a-entity>
+
+  <!-- Mando derecho: seleccionar -->
+  <a-entity
+    laser-controls="hand: right"
+    raycaster="objects: .interactivo; far: 10">
+  </a-entity>
+
+</a-entity>
 
   </a-scene>
 
