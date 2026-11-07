@@ -196,6 +196,70 @@
 </a-text>
 
 
+<!-- PUERTAS CORREDIZAS ARTEANC -->
+
+<!-- Puerta izquierda -->
+<a-box
+  id="puertaIzquierda"
+  position="-1 1.45 2.74"
+  width="1.92"
+  height="2.9"
+  depth="0.08"
+  color="#674A37"
+  animation__abrir="
+    property: position;
+    to: -3 1.45 2.74;
+    dur: 750;
+    startEvents: abrir"
+  animation__cerrar="
+    property: position;
+    to: -1 1.45 2.74;
+    dur: 750;
+    startEvents: cerrar">
+</a-box>
+
+<!-- Puerta derecha -->
+<a-box
+  id="puertaDerecha"
+  position="1 1.45 2.74"
+  width="1.92"
+  height="2.9"
+  depth="0.08"
+  color="#674A37"
+  animation__abrir="
+    property: position;
+    to: 3 1.45 2.74;
+    dur: 750;
+    startEvents: abrir"
+  animation__cerrar="
+    property: position;
+    to: 1 1.45 2.74;
+    dur: 750;
+    startEvents: cerrar">
+</a-box>
+
+<!-- Boton junto a la entrada -->
+<a-box
+  id="botonPuerta"
+  class="interactivo"
+  position="-2.45 1.45 2.65"
+  width="0.85"
+  height="0.32"
+  depth="0.08"
+  color="#A98158">
+</a-box>
+
+<a-text
+  id="textoPuerta"
+  value="ABRIR"
+  position="-2.45 1.45 2.59"
+  rotation="0 180 0"
+  align="center"
+  width="1.5"
+  color="#FFFFFF">
+</a-text>
+
+
     <!-- PEDESTALES -->
     <a-cylinder position="-2 0.5 -3.5"
                 radius="0.65" height="1"

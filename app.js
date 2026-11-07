@@ -176,3 +176,29 @@ AFRAME.registerComponent('caminar-quest', {
     posicion.z = THREE.MathUtils.clamp(posicion.z, -4.8, 1.6);
   }
 });
+
+
+// CONTROL DE PUERTAS - ARTEANC VR
+
+const botonPuerta = document.querySelector('#botonPuerta');
+const puertaIzquierda = document.querySelector('#puertaIzquierda');
+const puertaDerecha = document.querySelector('#puertaDerecha');
+const textoPuerta = document.querySelector('#textoPuerta');
+
+let puertasAbiertas = false;
+
+botonPuerta.addEventListener('click', function () {
+
+  puertasAbiertas = !puertasAbiertas;
+
+  const accion = puertasAbiertas ? 'abrir' : 'cerrar';
+
+  puertaIzquierda.emit(accion);
+  puertaDerecha.emit(accion);
+
+  textoPuerta.setAttribute(
+    'value',
+    puertasAbiertas ? 'CERRAR' : 'ABRIR'
+  );
+
+});
