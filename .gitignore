@@ -1,0 +1,8 @@
+﻿# Archivos temporales
+*.blend1
+*.rsInfo
+.vscode/
+__pycache__/
+
+# Copia antigua del HTML
+index - copia.html

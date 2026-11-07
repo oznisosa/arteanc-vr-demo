@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <title>ArteAnc VR - Catálogo interactivo</title>
+
+  <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+</head>
+
+<body>
+  <a-scene background="color: #E9E0D2">
+
+    <!-- ILUMINACIÓN -->
+    <a-light type="ambient" intensity="0.8"></a-light>
+    <a-light type="directional"
+             position="-2 5 3"
+             intensity="1.2"></a-light>
+
+    <!-- SUELO Y PARED -->
+    <a-plane position="0 0 -3"
+             rotation="-90 0 0"
+             width="12"
+             height="12"
+             color="#B7A48A"></a-plane>
+
+    <a-box position="0 2 -6"
+           width="12"
+           height="4"
+           depth="0.2"
+           color="#D5C5B0"></a-box>
+
+    <a-text value="ARTEANC"
+            position="0 3 -5.85"
+            align="center"
+            color="#493021"
+            width="5"></a-text>
+
+            
+
+<!-- Luz cálida para la vitrina central -->
+<a-light
+  type="point"
+  position="0 2.8 -2.6"
+  color="#FFF0D9"
+  intensity="1.3"
+  distance="5"
+  decay="2">
+</a-light>
+
+    <!-- PEDESTALES -->
+    <a-cylinder position="-2 0.5 -3.5"
+                radius="0.65" height="1"
+                color="#755C45"></a-cylinder>
+
+    <a-cylinder position="0 0.5 -3.5"
+                radius="0.65" height="1"
+                color="#755C45"></a-cylinder>
+
+    <a-cylinder position="2 0.5 -3.5"
+                radius="0.65" height="1"
+                color="#755C45"></a-cylinder>
+
+    <!-- PRODUCTO 1 -->
+    <a-sphere id="pieza01"
+              class="producto interactivo"
+              position="-2 1.35 -3.5"
+              radius="0.35"
+              color="#C07746"></a-sphere>
+
+    <!-- PRODUCTO 2 -->
+      
+<!-- PRODUCTO 2: MODELO 3D REAL -->
+<a-entity
+  id="pieza02"
+  class="producto interactivo"
+  gltf-model="url(./modelos/Untitle123d.glb)"
+  position="0 0 -3.5"
+  animation__girar="
+    property: rotation;
+    from: 0 0 0;
+    to: 0 360 0;
+    dur: 1200;
+    startEvents: click">
+</a-entity>
+
+
+    <!-- PRODUCTO 3 -->
+    <a-cone id="pieza03"
+            class="producto interactivo"
+            position="2 1.35 -3.5"
+            radius-bottom="0.35"
+            radius-top="0.1"
+            height="0.7"
+            color="#8A6650"></a-cone>
+
+    <!-- FICHA ÚNICA -->
+    <a-entity id="ficha"
+              position="0 2.35 -3.05"
+              visible="false">
+
+      <a-plane width="2.8"
+               height="1.45"
+               color="#FFF4E6"></a-plane>
+
+      <a-text id="nombre"
+              position="-1.25 0.47 0.02"
+              color="#493021"
+              width="3"></a-text>
+
+      <a-text id="precio"
+              position="-1.25 0.15 0.02"
+              color="#876142"
+              width="2.8"></a-text>
+
+      <a-text id="descripcion"
+              position="-1.25 -0.13 0.02"
+              color="#493021"
+              width="2.4"
+              wrap-count="42"></a-text>
+
+      <!-- BOTÓN CERRAR -->
+      <a-plane id="cerrarFicha"
+               class="interactivo"
+               position="0 -0.53 0.04"
+               width="0.9"
+               height="0.25"
+               color="#795A44">
+
+        <a-text value="CERRAR"
+                position="0 0 0.02"
+                align="center"
+                color="white"
+                width="1.8"></a-text>
+
+      </a-plane>
+    </a-entity>
+
+    <!-- CÁMARA Y RATÓN -->
+    <a-camera position="0 1.6 0">
+      <a-entity
+        cursor="rayOrigin: mouse"
+        raycaster="objects: .interactivo">
+      </a-entity>
+    </a-camera>
+
+    <!-- MANDOS DEL QUEST 3 -->
+    <a-entity
+      laser-controls="hand: right"
+      raycaster="objects: .interactivo; far: 10">
+    </a-entity>
+
+    <a-entity
+      laser-controls="hand: left"
+      raycaster="objects: .interactivo; far: 10">
+    </a-entity>
+
+  </a-scene>
+
+  
+<script src="./catalogo.js"></script>
+<script src="./app.js"></script>
+
+</body>
+</html>
