@@ -221,3 +221,24 @@ function alternarPuertas() {
 botonesPuerta.forEach(function (boton) {
   boton.addEventListener('click', alternarPuertas);
 });
+
+
+// RECEPCION INTERACTIVA - ARTEANC VR
+
+const mostradorRecepcion =
+  document.querySelector('#mostradorRecepcion');
+
+const bienvenidaRecepcion =
+  document.querySelector('#bienvenidaRecepcion');
+
+mostradorRecepcion.addEventListener('click', function () {
+
+  const estaVisible =
+    bienvenidaRecepcion.getAttribute('visible');
+
+  bienvenidaRecepcion.setAttribute(
+    'visible',
+    !estaVisible
+  );
+
+});

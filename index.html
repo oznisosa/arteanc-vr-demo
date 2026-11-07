@@ -170,6 +170,8 @@
 
 <!-- Cuerpo del mostrador -->
 <a-box
+  id="mostradorRecepcion"
+  class="interactivo"
   position="-3.7 0.55 1.3"
   width="2"
   height="1.1"
@@ -194,6 +196,56 @@
   width="2.5"
   color="#E8C99A">
 </a-text>
+
+
+<!-- PANEL DE BIENVENIDA -->
+<!-- Letrero de mesa apoyado al fondo de la superficie del
+     mostrador (superficie: y 1.06-1.22, z 0.85-1.75).
+     Girado 180 grados para mirar hacia la galeria (-z),
+     el mismo lado desde el que el visitante usa el mostrador.
+     Base en y 1.25, borde superior en y 1.75. -->
+<a-entity
+  id="bienvenidaRecepcion"
+  position="-3.7 1.5 1.55"
+  rotation="0 180 0"
+  visible="false">
+
+  <!-- Marco de madera -->
+  <a-box
+    position="0 0 -0.025"
+    width="1.4"
+    height="0.6"
+    depth="0.04"
+    color="#A98158">
+  </a-box>
+
+  <!-- Fondo -->
+  <a-plane
+    width="1.3"
+    height="0.5"
+    color="#FFF4E6">
+  </a-plane>
+
+  <!-- Titulo -->
+  <a-text
+    value="BIENVENIDO A ARTEANC"
+    position="0 0.14 0.01"
+    align="center"
+    width="1.2"
+    color="#493021">
+  </a-text>
+
+  <!-- Instrucciones -->
+  <a-text
+    value="Explora nuestra galeria y selecciona una pieza para conocer su historia."
+    position="0 -0.08 0.01"
+    align="center"
+    width="1.1"
+    wrap-count="34"
+    color="#493021">
+  </a-text>
+
+</a-entity>
 
 
 <!-- PUERTAS CORREDIZAS ARTEANC -->
