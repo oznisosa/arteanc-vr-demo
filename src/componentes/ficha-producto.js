@@ -1,6 +1,9 @@
 // FICHA DE PRODUCTO - ARTEANC VR (módulo 1.3)
 //
 // Componente A-Frame para la ficha que aparece JUNTO a la pieza elegida.
+// Siempre mira al visitante, siempre derecha (vertical) y siempre a su
+// derecha de la pieza; si el visitante camina alrededor, la ficha le sigue
+// suavemente sin separarse de la pieza.
 // Diseño final (DISENO_FINAL.md §7): panel marfil opaco de 0,95 m de ancho
 // (0,62 m de alto como mínimo; crece si el texto es largo), texto marrón,
 // chip con el tipo de pieza, un solo panel abierto y cierre visible.
@@ -73,13 +76,21 @@ AFRAME.registerComponent('ficha-producto', {
   schema: {
     lado: { default: 'derecha', oneOf: ['derecha', 'izquierda'] }, // lado de la pieza
     separacion: { type: 'number', default: 0.85 },  // m, de lado desde el eje de la pieza
-    adelanto: { type: 'number', default: 0.45 },    // m, hacia el frente de la pieza
+    adelanto: { type: 'number', default: 0.45 },    // m, desde la pieza hacia el visitante
     altura: { type: 'number', default: 1.45 },      // m, centro del panel sobre el suelo
-    giro: { type: 'number', default: 15 }           // grados, inclinación hacia la pieza
+    suavidad: { type: 'number', default: 6 }        // rapidez con que sigue al visitante (0 = no sigue)
   },
 
   init: function () {
     this.el.setAttribute('visible', false);
+    this.elPieza = null;   // pieza junto a la que está la ficha (null = cerrada)
+
+    // Vectores que se reutilizan en cada fotograma (crearlos cuesta)
+    this.posPieza = new THREE.Vector3();
+    this.posCamara = new THREE.Vector3();
+    this.destino = new THREE.Vector3();
+    this.haciaVisitante = new THREE.Vector3();
+    this.derecha = new THREE.Vector3();
 
     // Fondo (su alto se ajusta en cada mostrar)
     this.fondo = document.createElement('a-entity');
@@ -153,43 +164,58 @@ AFRAME.registerComponent('ficha-producto', {
     this.contenido.setAttribute('position', `0 ${alto / 2 - MARGEN} 0`);
     this.boton.setAttribute('position', `${ANCHO / 2 - MARGEN - 0.13} ${-alto / 2 + MARGEN + 0.045} 0.004`);
 
-    this.colocarJunto(elPieza);
+    // Al abrirse se coloca de golpe; después, tick() la mantiene en su sitio
+    this.elPieza = elPieza;
+    this.calcularDestino();
+    this.el.object3D.position.copy(this.destino);
+    this.el.object3D.rotation.set(0, this.giroDestino, 0);
     this.el.setAttribute('visible', true);
     this.boton.classList.add('interactivo'); // solo se puede pulsar si está visible
   },
 
   ocultar: function () {
+    this.elPieza = null;
     this.el.setAttribute('visible', false);
     this.boton.classList.remove('interactivo');
   },
 
-  // Coloca el panel al lado de la pieza, como una cartela de museo.
-  // La orientación depende SOLO de la pieza (no de dónde esté el visitante),
-  // así todas las fichas quedan igual de ordenadas respecto a su pieza.
-  colocarJunto: function (elPieza) {
-    const posPieza = new THREE.Vector3();
-    elPieza.object3D.getWorldPosition(posPieza);
+  // Calcula dónde debe estar la ficha y hacia dónde mirar, según dónde esté
+  // AHORA el visitante: a su derecha de la pieza, un poco hacia él, mirándole
+  // de frente y siempre vertical (solo gira alrededor del eje Y).
+  calcularDestino: function () {
+    this.elPieza.object3D.getWorldPosition(this.posPieza);
+    this.el.sceneEl.camera.el.object3D.getWorldPosition(this.posCamara);
 
-    // "Frente" de la pieza: su eje +Z en el mundo (hacia donde se la mira de frente)
-    const giroPieza = new THREE.Quaternion();
-    elPieza.object3D.getWorldQuaternion(giroPieza);
-    const frente = new THREE.Vector3(0, 0, 1).applyQuaternion(giroPieza).setY(0).normalize();
-
-    // "Derecha" de quien mira la pieza de frente
-    const derecha = new THREE.Vector3(frente.z, 0, -frente.x);
+    // Dirección horizontal de la pieza hacia el visitante, y la "derecha" del visitante
+    const haciaVisitante = this.haciaVisitante.subVectors(this.posCamara, this.posPieza).setY(0);
+    if (haciaVisitante.lengthSq() < 1e-6) haciaVisitante.set(0, 0, 1); // justo encima: caso raro
+    haciaVisitante.normalize();
+    const derecha = this.derecha.set(haciaVisitante.z, 0, -haciaVisitante.x);
     const signo = this.data.lado === 'derecha' ? 1 : -1;
 
-    const pos = posPieza.clone()
+    this.destino.copy(this.posPieza)
       .addScaledVector(derecha, signo * this.data.separacion)
-      .addScaledVector(frente, this.data.adelanto);
-    pos.y = this.data.altura;
+      .addScaledVector(haciaVisitante, this.data.adelanto);
+    this.destino.y = this.data.altura;
 
-    // Misma orientación que la pieza, girada `giro` grados hacia ella
-    // (como la página de un libro abierto junto a la pieza)
-    const orientacion = Math.atan2(frente.x, frente.z)
-      - signo * THREE.MathUtils.degToRad(this.data.giro);
+    // Giro para que el frente del panel (+Z) mire al visitante
+    this.giroDestino = Math.atan2(this.posCamara.x - this.destino.x, this.posCamara.z - this.destino.z);
+  },
 
-    this.el.object3D.position.copy(pos);
-    this.el.object3D.rotation.set(0, orientacion, 0);
+  // En cada fotograma: si la ficha está abierta, se acerca suavemente a su destino
+  tick: function (tiempo, delta) {
+    if (!this.elPieza || !delta || this.data.suavidad <= 0) return;
+
+    this.calcularDestino();
+
+    // Fracción del camino que recorre en este fotograma (igual a 72 o a 60 fps)
+    const f = 1 - Math.exp(-this.data.suavidad * delta / 1000);
+    const obj = this.el.object3D;
+    obj.position.lerp(this.destino, f);
+
+    // Girar por el camino más corto (sin dar la vuelta larga al pasar de 180° a −180°)
+    let diferencia = this.giroDestino - obj.rotation.y;
+    diferencia = Math.atan2(Math.sin(diferencia), Math.cos(diferencia));
+    obj.rotation.set(0, obj.rotation.y + diferencia * f, 0);
   }
 });

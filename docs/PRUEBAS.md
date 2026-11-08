@@ -45,7 +45,9 @@ Si todo está bien: `Ctrl + C` para cerrar el servidor y hacer `git push`.
 | P2b | Clic en una peana (no en la pieza) | No abre la ficha | |
 | P3 | Suelo | Baldosas de piedra en 4 tonos (24 en total) | |
 | P4 | Ficha: clic en la esfera, el modelo y el cono | Aparece a la derecha de la pieza, sin taparla. Esfera: chip "ARTESANIA TRADICIONAL PERUANA", "CERAMICA 01", "Precio ficticio: US$ 35.00". Modelo: chip "ORIGINAL DOCUMENTADO", "No disponible para venta" y "Historia y fuentes: Sin fuentes verificadas". Cono: "FIGURA 03", "Precio ficticio: US$ 45.00". En las tres: "Clasificacion ilustrativa (demo)" | |
-| P4b | Ficha: clic en otra pieza con la ficha abierta | La ficha se mueve junto a la nueva pieza (solo hay una abierta), con **la misma orientación** respecto a su pieza | |
+| P4b | Ficha: clic en otra pieza con la ficha abierta | La ficha se mueve junto a la nueva pieza (solo hay una abierta) | |
+| P4d | Ficha: abrirla **desde detrás** o desde un lado de la pieza | Se ve de frente, derecha y a tu derecha de la pieza | |
+| P4e | Ficha: con la ficha abierta, caminar alrededor de la pieza | La ficha te sigue suavemente sin separarse de la pieza | |
 | P4c | Ficha: legibilidad | Ningún texto se superpone ni se sale del panel | |
 | P5 | Ficha: CERRAR | Se oculta | |
 | P6 | Puertas: botón interior | Se abren las dos hojas; letreros "CERRAR" | |

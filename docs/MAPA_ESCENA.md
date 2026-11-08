@@ -95,12 +95,12 @@ Los tres productos tienen las clases `producto` e `interactivo`.
 
 Desde el módulo 1.3: `<a-entity id="ficha" ficha-producto>` (componente en
 `src/componentes/ficha-producto.js`). Empieza oculta.
-- **Posición: depende de la pieza, no del visitante** (como una cartela de
-  museo). Aparece **0,85 m a la derecha** de la pieza (mirándola de frente),
-  **0,45 m por delante** de ella, con el centro a **y = 1,45**, y con la
-  orientación de la pieza girada **15° hacia ella**. Con las piezas actuales:
-  pieza01 → `-1.15 1.45 -3.05`; pieza02 → `0.85 1.45 -3.05`;
-  pieza03 → `2.85 1.45 -3.05`; las tres con giro −15°.
+- **Posición: variable, según dónde esté el visitante.** Aparece **0,85 m a la
+  derecha de la pieza tal como la ve el visitante**, **0,45 m desde la pieza
+  hacia él**, con el centro a **y = 1,45**, mirándole de frente y siempre
+  vertical (solo gira en Y). Mientras está abierta **sigue al visitante
+  suavemente** si camina alrededor de la pieza (opción `suavidad`, 6 por defecto).
+  Ejemplo desde la posición inicial (0, 1,6, 0): pieza02 → aprox. `0.88 1.45 -3.1`.
 - Fondo marfil `#FFF4E6` de **0,95 m** de ancho y **0,62 m** de alto mínimo (crece con el texto).
 - Contenido: chip del tipo de pieza (color según el tipo), aviso "Clasificación
   ilustrativa (demo)", título, precio, disponibilidad, detalles conocidos y descripción.

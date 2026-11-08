@@ -90,9 +90,35 @@ Concepto: **orientación relativa a un objeto frente a relativa al
 observador.** La primera da orden visual y coherencia; la segunda asegura que
 siempre se lea de frente. En un museo se usa la primera.
 
+### Segunda corrección: que se vea bien desde cualquier lado
+Ozni probó la versión "cartela de museo" y encontró el problema contrario:
+"si estoy detrás del objeto y doy clic, la ficha ni se ve; tengo que estar
+delante". Pidió que se vea bien, **derecha**, desde donde sea que se abra, y
+que todas las fichas se comporten igual.
+**Solución final (lo mejor de las dos versiones):**
+1. La ficha **mira siempre al visitante** y está **siempre vertical** (solo gira en Y).
+2. Se coloca siempre **a la derecha de la pieza tal como la ve el visitante**,
+   0,45 m hacia él y a 1,45 m de altura: el mismo lugar relativo para todas.
+3. **Sigue al visitante suavemente** mientras está abierta: en cada fotograma
+   (`tick`) se recalcula su sitio y se acerca a él con una interpolación
+   (`lerp`) que no depende de los fps. Esto corrige lo que probablemente hacía
+   ver "desordenada" la primera versión: se colocaba una sola vez y, si el
+   visitante se movía, quedaba torcida.
+**Verificación (Playwright):** abierta desde el frente (3 piezas), desde
+detrás, en diagonal y tras caminar con ella abierta: en los 6 casos, desvío
+respecto al visitante **0,0°**, inclinación **0,0°**, siempre **a su derecha**
+y a **1,45 m**. Captura desde detrás de la pieza: la ficha se lee de frente.
+**Rendimiento:** los vectores se crean una vez y se reutilizan en cada
+fotograma (crear objetos 72 veces por segundo provoca pausas del recolector de basura).
+
+Conceptos: **interpolación lineal (`lerp`)**; **suavizado exponencial
+independiente de los fps** (`1 − e^(−k·Δt)`); **camino angular más corto**
+(`atan2(sen, cos)` para no girar 350° en lugar de 10°); **recolector de
+basura** (*garbage collector*).
+
 ### Pendientes
 - Prueba de Ozni en el Quest: ¿se lee bien la ficha dentro del visor? ¿Está
-  a buena altura y distancia?
+  a buena altura y distancia? ¿El seguimiento resulta cómodo o marea?
 - Más adelante (F6): botón "Ver en la tienda" y favorito en la ficha.
 - Siguiente: módulo 1.4 (`datos/salas.json`).
 
