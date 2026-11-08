@@ -145,4 +145,4 @@ x −4.8..4.8 y z −4.8..1.6.
 
 - El texto "ARTEANC" del frente del mostrador (`-3.7 0.75 0.91`) no tiene rotación, así que su cara visible mira hacia +z, hacia el propio mostrador. Desde la galería se ve por detrás y probablemente no aparezca. Para que mire a la galería necesitaría `rotation="0 180 0"`.
 - En PC, la cámara se mueve con WASD sin los límites de `caminar-quest`, así que se pueden atravesar las paredes.
-- **Por confirmar en el Quest:** en una simulación (Playwright), empujar el joystick hacia delante (`y = −1`) movió el rig hacia +z, es decir, hacia el sur. `getWorldDirection` sobre el `object3D` de la cámara devuelve su eje +z, que apunta hacia atrás. Si en el visor el joystick funciona al revés, esa es la causa. Se rehará en la Fase 2.
+- ~~Joystick invertido~~ **Corregido el 2026-11-08** (Ozni lo confirmó en el Quest): `getWorldDirection` devolvía el eje +z de la cámara, que apunta hacia atrás; ahora se invierte con `.negate()` en `src/componentes/caminar-quest.js`.

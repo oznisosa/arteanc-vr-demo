@@ -33,8 +33,11 @@ AFRAME.registerComponent('caminar-quest', {
 
     if (x === 0 && y === 0) return;
 
-    // Direccion hacia donde mira el visitante
-    this.camara.getWorldDirection(this.adelante);
+    // Direccion hacia donde mira el visitante.
+    // getWorldDirection devuelve el eje +Z del objeto, que en una cámara
+    // apunta hacia ATRÁS (la cámara mira hacia −Z). Por eso lo invertimos
+    // con negate(). Sin esto, el joystick iba al revés (corregido el 2026-11-08).
+    this.camara.getWorldDirection(this.adelante).negate();
     this.adelante.y = 0;
     this.adelante.normalize();
 

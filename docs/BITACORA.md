@@ -8,6 +8,61 @@
 
 ---
 
+## 2026-11-08 — Corrección: el joystick del Quest iba al revés
+
+**Tipo:** corrección de un error (*bug*). **Archivo:** `src/componentes/caminar-quest.js` (1 línea).
+**Excepción a la Fase 0:** la regla es no cambiar el comportamiento, pero esto
+era un error que Ozni comprobó en el visor, no una mejora.
+
+### El síntoma (informado por Ozni en el Quest 3)
+"Al empujar el joystick hacia adelante va hacia atrás y si empujas hacia atrás
+va hacia adelante, igual con derecha e izquierda." El error ya existía en el
+`app.js` original; la reorganización del 0.4 no lo causó (se había detectado
+en la simulación y anotado en `MAPA_ESCENA.md`).
+
+### La causa
+```js
+// Antes
+this.camara.getWorldDirection(this.adelante);
+// Después
+this.camara.getWorldDirection(this.adelante).negate();
+```
+`getWorldDirection` devuelve hacia dónde apunta el eje **+Z** de un objeto.
+Pero en Three.js (y A-Frame) **una cámara mira hacia −Z**. Así que el vector
+llamado `adelante` en realidad apuntaba **hacia atrás**. Como `derecha` se
+calcula a partir de `adelante`, también salía invertida. `.negate()` le da la
+vuelta al vector (multiplica x, y, z por −1).
+
+### Cómo se verificó
+Simulación en Playwright: rig en (0, 0, −1,5), joystick 0,4 s en cada dirección.
+| Vista | Joystick | Esperado | Resultado |
+|---|---|---|---|
+| Norte (−z) | adelante | z disminuye | dz −0,50 ✅ |
+| Norte | atrás | z aumenta | dz +0,50 ✅ |
+| Norte | derecha | x aumenta | dx +0,48 ✅ |
+| Norte | izquierda | x disminuye | dx −0,48 ✅ |
+| Este (+x) | adelante | x aumenta | dx +0,48 ✅ |
+| Este | derecha | z aumenta (sur) | dz +0,50 ✅ |
+**Pendiente:** Ozni lo confirma en el Quest.
+
+### Conceptos que aparecen
+- **Vector de dirección.** Una flecha de longitud 1 que indica hacia dónde.
+- **Convención de ejes.** En Three.js la cámara mira hacia −Z; por eso en este
+  proyecto norte = −Z (regla 6 de `CLAUDE.md`).
+- **Negar un vector.** `(x, y, z)` → `(−x, −y, −z)`: la misma recta, sentido contrario.
+- **Probar en el dispositivo real.** La simulación ya avisaba, pero solo la
+  prueba en el visor confirmó el error. Por eso cada módulo se prueba en el Quest.
+
+### Para el tutor
+- Ejercicio: dibujar en papel los ejes X y Z vistos desde arriba, una cámara
+  mirando al norte, y los vectores `adelante` y `derecha` antes y después de la corrección.
+- Pregunta: ¿por qué con un solo `.negate()` se arreglaron también derecha e izquierda?
+
+### Pendientes
+- Confirmación de Ozni en el Quest.
+
+---
+
 ## 2026-11-08 — Módulo 0.5: medidor de rendimiento con `?debug`
 
 **Tipo:** herramienta de medición. **El visitante no ve ningún cambio** (sin
@@ -71,6 +126,10 @@ la detallada, solo al examinar.
 - Ejercicio: cerrar la ficha y abrirla. ¿Cuántas llamadas de dibujo añade?
 - Pregunta: si el modelo es el 93 % de los triángulos, ¿qué ganaríamos
   reduciéndolo a 10 000?
+
+### Prueba de Ozni (PC y Quest 3)
+- El medidor `?debug` se ve bien en el PC y dentro del visor.
+- Ozni detectó que **el joystick iba al revés** → ver la entrada siguiente.
 
 ### Pendientes
 - Ozni mide en el Quest (fuera y dentro de VR) y se completa la tabla.
