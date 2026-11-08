@@ -373,7 +373,7 @@ carácter nuevo hay que regenerar las fuentes.
 favoritos, idioma). Los favoritos deben sobrevivir al cerrar la página
 (DISENO_FINAL.md §7) y llevarse fuera de la VR (F6).
 
-**Decisión:** `src/servicios/estado.js`, sin librerías: `obtener`, `cambiar`,
+**Decisión:** `src/servicios/estado.js` (claves: `piezaSeleccionada`, `favoritos`, `idioma` y, desde la Fase 2, `modoSentado`), sin librerías: `obtener`, `cambiar`,
 `alCambiar` (avisos con `EventTarget`) y atajos de favoritos. Se guardan
 **solo** `favoritos` e `idioma` en `localStorage` (clave `arteanc.estado.v1`);
 la pieza seleccionada no. Los datos guardados se revisan al leerlos (si están

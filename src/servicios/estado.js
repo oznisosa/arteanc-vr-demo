@@ -6,8 +6,9 @@
 //   piezaSeleccionada  id de la pieza cuya ficha está abierta (null = ninguna)
 //   favoritos          lista de ids de piezas marcadas como favoritas
 //   idioma             'es' (en la v1.1 llegará 'en')
+//   modoSentado        true si el visitante usa el modo sentado (Fase 2, botón Y)
 //
-// Los favoritos y el idioma se GUARDAN en el navegador (localStorage), así que
+// Los favoritos, el idioma y el modo sentado se GUARDAN en el navegador (localStorage), así que
 // siguen ahí al cerrar y volver a abrir la página (DISENO_FINAL.md §7:
 // "Favoritos es una selección local persistente"). La pieza seleccionada no
 // se guarda: al volver, ninguna ficha está abierta.
@@ -20,13 +21,14 @@
 //                                                 devuelve una función para dejar de escuchar
 
 const CLAVE_GUARDADO = 'arteanc.estado.v1';  // nombre en localStorage
-const GUARDADOS = ['favoritos', 'idioma'];   // lo que sobrevive al cerrar
+const GUARDADOS = ['favoritos', 'idioma', 'modoSentado']; // lo que sobrevive al cerrar
 const IDIOMAS = ['es'];                       // idiomas disponibles
 
 const INICIAL = {
   piezaSeleccionada: null,
   favoritos: [],
-  idioma: 'es'
+  idioma: 'es',
+  modoSentado: false
 };
 
 // Lee lo guardado. Si no hay nada o está estropeado, se empieza de cero.
@@ -38,6 +40,7 @@ function leerGuardado(almacen) {
       resultado.favoritos = datos.favoritos.filter((id) => typeof id === 'string');
     }
     if (IDIOMAS.includes(datos.idioma)) resultado.idioma = datos.idioma;
+    if (typeof datos.modoSentado === 'boolean') resultado.modoSentado = datos.modoSentado;
     return resultado;
   } catch {
     return {};
