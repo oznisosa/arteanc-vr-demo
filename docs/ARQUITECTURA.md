@@ -103,7 +103,7 @@ crea la cartela y conecta la ficha.
 > (`caminar-quest.js`) y dos carpetas provisionales: `src/escena/` (suelo,
 > ajuste del modelo) y `src/interaccion/` (ficha, puertas, recepción). En la
 > Fase 1 su contenido pasará a componentes y al constructor. El catálogo está
-> en `src/datos/catalogo.js` hasta que sea `datos/catalogo.json` (1.1).
+> en `datos/catalogo.json` desde el módulo 1.1 (guía: [CATALOGO.md](CATALOGO.md)).
 
 ```
 ArteAnc-VR/

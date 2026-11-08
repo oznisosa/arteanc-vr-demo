@@ -21,8 +21,9 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 - **Fase 0 (Cimientos) terminada el 2026-11-08:** Vite, `npm run quest`,
   módulos en `src/`, medidor `?debug`, publicación con GitHub Actions y
   [docs/PRUEBAS.md](docs/PRUEBAS.md).
-- **Siguiente paso: Fase 1 (Datos y componentes)**, empezando por 1.1
-  (`datos/catalogo.json`). Ver el plan para el orden y los criterios.
+- **Fase 1 (Datos y componentes) en curso.** Hecho: 1.1 (`datos/catalogo.json`,
+  guía [docs/CATALOGO.md](docs/CATALOGO.md), `npm run validar`).
+  Siguiente: 1.2 `pieza-exhibida`. Ver el plan para el orden y los criterios.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 
 ## Reglas de trabajo

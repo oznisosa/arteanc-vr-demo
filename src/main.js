@@ -3,7 +3,8 @@
 // index.html carga solo este archivo (<script type="module">).
 // Desde aquí se importa cada parte del proyecto, un archivo por responsabilidad:
 //
-//   datos/catalogo.js           → datos de las piezas
+//   datos/cargar-catalogo.js    → descarga datos/catalogo.json (módulo 1.1)
+//   datos/textos-pieza.js       → convierte los datos de una pieza en textos
 //   componentes/caminar-quest.js → componente A-Frame de movimiento (se registra al importarlo)
 //   escena/suelo.js             → baldosas del suelo
 //   escena/ajustar-modelo.js    → escala y apoya el modelo 3D en su pedestal
@@ -12,10 +13,10 @@
 //   interaccion/recepcion.js    → letrero de bienvenida
 //   depuracion.js               → medidor de rendimiento, solo con ?debug
 //
-// Este archivo solo usa rutas relativas ("./…"), así que funciona igual con
-// Vite y servido tal cual por GitHub Pages.
+// Vite empaqueta estos módulos en `npm run build`, y GitHub Actions publica
+// el resultado (DT-013).
 
-import { catalogo } from './datos/catalogo.js';
+import { cargarCatalogo } from './datos/cargar-catalogo.js';
 import './componentes/caminar-quest.js';
 import { crearBaldosas } from './escena/suelo.js';
 import { ajustarModeloAPedestal } from './escena/ajustar-modelo.js';
@@ -24,8 +25,7 @@ import { iniciarPuertas } from './interaccion/puertas.js';
 import { iniciarRecepcion } from './interaccion/recepcion.js';
 import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';
 
-iniciarFicha(catalogo);
-
+// 1. Lo que no depende de datos externos se prepara enseguida
 // El modelo 3D (#pieza02): dimensión mayor 0.65 m, apoyado a 1.02 m de altura
 ajustarModeloAPedestal('#pieza02', 0.65, 1.02);
 
@@ -35,4 +35,12 @@ iniciarRecepcion();
 
 if (modoDepuracionActivo()) {
   activarDepuracion();
+}
+
+// 2. El catálogo llega por la red: lo esperamos y después activamos la ficha
+try {
+  const catalogo = await cargarCatalogo();
+  iniciarFicha(catalogo);
+} catch (error) {
+  console.error('[ArteAnc] No se pudo cargar el catálogo:', error);
 }

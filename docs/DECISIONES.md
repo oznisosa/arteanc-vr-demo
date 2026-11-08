@@ -260,3 +260,31 @@ queda registrado en la pestaña Actions (si falla, no se publica y la web
 anterior sigue en pie). Requiere cambiar una vez Settings → Pages → Source.
 
 **Revisar si:** se necesita un dominio propio con funciones de servidor (F7).
+
+---
+
+## DT-014 — Tipos de pieza por sala y nuevo tipo `artesania_tradicional`
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** el diseño final define `original_documentado`, `replica`,
+`artesania_contemporanea` y `null`, y en sus maquetas usa "Réplica" en el
+Santuario y "Artesanía contemporánea" en las demás salas. Ozni pidió que las
+piezas del Santuario se presenten **como antiguas** y las demás **como
+artesanías tradicionales peruanas**, y que más adelante lo afinará (es una
+cuestión de marketing que se investigará).
+
+**Decisión:**
+- Se añade el valor `artesania_tradicional` → "Artesanía tradicional peruana".
+- Demo: Santuario = `original_documentado`; resto = `artesania_tradicional`;
+  todo con `tipoPiezaEsIlustrativo: true`.
+- Se amplía el contrato con `id`, `descripcion`, `sala`, `cultura`, `epoca`
+  y `procedencia` (guía en [CATALOGO.md](CATALOGO.md)).
+- `npm run validar` comprueba el catálogo y se ejecuta antes de cada build.
+
+**Aviso:** los bienes arqueológicos prehispánicos son Patrimonio Cultural de
+la Nación en el Perú (Ley 28296), con restricciones de comercio y
+exportación. Vender piezas `original_documentado` requiere una revisión
+legal (módulo 7.5). La regla del diseño se mantiene: ese tipo exige
+documentación de **cada pieza**; el nombre de la sala no basta.
+
+**Revisar:** cuando ArteAnc confirme qué vende realmente (pregunta abierta n.º 2).

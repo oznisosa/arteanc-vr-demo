@@ -23,7 +23,7 @@ En PowerShell, en la carpeta del proyecto:
 
 | # | Paso | Resultado esperado | ✓ |
 |---|---|---|---|
-| R1 | `npm run build` | Termina con `✓ built in …` y sin errores en rojo | |
+| R1 | `npm run build` | Primero `✓ datos/catalogo.json: N piezas correctas`, luego `✓ built in …`, sin errores en rojo | |
 | R2 | `npm run dev` | Se abre el navegador con la sala | |
 | R3 | Clic en las 3 piezas | La ficha muestra nombre y precio de cada una | |
 | R4 | Clic en **CERRAR** | La ficha desaparece | |

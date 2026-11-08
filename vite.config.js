@@ -6,7 +6,7 @@
 //
 // El código está en `src/` como módulos ES (módulo 0.4) y Vite lo empaqueta.
 // Los modelos `.glb` se cargan desde el HTML con `url(./modelos/…)`, que Vite
-// no ve; por eso, al terminar el build, copiamos `modelos/` a `dist/`.
+// no ve; por eso, al terminar el build, copiamos `modelos/` y `datos/` a `dist/`.
 // (GitHub Actions publica `dist/` en cada push: ver DT-013.)
 
 // Modo "quest" (módulo 0.3): `npm run quest` abre el servidor a la red local
@@ -18,12 +18,13 @@ import { defineConfig } from 'vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { cpSync } from 'node:fs';
 
-// Carpetas que la escena carga directamente y que Vite no ve por sí solo.
-const ARCHIVOS_A_COPIAR = ['modelos'];
+// Carpetas que la escena descarga en tiempo de ejecución (modelos .glb y el
+// catálogo JSON, que se lee con fetch) y que Vite no ve por sí solo.
+const ARCHIVOS_A_COPIAR = ['modelos', 'datos'];
 
-function copiarModelos() {
+function copiarCarpetas() {
   return {
-    name: 'copiar-modelos',
+    name: 'copiar-carpetas',
     apply: 'build', // solo al ejecutar `npm run build`
     closeBundle() {
       for (const ruta of ARCHIVOS_A_COPIAR) {
@@ -51,7 +52,7 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
-      copiarModelos(),
+      copiarCarpetas(),
       ...(paraQuest ? [basicSsl()] : []), // HTTPS solo en modo quest
     ],
   };

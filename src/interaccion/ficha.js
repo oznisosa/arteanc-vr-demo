@@ -2,6 +2,10 @@
 //
 // Al hacer clic en una pieza (.producto), rellena la ficha con sus datos
 // del catálogo y la muestra. El botón #cerrarFicha la oculta.
+// Desde el módulo 1.1 los datos vienen de `datos/catalogo.json`.
+// La ficha nueva, con tipo de pieza y más campos, llegará en el módulo 1.3.
+
+import { textoPrecio, paraFuenteSinTildes } from '../datos/textos-pieza.js';
 
 export function iniciarFicha(catalogo) {
 
@@ -23,14 +27,14 @@ export function iniciarFicha(catalogo) {
       const datos = catalogo[pieza.id];
 
       if (!datos) {
-        console.warn('Producto no encontrado:', pieza.id);
+        console.warn('Producto no encontrado en el catálogo:', pieza.id);
         return;
       }
 
-      // Actualizamos el panel
-      nombre.setAttribute('value', datos.nombre);
-      precio.setAttribute('value', datos.precio);
-      descripcion.setAttribute('value', datos.descripcion);
+      // Actualizamos el panel (títulos en mayúsculas, como antes)
+      nombre.setAttribute('value', paraFuenteSinTildes(datos.titulo.toUpperCase()));
+      precio.setAttribute('value', paraFuenteSinTildes(textoPrecio(datos)));
+      descripcion.setAttribute('value', paraFuenteSinTildes(datos.descripcion ?? ''));
 
       // Mostramos la ficha
       ficha.setAttribute('visible', true);

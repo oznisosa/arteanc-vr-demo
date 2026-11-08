@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite",
     "quest": "vite --mode quest",
-    "build": "vite build",
+    "validar": "node herramientas/validar-catalogo.js",
+    "build": "npm run validar && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {

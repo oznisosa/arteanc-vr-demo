@@ -130,7 +130,7 @@ x −4.8..4.8 y z −4.8..1.6.
 
 - **A-Frame 1.8.0** desde el CDN `https://aframe.io/releases/1.8.0/aframe.min.js`. Sin conexión la escena no carga.
 - **Código**: un solo `<script type="module" src="./src/main.js">` al final del `<body>`. `main.js` importa los demás módulos de `src/` (desde el módulo 0.4; antes eran `catalogo.js` y `app.js`).
-- **`src/datos/catalogo.js`**: claves `pieza01`, `pieza02` y `pieza03`, que deben coincidir con los `id` de los productos.
+- **`datos/catalogo.json`** (desde el módulo 1.1; se descarga con `fetch`): cada pieza tiene un campo `id` (`pieza01`, `pieza02`, `pieza03`) que debe coincidir con el `id` de su entidad en `index.html`.
 - **Los módulos de `src/`** necesitan que existan estos ids en `index.html`:
   `#ficha`, `#nombre`, `#precio`, `#descripcion`, `#cerrarFicha`, `#pieza02`,
   `#baldosas`, `#camara`, `#mando-izquierdo`, `#botonPuerta`,

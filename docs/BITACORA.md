@@ -8,6 +8,74 @@
 
 ---
 
+## 2026-11-08 — Módulo 1.1: el catálogo pasa a `datos/catalogo.json`
+
+**Tipo:** datos. **La escena se ve igual** (las fichas muestran los mismos textos).
+
+### Qué cambió
+| Antes | Después |
+|---|---|
+| `src/datos/catalogo.js`: un objeto JavaScript con nombre, precio y descripción | `datos/catalogo.json`: archivo de datos con 22 campos por pieza |
+| Precio como texto: `"US$ 35.00"` | Precio como número + moneda: `"precio": 35, "moneda": "USD"`; el texto lo arma `textoPrecio()` |
+| Textos sin tildes en los datos | Datos bien escritos ("Cerámica", "demostración"); las tildes se quitan **solo al mostrar** hasta el 1.5 |
+| El catálogo venía dentro del código | Se descarga con `fetch` al abrir la página (`src/datos/cargar-catalogo.js`) |
+| Nada comprobaba los datos | `npm run validar` (`herramientas/validar-catalogo.js`) y se ejecuta antes de cada build |
+
+**Archivos nuevos:** `datos/catalogo.json`, `src/datos/cargar-catalogo.js`,
+`src/datos/textos-pieza.js`, `herramientas/validar-catalogo.js`, `docs/CATALOGO.md`.
+**Borrado:** `src/datos/catalogo.js`. **Modificados:** `src/main.js`,
+`src/interaccion/ficha.js`, `package.json` (scripts `validar` y `build`),
+`vite.config.js` (copia también `datos/` a `dist/`), y la documentación.
+
+### Clasificación de las piezas (decisión de Ozni, DT-014)
+- **Santuario precolombino:** como piezas antiguas (`original_documentado`).
+- **Demás salas:** como artesanía tradicional peruana (`artesania_tradicional`, tipo nuevo).
+- Las 3 piezas actuales: `pieza02` (la "Cerámica Moche" del modelo 3D) al
+  Santuario; `pieza01` a Cerámica; `pieza03` sin sala (`null`). Todas
+  **ilustrativas** y `demostracion_no_vendible`. Ozni las editará.
+- Cultura, época, material, dimensiones y procedencia quedan en `null`: no se inventan.
+- ⚠️ Aviso legal anotado en DT-014 y CATALOGO.md (Ley 28296).
+
+### Cómo se verificó
+- `npm run validar` → `✓ datos/catalogo.json: 3 piezas correctas`.
+- Se estropeó el catálogo a propósito (tipo inexistente, precio entre comillas,
+  campo borrado, sku repetido): el validador mostró los 5 errores y **el build se detuvo**.
+- Fichas en `npm run dev`, en `dist/` (`npm run preview`) y en la web publicada
+  (código anterior): **idénticas** en los tres —
+  "CERAMICA 01 | US$ 35.00 | Primera pieza de demostracion.",
+  "MODELO 3D DE PRUEBA | No disponible para venta | Ceramica Moche.",
+  "FIGURA 03 | US$ 45.00 | Tercera pieza de demostracion.".
+
+### Conceptos que aparecen
+- **JSON.** Formato de texto para datos: objetos `{}`, listas `[]`, textos
+  entre comillas, números y `null` sin comillas.
+- **Contrato de datos (esquema).** La lista acordada de campos y valores
+  permitidos. Permite que la escena, la tienda y las personas hablen el mismo idioma.
+- **`fetch` y `async`/`await`.** Pedir un archivo por la red y esperar la
+  respuesta sin congelar la página.
+- **`await` de nivel superior.** En un módulo se puede usar `await` fuera de
+  una función (`src/main.js`).
+- **Validación.** Revisar los datos antes de usarlos; mejor un error claro al
+  construir que una ficha rota en la web.
+- **Separar datos y presentación.** El dato es `precio: 35`; cómo se muestra
+  ("US$ 35.00") es otra capa (`textoPrecio`).
+- **Normalización Unicode (NFD).** Separa "á" en "a" + tilde, para poder quitarla.
+
+### Para el tutor
+- Ejercicio: cambiar el precio de `pieza01` a 40 en `datos/catalogo.json`,
+  ejecutar `npm run validar` y ver la ficha con `npm run dev`.
+- Ejercicio: poner `"precio": "40"` (con comillas) y leer el error del validador.
+- Pregunta: ¿por qué `stock: null` y `stock: 0` no significan lo mismo?
+- Debate (marketing): ¿qué etiqueta transmite mejor el valor de una pieza:
+  "Artesanía tradicional peruana" o "Artesanía contemporánea"?
+
+### Pendientes
+- Ozni edita los datos reales de las piezas cuando los tenga.
+- Revisión legal de la venta de piezas precolombinas originales (F7, módulo 7.5).
+- Siguiente: módulo 1.2 (`pieza-exhibida`).
+
+---
+
 ## 2026-11-08 — Módulo 0.7: lista de pruebas · **Fase 0 terminada** ✅
 
 **Tipo:** documentación. **Archivos:** `docs/PRUEBAS.md` (nuevo),

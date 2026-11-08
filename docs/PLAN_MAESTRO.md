@@ -72,7 +72,7 @@ al hacer push.
 
 | Módulo | Entregable |
 |---|---|
-| 1.1 Esquema del catálogo | `datos/catalogo.json` con el esquema de [ARQUITECTURA.md](ARQUITECTURA.md); las 3 piezas actuales migradas |
+| 1.1 Esquema del catálogo | ✅ **Hecho el 2026-11-08**: `datos/catalogo.json` (contrato del diseño final + DT-014), guía [CATALOGO.md](CATALOGO.md), validador `npm run validar`; las 3 piezas migradas |
 | 1.2 `pieza-exhibida` | Componente que crea la peana, coloca el modelo a escala real y la hace interactiva |
 | 1.3 `ficha-producto` | Ficha pequeña junto a la pieza (no un panel gigante) con todos los campos, incluido el tipo de pieza |
 | 1.4 Datos de salas | `datos/salas.json` a partir de [diseno/final/02-layout.json](diseno/final/02-layout.json): salas, accesos, `exhibitSlots` y `fixtures` |
@@ -252,7 +252,7 @@ Estas respuestas afectan al plan; conviene tenerlas antes de las fases indicadas
 | # | Pregunta | Afecta a |
 |---|---|---|
 | 1 | ¿En qué plataforma está arteanc.com (Shopify, WooCommerce u otra)? | F6, v1.4 |
-| 2 | ¿Qué tipos de piezas se venden (originales documentados, réplicas, artesanía contemporánea, antigüedades coloniales)? | F1 (esquema), F7 (legal) |
+| 2 | 🟡 Provisional (DT-014): Santuario como originales antiguos y demás salas como artesanía tradicional peruana; se afinará. **Falta revisión legal** de la venta de piezas precolombinas originales | F7 (legal) |
 | 3 | ✅ Resuelto en el diseño final: Cerámica, Textiles, Metal/piedra/instrumentos y Santuario precolombino | — |
 | 4 | ¿Hay logo oficial? (La paleta y la tipografía ya están propuestas en `diseno/final/DISENO_FINAL.md` §4 y §7) | F4 |
 | 5 | ¿Qué 12–20 productos irán en la v1.0? | F3 |

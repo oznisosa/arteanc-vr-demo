@@ -9,6 +9,7 @@
 | [DECISIONES.md](DECISIONES.md) | Registro de decisiones técnicas y sus motivos |
 | [MAPA_ESCENA.md](MAPA_ESCENA.md) | Inventario y coordenadas de la escena actual |
 | [BITACORA.md](BITACORA.md) | Registro de cada cambio, con conceptos para estudiar |
+| [CATALOGO.md](CATALOGO.md) | Cómo editar `datos/catalogo.json`: campos, tipos de pieza, salas y validación |
 | [PRUEBAS.md](PRUEBAS.md) | Qué comprobar en PC, Quest y web publicada antes de cada push |
 | [diseno/](diseno/README.md) | **Diseño final congelado** de La Casa ArteAnc (planta, `02-layout.json`, láminas), referencias de los prototipos y encargos de diseño |
 
