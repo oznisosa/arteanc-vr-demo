@@ -272,15 +272,33 @@ AFRAME.registerComponent('casa-greybox', {
     this.el.setObject3D('casa', casa);
     this.resumen.mallas = casa.children.length;
 
-    // 8. NOMBRE DE CADA SALA (texto flotante, visible por las dos caras)
+    // 8. NOMBRE DE CADA SALA, MIRANDO A CADA ENTRADA
+    // Por cada acceso a la sala se pone un letrero que mira hacia ese acceso,
+    // desplazado desde el centro hacia él: quien entra lo ve de frente,
+    // entre por donde entre (Cerámica y Textiles se entran por un lado).
+    const entradas = {}; // sala → lista de puntos [x, z] por donde se entra
+    const anadirEntrada = (sala, x, z) => (entradas[sala] ??= []).push([x, z]);
+    for (const ac of d.accesos) {
+      anadirEntrada(ac.desde, ac.centro[0], ac.centro[2]);
+      anadirEntrada(ac.hacia, ac.centro[0], ac.centro[2]);
+    }
+    // El patio también se entra por la apertura libre de la galería sur
+    anadirEntrada('patio', (ap.x[0] + ap.x[1]) / 2, ap.z);
+
     for (const s of d.salas) {
       if (s.papel === 'circulacion') continue;
-      for (const giro of [0, 180]) {
+      const [cx, , cz] = s.centro;
+      for (const [ex, ez] of entradas[s.id] ?? []) {
+        // A un tercio del camino entre el centro de la sala y la entrada
+        const x = cx + (ex - cx) * 0.35;
+        const z = cz + (ez - cz) * 0.35;
+        const giro = THREE.MathUtils.radToDeg(Math.atan2(ex - x, ez - z)); // frente (+Z) hacia la entrada
         const t = document.createElement('a-entity');
         // Letrero discreto cerca del techo (letras de ~9 cm de ancho)
         t.setAttribute('text', { value: quitarTildes(s.nombre.toUpperCase()), align: 'center', color: '#493021', width: 2.4, wrapCount: 26 });
-        t.setAttribute('position', `${s.centro[0]} ${s.tamano[1] - 0.7} ${s.centro[2]}`);
+        t.setAttribute('position', `${x} ${Math.min(s.tamano[1] - 0.7, 3.3)} ${z}`);
         t.setAttribute('rotation', `0 ${giro} 0`);
+        t.classList.add('nombre-sala');
         this.el.appendChild(t);
       }
     }
