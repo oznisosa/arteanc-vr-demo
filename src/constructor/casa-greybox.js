@@ -15,6 +15,7 @@
 // casa entera cuesta ~15 llamadas de dibujo en lugar de cientos.
 
 import { geometriaMuro, geometriaPortal, geometriaLosa, geometriaCaja, fusionar } from './geometria.js';
+import { FUENTES } from '../escena/fuentes.js';
 
 const THREE = AFRAME.THREE;
 
@@ -295,7 +296,7 @@ AFRAME.registerComponent('casa-greybox', {
         const giro = THREE.MathUtils.radToDeg(Math.atan2(ex - x, ez - z)); // frente (+Z) hacia la entrada
         const t = document.createElement('a-entity');
         // Letrero discreto cerca del techo (letras de ~9 cm de ancho)
-        t.setAttribute('text', { value: quitarTildes(s.nombre.toUpperCase()), align: 'center', color: '#493021', width: 2.4, wrapCount: 26 });
+        t.setAttribute('text', { value: s.nombre.toUpperCase(), align: 'center', color: '#493021', width: 2.4, wrapCount: 26, font: FUENTES.titulo });
         t.setAttribute('position', `${x} ${Math.min(s.tamano[1] - 0.7, 3.3)} ${z}`);
         t.setAttribute('rotation', `0 ${giro} 0`);
         t.classList.add('nombre-sala');
@@ -304,8 +305,3 @@ AFRAME.registerComponent('casa-greybox', {
     }
   }
 });
-
-// La fuente por defecto no tiene tildes (hasta el módulo 1.5)
-function quitarTildes(texto) {
-  return texto.normalize('NFD').replace(/[̀-ͯ]/g, '');
-}

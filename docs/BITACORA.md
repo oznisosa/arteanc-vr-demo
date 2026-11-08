@@ -8,6 +8,81 @@
 
 ---
 
+## 2026-11-08 — Módulo 1.5: tildes, eñes y textos en `datos/textos/es.json`
+
+**Tipo:** textos y tipografía. **Se ve en toda la escena.**
+
+### Qué cambió
+| Antes | Ahora |
+|---|---|
+| Fuente Roboto de A-Frame, sin tildes: "CERAMICA", "galeria", "MONUMENTO HISTORICO" | **Inter** (textos) y **Cormorant Garamond** (títulos y marca), las del diseño final: "CERÁMICA", "galería", "MONUMENTO HISTÓRICO" |
+| Truco `paraFuenteSinTildes()` que quitaba las tildes al mostrar | Borrado: ya no hace falta |
+| Textos escritos en el HTML y en el código ("CERRAR", "Precio ficticio"…) | Todos en **`datos/textos/es.json`**, leídos con `t('ficha.cerrar')` |
+| Letrero "ARTEANC" del mostrador mirando hacia el propio mueble | Girado 180°: se lee desde la galería |
+| Nombres de sala de la casa sin tildes | "CERÁMICA", "UMBRAL / RECEPCIÓN" en Cormorant |
+
+**Archivos nuevos:** `fuentes/` (Inter y Cormorant en MSDF, licencias OFL,
+`LEEME.md`), `datos/textos/es.json`, `src/datos/textos.js` (función `t`),
+`src/escena/fuentes.js`, `src/componentes/texto.js`. **Modificados:**
+`index.html` (7 textos), ficha, puertas, medidor, casa, `main.js`, `casa.js`,
+`vite.config.js` (copia `fuentes/`). DT-017.
+
+### Cómo se hicieron las fuentes
+Con `msdf-bmfont-xml` se convirtieron `Inter.ttf` y `CormorantGaramond.ttf`
+(de `docs/diseno/final/fuentes/`) en un "atlas" de 512 × 256 px con 126
+letras (ASCII + `áéíóúñü¿¡°×·–—“”«»€…`), cada una guardada como **campo de
+distancias con signo en 3 canales** (rojo, verde, azul). El generador se
+usó desde una carpeta aparte y no se instaló en el proyecto: traía 30 avisos
+de seguridad en dependencias antiguas (ver DT-017).
+
+### Problemas encontrados al probar
+1. **Las letras salían como bloques macizos.** Causa: A-Frame dibuja el texto
+   por defecto con el sombreador `sdf` (1 canal), y nuestras fuentes son `msdf`
+   (3 canales). Se diagnosticó leyendo el material del texto en el navegador
+   (`shader: "sdf"`). Solución: `shader: 'msdf'` por defecto en `fuentes.js`.
+2. **Alto de línea distinto.** La ficha calcula cuántas líneas ocupa cada
+   texto; con Inter cada línea mide **2,035** veces el ancho de una letra
+   (58 / 28,5), no 1,87 como con Roboto. Se actualizó `ALTO_LINEA`.
+3. Cormorant usa **números de estilo antiguo** ("01" parece "oı"): es propio
+   de esa tipografía. Si molesta en los títulos de las piezas, se puede usar
+   Inter para los títulos con números.
+
+### Cómo se verificó
+- Todos los textos con `shader msdf / negate false` y su fuente cargada.
+- Capturas: ficha ("ARTESANÍA TRADICIONAL PERUANA", "Cerámica 01",
+  "demostración · no está"), pared ("ARTEANC" en Cormorant), placa
+  ("MONUMENTO HISTÓRICO"), mostrador desde la galería (letrero legible y
+  bienvenida con "galería"), casa ("CERÁMICA" entrando desde el patio).
+- `npm run build` + `npm run preview`: `fuentes/` se copia a `dist/` y los textos cargan.
+- **Pendiente:** Ozni lo comprueba en el Quest (nitidez dentro del visor).
+
+### Conceptos que aparecen
+- **Campo de distancias con signo (SDF / MSDF).** En vez de guardar la letra
+  como píxeles, se guarda a qué distancia del borde está cada punto: el
+  borde se reconstruye nítido a cualquier tamaño. MSDF usa 3 canales para
+  conservar las esquinas afiladas.
+- **Sombreador (*shader*).** Programa de la tarjeta gráfica que decide el
+  color de cada píxel; debe coincidir con el formato de la fuente.
+- **Internacionalización (i18n).** Separar los textos del código para poder
+  traducirlos: `t('clave')` + un archivo por idioma.
+- **Interpolación de cadenas.** `"Precio ficticio: {importe}"` + `{ importe: 'US$ 35.00' }`.
+- **Licencias de fuentes (SIL OFL).** Permiten usar e incrustar la fuente,
+  también comercialmente, conservando la licencia.
+- **Cadena de suministro (*supply chain*).** Instalar una herramienta trae
+  todas sus dependencias; por eso no se dejó en el proyecto.
+
+### Para el tutor
+- Ejercicio: en `datos/textos/es.json`, cambiar `"puertaAbrir": "ABRIR"` por
+  `"ABRIR PUERTA"` y verlo en la escena sin tocar el código.
+- Ejercicio: abrir `fuentes/Inter.png` y localizar la "ñ".
+- Pregunta: ¿por qué con `shader: sdf` las letras salían como rectángulos?
+
+### Pendientes
+- Prueba de Ozni en el Quest.
+- Siguiente: módulo 1.6 (estado: pieza seleccionada, favoritos, idioma).
+
+---
+
 ## 2026-11-08 — Módulo 1.7: la Casa ArteAnc en *greybox* (`casa.html`)
 
 **Tipo:** escena nueva. **`index.html` no cambia** (DT-016, aprobada por Ozni:

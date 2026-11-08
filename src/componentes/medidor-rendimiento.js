@@ -10,8 +10,9 @@
 //
 // Nota: en VR se dibuja una vez por ojo, así que llamadas y triángulos
 // incluyen los dos ojos (el doble que en el PC para la misma vista).
-// Los textos van sin tildes porque la fuente por defecto de A-Frame no las
-// tiene (se corregirá en el módulo 1.5).
+// Las etiquetas están en datos/textos/es.json (módulo 1.5).
+
+import { t } from '../datos/textos.js';
 
 AFRAME.registerComponent('medidor-rendimiento', {
   schema: {
@@ -55,9 +56,9 @@ AFRAME.registerComponent('medidor-rendimiento', {
     const modo = this.el.sceneEl.is('vr-mode') ? 'VR' : 'PC';
 
     this.texto.setAttribute('text', 'value',
-      `${modo}  fps: ${fps}\n` +
-      `llamadas: ${info.calls}\n` +
-      `triangulos: ${info.triangles.toLocaleString('es')}`
+      `${modo}  ${t('depuracion.fps')}: ${fps}\n` +
+      `${t('depuracion.llamadas')}: ${info.calls}\n` +
+      `${t('depuracion.triangulos')}: ${info.triangles.toLocaleString('es')}`
     );
 
     // Guardamos la última lectura para poder consultarla desde la consola:

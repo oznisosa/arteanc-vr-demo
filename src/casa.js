@@ -3,6 +3,7 @@
 // casa.html carga solo este archivo. La escena principal (index.html) sigue
 // usando src/main.js y no cambia.
 
+import './escena/fuentes.js'; // primero: fuente con tildes (1.5)
 import './constructor/casa-greybox.js';
 import './casa/mover-provisional.js';
 import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';

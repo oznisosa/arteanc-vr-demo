@@ -159,6 +159,7 @@ x −4.8..4.8 y z −4.8..1.6.
 
 ## Observaciones (sin corregir)
 
-- El texto "ARTEANC" del frente del mostrador (`-3.7 0.75 0.91`) no tiene rotación, así que su cara visible mira hacia +z, hacia el propio mostrador. Desde la galería se ve por detrás y probablemente no aparezca. Para que mire a la galería necesitaría `rotation="0 180 0"`.
+- ~~El texto "ARTEANC" del frente del mostrador miraba hacia el propio mostrador~~ **Corregido en el módulo 1.5**: `rotation="0 180 0"`, ahora mira a la galería.
+- **Textos (desde el 1.5):** los textos fijos de la escena usan el componente `texto="clave: …"` y salen de `datos/textos/es.json`; la marca y los títulos usan Cormorant Garamond (`fuente: titulo`), el resto Inter.
 - En PC, la cámara se mueve con WASD sin los límites de `caminar-quest`, así que se pueden atravesar las paredes.
 - ~~Joystick invertido~~ **Corregido el 2026-11-08** (Ozni lo confirmó en el Quest): `getWorldDirection` devolvía el eje +z de la cámara, que apunta hacia atrás; ahora se invierte con `.negate()` en `src/componentes/caminar-quest.js`.

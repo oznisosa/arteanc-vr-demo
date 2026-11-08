@@ -333,3 +333,32 @@ Fase 2 no se fusione, `casa.html` usa un movimiento provisional sin límites
 actual. Cuando el *greybox* esté validado, se decidirá cómo pasa a ser la
 escena principal (otra DT).
 
+---
+
+## DT-017 — Fuentes MSDF del diseño (Inter y Cormorant) y textos en `datos/textos/es.json`
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** la fuente que trae A-Frame no tiene tildes ni eñes; hasta el
+1.4 se quitaban al mostrar ("CERAMICA"). Los textos de la interfaz estaban
+repartidos por el HTML y el código.
+
+**Decisión:**
+- Las tipografías del diseño final (Inter para textos y botones, Cormorant
+  Garamond para títulos y marca; licencia SIL OFL) se convierten a **MSDF**
+  con `msdf-bmfont-xml` y se guardan en `fuentes/` (126 caracteres, incluidos
+  los españoles). `src/escena/fuentes.js` cambia el valor por defecto del
+  componente `text` de A-Frame: `font` = Inter, `shader` = `msdf`, `negate` = false.
+- El generador **no** se instala en el proyecto: sus dependencias antiguas
+  traen 30 avisos de seguridad (solo de desarrollo) y GitHub lo instalaría en
+  cada publicación. Se usa una vez desde una carpeta aparte (`fuentes/LEEME.md`).
+- Todos los textos de la interfaz pasan a `datos/textos/es.json` y se leen
+  con `t('clave')` (`src/datos/textos.js`); en el HTML, con el componente
+  `texto="clave: …"`. Vite incluye el JSON en el código al construir.
+
+**Alternativas:** Roboto MSDF de A-Frame (no es la tipografía del diseño);
+texto como imágenes (no escala ni se traduce); `troika-three-text` (genera
+las letras al vuelo, más pesado para el Quest).
+
+**Consecuencias:** textos correctos en español y con la identidad del
+diseño; preparado para el inglés (v1.1: añadir `en.json`). Para añadir un
+carácter nuevo hay que regenerar las fuentes.

@@ -14,10 +14,15 @@
 //   interaccion/puertas.js      → puertas corredizas
 //   interaccion/recepcion.js    → letrero de bienvenida
 //   depuracion.js               → medidor de rendimiento, solo con ?debug
+//   escena/fuentes.js           → fuentes Inter y Cormorant con tildes (1.5)
+//   componentes/texto.js        → pone en la escena los textos de datos/textos/es.json (1.5)
+//   datos/textos.js             → función t('clave') para leer esos textos (1.5)
 //
 // Vite empaqueta estos módulos en `npm run build`, y GitHub Actions publica
 // el resultado (DT-013).
 
+import './escena/fuentes.js';            // primero: fuente con tildes para todos los textos (1.5)
+import './componentes/texto.js';         // textos de la escena desde datos/textos/es.json (1.5)
 import { catalogoListo } from './datos/catalogo-servicio.js';
 import './componentes/caminar-quest.js';
 import './componentes/pieza-exhibida.js';
