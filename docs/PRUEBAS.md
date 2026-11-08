@@ -23,7 +23,7 @@ En PowerShell, en la carpeta del proyecto:
 
 | # | Paso | Resultado esperado | ✓ |
 |---|---|---|---|
-| R1 | `npm run build` | Primero `✓ datos/catalogo.json: N piezas correctas` y `✓ datos/salas.json: al día con el diseño…`, luego `✓ built in …`, sin errores en rojo | |
+| R1 | `npm run build` | Primero `✓ datos/catalogo.json: N piezas correctas` y `✓ datos/salas.json: al día con el diseño…`; después las pruebas (`ℹ pass 9`, `ℹ fail 0`) y `✓ built in …`, sin errores en rojo | |
 | R2 | `npm run dev` | Se abre el navegador con la sala | |
 | R3 | Clic en las 3 piezas | La ficha aparece **junto a cada pieza** con su chip, nombre y precio | |
 | R4 | Clic en **CERRAR** | La ficha desaparece | |
@@ -133,7 +133,16 @@ estas cifras sin motivo, investigar antes de publicar.
 
 ---
 
-## 5. Prueba automática de equivalencia (la ejecuta Claude)
+## 5. Pruebas automáticas (`npm run probar`)
+
+Comprueban la lógica que no necesita navegador. Se ejecutan solas antes de
+cada build. Hoy: 9 pruebas del estado (`pruebas/estado.test.js`): favoritos
+que se marcan, se guardan y se recuperan al recargar, la pieza seleccionada
+que no se guarda, avisos de cambios, datos guardados estropeados, navegación
+privada. Para ver el estado en el navegador: abrir con `?debug`, F12 →
+Consola → `arteanc.estado.instantanea()`.
+
+## 6. Prueba automática de equivalencia (la ejecuta Claude)
 
 Durante la Fase 0, Claude comprueba con Playwright que la escena local y la
 publicada dan los mismos valores: modelo con dimensión mayor 0,650 m y base

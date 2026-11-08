@@ -7,6 +7,7 @@
 // Sin `?debug`, el visitante no ve nada de esto.
 
 import './componentes/medidor-rendimiento.js';
+import { estado } from './servicios/estado.js';
 
 export function modoDepuracionActivo() {
   return new URLSearchParams(window.location.search).has('debug');
@@ -25,5 +26,11 @@ export function activarDepuracion() {
   medidor.setAttribute('position', '-0.22 -0.2 -0.8');
   camara.appendChild(medidor);
 
-  console.info('[ArteAnc] Modo depuración activo (?debug)');
+  // Acceso al estado desde la consola del navegador (F12):
+  //   arteanc.estado.instantanea()   arteanc.estado.alternarFavorito('pieza01')
+  window.arteanc = { estado };
+  estado.alCambiar('piezaSeleccionada', (id) => console.info('[estado] pieza seleccionada:', id));
+  estado.alCambiar('favoritos', (lista) => console.info('[estado] favoritos:', lista));
+
+  console.info('[ArteAnc] Modo depuración activo (?debug). Estado:', estado.instantanea());
 }

@@ -13,10 +13,15 @@
 // que los textos están disponibles al instante, sin esperar a la red.
 
 import es from '../../datos/textos/es.json';
+import { estado } from '../servicios/estado.js';
 
-const textos = es;
+// Un archivo por idioma (v1.1: añadir `import en from …` y `en` aquí)
+const IDIOMAS = { es };
 
 export function t(clave, valores = {}) {
+  // Textos del idioma actual (módulo 1.6); si falta el idioma, español
+  const textos = IDIOMAS[estado.obtener('idioma')] ?? IDIOMAS.es;
+
   // "ficha.cerrar" → textos.ficha.cerrar
   const texto = clave.split('.').reduce((nodo, parte) => nodo?.[parte], textos);
 

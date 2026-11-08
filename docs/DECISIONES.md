@@ -363,3 +363,27 @@ las letras al vuelo, más pesado para el Quest).
 **Consecuencias:** textos correctos en español y con la identidad del
 diseño; preparado para el inglés (v1.1: añadir `en.json`). Para añadir un
 carácter nuevo hay que regenerar las fuentes.
+
+---
+
+## DT-018 — Estado propio y pequeño, guardado en `localStorage`, con pruebas automáticas
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** el módulo 1.6 pide un servicio de estado (pieza seleccionada,
+favoritos, idioma). Los favoritos deben sobrevivir al cerrar la página
+(DISENO_FINAL.md §7) y llevarse fuera de la VR (F6).
+
+**Decisión:** `src/servicios/estado.js`, sin librerías: `obtener`, `cambiar`,
+`alCambiar` (avisos con `EventTarget`) y atajos de favoritos. Se guardan
+**solo** `favoritos` e `idioma` en `localStorage` (clave `arteanc.estado.v1`);
+la pieza seleccionada no. Los datos guardados se revisan al leerlos (si están
+estropeados, se ignoran). Las pruebas automáticas usan el corredor que trae
+Node (`node --test`, `npm run probar`) y se ejecutan antes de cada build.
+
+**Alternativas:** el sistema de estado de A-Frame o librerías (Zustand,
+Redux): más piezas que aprender para tres datos.
+
+**Consecuencias:** cualquier componente puede reaccionar a los cambios; los
+favoritos persisten en el mismo navegador (no se sincronizan entre el Quest y
+el PC: eso es el módulo 6.3). Para guardar algo nuevo (p. ej. el modo
+sentado de la Fase 2) se añade su clave a `INICIAL` y a `GUARDADOS`.

@@ -16,6 +16,7 @@
 import { contenidoFicha } from '../datos/textos-pieza.js';
 import { t } from '../datos/textos.js';
 import { FUENTES } from '../escena/fuentes.js';
+import { estado } from '../servicios/estado.js';
 
 const THREE = AFRAME.THREE;
 
@@ -172,6 +173,7 @@ AFRAME.registerComponent('ficha-producto', {
 
     // Al abrirse se coloca de golpe; después, tick() la mantiene en su sitio
     this.elPieza = elPieza;
+    estado.cambiar('piezaSeleccionada', pieza.id); // módulo 1.6
     this.calcularDestino();
     this.el.object3D.position.copy(this.destino);
     this.el.object3D.rotation.set(0, this.giroDestino, 0);
@@ -181,6 +183,7 @@ AFRAME.registerComponent('ficha-producto', {
 
   ocultar: function () {
     this.elPieza = null;
+    estado.cambiar('piezaSeleccionada', null); // módulo 1.6
     this.el.setAttribute('visible', false);
     this.boton.classList.remove('interactivo');
   },

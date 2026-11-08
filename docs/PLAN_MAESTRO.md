@@ -78,7 +78,7 @@ al hacer push.
 | 1.4 Datos de salas | ✅ **Hecho el 2026-11-08**: `datos/salas.json` generado desde [02-layout.json](diseno/final/02-layout.json) con `npm run salas` (DT-015): 8 salas, 7 accesos, 38 posiciones, 5 elementos; validador de geometría; guía [SALAS.md](SALAS.md) |
 | 1.7 *Greybox* de la casa | ✅ **Hecho el 2026-11-08** en `casa.html` (DT-016): el componente `casa-greybox` levanta toda la casa desde `salas.json` (muros con huecos trapezoidales, portal, hornacinas, soportes, cartelas, canal), fusionada en 13 mallas (~25 llamadas, ~3 600 triángulos). Recorrido de Ozni en el Quest: **90 fps** dentro de VR y "todo perfecto" |
 | 1.5 Textos y fuente | ✅ **Hecho el 2026-11-08** (DT-017): textos en `datos/textos/es.json` (`t('clave')` y componente `texto`); fuentes MSDF Inter y Cormorant Garamond con tildes y eñes en `fuentes/`; letrero del mostrador girado hacia la galería |
-| 1.6 Estado | Pequeño servicio de estado (pieza seleccionada, favoritos, idioma) que los componentes consultan |
+| 1.6 Estado | ✅ **Hecho el 2026-11-08** (DT-018): `src/servicios/estado.js` con pieza seleccionada, favoritos (guardados en `localStorage`) e idioma; avisos de cambios; 9 pruebas automáticas (`npm run probar`) |
 
 **Dependencias:** F0.
 **Terminada cuando:** agregar una pieza nueva consiste solo en editar

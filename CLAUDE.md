@@ -28,7 +28,9 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   [docs/SALAS.md](docs/SALAS.md)). 1.7 greybox construido en `casa.html` (DT-016,
   componente `src/constructor/casa-greybox.js`); probado en el Quest: 90 fps.
   1.5 hecho (DT-017): textos en `datos/textos/es.json` con `t('clave')`; fuentes
-  MSDF en `fuentes/` (guía `fuentes/LEEME.md`). Siguiente: 1.6 estado.
+  MSDF en `fuentes/` (guía `fuentes/LEEME.md`). 1.6 hecho (DT-018): estado en
+  `src/servicios/estado.js`; pruebas con `npm run probar` (`pruebas/*.test.js`).
+  **Fase 1: todos los módulos hechos**; falta revisar sus criterios de cierre.
   Ver el plan para el orden y los criterios.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 

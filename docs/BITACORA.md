@@ -8,6 +8,95 @@
 
 ---
 
+## 2026-11-08 — Módulo 1.6: el estado de la aplicación · **Fase 1 completa**
+
+**Tipo:** servicio interno. **El visitante no ve cambios todavía**: lo usarán
+los favoritos (F6) y los idiomas (v1.1).
+
+### Qué es
+Una "memoria compartida" (`src/servicios/estado.js`) con tres datos:
+| Dato | Qué guarda | ¿Sobrevive al recargar? |
+|---|---|---|
+| `piezaSeleccionada` | La pieza cuya ficha está abierta (o `null`) | No |
+| `favoritos` | Lista de piezas favoritas | **Sí** (`localStorage`) |
+| `idioma` | `'es'` (en la v1.1, también `'en'`) | **Sí** |
+
+Funciones: `estado.obtener(clave)`, `estado.cambiar(clave, valor)`,
+`estado.alCambiar(clave, función)` (avisa en cada cambio y devuelve una función
+para dejar de escuchar), `estado.alternarFavorito(id)`, `estado.esFavorito(id)`.
+
+### Dónde se usa ya
+- La **ficha** anota la pieza al abrirse y `null` al cerrarse.
+- Los **textos** (`t()`) eligen el archivo del idioma del estado.
+- Con **`?debug`**: `window.arteanc.estado` en la consola del navegador, y
+  un mensaje en la consola cada vez que cambia la pieza o los favoritos.
+
+### Pruebas automáticas (nuevas en el proyecto)
+`pruebas/estado.test.js`: **9 pruebas** con el corredor que trae Node
+(`node --test`), sin instalar nada. `npm run probar`, y también antes de
+cada build: si una falla, GitHub no publica. Comprueban: estado inicial;
+marcar y desmarcar favoritos; que se guardan y se recuperan "al volver a
+abrir" (con un `localStorage` falso); que la pieza seleccionada no se
+guarda; que avisa solo cuando algo cambia de verdad; que nadie puede
+modificar la lista desde fuera; datos guardados estropeados; navegación
+privada; y que una clave mal escrita da un error claro.
+**Prueba de las pruebas:** se rompió a propósito el guardado de favoritos →
+falló justo la prueba "los favoritos se guardan…" → se restauró → 9 en verde.
+
+### Verificación en el navegador
+Clic en pieza01 → `piezaSeleccionada: pieza01`; clic en pieza03 → `pieza03`;
+CERRAR → `null`; favorito `pieza02` → guardado en `localStorage`;
+**recargar la página** → favoritos `["pieza02"]`, pieza seleccionada `null`.
+
+### Problema encontrado
+`node --test pruebas/` fallaba con "Cannot find module": en Node 24 hay que
+darle un patrón de archivos, `node --test "pruebas/*.test.js"`.
+
+### Conceptos que aparecen
+- **Estado de la aplicación.** Los datos que cambian mientras se usa la app.
+  Tenerlos en un solo sitio evita que cada parte guarde su propia copia.
+- **Patrón observador (publicar/suscribir).** Quien quiere enterarse se
+  suscribe (`alCambiar`) y recibe un aviso; no tiene que preguntar a cada rato.
+- **`localStorage`.** Pequeño almacén del navegador que sobrevive al cierre;
+  solo guarda texto, por eso se usa `JSON.stringify` / `JSON.parse`.
+- **Copias defensivas.** `obtener('favoritos')` devuelve una copia: quien la
+  modifique no cambia el estado sin pasar por `cambiar`.
+- **Pruebas unitarias.** Pequeños programas que comprueban que una pieza de
+  código hace lo que debe; **dobles de prueba** (el `localStorage` falso).
+
+### Balance de la Fase 1 (Datos y componentes)
+| Módulo | Resultado |
+|---|---|
+| 1.1 | Catálogo en `datos/catalogo.json` con validador (DT-014) |
+| 1.2 | `pieza-exhibida`: peana y modelo desde el catálogo |
+| 1.3 | `ficha-producto`: ficha junto a la pieza, mirando al visitante |
+| 1.4 | `datos/salas.json` generado del diseño, con validador de geometría (DT-015) |
+| 1.5 | Tildes y eñes con Inter y Cormorant; textos en `es.json` (DT-017) |
+| 1.6 | Estado con favoritos persistentes y pruebas automáticas (DT-018) |
+| 1.7 | La casa completa en greybox (`casa.html`), 90 fps en el Quest (DT-016) |
+
+**Criterios de cierre del plan:** "agregar una pieza = editar el catálogo y
+copiar su modelo" — casi: en la sala actual todavía hay que añadir su línea
+`pieza-exhibida` en `index.html`; en la casa se resolverá al asignar piezas a
+posiciones. "Textos con tildes" ✅. "HTML de la escena < 60 líneas" ❌ (hoy
+≈ 400: paredes, puertas y recepción de la sala vieja; `casa.html` sí tiene
+≈ 40). "*Greybox* recorrido en el Quest con medidas del diseño" ✅.
+
+### Para el tutor
+- Ejercicio: con `?debug`, en la consola (F12) escribir
+  `arteanc.estado.alternarFavorito('pieza01')`, recargar y comprobar con
+  `arteanc.estado.instantanea()` que sigue ahí.
+- Ejercicio: en `pruebas/estado.test.js`, escribir una prueba nueva que
+  compruebe que `esFavorito` devuelve `false` para una pieza nunca marcada.
+- Pregunta: ¿por qué la pieza seleccionada no se guarda al cerrar y los favoritos sí?
+
+### Pendientes
+- Decidir cómo cerrar la Fase 1: asignar piezas del catálogo a posiciones de
+  la casa y que `casa.html` pase a ser la escena principal (cumpliría los dos
+  criterios pendientes).
+
+---
+
 ## 2026-11-08 — Módulo 1.5: tildes, eñes y textos en `datos/textos/es.json`
 
 **Tipo:** textos y tipografía. **Se ve en toda la escena.**
