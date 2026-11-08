@@ -8,7 +8,7 @@
 
 ---
 
-## 2026-11-08 — Módulo 0.3: abrir la escena en el Quest 3 por wifi (preparado)
+## 2026-11-08 — Módulo 0.3: abrir la escena en el Quest 3 por wifi
 
 **Tipo:** herramientas de desarrollo. **La escena no cambió.**
 **Archivos:** `package.json` (orden `quest` y dependencia nueva), `vite.config.js`,
@@ -36,8 +36,8 @@ HTTPS. Sin él, el botón VR no aparece.
 - `http://` (sin s) en ese puerto no responde: solo hay HTTPS en este modo.
 - El navegador de pruebas rechaza el certificado con `ERR_CERT_AUTHORITY_INVALID`:
   es lo esperado con un certificado autofirmado.
-- **Pendiente:** Ozni abre la dirección en el Quest, entra en VR y confirma
-  que la escena, la ficha, las puertas y el joystick funcionan.
+- ✅ **Prueba de Ozni en el Quest 3:** abrió `https://192.168.200.6:5173`,
+  entró en VR y confirmó que "funciona bien y todo bien".
 
 ### Conceptos que aparecen
 - **Contexto seguro (*secure context*).** Funciones sensibles del navegador
@@ -58,7 +58,6 @@ HTTPS. Sin él, el botón VR no aparece.
   nunca en una web desconocida?
 
 ### Pendientes
-- Prueba de Ozni en el Quest 3 (resultado se anota aquí).
 - Siguiente: módulo 0.4 (dividir `app.js` en módulos).
 
 ---
