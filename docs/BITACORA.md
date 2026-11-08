@@ -98,8 +98,10 @@ movimiento provisional se borra al fusionar.
   Concepto: **diseñar la señalética desde el recorrido del visitante**, no
   desde la planta.
 
+- ✅ **Recorrido completo:** **90 fps dentro de VR** (objetivo 72; 90 es el
+  máximo del Quest 3) y "ahora está todo perfecto". Módulo 1.7 terminado.
+
 ### Pendientes
-- Resto del recorrido de Ozni en el Quest (escala, fps dentro de VR).
 - Asignar las piezas del catálogo a posiciones de la casa.
 - Decidir cuándo `casa.html` pasa a ser la escena principal (nueva DT).
 

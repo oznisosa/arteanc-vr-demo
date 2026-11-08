@@ -124,7 +124,8 @@ Después del push, en https://github.com/oznisosa/arteanc-vr-demo/actions:
 | PC de pruebas (Playwright) | 60 | 34 | 104 015 | 2026-11-08 |
 | PC de Ozni (ventana ancha) | 59 | 38 | 104 023 | 2026-11-08 |
 | Quest 3, fuera de VR | | | | pendiente |
-| Quest 3, dentro de VR | | | | pendiente |
+| Quest 3, dentro de VR (`index.html`) | | | | pendiente |
+| Quest 3, dentro de VR (`casa.html`, greybox) | **90** | ≈ 25 (PC) | ≈ 4 000 (PC) | 2026-11-08 |
 
 Presupuesto ([ARQUITECTURA.md](ARQUITECTURA.md) §5): 72 fps en el Quest ·
 menos de 100 llamadas · menos de 250 000 triángulos. Si un cambio sube mucho

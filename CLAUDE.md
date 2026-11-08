@@ -26,7 +26,7 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   Hecho: 1.2 (`pieza-exhibida`) y 1.3 (`ficha-producto`, ficha junto a la pieza).
   Hecho: 1.4 (`datos/salas.json` generado con `npm run salas`, DT-015; guía
   [docs/SALAS.md](docs/SALAS.md)). 1.7 greybox construido en `casa.html` (DT-016,
-  componente `src/constructor/casa-greybox.js`); falta el recorrido en el Quest.
+  componente `src/constructor/casa-greybox.js`); probado en el Quest: 90 fps.
   Después: 1.5 textos y fuente MSDF, 1.6 estado.
   Ver el plan para el orden y los criterios.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
