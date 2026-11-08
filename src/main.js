@@ -35,6 +35,8 @@ import './componentes/zonas-transitables.js';
 import './componentes/teletransporte.js';
 // componentes/giro-por-pasos.js → joystick derecho a los lados: girar 30° (módulo 2.2)
 import './componentes/giro-por-pasos.js';
+// componentes/modo-sentado.js → botón Y: vista elevada para quien está sentado (módulo 2.4)
+import './componentes/modo-sentado.js';
 
 // 1. Lo que no depende de datos externos se prepara enseguida
 // (las piezas se montan solas: ver pieza-exhibida en index.html)

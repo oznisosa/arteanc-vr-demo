@@ -34,7 +34,8 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   2.1 Teletransporte (joystick derecho, DT-031; probado en el Quest).
   2.2 Giro por pasos de 30° (probado en el Quest).
   2.3 Áreas transitables (mapa 2D propio, DT-032; también en `casa.html`;
-  probado en el Quest). Siguiente: 2.4 Altura y modo sentado.
+  probado en el Quest). 2.4 Modo sentado (botón Y, DT-033; probado
+  en el Quest). Siguiente: 2.5 Manos o 2.6 Escritorio y móvil.
   La Fase 1 sigue en `main`, en la otra carpeta, con otra sesión.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 

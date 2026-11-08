@@ -91,6 +91,10 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | Q24 | Apuntar el arco a una peana o justo delante de ella | Arco rojo (choca con la peana o no cabes) | |
 | Q25 | Dar pasos reales hacia una pared | La vista se detiene en la pared (no la atraviesas) | |
 | Q26 | PC: WASD contra una pared o una peana | Te detienes; no la atraviesas | |
+| Q27 | **Sentado**, pulsar **Y** (mando izquierdo) | Aviso "MODO SENTADO: ACTIVADO, vista elevada N cm"; ves la sala como de pie | |
+| Q28 | Con el modo activo: caminar, saltar y girar | Todo igual; la vista sigue elevada | |
+| Q29 | Pulsar **Y** otra vez | Aviso "DESACTIVADO"; vuelves a tu altura real | |
+| Q30 | **De pie**, pulsar **Y** | No te baja; el aviso dice que ya estás a la altura de una persona de pie | |
 
 ### 2.2b La Casa (greybox) — `casa.html`
 

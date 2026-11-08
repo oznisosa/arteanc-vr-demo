@@ -103,7 +103,7 @@ la aplicación.
 | 2.1 Teletransporte ✅ 2026-11-08 | Joystick hacia delante para apuntar y soltar para saltar, con un arco y un marcador en el suelo. Hecho con el joystick derecho (DT-031); probado en el Quest por Ozni |
 | 2.2 Giro por pasos ✅ 2026-11-08 | Joystick derecho a los lados para girar 30° (DT-031); el movimiento continuo sigue en el joystick izquierdo. Probado en el Quest por Ozni |
 | 2.3 Áreas transitables ✅ 2026-11-08 | *Navmesh* o colisiones simples; aplica a VR y a PC. Hecho con un mapa 2D propio (DT-032) en `index.html` y `casa.html`; probado en el Quest por Ozni |
-| 2.4 Altura y modo sentado | Altura calibrable; modo sentado que eleva la vista |
+| 2.4 Altura y modo sentado ✅ 2026-11-08 | Altura calibrable; modo sentado que eleva la vista. Botón Y = modo sentado autocalibrado a 1,60 m (DT-033); probado en el Quest por Ozni |
 | 2.5 Manos | Seguimiento de manos básico: apuntar y pellizcar para seleccionar |
 | 2.6 Escritorio y móvil | Clic en el suelo para desplazarse; controles táctiles básicos |
 

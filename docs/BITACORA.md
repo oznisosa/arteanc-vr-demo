@@ -8,6 +8,80 @@
 
 ---
 
+## 2026-11-08 — Módulo 2.4: modo sentado con el botón Y (DT-033)
+
+**Tipo:** movimiento y accesibilidad (rama `fase-2`). Solo se nota en VR.
+
+### Qué cambió
+| Antes | Después |
+|---|---|
+| Sentado, la vista quedaba a ~1,20 m (piezas a la altura de la cara) | **Botón Y** (mando izquierdo): la vista sube hasta 1,60 m, calibrada a cada persona |
+| Botón Y sin uso | Y = activar / desactivar el modo sentado, con aviso de 2,5 s |
+
+**Archivos:**
+- **Nuevo:** `src/componentes/modo-sentado.js` (componente `modo-sentado`).
+- `index.html` y `casa.html`: `modo-sentado="mando: #mando-izquierdo"` en el `#jugador`.
+- `src/main.js` y `src/casa.js`: un `import` más.
+- Documentos: DT-033, PLAN_MAESTRO, MAPA_ESCENA, PRUEBAS (Q27–Q30),
+  `CLAUDE.md` y esta entrada.
+
+### Por qué
+Ozni preguntó si hacía falta, si la casa ni tiene asientos. El modo sentado
+no es para sentarse **dentro** del museo, sino para la **persona real** que
+usa el visor sentada: en una silla, en el sofá o en silla de ruedas. Sin él,
+ve todo desde 1,20 m. Es accesibilidad, y el diseño final ya lo incluía.
+
+### Cómo funciona (para estudiar el código)
+1. **El Quest ya sabe tu altura:** en VR, A-Frame usa el espacio de
+   referencia `local-floor`, en el que y = 0 es el suelo real. Por eso la
+   `position.y` de la cámara dentro del `#jugador` es la altura de tus ojos.
+2. **Al pulsar Y** se lee esa altura y se calcula la subida:
+   `subida = max(0, 1,60 − ojos)`. Se aplica a `#jugador.position.y`.
+   El `max(0, …)` impide bajar a una persona alta.
+3. **Todo lo demás sigue igual** porque caminar, saltar, girar y las zonas
+   solo usan X y Z, y el arco del salto termina en el suelo del mundo (y = 0).
+4. **El aviso** es un panel hijo de la cámara (va siempre delante de la
+   vista) que se oculta con un `setTimeout`. Sin tildes, porque la fuente
+   por defecto de A-Frame no las tiene (módulo 1.5).
+5. **Al salir de VR** se desactiva: en el PC la cámara está fija a 1,60 m
+   y la subida la dejaría flotando.
+
+### Conceptos que aparecen
+- **Espacio de referencia de WebXR (`local-floor`):** el sistema de
+  coordenadas que da el visor, con el suelo real en y = 0.
+- **Calibración:** medir una vez y ajustar a la persona, en lugar de usar un
+  número fijo.
+- **Accesibilidad en VR:** diseñar para quien no puede o no quiere estar de pie.
+- **Eventos de botones:** `ybuttondown` (también existen `xbuttondown`,
+  `abuttondown`, `bbuttondown`).
+
+### Cómo se verificó
+Puerto 5174, Playwright, mando simulado:
+- Ojos a 1,15 m + Y → subida 0,45 m; ojos en el mundo a 1,600 m; aviso
+  "MODO SENTADO: ACTIVADO / vista elevada 45 cm" (captura revisada).
+- Con el modo activo: salto válido y giro de 30°; la subida se mantiene.
+- Y otra vez → `#jugador` vuelve a y = 0; ojos a 1,15 m; aviso "DESACTIVADO".
+- Ojos a 1,75 m (persona alta de pie) + Y → subida 0; aviso explicativo.
+- El aviso se oculta solo a los 2,5 s. `exit-vr` con el modo activo → se desactiva.
+- `casa.html`: ojos a 1,20 m + Y → subida 0,40 m; consola sin errores.
+- `npm run build` correcto (25 módulos).
+- **Prueba en el Quest 3 (Ozni, 2026-11-08):** "modo sentado comprobado,
+  todo funciona bien a la perfección".
+
+### Ejercicio sugerido
+1. Cambia `alturaOjos` a 1.7 en `index.html`
+   (`modo-sentado="mando: #mando-izquierdo; alturaOjos: 1.7"`). ¿Cuánto sube ahora?
+2. Busca en `modo-sentado.js` el `Math.max(0, …)`. ¿Qué pasaría sin él con
+   una persona de 1,90 m?
+3. Pregunta a ChatGPT: ¿qué diferencia hay entre los espacios de referencia
+   `local`, `local-floor` y `bounded-floor` de WebXR?
+
+### Pendientes
+- Cuando exista un menú de opciones, añadir ahí el modo sentado; el tutorial
+  deberá mostrar el botón Y.
+
+---
+
 ## 2026-11-08 — Módulo 2.3: zonas transitables (mapa 2D, DT-032)
 
 **Tipo:** movimiento (rama `fase-2`). Se nota en VR y también en el PC

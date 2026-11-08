@@ -9,6 +9,7 @@ import './componentes/zonas-transitables.js';
 import './componentes/caminar-quest.js';
 import './componentes/teletransporte.js';
 import './componentes/giro-por-pasos.js';
+import './componentes/modo-sentado.js';
 import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';
 
 if (modoDepuracionActivo()) {

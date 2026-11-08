@@ -463,3 +463,37 @@ rectángulos: si el diseño tuviera muros curvos o desniveles, habría que
 pasar a un *navmesh*.
 
 **Revisar:** si la casa añade escaleras, rampas o salas no rectangulares.
+
+---
+
+## DT-033 — Modo sentado con el botón Y, autocalibrado a 1,60 m
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** el módulo 2.4 pide "altura calibrable; modo sentado que eleva
+la vista". El diseño final fija los ojos de referencia en 1,60 m de pie y
+1,20 m sentado, y pide respetar el seguimiento y la calibración del
+visitante. Ozni preguntó si hacía falta (la casa no tiene asientos): el modo
+es para la **persona real** sentada (silla, sofá, silla de ruedas), no para
+sentarse dentro del mundo virtual.
+
+**Decisión:**
+- De pie no se toca nada: el Quest ya da la altura real (espacio `local-floor`).
+- **Botón Y del mando izquierdo** activa y desactiva el modo sentado
+  (componente `modo-sentado`). Y estaba libre y lejos del gatillo.
+- Al activar se **calibra solo**: sube el `#jugador` lo que falta para que
+  los ojos queden a 1,60 m (`alturaOjos`). Nunca baja a nadie.
+  Recalibrar = desactivar y activar.
+- Aviso breve (2,5 s) delante de la vista con el resultado.
+- Al salir de VR se desactiva (en el PC la cámara ya está a 1,60 m).
+
+**Alternativas:** subida fija de 0,40 m (1,20 → 1,60) — no se adapta a
+sillas altas o bajas ni a la estatura; un menú de opciones — aún no existe
+(llegará con la interfaz); aplazar el módulo — deja fuera a quien no puede
+estar de pie.
+
+**Consecuencias:** un componente pequeño, independiente del resto
+(solo cambia `position.y` del `#jugador`). El tutorial deberá mostrar el
+botón Y. Cuando haya menú de opciones, el modo sentado debe estar también ahí.
+
+**Revisar:** cuando exista el menú de opciones o si las pruebas con
+personas muestran que el botón no se descubre.
