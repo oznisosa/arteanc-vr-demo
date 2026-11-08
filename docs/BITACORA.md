@@ -8,6 +8,76 @@
 
 ---
 
+## 2026-11-08 — Módulo 0.2: Node.js y Vite
+
+**Tipo:** herramientas de desarrollo. **La escena no cambió.**
+**Archivos nuevos:** `package.json`, `package-lock.json`, `vite.config.js`.
+**Modificados:** `README.md`, `CLAUDE.md`, `docs/PLAN_MAESTRO.md`.
+
+### Qué cambió
+- **Antes:** para ver la escena había que levantar el servidor de Python
+  (`python -m http.server 8765`) y recargar el navegador a mano.
+- **Ahora:** tres órdenes de npm:
+  | Orden | Qué hace |
+  |---|---|
+  | `npm run dev` | Servidor en `http://localhost:5173`; al guardar un archivo, el navegador se recarga solo |
+  | `npm run build` | Genera la versión publicable en la carpeta `dist/` (ignorada por Git) |
+  | `npm run preview` | Sirve `dist/` en `http://localhost:4173` para probarla antes de publicar |
+- **`package.json`:** la "ficha" del proyecto: nombre, órdenes (`scripts`) y
+  dependencias. Vite es una **dependencia de desarrollo** (`devDependencies`):
+  solo se usa para trabajar, no viaja a la web del visitante.
+- **`package-lock.json`:** anota la versión exacta de cada paquete instalado,
+  para que `npm install` instale lo mismo en cualquier PC. Se sube a Git.
+- **`node_modules/`:** donde npm descarga los paquetes. **No** se sube a Git
+  (ya estaba en `.gitignore`); se recrea con `npm install`.
+- **`vite.config.js`:**
+  - `base: './'`: rutas relativas, para que funcione igual en local y en
+    GitHub Pages (que sirve la web desde `/arteanc-vr-demo/`).
+  - `publicDir: false`: todavía no hay carpeta `public/`.
+  - Un **plugin** propio, `copiar-archivos-clasicos`: al terminar el build copia
+    `app.js`, `catalogo.js` y `modelos/` a `dist/`. Hace falta porque esos
+    scripts se cargan con `<script src>` sin `type="module"`, y Vite solo
+    empaqueta módulos. Desaparece en el módulo 0.4.
+
+### Lo que **no** cambió
+- `index.html`, `app.js`, `catalogo.js` y el modelo están intactos.
+- GitHub Pages sigue publicando la raíz de `main` como antes. Publicar `dist/`
+  será el módulo 0.6.
+
+### Cómo se verificó (Playwright, Chrome)
+1. `npm run dev`: la escena carga; el modelo `.glb` aparece; al hacer clic en
+   las 3 piezas, la ficha muestra "CERAMICA 01", "MODELO 3D DE PRUEBA" y
+   "FIGURA 03" con su precio. Captura igual a la de antes.
+2. Recarga automática: se agregó una línea a `app.js` y el navegador se
+   recargó solo (luego se quitó la línea).
+3. `npm run build` + `npm run preview`: el modelo carga y la ficha funciona
+   desde `dist/`.
+4. Único error en la consola: falta `favicon.ico` (ya pasaba antes; sin efecto).
+5. **Pendiente:** Ozni ejecuta `npm run dev` en su PC y lo confirma.
+
+### Conceptos que aparecen
+- **Node.js y npm.** Node ejecuta JavaScript fuera del navegador; npm instala
+  paquetes (herramientas y librerías) escritos por otros.
+- **Servidor de desarrollo.** Sirve los archivos por HTTP y vigila los cambios.
+- **Bundler (empaquetador).** Junta y optimiza el código para publicarlo.
+- **Script clásico frente a módulo ES.** `<script src>` comparte variables
+  globales (`window.catalogoArteAnc`); `<script type="module">` usa
+  `import`/`export`. Es el tema del módulo 0.4.
+- **Versionado semántico.** En `"vite": "^8.3.6"`, el `^` permite
+  actualizaciones menores (8.4, 8.5…) pero no la 9.
+
+### Para el tutor
+- Ejercicio: abrir `package.json` y explicar qué ocurre, paso a paso, al escribir `npm run dev`.
+- Ejercicio: borrar la carpeta `node_modules/`, ejecutar `npm install` y
+  explicar por qué el proyecto vuelve a funcionar igual.
+- Pregunta: ¿por qué `dist/` y `node_modules/` no se suben a Git y `package-lock.json` sí?
+
+### Pendientes
+- Confirmación de Ozni con `npm run dev` en su PC.
+- Siguiente: módulo 0.3 (abrir la escena en el Quest 3 desde el PC, con HTTPS).
+
+---
+
 ## 2026-11-08 — Decisiones aprobadas: trabajo en `main` y fidelidad de las piezas
 
 **Tipo:** solo documentación. **Archivos:** `docs/DECISIONES.md`, `CLAUDE.md`,

@@ -49,7 +49,7 @@ decisiones de diseño de la [visión](VISION.md) y los datos de las salas (F1).
 |---|---|
 | 0.1 Limpieza | ✅ **Hecho el 2026-11-08**: `index - copia.html` y las entregas de diseño originales están en `_archivo/`; los escaneos de prueba, en `_fuentes-3d/` (ambas carpetas ignoradas por Git); `.gitignore` ampliado |
 | 0.0 Rama de trabajo | ❌ **Descartado el 2026-11-08** (DT-011): se trabaja en `main`, probando en local antes de cada push |
-| 0.2 Node y Vite | `package.json`; `npm run dev` levanta un servidor local con recarga automática; `npm run build` genera la versión publicable |
+| 0.2 Node y Vite | ✅ **Hecho el 2026-11-08**: `package.json` con Vite 8.3.6; `npm run dev` levanta un servidor local con recarga automática; `npm run build` genera `dist/` |
 | 0.3 Prueba en el Quest | Servidor HTTPS por wifi (o `adb reverse`) para abrir la escena en el Quest 3 desde el PC de desarrollo |
 | 0.4 Módulos JS | `app.js` dividido en `src/` con un archivo por responsabilidad (`import`/`export`) |
 | 0.5 Medición | Medidor de fps y triángulos activable con `?debug` en la URL; primera medición registrada en la bitácora |

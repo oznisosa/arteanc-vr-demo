@@ -19,7 +19,7 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 - Diseño final de "La Casa ArteAnc" congelado en `docs/diseno/final/`.
 - Limpieza del repositorio hecha (módulo 0.1).
 - **Siguiente paso: resto de la Fase 0 (Cimientos).** Orden sugerido:
-  0.2 Node + Vite → 0.3 prueba en el Quest → 0.4 módulos JS →
+  ~~0.2 Node + Vite~~ ✅ → 0.3 prueba en el Quest → 0.4 módulos JS →
   0.5 medidor de fps con `?debug` → 0.6 publicación → 0.7 `docs/PRUEBAS.md`.
   La escena visible **no debe cambiar** en la Fase 0.
 
@@ -55,10 +55,12 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 
 ## Entorno y pruebas
 - Windows 11 · PowerShell · Node v24 · npm 11 · Python 3.14 · Git 2.55.
-- **Antes de Vite:** servidor local permitido sin preguntar:
-  `python -m http.server 8765 --bind 127.0.0.1`. Después, abrir
-  `http://127.0.0.1:8765` con Playwright para clics y capturas (guardar en
-  `.playwright-mcp/`, carpeta ignorada).
-- **Después de Vite:** `npm run dev` (actualizar esta sección al crearlo).
+- **Servidor local (permitido sin preguntar):** `npx vite --open false` en segundo
+  plano (puerto 5173); para probar el build, `npm run build` y
+  `npx vite preview` (puerto 4173). Abrir con Playwright para clics y capturas
+  (guardar en `.playwright-mcp/`, carpeta ignorada). Borrar `dist/` al terminar.
+- Ozni usa `npm run dev`, que abre el navegador solo.
+- Mientras `app.js` y `catalogo.js` sean scripts clásicos, `vite.config.js` los
+  copia a `dist/` junto con `modelos/` (se quitará en el módulo 0.4).
 - El modo VR del Quest 3 lo prueba Ozni en el visor; pedirle confirmación y anotar el resultado en la bitácora.
 - `file://` no sirve: los `.glb` necesitan HTTP.

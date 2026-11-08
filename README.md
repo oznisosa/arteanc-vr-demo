@@ -10,7 +10,13 @@ y navegadores de escritorio, construida con [A-Frame](https://aframe.io/) y WebX
 - **Registro de avances:** [docs/BITACORA.md](docs/BITACORA.md)
 
 ## Probar en local
+La primera vez, instalar las dependencias (requiere Node.js):
 ```
-python -m http.server 8765 --bind 127.0.0.1
+npm install
 ```
-Abrir `http://127.0.0.1:8765` en Chrome. (Desde la Fase 0 se usará `npm run dev`.)
+Después, cada vez que se trabaje:
+```
+npm run dev        # servidor local en http://localhost:5173 con recarga automática
+npm run build      # genera la versión publicable en dist/
+npm run preview    # prueba esa versión publicable en http://localhost:4173
+```
