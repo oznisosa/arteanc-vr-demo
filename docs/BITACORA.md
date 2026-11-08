@@ -90,6 +90,12 @@ posiciones. "Textos con tildes" ✅. "HTML de la escena < 60 líneas" ❌ (hoy
   compruebe que `esFavorito` devuelve `false` para una pieza nunca marcada.
 - Pregunta: ¿por qué la pieza seleccionada no se guarda al cerrar y los favoritos sí?
 
+### Añadido: el modo sentado se recuerda
+Ozni aprobó guardar el modo sentado de la Fase 2: nueva clave `modoSentado`
+(true/false, por defecto false) en `INICIAL` y `GUARDADOS` de `estado.js`;
+se ignora si lo guardado no es true/false. Prueba nueva → **10 pruebas** en verde.
+La sesión de la Fase 2 la conectará a su botón Y.
+
 ### Pendientes
 - Decidir cómo cerrar la Fase 1: asignar piezas del catálogo a posiciones de
   la casa y que `casa.html` pase a ser la escena principal (cumpliría los dos

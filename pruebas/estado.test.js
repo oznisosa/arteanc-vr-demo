@@ -23,6 +23,7 @@ test('empieza vacío: sin pieza seleccionada, sin favoritos, en español', () =>
   assert.equal(e.obtener('piezaSeleccionada'), null);
   assert.deepEqual(e.obtener('favoritos'), []);
   assert.equal(e.obtener('idioma'), 'es');
+  assert.equal(e.obtener('modoSentado'), false);
 });
 
 test('alternarFavorito marca y desmarca', () => {
@@ -83,6 +84,17 @@ test('sin almacenamiento (navegación privada) funciona igual, sin guardar', () 
   const e = crearEstado(undefined);
   assert.equal(e.alternarFavorito('pieza01'), true);
   assert.deepEqual(e.obtener('favoritos'), ['pieza01']);
+});
+
+test('el modo sentado empieza apagado y se recuerda al volver', () => {
+  const almacen = almacenFalso();
+  const primera = crearEstado(almacen);
+  assert.equal(primera.obtener('modoSentado'), false);
+  primera.cambiar('modoSentado', true);
+  assert.equal(crearEstado(almacen).obtener('modoSentado'), true);
+  // Un valor guardado que no es true/false se ignora
+  const raro = crearEstado(almacenFalso({ 'arteanc.estado.v1': JSON.stringify({ modoSentado: 'si' }) }));
+  assert.equal(raro.obtener('modoSentado'), false);
 });
 
 test('una clave desconocida es un error claro', () => {
