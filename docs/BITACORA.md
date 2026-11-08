@@ -44,8 +44,11 @@ de seguridad en dependencias antiguas (ver DT-017).
    texto; con Inter cada línea mide **2,035** veces el ancho de una letra
    (58 / 28,5), no 1,87 como con Roboto. Se actualizó `ALTO_LINEA`.
 3. Cormorant usa **números de estilo antiguo** ("01" parece "oı"): es propio
-   de esa tipografía. Si molesta en los títulos de las piezas, se puede usar
-   Inter para los títulos con números.
+   de esa tipografía. A Ozni no le gustó ("los números que escribe con esta
+   fuente no me gustan mucho") → **el título de la pieza en la ficha pasa a
+   Inter**. Cormorant queda solo para textos sin números: la marca "ARTEANC",
+   los nombres de sala y el título de bienvenida. Concepto: **cifras de
+   estilo antiguo (*old-style figures*) frente a cifras alineadas**.
 
 ### Cómo se verificó
 - Todos los textos con `shader msdf / negate false` y su fuente cargada.

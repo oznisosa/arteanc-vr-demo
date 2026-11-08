@@ -150,7 +150,9 @@ AFRAME.registerComponent('ficha-producto', {
     // 3. Bloques de texto uno debajo de otro
     const cuerpo = [...c.detalles, c.descripcion].filter(Boolean).join('\n');
     const bloques = [
-      { valor: c.titulo, letra: LETRA.titulo, color: COLORES.tinta, fuente: FUENTES.titulo },
+      // Título de la pieza en Inter (no en Cormorant): sus números de estilo
+      // antiguo hacían que "01" pareciera "oı" (decisión de Ozni, 2026-11-08)
+      { valor: c.titulo, letra: LETRA.titulo, color: COLORES.tinta, fuente: FUENTES.texto },
       { valor: c.precio, letra: LETRA.precio, color: COLORES.suave },
       { valor: c.disponibilidad, letra: LETRA.cuerpo, color: COLORES.suave },
       { valor: cuerpo, letra: LETRA.cuerpo, color: COLORES.tinta }

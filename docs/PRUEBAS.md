@@ -53,7 +53,7 @@ Si todo está bien: `Ctrl + C` para cerrar el servidor y hacer `git push`.
 | P6 | Puertas: botón interior | Se abren las dos hojas; letreros "CERRAR" | |
 | P7 | Puertas: botón exterior | Se cierran; letreros "ABRIR" (los dos botones controlan la misma puerta) | |
 | P8 | Recepción: clic en el mostrador | Aparece el letrero de bienvenida; otro clic lo oculta | |
-| P8b | Textos con tildes | "galería", "MONUMENTO HISTÓRICO", "ARTESANÍA", "Cerámica 01": tildes y eñes visibles; títulos y marca en letra con remates (Cormorant) | |
+| P8b | Textos con tildes | "galería", "MONUMENTO HISTÓRICO", "ARTESANÍA", "Cerámica 01": tildes y eñes visibles; marca, nombres de sala y bienvenida en letra con remates (Cormorant); el título de la pieza en Inter, con números claros | |
 | P8c | Letrero "ARTEANC" del frente del mostrador | Se lee desde la galería | |
 | P9 | Moverse con W A S D y mirar con el ratón | Funciona (en PC se atraviesan paredes: conocido, Fase 2) | |
 | P10 | Añadir `?debug` a la dirección | Panel de A-Frame arriba a la izquierda y panel verde con fps, llamadas y triángulos | |

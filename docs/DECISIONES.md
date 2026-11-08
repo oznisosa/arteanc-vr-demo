@@ -344,7 +344,8 @@ repartidos por el HTML y el código.
 
 **Decisión:**
 - Las tipografías del diseño final (Inter para textos y botones, Cormorant
-  Garamond para títulos y marca; licencia SIL OFL) se convierten a **MSDF**
+  Garamond para la marca, los nombres de sala y la bienvenida —no para títulos
+  con números, por sus cifras de estilo antiguo, decisión de Ozni—; licencia SIL OFL) se convierten a **MSDF**
   con `msdf-bmfont-xml` y se guardan en `fuentes/` (126 caracteres, incluidos
   los españoles). `src/escena/fuentes.js` cambia el valor por defecto del
   componente `text` de A-Frame: `font` = Inter, `shader` = `msdf`, `negate` = false.
