@@ -8,6 +8,62 @@
 
 ---
 
+## 2026-11-08 — Unión: `git merge main` en la rama `fase-2`
+
+**Tipo:** organización (Git). **La escena de `fase-2` gana lo de la Fase 1.**
+
+### Qué cambió
+`fase-2` recibe los 5 commits de `main` hasta `49e895f`: módulos 1.2
+(`pieza-exhibida`), 1.3 (`ficha-producto`), 1.4 (`datos/salas.json`) y dos
+ajustes de la ficha. El trabajo de la Fase 1 aún sin commit (módulo 1.7,
+`casa.html`) **no** viene: llegará en una próxima unión.
+
+### Por qué ahora
+La sesión de la Fase 1 lo recomendó, y el módulo 2.3 necesita el
+`index.html` nuevo y `datos/salas.json` (los límites de movimiento saldrán
+de esos datos y no de números fijos, para servir también en `casa.html`).
+Ozni eligió `merge` y no `rebase`: `fase-2` ya estaba en GitHub y `rebase`
+reescribe commits (obligaría a un `push --force`).
+
+### Conflictos y cómo se resolvieron
+- **Unidos solos por Git:** `index.html` (la Fase 1 cambió las piezas y la
+  Fase 2 el bloque `#jugador`: zonas distintas), `src/main.js` (bloques de
+  `import` distintos), PLAN_MAESTRO, MAPA_ESCENA, PRUEBAS.
+- **Conflicto, resueltos a mano conservando las dos partes:**
+  - `CLAUDE.md`: el estado de la Fase 1 (1.2–1.4 hechos) y el de la Fase 2
+    (2.1–2.2 hechos), uno después del otro.
+  - `docs/BITACORA.md`: las entradas de las dos ramas (primero las de la
+    Fase 2, que son las más recientes).
+  - `docs/DECISIONES.md`: DT-015 (Fase 1) antes que DT-030 y DT-031 (Fase 2),
+    por orden de número.
+
+### Conceptos que aparecen
+- **Merge con conflicto:** Git marca el trozo con `<<<<<<< HEAD` (lo de
+  esta rama), `=======` y `>>>>>>> main` (lo de la otra). Se edita a mano,
+  se borran las marcas y se hace commit.
+- **Que no haya conflicto no garantiza que esté bien:** por eso se revisó a
+  mano lo que Git unió solo, y se probó la escena.
+- **Commit de unión (*merge commit*):** tiene dos padres, uno por rama.
+
+### Cómo se verificó
+- `npm run build`: catálogo (3 piezas) y salas (8 salas, 7 accesos,
+  38 posiciones) correctos; 18 módulos.
+- Puerto 5174 con Playwright: 24 baldosas; las 3 piezas con base en y 1,000
+  (modelo 0,650 m); clic en cada pieza → la ficha nueva aparece con su tipo;
+  puerta ABRIR → CERRAR; salto con mando simulado → la cabeza acaba en el
+  destino (0,2; −2,856); giro → −30°. Consola sin errores ni avisos.
+
+### Ejercicio sugerido
+Ejecuta `git log --oneline --graph --all -12` y busca el commit de unión:
+verás cómo se juntan las dos líneas.
+
+### Pendientes
+- Cuando la Fase 1 haga commit del módulo 1.7 (`casa.html`), otro `git merge main`.
+- Ozni: repetir en el Quest una prueba rápida (Q3, Q7, Q14, Q19) para
+  confirmar que fichas, caminar, salto y giro siguen bien juntos.
+
+---
+
 ## 2026-11-08 — Módulo 2.2: giro por pasos de 30° con el joystick derecho
 
 **Tipo:** movimiento (rama `fase-2`). **En el PC la escena se ve igual**; el
@@ -236,6 +292,269 @@ git worktree list                                # muestra las dos carpetas
 - Hecho: la sesión de la Fase 1 propuso el reparto (DT-015–029 para F1, DT-030+ para F2; archivos y puertos) y se aceptó; detalle en DT-030.
 - Empezar el módulo 2.1 (Teletransporte).
 - Al unir, los documentos compartidos tendrán conflictos: conservar ambas entradas.
+
+---
+
+## 2026-11-08 — Módulo 1.4: datos de las salas (`datos/salas.json`)
+
+**Tipo:** datos y herramientas. **La escena no cambia** (los usará el *greybox*, módulo 1.7).
+
+### Qué se hizo
+```
+docs/diseno/final/02-layout.json ──(npm run salas)──▶ datos/salas.json
+```
+- **`herramientas/generar-salas.js`** (`npm run salas`): lee el diseño
+  congelado y escribe `datos/salas.json` con claves en español: 8 `salas`,
+  7 `accesos`, 38 `posiciones`, 5 `elementos` y la `arquitectura` especial
+  (portal y cierre norte del Santuario, galería sur, hornacinas, ranura cenital).
+  Las listas de números van en una línea (`[-9.4, 0, -14]`): el archivo pasa
+  de 31 a 21 kB y se lee mejor.
+- **`herramientas/validar-salas.js`** (dentro de `npm run validar`, y por
+  tanto de cada build): comprueba que `salas.json` está **al día** con el
+  diseño y que la **geometría** es coherente.
+- **`docs/SALAS.md`**: guía del archivo. **DT-015**: por qué se genera y no se copia.
+- `package.json`: scripts `salas` y `validar` (ahora valida catálogo y salas).
+
+### Cómo se verificó (rompiéndolo a propósito)
+1. Se cambió a mano `"grosorMuro"` en `salas.json` → **"no coincide con el diseño. Ejecuta: npm run salas"**.
+2. Se estropeó una copia del diseño (posición C01 movida a x = 0, acceso D05
+   movido a x = −3, Taller desplazado hasta solaparse con Recepción) → el
+   validador encontró **6 errores**: los 3 provocados y 3 consecuencias reales
+   (el otro lado de D05 y dos hornacinas del Taller que quedaban fuera).
+3. Se restauró el diseño → todo en verde.
+
+### Conceptos que aparecen
+- **Fuente única de verdad + archivo generado.** Se edita el original y el
+  derivado se produce con un programa; nunca se editan los dos.
+- **Transformar datos (mapear).** `diseno.rooms.map(r => ({ id: r.id, nombre: r.label, … }))`.
+- **Comprobaciones geométricas.** Rectángulos en planta, solape de intervalos,
+  "¿está este punto dentro?", con tolerancia de 1 mm.
+- **Probar un validador rompiendo cosas a propósito.** Si nunca se ha visto
+  fallar, no se sabe si funciona.
+- **Expresiones regulares.** La que junta las listas en una línea:
+  `/\[\s+([^[\]{}]*?)\s+\]/g`.
+
+### Para el tutor
+- Ejercicio: abrir `datos/salas.json`, buscar la posición `S01` y ubicarla en
+  `docs/diseno/final/01-planta.png`. ¿Por qué su `tipo` es `hornacina` y su
+  `apoyo` cae fuera del rectángulo de la sala?
+- Ejercicio: cambiar un número en `salas.json`, ejecutar `npm run validar`,
+  leer el error y arreglarlo con `npm run salas`.
+- Pregunta: ¿por qué `salas.json` se guarda en Git si se puede generar?
+  (Pista: la escena publicada lo necesita y así se ve en GitHub qué cambió.)
+
+### Pendientes
+- Decidir en el 1.7 cómo se asigna cada pieza del catálogo a una posición.
+- Siguiente: 1.7 *greybox* de la casa (o 1.5 textos y fuente MSDF).
+
+---
+
+## 2026-11-08 — Módulo 1.3: ficha pequeña junto a la pieza (`ficha-producto`)
+
+**Tipo:** interfaz. **Primer cambio visible de la Fase 1.**
+
+### Antes y después
+| | Antes | Ahora |
+|---|---|---|
+| Tamaño | 2,8 × 1,45 m | 0,95 m de ancho × 0,62 m (crece si hay mucho texto) |
+| Posición | Fija, flotando a 2,35 m sobre las piezas | Junto a la pieza elegida: 0,75 m a su derecha, 0,45 m hacia el visitante, centro a 1,45 m, girada hacia él |
+| Contenido | Nombre, precio, descripción | **Chip del tipo** (color por tipo) + aviso "demo", título, precio, disponibilidad, detalles conocidos, descripción |
+| Precio | Texto fijo del catálogo | Reglas del contrato: "Precio ficticio: US$ 35.00", "No disponible para venta", "Precio a consultar" |
+| Santuario | — | "Historia y fuentes: Sin fuentes verificadas" (o la lista de fuentes) |
+| Código | 45 líneas de HTML | 1 línea: `<a-entity id="ficha" ficha-producto>` |
+
+**Archivos:** `src/componentes/ficha-producto.js` (nuevo), `src/datos/textos-pieza.js`
+(nueva función `contenidoFicha()` con todas las reglas de textos),
+`src/interaccion/ficha.js` (solo conecta el clic con la ficha), `src/main.js`, `index.html`.
+
+**Colores del chip** (paleta del diseño final): original documentado =
+basalto `#302A27`; réplica = bronce `#795A44`; artesanía tradicional =
+terracota `#B96645`; contemporánea = ocre `#A88B61`; sin clasificar = gris.
+
+### Problemas encontrados al probar (y cómo se resolvieron)
+1. **Letra demasiado pequeña** en la primera versión (ilegible a 3 m) → se agrandó.
+2. **Textos superpuestos** al agrandarla: los títulos largos ocupaban dos
+   líneas y las posiciones eran fijas. Solución: calcular cuántas líneas
+   ocupa cada texto. Se midió la fuente de A-Frame en el navegador
+   (Roboto: `lineHeight` 44,1 y `widthFactor` 23,6), así que **una línea
+   ocupa 1,87 veces el ancho de una letra**. Con eso cada bloque se coloca
+   debajo del anterior y el panel crece si hace falta.
+3. **El "·" y el "×" no existen en la fuente** (salía un hueco) → se cambian
+   por "-" y "x" al mostrar, igual que las tildes, hasta el módulo 1.5.
+
+### Cómo se verificó
+- Capturas de cerca (como un visitante a 1,5 m) de la ficha del modelo
+  (Santuario) y de una pieza con **todos los datos y una descripción larga**
+  (catálogo modificado temporalmente y luego restaurado): nada se superpone,
+  el panel crece y el chip sin "demo" se ve bien con datos reales.
+- **Clics reales con el ratón:** pieza01 → ficha a su lado; pieza03 → la
+  ficha se mueve (una sola abierta); CERRAR → se oculta y el botón deja de ser
+  clicable; pieza02 → vuelve a aparecer.
+- `npm run build` + `npm run preview`: mismos textos en las 3 fichas.
+- **Pendiente:** prueba de Ozni en el Quest (legibilidad dentro del visor).
+
+### Conceptos que aparecen
+- **Diseño de interfaz en VR (UI diegética).** La información aparece en el
+  espacio, junto al objeto, en lugar de un cartel gigante fijo.
+- **Valla publicitaria (*billboard*).** Girar un panel para que mire al
+  visitante: ángulo con `Math.atan2(dx, dz)`.
+- **Vector perpendicular.** La "derecha" del visitante se obtiene girando 90°
+  la dirección pieza → visitante: `(z, 0, −x)`.
+- **Maquetación (*layout*) con flujo.** Cada bloque se coloca según el alto
+  real del anterior, como en una página web.
+- **Métricas de fuente.** Alto de línea y ancho medio de letra: permiten
+  calcular cuánto ocupa un texto antes de dibujarlo.
+- **Reglas de presentación separadas de los datos.** `contenidoFicha()` decide
+  qué se muestra; el componente solo lo dibuja.
+
+### Para el tutor
+- Ejercicio: en `index.html`, poner `ficha-producto="lado: izquierda"` y ver
+  dónde aparece la ficha.
+- Ejercicio: cambiar `"stock": null` por `0` en `pieza01` (y `"naturaleza": "producto"`)
+  y ver "Agotado".
+- Pregunta: ¿por qué no se muestra "Material: desconocido" cuando el material es `null`?
+
+### Corrección tras la revisión de Ozni: fichas "desordenadas"
+Ozni preguntó: "¿por qué las fichas no tienen el mismo ángulo de rotación?
+Parece desordenado". **Causa:** cada ficha giraba para mirar a la cámara
+desde su propia posición (*billboard*), así que la de la izquierda, la del
+centro y la de la derecha quedaban con ángulos distintos (p. ej. +20°, 0°, −20°).
+**Solución:** la ficha se orienta como una **cartela de museo**: con la
+orientación de **la pieza** (su eje +Z) girada **15° hacia ella**, como la
+página de un libro abierto. Ahora las tres quedan iguales (giro −15°, z −3,05,
+centro a 1,45 m), da igual desde dónde se haga clic. Además, la separación
+lateral pasó de 0,75 a **0,85 m** porque la ficha de la izquierda tapaba el
+borde de la esfera. Se comprobó con una imagen que muestra las tres fichas a la vez.
+Nueva opción del componente: `giro` (grados, por defecto 15).
+
+Concepto: **orientación relativa a un objeto frente a relativa al
+observador.** La primera da orden visual y coherencia; la segunda asegura que
+siempre se lea de frente. En un museo se usa la primera.
+
+### Segunda corrección: que se vea bien desde cualquier lado
+Ozni probó la versión "cartela de museo" y encontró el problema contrario:
+"si estoy detrás del objeto y doy clic, la ficha ni se ve; tengo que estar
+delante". Pidió que se vea bien, **derecha**, desde donde sea que se abra, y
+que todas las fichas se comporten igual.
+**Solución final (lo mejor de las dos versiones):**
+1. La ficha **mira siempre al visitante** y está **siempre vertical** (solo gira en Y).
+2. Se coloca siempre **a la derecha de la pieza tal como la ve el visitante**,
+   0,45 m hacia él y a 1,45 m de altura: el mismo lugar relativo para todas.
+3. **Sigue al visitante suavemente** mientras está abierta: en cada fotograma
+   (`tick`) se recalcula su sitio y se acerca a él con una interpolación
+   (`lerp`) que no depende de los fps. Esto corrige lo que probablemente hacía
+   ver "desordenada" la primera versión: se colocaba una sola vez y, si el
+   visitante se movía, quedaba torcida.
+**Verificación (Playwright):** abierta desde el frente (3 piezas), desde
+detrás, en diagonal y tras caminar con ella abierta: en los 6 casos, desvío
+respecto al visitante **0,0°**, inclinación **0,0°**, siempre **a su derecha**
+y a **1,45 m**. Captura desde detrás de la pieza: la ficha se lee de frente.
+**Rendimiento:** los vectores se crean una vez y se reutilizan en cada
+fotograma (crear objetos 72 veces por segundo provoca pausas del recolector de basura).
+
+Conceptos: **interpolación lineal (`lerp`)**; **suavizado exponencial
+independiente de los fps** (`1 − e^(−k·Δt)`); **camino angular más corto**
+(`atan2(sen, cos)` para no girar 350° en lugar de 10°); **recolector de
+basura** (*garbage collector*).
+
+### Prueba de Ozni en el Quest
+✅ "De maravilla, funciona a la perfección."
+
+### Pendientes
+- Más adelante (F6): botón "Ver en la tienda" y favorito en la ficha.
+- Siguiente: módulo 1.4 (`datos/salas.json`).
+
+---
+
+## 2026-11-08 — Módulo 1.2: componente `pieza-exhibida`
+
+**Tipo:** componente nuevo. **La escena se ve igual** (misma captura, 34
+llamadas y 104 015 triángulos en `?debug`).
+
+### Qué cambió
+**Antes** (`index.html`, 41 líneas): 3 `<a-cylinder>` de pedestal, una
+`<a-sphere>`, un `<a-cone>` y un `<a-entity gltf-model>`, cada uno con su
+posición y sus medidas a mano; además `src/escena/ajustar-modelo.js` escalaba el modelo.
+**Ahora** (15 líneas, cada pieza en una línea):
+```html
+<a-entity id="pieza02" class="producto" position="0 0 -3.5"
+          pieza-exhibida="pieza: pieza02; peanaForma: cilindro; peanaTamano: 1.3 1 1.3;
+                          tamanoSinMedidas: 0.65"></a-entity>
+```
+El componente (`src/componentes/pieza-exhibida.js`):
+1. crea la **peana** (caja o cilindro) con la base en el suelo;
+2. espera el catálogo y coloca la **pieza** encima:
+   - si hay `modelos.galeria` → carga el `.glb` (la ruta ya no está en el HTML,
+     sale del catálogo);
+   - si `dimensiones_m.alto` es conocido → **escala real** (alto del modelo = alto del catálogo);
+   - si no → la dimensión mayor mide `tamanoSinMedidas` (provisional);
+   - sin modelo → **forma provisional** (esfera, cono o caja);
+3. la hace **interactiva**: la pieza lleva la clase `.interactivo` y gira una
+   vuelta al hacer clic (antes solo la `pieza02`); la peana no es clicable.
+
+**Otros archivos:** `src/datos/catalogo-servicio.js` (nuevo: el catálogo se
+descarga una sola vez y lo comparten la ficha y las piezas); `src/main.js`;
+borrado `src/escena/ajustar-modelo.js` (su lógica está ahora en el componente).
+
+**Único cambio medible:** la base del modelo 3D queda en y = **1,000** (sobre
+la peana) en lugar de 1,020 (flotaba 2 cm).
+
+### Un error encontrado y corregido durante la prueba
+La esfera y el cono salieron **medio hundidos** en la peana (base en 0,65).
+Causa: se subían moviendo el `object3D` directamente, pero al insertarse la
+entidad A-Frame vuelve a aplicar el atributo `position` y borra ese cambio.
+Solución: calcular la altura correcta **en el atributo** (`alturaPeana + tamaño/2`).
+Lección: en A-Frame, mientras una entidad no está cargada, modificar sus
+atributos, no su `object3D`.
+
+### Cómo se verificó
+- Medidas (Playwright): esfera y cono de 0,700 m y modelo de 0,650 m, los
+  tres con la base en y = 1,000; centros de esfera y cono en y = 1,35 (como antes).
+- **Clic real con el ratón** (rayo del cursor) sobre cada pieza → abre su
+  ficha correcta; clic en la peana → no abre nada.
+- **Escala real:** con `dimensiones_m.alto = 0.3` temporal en el catálogo, el
+  modelo midió **0,300 m** exactos (luego se restauró el catálogo).
+- `npm run build` + `npm run preview`: mismos valores. Captura idéntica a la del 0.5.
+- **Pendiente:** prueba de Ozni en el Quest (clic con el láser en las 3 piezas).
+
+### Coordinación con la sesión de la Fase 2
+Ozni abrió otra sesión de Claude que trabaja la **Fase 2** en el worktree
+`C:\arteanc\ArteAnc-VR-fase2` (rama `fase-2`). Las dos sesiones acordaron por
+mensaje: números DT-015–029 (Fase 1) y DT-030+ (Fase 2); archivos de cada una;
+puertos de prueba; y cómo resolver los conflictos de la bitácora al fusionar.
+Detalles en `CLAUDE.md` y en DT-030 (rama `fase-2`).
+
+### Conceptos que aparecen
+- **Componente con esquema (`schema`).** Las opciones del componente
+  (`peanaForma`, `peanaTamano`…) con su tipo y valor por defecto.
+- **Entidades hijas.** El componente crea entidades dentro de la suya: al
+  mover la pieza se mueven la peana y el modelo juntos.
+- **Promesa compartida.** `catalogoListo` se descarga una vez y muchos la esperan.
+- **Propagación de eventos (*bubbling*).** El clic llega a la pieza (hija) y
+  "sube" hasta la entidad `.producto` (madre), donde lo escucha la ficha.
+- **Caja envolvente (`Box3`).** El rectángulo 3D mínimo que contiene un modelo;
+  sirve para medirlo y apoyarlo.
+- **Escala real frente a tamaño provisional.** Con medidas conocidas, el
+  modelo mide lo que mide la pieza real; sin ellas, se usa un tamaño de exhibición.
+- **Ramas (*worktrees*) en paralelo.** Dos carpetas del mismo repositorio, cada
+  una en su rama, para trabajar dos cosas a la vez.
+
+### Para el tutor
+- Ejercicio: en `index.html`, cambiar `peanaForma: cilindro` por `caja` y
+  `peanaTamano: 0.5 1 0.5` en una pieza (las medidas del diseño final). ¿Qué cambia?
+- Ejercicio: poner `"dimensiones_m": { "alto": 0.24, "ancho": 0.16, "fondo": 0.18 }`
+  en `pieza02` del catálogo y ver el modelo a 24 cm.
+- Pregunta: ¿por qué la ficha sigue funcionando si el clic lo recibe la pieza
+  hija y no la entidad con `id="pieza02"`?
+
+### Prueba de Ozni en el Quest
+✅ "Cada una abre su ficha y únicamente el del medio gira, igual que antes."
+Las tres giran, pero la esfera y el cono son simétricos alrededor del eje
+vertical, así que su giro no se ve.
+
+### Pendientes
+- Siguiente: módulo 1.3 (`ficha-producto`: ficha pequeña junto a la pieza,
+  con el tipo de pieza).
 
 ---
 

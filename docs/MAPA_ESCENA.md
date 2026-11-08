@@ -27,7 +27,7 @@ Con `rotation="0 180 0"` pasan a mirar hacia **−z**.
  z = -6   ┌──────────── PARED FONDO + 3 paneles (z -5.78) ────────────┐
           │                                                            │
  z = -3.5 │        (P1)            (P2)            (P3)    pedestales  │
- z = -3.05│                    [ FICHA y 2.35 ]                        │
+ z = -3.05│      [ficha a la derecha de la pieza elegida, y 1.45]     │
  z = -2.82│                   placa monumento                          │
           │                                                            │
  z =  0   │                     ● cámara (0, 1.6, 0)                   │
@@ -72,25 +72,41 @@ Cada panel tiene un marco (`a-box` de 1.75 × 1.9 × 0.05, en z −5.78) y un fo
 
 ## Pedestales y productos
 
-Los pedestales son cilindros de radio 0.65 y altura 1, centrados en y 0.5, con la cara superior en **y = 1.0**.
+Desde el módulo 1.2 cada pieza es **una sola entidad** con el componente
+`pieza-exhibida` (`src/componentes/pieza-exhibida.js`). Su `position` es el
+punto del **suelo** en el centro de la peana. El componente crea dentro:
+- la **peana** (`.peana`): cilindro de 1,3 m de diámetro y 1 m de alto, cara superior en **y = 1.0**;
+- la **pieza** (`.interactivo`): el modelo de `modelos.galeria` del catálogo o
+  una forma provisional, con su base en y = 1.0.
 
-| Producto | id | Posición | Geometría |
+| Pieza | id (entidad = catálogo) | Posición (suelo) | Lo que se ve |
 |---|---|---|---|
-| Pedestal izq. | — | `-2 0.5 -3.5` | |
-| Pedestal central | — | `0 0.5 -3.5` | |
-| Pedestal der. | — | `2 0.5 -3.5` | |
-| Producto 1 | `#pieza01` | `-2 1.35 -3.5` | Esfera r 0.35 |
-| Producto 2 | `#pieza02` | `0 0 -3.5` | Modelo `modelos/Untitle123d.glb`. `src/escena/ajustar-modelo.js` lo escala a 0.65 m y apoya su base en y 1.02 (valores en `src/main.js`) |
-| Producto 3 | `#pieza03` | `2 1.35 -3.5` | Cono h 0.7 |
+| Pieza 1 | `#pieza01` | `-2 0 -3.5` | Esfera provisional Ø 0.70 (centro y 1.35), `#C07746` |
+| Pieza 2 | `#pieza02` | `0 0 -3.5` | Modelo `modelos/Untitle123d.glb` (desde el catálogo), dimensión mayor 0.65 m (`tamanoSinMedidas`), base en y 1.000 |
+| Pieza 3 | `#pieza03` | `2 0 -3.5` | Cono provisional h 0.70 (centro y 1.35), `#8A6650` |
+
+Antes del 1.2: 3 `<a-cylinder>` sueltos, `<a-sphere>`, `<a-cone>` y un
+`<a-entity gltf-model>` con la base del modelo en y 1.02.
 | Placa del monumento | — | `0 0.68 -2.82` | 1 × 0.25, texto "MONUMENTO HISTORICO" |
 
 Los tres productos tienen las clases `producto` e `interactivo`.
 
 ## Ficha de producto (`#ficha`)
 
-- Posición `0 2.35 -3.05`, mira hacia +z (hacia la cámara). Empieza oculta (`visible="false"`).
-- Fondo de 2.8 × 1.45.
-- Hijos: `#nombre`, `#precio`, `#descripcion` y el botón `#cerrarFicha` (local `0 -0.53 0.04`, clase `interactivo`).
+Desde el módulo 1.3: `<a-entity id="ficha" ficha-producto>` (componente en
+`src/componentes/ficha-producto.js`). Empieza oculta.
+- **Posición: variable, según dónde esté el visitante.** Aparece **0,85 m a la
+  derecha de la pieza tal como la ve el visitante**, **0,45 m desde la pieza
+  hacia él**, con el centro a **y = 1,45**, mirándole de frente y siempre
+  vertical (solo gira en Y). Mientras está abierta **sigue al visitante
+  suavemente** si camina alrededor de la pieza (opción `suavidad`, 6 por defecto).
+  Ejemplo desde la posición inicial (0, 1,6, 0): pieza02 → aprox. `0.88 1.45 -3.1`.
+- Fondo marfil `#FFF4E6` de **0,95 m** de ancho y **0,62 m** de alto mínimo (crece con el texto).
+- Contenido: chip del tipo de pieza (color según el tipo), aviso "Clasificación
+  ilustrativa (demo)", título, precio, disponibilidad, detalles conocidos y descripción.
+- Botón `#cerrarFicha` abajo a la derecha (0,26 × 0,09); tiene la clase
+  `interactivo` solo mientras la ficha está visible.
+- Antes del 1.3: panel fijo en `0 2.35 -3.05` de 2,8 × 1,45 con `#nombre`, `#precio` y `#descripcion`.
 
 ## Recepción
 
@@ -139,7 +155,7 @@ Peanas y mostrador **aún no** bloquean el destino.
 - **Código**: un solo `<script type="module" src="./src/main.js">` al final del `<body>`. `main.js` importa los demás módulos de `src/` (desde el módulo 0.4; antes eran `catalogo.js` y `app.js`).
 - **`datos/catalogo.json`** (desde el módulo 1.1; se descarga con `fetch`): cada pieza tiene un campo `id` (`pieza01`, `pieza02`, `pieza03`) que debe coincidir con el `id` de su entidad en `index.html`.
 - **Los módulos de `src/`** necesitan que existan estos ids en `index.html`:
-  `#ficha`, `#nombre`, `#precio`, `#descripcion`, `#cerrarFicha`, `#pieza02`,
+  `#ficha` (los demás elementos de la ficha los crea su componente),
   `#baldosas`, `#camara`, `#mando-izquierdo`, `#botonPuerta`,
   `#botonPuertaExterior`, `#textoPuerta`, `#textoPuertaExterior`,
   `#puertaIzquierda`, `#puertaDerecha`, `#mostradorRecepcion` y

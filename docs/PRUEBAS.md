@@ -23,9 +23,9 @@ En PowerShell, en la carpeta del proyecto:
 
 | # | Paso | Resultado esperado | ✓ |
 |---|---|---|---|
-| R1 | `npm run build` | Primero `✓ datos/catalogo.json: N piezas correctas`, luego `✓ built in …`, sin errores en rojo | |
+| R1 | `npm run build` | Primero `✓ datos/catalogo.json: N piezas correctas` y `✓ datos/salas.json: al día con el diseño…`, luego `✓ built in …`, sin errores en rojo | |
 | R2 | `npm run dev` | Se abre el navegador con la sala | |
-| R3 | Clic en las 3 piezas | La ficha muestra nombre y precio de cada una | |
+| R3 | Clic en las 3 piezas | La ficha aparece **junto a cada pieza** con su chip, nombre y precio | |
 | R4 | Clic en **CERRAR** | La ficha desaparece | |
 | R5 | Clic en el botón de la puerta | Las puertas se abren; el letrero cambia a CERRAR | |
 | R6 | Abrir la consola del navegador (F12 → Console) | Ningún error en rojo, salvo `favicon.ico` (conocido) | |
@@ -41,9 +41,14 @@ Si todo está bien: `Ctrl + C` para cerrar el servidor y hacer `git push`.
 | # | Qué probar | Resultado esperado | ✓ |
 |---|---|---|---|
 | P1 | Cargar la página | La sala aparece en menos de 10 s; el modelo 3D aparece sobre el pedestal central | |
-| P2 | Modelo 3D | Apoyado sobre el pedestal, sin flotar ni hundirse; mide ~65 cm | |
+| P2 | Piezas sobre las peanas | El modelo, la esfera y el cono apoyados sobre su peana, sin flotar ni hundirse; el modelo mide ~65 cm | |
+| P2b | Clic en una peana (no en la pieza) | No abre la ficha | |
 | P3 | Suelo | Baldosas de piedra en 4 tonos (24 en total) | |
-| P4 | Ficha: clic en la esfera, el modelo y el cono | "CERAMICA 01 · US$ 35.00", "MODELO 3D DE PRUEBA · No disponible para venta", "FIGURA 03 · US$ 45.00" | |
+| P4 | Ficha: clic en la esfera, el modelo y el cono | Aparece a la derecha de la pieza, sin taparla. Esfera: chip "ARTESANIA TRADICIONAL PERUANA", "CERAMICA 01", "Precio ficticio: US$ 35.00". Modelo: chip "ORIGINAL DOCUMENTADO", "No disponible para venta" y "Historia y fuentes: Sin fuentes verificadas". Cono: "FIGURA 03", "Precio ficticio: US$ 45.00". En las tres: "Clasificacion ilustrativa (demo)" | |
+| P4b | Ficha: clic en otra pieza con la ficha abierta | La ficha se mueve junto a la nueva pieza (solo hay una abierta) | |
+| P4d | Ficha: abrirla **desde detrás** o desde un lado de la pieza | Se ve de frente, derecha y a tu derecha de la pieza | |
+| P4e | Ficha: con la ficha abierta, caminar alrededor de la pieza | La ficha te sigue suavemente sin separarse de la pieza | |
+| P4c | Ficha: legibilidad | Ningún texto se superpone ni se sale del panel | |
 | P5 | Ficha: CERRAR | Se oculta | |
 | P6 | Puertas: botón interior | Se abren las dos hojas; letreros "CERRAR" | |
 | P7 | Puertas: botón exterior | Se cierran; letreros "ABRIR" (los dos botones controlan la misma puerta) | |
@@ -126,6 +131,6 @@ estas cifras sin motivo, investigar antes de publicar.
 
 Durante la Fase 0, Claude comprueba con Playwright que la escena local y la
 publicada dan los mismos valores: modelo con dimensión mayor 0,650 m y base
-en y = 1,020; 24 baldosas; las 3 fichas; puertas; recepción; y el joystick
+en y = 1,000 (1,020 antes del módulo 1.2); esfera y cono con base en 1,000; 24 baldosas; las 3 fichas; puertas; recepción; y el joystick
 simulado en las cuatro direcciones. Sirve para detectar cambios que a simple
 vista pasarían desapercibidos.

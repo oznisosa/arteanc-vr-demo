@@ -291,6 +291,29 @@ documentación de **cada pieza**; el nombre de la sala no basta.
 
 ---
 
+## DT-015 — `datos/salas.json` se genera desde el diseño congelado
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** el módulo 1.4 pide los datos de las salas para la escena. El
+diseño congelado (`02-layout.json`, DT-009) ya los tiene, con claves en inglés
+y detalles que la escena no usa (cámaras de las láminas, notas).
+
+**Decisión:** `herramientas/generar-salas.js` (`npm run salas`) convierte el
+diseño en `datos/salas.json` con claves en español. El archivo generado se
+guarda en Git, pero **no se edita a mano**: `npm run validar` lo regenera en
+memoria y falla si no coincide, además de comprobar la geometría (sin
+solapes, accesos en su muro, posiciones dentro de su sala, cantidades).
+
+**Alternativas:** copiarlo a mano (se desincroniza); leer `02-layout.json`
+directamente en la escena (mezcla el documento de diseño con los datos de
+ejecución y obliga a publicar `docs/`).
+
+**Consecuencias:** una sola fuente de verdad; los errores de geometría se
+detectan antes de construir el *greybox*. Cambiar la casa exige una versión
+nueva del diseño.
+
+---
+
 ## DT-030 — Trabajo en paralelo: la Fase 2 en su propia rama y carpeta (worktree)
 **Estado:** Aceptada · **Fecha:** 2026-11-08 · **Matiza:** DT-011
 
