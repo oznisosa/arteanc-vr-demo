@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
+<defs><style>@font-face{font-family:Inter;src:url('../fuentes/Inter.ttf')}@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/CormorantGaramond.ttf')}text{font-feature-settings:'kern' 1}</style><linearGradient id="clay"><stop stop-color="#A45538"/><stop offset=".42" stop-color="#CC8862"/><stop offset="1" stop-color="#81452F"/></linearGradient><linearGradient id="claylight"><stop stop-color="#FFFFFF" stop-opacity=".02"/><stop offset=".38" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="1" stop-color="#000000" stop-opacity=".20"/></linearGradient><linearGradient id="paper" x2="0" y2="1"><stop stop-color="#FFF7EB"/><stop offset="1" stop-color="#F3E5D2"/></linearGradient></defs>
+<rect x="0" y="0" width="2400" height="1500" rx="0" fill="#F8F4ED" stroke="none" stroke-width="2"/>
+<text x="90" y="75" fill="#795A44" font-family="Inter" font-size="23" font-weight="550" text-anchor="start" letter-spacing="3">LA CASA ARTEANC   /   DISEÑO FINAL 1.0</text>
+<text x="90" y="162" fill="#493021" font-family="Cormorant Garamond" font-size="83" font-weight="500" text-anchor="start" letter-spacing="0">Favoritos, al volver al umbral</text>
+<text x="92" y="213" fill="#806D5B" font-family="Inter" font-size="27" font-weight="400" text-anchor="start" letter-spacing="0">Una selección local junto al mostrador · seguir explorando siempre disponible</text>
+<text x="2308" y="156" fill="#D5C5B0" font-family="Cormorant Garamond" font-size="82" font-weight="400" text-anchor="end" letter-spacing="0">05D</text>
+<path d="M90 250L2310 250" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<path d="M135 1008L281 961H1321L1175 1008Z" fill="#A98158" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="135" y="1008" width="1040" height="70" rx="0" fill="#795A44" stroke="none" stroke-width="2"/>
+<rect x="135" y="1078" width="1040" height="245" rx="0" fill="#D5C5B0" stroke="none" stroke-width="2"/>
+<path d="M1175 1008L1321 961V1276L1175 1323Z" fill="#B6A18A" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M135 1150L1175 1150" stroke="#BEAC96" stroke-width="2" fill="none"/>
+<path d="M135 1225L1175 1225" stroke="#BEAC96" stroke-width="2" fill="none"/>
+<path d="M340 1078L340 1150" stroke="#BEAC96" stroke-width="2" fill="none"/>
+<path d="M460 1150L460 1225" stroke="#BEAC96" stroke-width="2" fill="none"/>
+<path d="M640 1078L640 1150" stroke="#BEAC96" stroke-width="2" fill="none"/>
+<path d="M760 1150L760 1225" stroke="#BEAC96" stroke-width="2" fill="none"/>
+<path d="M940 1078L940 1150" stroke="#BEAC96" stroke-width="2" fill="none"/>
+<path d="M1060 1150L1060 1225" stroke="#BEAC96" stroke-width="2" fill="none"/>
+<text x="655" y="1057" fill="#FFF4E6" font-family="Cormorant Garamond" font-size="34" font-weight="500" text-anchor="middle" letter-spacing="7">ARTEANC</text>
+<rect x="118" y="306" width="1215" height="645" rx="18" fill="#E5D6C1" stroke="none" stroke-width="2"/>
+<rect x="104" y="292" width="1215" height="645" rx="18" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<text x="164" y="370" fill="#493021" font-family="Cormorant Garamond" font-size="70" font-weight="500" text-anchor="start" letter-spacing="0">Tus favoritos</text>
+<circle cx="1257" cy="346" r="24" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="1.5"/>
+<path d="M1250 339L1264 353" stroke="#493021" stroke-width="2" fill="none"/>
+<path d="M1250 353L1264 339" stroke="#493021" stroke-width="2" fill="none"/>
+<text x="164" y="415" fill="#806D5B" font-family="Inter" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0">3 ejemplos guardados · no vendibles</text>
+<rect x="163" y="449" width="343" height="330" rx="10" fill="#F0E5D4" stroke="#CDBDA9" stroke-width="2"/>
+<g transform="translate(333 562) scale(0.38)">
+<ellipse cx="0" cy="205" rx="120" ry="19" fill="#D9C5AF" stroke="none" stroke-width="2"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#clay)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="#B96645" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#claylight)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="0" cy="-174" rx="44" ry="11" fill="#8B472F" stroke="none" stroke-width="2"/>
+<ellipse cx="0" cy="-176" rx="37" ry="6" fill="#572F22" stroke="none" stroke-width="2"/>
+<path d="M-113 19Q0 37 113 19" fill="none" stroke="#E9CDB0" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-110 43Q0 61 110 43" fill="none" stroke="#E9CDB0" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<text x="334" y="702" fill="#493021" font-family="Cormorant Garamond" font-size="31" font-weight="500" text-anchor="middle" letter-spacing="0">Vasija ilustrativa</text>
+<text x="334" y="745" fill="#806D5B" font-family="Inter" font-size="21" font-weight="400" text-anchor="middle" letter-spacing="0">Sin oferta comercial</text>
+<rect x="533" y="449" width="343" height="330" rx="10" fill="#F0E5D4" stroke="#CDBDA9" stroke-width="2"/>
+<g transform="translate(703 563) scale(0.65)">
+<rect x="-145" y="-110" width="290" height="220" rx="0" fill="#9E3441" stroke="none" stroke-width="2"/>
+<rect x="-145" y="-73" width="290" height="27" rx="0" fill="#B4975A" stroke="none" stroke-width="2"/>
+<rect x="-145" y="40" width="290" height="27" rx="0" fill="#B4975A" stroke="none" stroke-width="2"/>
+<rect x="-145" y="-25" width="290" height="24" rx="0" fill="#344660" stroke="none" stroke-width="2"/>
+<rect x="-35" y="-110" width="24" height="220" rx="0" fill="#E9E0D2" stroke="none" stroke-width="2"/>
+<path d="M-140 110L-140 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M-125 110L-125 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M-110 110L-110 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M-95 110L-95 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M-80 110L-80 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M-65 110L-65 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M-50 110L-50 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M-35 110L-35 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M-20 110L-20 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M-5 110L-5 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M10 110L10 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M25 110L25 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M40 110L40 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M55 110L55 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M70 110L70 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M85 110L85 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M100 110L100 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M115 110L115 125" stroke="#A98158" stroke-width="2" fill="none"/>
+<path d="M130 110L130 125" stroke="#A98158" stroke-width="2" fill="none"/>
+</g>
+<text x="704" y="702" fill="#493021" font-family="Cormorant Garamond" font-size="31" font-weight="500" text-anchor="middle" letter-spacing="0">Textil ilustrativo</text>
+<text x="704" y="745" fill="#806D5B" font-family="Inter" font-size="21" font-weight="400" text-anchor="middle" letter-spacing="0">Sin oferta comercial</text>
+<rect x="903" y="449" width="343" height="330" rx="10" fill="#F0E5D4" stroke="#CDBDA9" stroke-width="2"/>
+<g transform="translate(1073 552) scale(0.62)">
+<ellipse cx="0" cy="95" rx="130" ry="15" fill="#D9C5AF" stroke="none" stroke-width="2"/>
+<path d="M-130 -20Q-105 100 0 100Q105 100 130 -20Z" fill="#B4975A" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="0" cy="-20" rx="130" ry="33" fill="#C9AD73" stroke="none" stroke-width="2"/>
+<ellipse cx="0" cy="-20" rx="112" ry="23" fill="#806841" stroke="none" stroke-width="2"/>
+</g>
+<text x="1074" y="702" fill="#493021" font-family="Cormorant Garamond" font-size="31" font-weight="500" text-anchor="middle" letter-spacing="0">Cuenco ilustrativo</text>
+<text x="1074" y="745" fill="#806D5B" font-family="Inter" font-size="21" font-weight="400" text-anchor="middle" letter-spacing="0">Sin oferta comercial</text>
+<rect x="163" y="811" width="540" height="76" rx="10" fill="#E0D7CB" stroke="#CDBDA9" stroke-width="2"/>
+<text x="433.0" y="859" fill="#806D5B" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">Tienda no habilitada en demo</text>
+<rect x="731" y="811" width="540" height="76" rx="10" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<text x="1001.0" y="859" fill="#493021" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">Seguir explorando</text>
+<text x="1460" y="343" fill="#795A44" font-family="Inter" font-size="22" font-weight="600" text-anchor="start" letter-spacing="1">EN EL MOSTRADOR DE RECEPCIÓN</text>
+<text x="1460" y="403" fill="#493021" font-family="Cormorant Garamond" font-size="48" font-weight="500" text-anchor="start" letter-spacing="0">A la izquierda del eje</text>
+<text x="1460" y="450" fill="#806D5B" font-family="Inter" font-size="24" font-weight="400" text-anchor="start" letter-spacing="0">Esquema de ubicación · norte arriba</text>
+<rect x="1474" y="544" width="688" height="524" rx="0" fill="#795A44" stroke="none" stroke-width="2"/>
+<rect x="1490" y="560" width="656" height="492" rx="0" fill="#E9E0D2" stroke="none" stroke-width="2"/>
+<rect x="1752.4" y="543" width="131.20000000000002" height="18" rx="0" fill="#E9E0D2" stroke="none" stroke-width="2"/>
+<rect x="1752.4" y="1051" width="131.20000000000002" height="18" rx="0" fill="#E9E0D2" stroke="none" stroke-width="2"/>
+<path d="M1818 520L1818 1092" stroke="#B96645" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<rect x="1518.7" y="736.3" width="213.20000000000002" height="73.8" rx="0" fill="#A98158" stroke="#795A44" stroke-width="2"/>
+<text x="1625.3" y="855.2" fill="#795A44" font-family="Inter" font-size="22" font-weight="400" text-anchor="middle" letter-spacing="0">Mostrador</text>
+<text x="1818" y="505" fill="#806D5B" font-family="Inter" font-size="24" font-weight="400" text-anchor="middle" letter-spacing="0">Hacia el patio</text>
+<text x="1818" y="1126" fill="#806D5B" font-family="Inter" font-size="24" font-weight="400" text-anchor="middle" letter-spacing="0">Entrada sur · (0, 0, 0)</text>
+<path d="M1490 1176L2146 1176" stroke="#806D5B" stroke-width="1.5" fill="none"/>
+<path d="M1490 1169L1490 1183" stroke="#806D5B" stroke-width="2" fill="none"/>
+<path d="M2146 1169L2146 1183" stroke="#806D5B" stroke-width="2" fill="none"/>
+<text x="1818.0" y="1161" fill="#806D5B" font-family="Inter" font-size="23" font-weight="400" text-anchor="middle" letter-spacing="0">8,00 m</text>
+<text x="1460" y="1212" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">Mostrador: 2,60 × 0,90 × 1,00 m.</text>
+<text x="1460" y="1254" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">Centro: (−2,35; 0,50; −3,60) m.</text>
+<text x="1460" y="1296" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">La lista local no es un carrito de compra.</text>
+<path d="M90 1394L2310 1394" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="90" y="1444" fill="#493021" font-family="Cormorant Garamond" font-size="28" font-weight="600" text-anchor="start" letter-spacing="4">ARTEANC</text>
+<text x="310" y="1442" fill="#806D5B" font-family="Inter" font-size="21" font-weight="400" text-anchor="start" letter-spacing="0">Esquema espacial, no perspectiva fotográfica · mostrador y accesos referidos a 02-layout.json</text>
+<text x="2310" y="1442" fill="#795A44" font-family="Inter" font-size="21" font-weight="400" text-anchor="end" letter-spacing="0">VR / 1.0</text>
+</svg>

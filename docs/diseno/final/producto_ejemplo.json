@@ -1,0 +1,22 @@
+{
+  "sku": "DEMO-001",
+  "titulo": "Pieza de ejemplo",
+  "naturaleza": "demostracion_no_vendible",
+  "material": null,
+  "dimensiones_m": null,
+  "fuentes": [],
+  "estadoEditorial": "pendiente",
+  "moneda": "USD",
+  "precio": 120,
+  "precioEsFicticio": true,
+  "stock": null,
+  "urlProducto": null,
+  "modelos": {
+    "galeria": null,
+    "examen": null
+  },
+  "actualizadoEn": null,
+  "tipoPieza": "artesania_contemporanea",
+  "tipoPiezaEsIlustrativo": true,
+  "notaDemo": "Objeto ficticio para probar el chip de tipo. No es inventario ni certificación. Precio ficticio, pieza no vendible; datos desconocidos permanecen null."
+}

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
+<defs><style>@font-face{font-family:Inter;src:url('../fuentes/Inter.ttf')}@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/CormorantGaramond.ttf')}text{font-feature-settings:'kern' 1}</style><linearGradient id="clay"><stop stop-color="#A45538"/><stop offset=".42" stop-color="#CC8862"/><stop offset="1" stop-color="#81452F"/></linearGradient><linearGradient id="claylight"><stop stop-color="#FFFFFF" stop-opacity=".02"/><stop offset=".38" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="1" stop-color="#000000" stop-opacity=".20"/></linearGradient><linearGradient id="paper" x2="0" y2="1"><stop stop-color="#FFF7EB"/><stop offset="1" stop-color="#F3E5D2"/></linearGradient></defs>
+<rect x="0" y="0" width="2400" height="1500" rx="0" fill="#F8F4ED" stroke="none" stroke-width="2"/>
+<text x="90" y="75" fill="#795A44" font-family="Inter" font-size="23" font-weight="550" text-anchor="start" letter-spacing="3">LA CASA ARTEANC   /   DISEÑO FINAL 1.0</text>
+<text x="90" y="162" fill="#493021" font-family="Cormorant Garamond" font-size="83" font-weight="500" text-anchor="start" letter-spacing="0">La cartela, junto a la pieza</text>
+<text x="92" y="213" fill="#806D5B" font-family="Inter" font-size="27" font-weight="400" text-anchor="start" letter-spacing="0">Información esencial a escala humana · Cerámica / puesto C05</text>
+<text x="2308" y="156" fill="#D5C5B0" font-family="Cormorant Garamond" font-size="82" font-weight="400" text-anchor="end" letter-spacing="0">05A</text>
+<path d="M90 250L2310 250" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="140" y="328" fill="#795A44" font-family="Inter" font-size="21" font-weight="600" text-anchor="start" letter-spacing="2">COLOCACIÓN</text>
+<path d="M125 1155L1030 1155" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<path d="M280 690l70 -28.0h220l-70 28.0Z" fill="#E6D8C5" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="280" y="690" width="220" height="440" rx="0" fill="#D5C5B0" stroke="none" stroke-width="2"/>
+<path d="M500 690l70 -28.0v440l-70 28.0Z" fill="#B8A68F" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(397 585) scale(0.484)">
+<ellipse cx="0" cy="205" rx="120" ry="19" fill="#D9C5AF" stroke="none" stroke-width="2"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#clay)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="#B96645" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#claylight)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="0" cy="-174" rx="44" ry="11" fill="#8B472F" stroke="none" stroke-width="2"/>
+<ellipse cx="0" cy="-176" rx="37" ry="6" fill="#572F22" stroke="none" stroke-width="2"/>
+<path d="M-113 19Q0 37 113 19" fill="none" stroke="#E9CDB0" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-110 43Q0 61 110 43" fill="none" stroke="#E9CDB0" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<path d="M522 625L721 605L743 666L544 687Z" fill="#FFF4E6" stroke="#795A44" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M544 687L743 666L743 675L544 696Z" fill="#A98158" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M632 680L632 1142" stroke="#A98158" stroke-width="13" fill="none"/>
+<rect x="580" y="1138" width="105" height="12" rx="0" fill="#A98158" stroke="none" stroke-width="2"/>
+<path d="M556 637L706 622" stroke="#B96645" stroke-width="3" fill="none"/>
+<path d="M563 652L690 640" stroke="#795A44" stroke-width="3" fill="none"/>
+<path d="M568 665L643 658" stroke="#795A44" stroke-width="2" fill="none"/>
+<path d="M233 690L233 1130" stroke="#806D5B" stroke-width="1.5" fill="none"/>
+<path d="M226 690L240 690" stroke="#806D5B" stroke-width="2" fill="none"/>
+<path d="M226 1130L240 1130" stroke="#806D5B" stroke-width="2" fill="none"/>
+<text x="250" y="910.0" fill="#806D5B" font-family="Inter" font-size="23" font-weight="400" text-anchor="start" letter-spacing="0">1,00 m</text>
+<path d="M280 1186L500 1186" stroke="#806D5B" stroke-width="1.5" fill="none"/>
+<path d="M280 1179L280 1193" stroke="#806D5B" stroke-width="2" fill="none"/>
+<path d="M500 1179L500 1193" stroke="#806D5B" stroke-width="2" fill="none"/>
+<text x="390.0" y="1171" fill="#806D5B" font-family="Inter" font-size="23" font-weight="400" text-anchor="middle" letter-spacing="0">0,50 m</text>
+<path d="M937 646L937 1130" stroke="#806D5B" stroke-width="1.5" fill="none"/>
+<path d="M930 646L944 646" stroke="#806D5B" stroke-width="2" fill="none"/>
+<path d="M930 1130L944 1130" stroke="#806D5B" stroke-width="2" fill="none"/>
+<text x="954" y="888.0" fill="#806D5B" font-family="Inter" font-size="23" font-weight="400" text-anchor="start" letter-spacing="0">1,10 m</text>
+<text x="140" y="1265" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">Cartela inclinada 25° sobre horizontal.</text>
+<text x="140" y="1304" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">Sin ocultar la pieza ni invadir la circulación.</text>
+<text x="1140" y="328" fill="#795A44" font-family="Inter" font-size="21" font-weight="600" text-anchor="start" letter-spacing="2">CARA DE LECTURA · 0,50 × 0,35 M</text>
+<rect x="1140" y="384" width="1080" height="756" rx="15" fill="#E5D7C4" stroke="none" stroke-width="2"/>
+<rect x="1126" y="370" width="1080" height="756" rx="15" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<path d="M1194 431L2134 431" stroke="#B96645" stroke-width="4" fill="none"/>
+<text x="1194" y="509" fill="#493021" font-family="Cormorant Garamond" font-size="69" font-weight="500" text-anchor="start" letter-spacing="0">Pieza de ejemplo</text>
+<rect x="1194" y="548" width="860" height="52" rx="26" fill="#F2E4D2" stroke="#B96645" stroke-width="1.5"/>
+<circle cx="1221" cy="574" r="6" fill="#B96645" stroke="none" stroke-width="2"/>
+<text x="1241" y="583" fill="#B96645" font-family="Inter" font-size="31" font-weight="500" text-anchor="start" letter-spacing="0">Artesanía contemporánea</text>
+<text x="1194" y="650" fill="#806D5B" font-family="Inter" font-size="29" font-weight="400" text-anchor="start" letter-spacing="0">Tipo ilustrativo · no vendible</text>
+<path d="M1194 690L2134 690" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="1194" y="749" fill="#806D5B" font-family="Inter" font-size="29" font-weight="400" text-anchor="start" letter-spacing="0">Material</text>
+<text x="1506" y="749" fill="#493021" font-family="Inter" font-size="31" font-weight="400" text-anchor="start" letter-spacing="0">Desconocido</text>
+<text x="1194" y="812" fill="#806D5B" font-family="Inter" font-size="29" font-weight="400" text-anchor="start" letter-spacing="0">Dimensiones</text>
+<text x="1506" y="812" fill="#493021" font-family="Inter" font-size="31" font-weight="400" text-anchor="start" letter-spacing="0">Desconocidas</text>
+<rect x="1194" y="886" width="640" height="76" rx="10" fill="#795A44" stroke="#795A44" stroke-width="2"/>
+<text x="1514.0" y="934" fill="#FFF4E6" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">Ver ficha de ejemplo</text>
+<text x="1194" y="1044" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">DEMO-001 · Sin atribución cultural</text>
+<text x="1140" y="1220" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">Lectura de pie y sentado · apertura por acción explícita.</text>
+<text x="1140" y="1263" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">La ficha amplía; la cartela no acumula información.</text>
+<path d="M90 1394L2310 1394" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="90" y="1444" fill="#493021" font-family="Cormorant Garamond" font-size="28" font-weight="600" text-anchor="start" letter-spacing="4">ARTEANC</text>
+<text x="310" y="1442" fill="#806D5B" font-family="Inter" font-size="21" font-weight="400" text-anchor="start" letter-spacing="0">Maqueta de interfaz · piezas ilustrativas, sin oferta de venta · Cormorant Garamond + Inter</text>
+<text x="2310" y="1442" fill="#795A44" font-family="Inter" font-size="21" font-weight="400" text-anchor="end" letter-spacing="0">VR / 1.0</text>
+</svg>

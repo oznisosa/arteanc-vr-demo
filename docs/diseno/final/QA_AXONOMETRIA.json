@@ -1,0 +1,101 @@
+{
+  "source": "final/02-layout.json",
+  "projection": "orthographic",
+  "elevationDegrees": 66,
+  "azimuthDegrees": 22,
+  "worldScalePixelsPerMetre": 37.674094608477674,
+  "ordinaryWallHeight": 4,
+  "sanctuaryWallHeight": 6.5,
+  "fullWalls": true,
+  "roofSlabsRemoved": true,
+  "exhibitCount": 38,
+  "doorCount": 7,
+  "faceCount": 3522,
+  "version": "1.0",
+  "date": "2026-11-08",
+  "artifact": "03-axonometrica.png",
+  "editableArtifact": "fuentes-graficas/03-axonometrica.svg",
+  "method": "Geometría vectorial 3D calculada desde 02-layout.json y proyectada ortográficamente; no geometría inferida de imagen generada.",
+  "camera": {
+    "file": "03-axonometrica.png",
+    "projection": "orthographic",
+    "position": [
+      7.61831141,
+      45.67727288,
+      3.65598243
+    ],
+    "target": [
+      0,
+      0,
+      -15.2
+    ],
+    "elevationDegrees": 66,
+    "azimuthDegrees": 22,
+    "azimuthReference": "clockwise from south (+Z) toward east (+X)",
+    "directionFromTarget": [
+      0.1523662283,
+      0.9135454576,
+      0.3771196485
+    ],
+    "viewDirection": [
+      -0.1523662283,
+      -0.9135454576,
+      -0.3771196485
+    ],
+    "nominalDistanceMetres": 50,
+    "framing": "Fit projected full geometry into diagram viewport; distance does not change orthographic scale.",
+    "diagramViewportPixels": {
+      "x": 110,
+      "y": 300,
+      "width": 2260,
+      "height": 1330
+    },
+    "canvasPixels": [
+      3200,
+      1800
+    ],
+    "cutaway": "Only roof slabs removed; full 4.00 m ordinary walls and 6.50 m sanctuary walls preserved."
+  },
+  "checks": {
+    "fullWallHeightsMetres": [
+      4,
+      6.5
+    ],
+    "doorOpenings": {
+      "normal": {
+        "height": 2.6,
+        "baseWidth": 1.6,
+        "topWidth": 1.3,
+        "depth": 0.4
+      },
+      "sanctuary": {
+        "height": 4.2,
+        "baseWidth": 2.4,
+        "topWidth": 1.9,
+        "depth": 1.2
+      }
+    },
+    "doorLeaves": 0,
+    "exhibitSlots": 38,
+    "bronzeNichesInSanctuarySideWalls": 6,
+    "basaltPlinthsInCentralAxis": 3,
+    "nicheRecessDepthMetres": 0.25,
+    "canalExteriorSizeXZMetres": [
+      0.5,
+      4
+    ],
+    "roofSlabsRendered": 0,
+    "cameraOtherViewsUnchanged": true,
+    "geometryDataUnchangedDuringCameraUpdate": true,
+    "fontFamilies": [
+      "Cormorant Garamond",
+      "Inter"
+    ]
+  },
+  "representationNotes": [
+    "Las oclusiones de piezas y cartelas por muros y dinteles completos se conservan.",
+    "El diagrama no simula la iluminación horneada ni certifica rendimiento en Quest 3.",
+    "Las piezas son volúmenes ilustrativos sin atribuciones históricas."
+  ],
+  "layoutSHA256": "fe85035baf66621768263744dd6decb73d4bb2906d2ad29867aea7b36402ffef"
+}

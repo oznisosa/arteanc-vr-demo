@@ -1,0 +1,42 @@
+{
+  "minimumClearanceBetweenExhibitFootprints": {
+    "textiles": {
+      "metres": 1.85,
+      "pair": [
+        "T01",
+        "T02"
+      ]
+    },
+    "ceramica": {
+      "metres": 1.8,
+      "pair": [
+        "C01",
+        "C02"
+      ]
+    },
+    "metal": {
+      "metres": 1.85,
+      "pair": [
+        "M01",
+        "M03"
+      ]
+    },
+    "santuario": {
+      "metres": 2.2,
+      "pair": [
+        "S01",
+        "S03"
+      ]
+    },
+    "taller": {
+      "metres": 1.9869,
+      "pair": [
+        "W02",
+        "W06"
+      ]
+    }
+  },
+  "under1_8m": [],
+  "method": "Distance between support and label rectangles, including horizontal projection of 0.50×0.35m panels inclined25deg. Recessed wall niches and wall-mounted labels modeled at wall face. Fixtures on their support excluded as separate furniture. Metric concerns furniture-to-furniture routes, not wall clearances or requested door widths.",
+  "requiredQuestValidation": "Full navigation mesh, eye-level legibility and collision sweep in actual headset remain pending."
+}

@@ -1,0 +1,19 @@
+{
+  "sku": "DEMO-001",
+  "titulo": "Pieza conceptual",
+  "naturaleza": "demostracion_no_vendible",
+  "material": null,
+  "dimensiones_m": null,
+  "fuentes": [],
+  "estadoEditorial": "pendiente",
+  "moneda": "USD",
+  "precio": 120,
+  "precioEsFicticio": true,
+  "stock": null,
+  "urlProducto": null,
+  "modelos": {
+    "galeria": null,
+    "examen": null
+  },
+  "actualizadoEn": null
+}

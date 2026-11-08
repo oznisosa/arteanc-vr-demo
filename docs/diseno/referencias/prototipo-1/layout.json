@@ -1,0 +1,368 @@
+{
+  "version": "1.0",
+  "units": "metres",
+  "axes": {
+    "x": "east",
+    "y": "up",
+    "negativeZ": "north"
+  },
+  "bounds": {
+    "x": [
+      -20,
+      20
+    ],
+    "z": [
+      -36,
+      0
+    ]
+  },
+  "wallThickness": 0.3,
+  "note": "Nominal dimensions to wall axes. Diagram, not construction survey.",
+  "rooms": [
+    {
+      "id": "archivo",
+      "label": "Archivo de materiales",
+      "center": [
+        -14,
+        0,
+        -32
+      ],
+      "size": [
+        12,
+        4.2,
+        8
+      ],
+      "phase": "futuro"
+    },
+    {
+      "id": "educacion",
+      "label": "Educación",
+      "center": [
+        0,
+        0,
+        -32
+      ],
+      "size": [
+        16,
+        4.2,
+        8
+      ],
+      "phase": "fase2"
+    },
+    {
+      "id": "descanso",
+      "label": "Descanso",
+      "center": [
+        14,
+        0,
+        -32
+      ],
+      "size": [
+        12,
+        4.2,
+        8
+      ],
+      "phase": "futuro"
+    },
+    {
+      "id": "textiles",
+      "label": "Textiles y sonido",
+      "center": [
+        -14,
+        0,
+        -24
+      ],
+      "size": [
+        12,
+        4.2,
+        8
+      ],
+      "phase": "fase2"
+    },
+    {
+      "id": "ceramica",
+      "label": "Cerámica y formas",
+      "center": [
+        -14,
+        0,
+        -16
+      ],
+      "size": [
+        12,
+        4.2,
+        8
+      ],
+      "phase": "lanzamiento"
+    },
+    {
+      "id": "galeria",
+      "label": "Gran galería",
+      "center": [
+        0,
+        0,
+        -20
+      ],
+      "size": [
+        16,
+        7,
+        16
+      ],
+      "phase": "lanzamiento"
+    },
+    {
+      "id": "temporal",
+      "label": "Exposición temporal",
+      "center": [
+        14,
+        0,
+        -24
+      ],
+      "size": [
+        12,
+        4.2,
+        8
+      ],
+      "phase": "fase3"
+    },
+    {
+      "id": "examen",
+      "label": "Exploración de producto",
+      "center": [
+        14,
+        0,
+        -16
+      ],
+      "size": [
+        12,
+        4.2,
+        8
+      ],
+      "phase": "lanzamiento"
+    },
+    {
+      "id": "corredor",
+      "label": "Circulación",
+      "center": [
+        0,
+        0,
+        -10
+      ],
+      "size": [
+        40,
+        4.2,
+        4
+      ],
+      "phase": "lanzamiento"
+    },
+    {
+      "id": "asistente",
+      "label": "Asistente",
+      "center": [
+        -14,
+        0,
+        -4
+      ],
+      "size": [
+        12,
+        4.2,
+        8
+      ],
+      "phase": "lanzamiento"
+    },
+    {
+      "id": "recepcion",
+      "label": "Recepción",
+      "center": [
+        0,
+        0,
+        -4
+      ],
+      "size": [
+        16,
+        4.8,
+        8
+      ],
+      "phase": "lanzamiento"
+    },
+    {
+      "id": "compra",
+      "label": "Compra",
+      "center": [
+        14,
+        0,
+        -4
+      ],
+      "size": [
+        12,
+        4.2,
+        8
+      ],
+      "phase": "lanzamiento"
+    }
+  ],
+  "doors": [
+    {
+      "center": [
+        -8,
+        0,
+        -16
+      ],
+      "wallDirection": "v",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        -8,
+        0,
+        -24
+      ],
+      "wallDirection": "v",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        8,
+        0,
+        -16
+      ],
+      "wallDirection": "v",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        8,
+        0,
+        -24
+      ],
+      "wallDirection": "v",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        0,
+        0,
+        -28
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        -8,
+        0,
+        -32
+      ],
+      "wallDirection": "v",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        8,
+        0,
+        -32
+      ],
+      "wallDirection": "v",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        -14,
+        0,
+        -20
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        14,
+        0,
+        -20
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        0,
+        0,
+        -12
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        -14,
+        0,
+        -12
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        14,
+        0,
+        -12
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        -14,
+        0,
+        -8
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        0,
+        0,
+        -8
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        14,
+        0,
+        -8
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4
+    },
+    {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "wallDirection": "h",
+      "clearWidth": 4
+    }
+  ],
+  "mainRoute": [
+    "recepcion",
+    "galeria",
+    "ceramica",
+    "textiles",
+    "galeria",
+    "educacion",
+    "galeria",
+    "examen",
+    "corredor",
+    "compra"
+  ],
+  "shortRoute": [
+    "recepcion",
+    "galeria",
+    "examen",
+    "corredor",
+    "compra"
+  ]
+}

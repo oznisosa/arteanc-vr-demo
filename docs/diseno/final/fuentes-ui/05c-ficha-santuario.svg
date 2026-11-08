@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
+<defs><style>@font-face{font-family:Inter;src:url('../fuentes/Inter.ttf')}@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/CormorantGaramond.ttf')}text{font-feature-settings:'kern' 1}</style><linearGradient id="clay"><stop stop-color="#A45538"/><stop offset=".42" stop-color="#CC8862"/><stop offset="1" stop-color="#81452F"/></linearGradient><linearGradient id="claylight"><stop stop-color="#FFFFFF" stop-opacity=".02"/><stop offset=".38" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="1" stop-color="#000000" stop-opacity=".20"/></linearGradient><linearGradient id="paper" x2="0" y2="1"><stop stop-color="#FFF7EB"/><stop offset="1" stop-color="#F3E5D2"/></linearGradient></defs>
+<rect x="0" y="0" width="2400" height="1500" rx="0" fill="#F8F4ED" stroke="none" stroke-width="2"/>
+<text x="90" y="75" fill="#795A44" font-family="Inter" font-size="23" font-weight="550" text-anchor="start" letter-spacing="3">LA CASA ARTEANC   /   DISEÑO FINAL 1.0</text>
+<text x="90" y="162" fill="#493021" font-family="Cormorant Garamond" font-size="83" font-weight="500" text-anchor="start" letter-spacing="0">Santuario: la procedencia importa</text>
+<text x="92" y="213" fill="#806D5B" font-family="Inter" font-size="27" font-weight="400" text-anchor="start" letter-spacing="0">Variante del mismo sistema · tipo de pieza siempre visible · puesto S07</text>
+<text x="2308" y="156" fill="#D5C5B0" font-family="Cormorant Garamond" font-size="82" font-weight="400" text-anchor="end" letter-spacing="0">05C</text>
+<path d="M90 250L2310 250" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<rect x="90" y="310" width="650" height="1035" rx="12" fill="#302A27" stroke="none" stroke-width="2"/>
+<text x="133" y="370" fill="#D5C5B0" font-family="Inter" font-size="23" font-weight="400" text-anchor="start" letter-spacing="2">SANTUARIO PRECOLOMBINO</text>
+<rect x="279" y="768" width="210" height="420" rx="0" fill="#39312C" stroke="none" stroke-width="2"/>
+<path d="M279 768l65 -28h210l-65 28Z" fill="#58483B" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M489 768l65 -28v420l-65 28Z" fill="#221E1C" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(402 666) scale(0.466)">
+<ellipse cx="0" cy="205" rx="120" ry="19" fill="#D9C5AF" stroke="none" stroke-width="2"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#clay)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="#9D724F" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#claylight)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="0" cy="-174" rx="44" ry="11" fill="#8B472F" stroke="none" stroke-width="2"/>
+<ellipse cx="0" cy="-176" rx="37" ry="6" fill="#572F22" stroke="none" stroke-width="2"/>
+<path d="M-113 19Q0 37 113 19" fill="none" stroke="#E9CDB0" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-110 43Q0 61 110 43" fill="none" stroke="#E9CDB0" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<text x="415" y="1262" fill="#D5C5B0" font-family="Inter" font-size="23" font-weight="400" text-anchor="middle" letter-spacing="0">Peana de basalto · 0,50 × 0,50 × 1,00 m</text>
+<rect x="808" y="310" width="1504" height="1035" rx="15" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<path d="M865 365L2250 365" stroke="#795A44" stroke-width="4" fill="none"/>
+<circle cx="2244" cy="417" r="24" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="1.5"/>
+<path d="M2237 410L2251 424" stroke="#493021" stroke-width="2" fill="none"/>
+<path d="M2237 424L2251 410" stroke="#493021" stroke-width="2" fill="none"/>
+<text x="866" y="453" fill="#493021" font-family="Cormorant Garamond" font-size="78" font-weight="500" text-anchor="start" letter-spacing="0">Pieza de ejemplo</text>
+<rect x="866" y="490" width="412" height="52" rx="26" fill="#F2E4D2" stroke="#795A44" stroke-width="1.5"/>
+<circle cx="893" cy="516" r="6" fill="#795A44" stroke="none" stroke-width="2"/>
+<text x="913" y="525" fill="#795A44" font-family="Inter" font-size="36" font-weight="500" text-anchor="start" letter-spacing="0">Réplica</text>
+<text x="1308" y="527" fill="#806D5B" font-family="Inter" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0">Clasificación ilustrativa · no vendible</text>
+<text x="866" y="607" fill="#493021" font-family="Inter" font-size="44" font-weight="500" text-anchor="start" letter-spacing="0">USD 120</text>
+<text x="1120" y="603" fill="#795A44" font-family="Inter" font-size="25" font-weight="600" text-anchor="start" letter-spacing="0">PRECIO FICTICIO</text>
+<path d="M866 646L2250 646" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="866" y="711" fill="#493021" font-family="Cormorant Garamond" font-size="54" font-weight="500" text-anchor="start" letter-spacing="0">Historia y fuentes</text>
+<text x="866" y="761" fill="#795A44" font-family="Inter" font-size="32" font-weight="500" text-anchor="start" letter-spacing="0">Sin fuentes verificadas</text>
+<text x="866" y="810" fill="#493021" font-family="Inter" font-size="28" font-weight="400" text-anchor="start" letter-spacing="0">La historia de esta pieza está pendiente de verificación.</text>
+<rect x="866" y="853" width="1383" height="220" rx="9" fill="#F0E5D6" stroke="none" stroke-width="2"/>
+<text x="904" y="906" fill="#806D5B" font-family="Inter" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0">Atribución</text>
+<text x="1356" y="906" fill="#493021" font-family="Inter" font-size="28" font-weight="400" text-anchor="start" letter-spacing="0">Desconocida</text>
+<text x="904" y="963" fill="#806D5B" font-family="Inter" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0">Fecha / procedencia</text>
+<text x="1356" y="963" fill="#493021" font-family="Inter" font-size="28" font-weight="400" text-anchor="start" letter-spacing="0">Desconocidas</text>
+<text x="904" y="1020" fill="#806D5B" font-family="Inter" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0">Revisión editorial</text>
+<text x="1356" y="1020" fill="#493021" font-family="Inter" font-size="28" font-weight="400" text-anchor="start" letter-spacing="0">Pendiente</text>
+<rect x="866" y="1122" width="650" height="76" rx="10" fill="#E0D7CB" stroke="#CDBDA9" stroke-width="2"/>
+<text x="1191.0" y="1170" fill="#806D5B" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">Tienda no habilitada en demo</text>
+<rect x="1542" y="1122" width="706" height="76" rx="10" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<text x="1895.0" y="1170" fill="#493021" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">♡ Guardar ejemplo</text>
+<text x="866" y="1261" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">“Original documentado” requiere documentación verificada.</text>
+<path d="M90 1394L2310 1394" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="90" y="1444" fill="#493021" font-family="Cormorant Garamond" font-size="28" font-weight="600" text-anchor="start" letter-spacing="4">ARTEANC</text>
+<text x="310" y="1442" fill="#806D5B" font-family="Inter" font-size="21" font-weight="400" text-anchor="start" letter-spacing="0">La arquitectura evoca; la ficha sólo afirma lo documentado · sin fechas ni procedencias inventadas</text>
+<text x="2310" y="1442" fill="#795A44" font-family="Inter" font-size="21" font-weight="400" text-anchor="end" letter-spacing="0">VR / 1.0</text>
+</svg>

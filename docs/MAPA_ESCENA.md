@@ -1,5 +1,11 @@
 # Mapa de la escena — ArteAnc VR
 
+> Este mapa describe el **prototipo actual** (una sala, `index.html`). La casa
+> definitiva tiene **otro sistema de coordenadas**, con el origen en el umbral
+> sur y el norte en −Z, y está en
+> [diseno/final/02-layout.json](diseno/final/02-layout.json). Cuando se
+> construya el *greybox* (Fase 1), este documento se actualizará.
+
 Referencia de los elementos de `index.html`, sus coordenadas y las partes del
 código que dependen de ellos.
 

@@ -10,5 +10,12 @@ __pycache__/
 # Capturas de pruebas en navegador (Playwright)
 .playwright-mcp/
 
-# Copia antigua del HTML
-index - copia.html
+# Archivo local: entregas originales, borradores y copias antiguas (no se suben)
+_archivo/
+
+# Fuentes 3D: escaneos originales y archivos de Blender (no se suben; ver DT-007)
+_fuentes-3d/
+
+# Node / Vite (Fase 0)
+node_modules/
+dist/

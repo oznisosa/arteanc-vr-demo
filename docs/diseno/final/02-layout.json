@@ -1,0 +1,2327 @@
+{
+  "version": "1.0",
+  "units": "metres",
+  "axes": {
+    "x": "east",
+    "y": "up",
+    "negativeZ": "north"
+  },
+  "bounds": {
+    "x": [
+      -13.8,
+      13.8
+    ],
+    "z": [
+      -30.6,
+      0.2
+    ]
+  },
+  "wallThickness": 0.4,
+  "note": "Diseño final congelado. rooms.center es centro del suelo interior; rooms.size=[ancho X,alto Y,fondo Z] son medidas libres, sustituyendo la semántica nominal a ejes del Prototipo 1. Origen en centro del umbral sur. Extensiones son aditivas.",
+  "rooms": [
+    {
+      "id": "recepcion",
+      "label": "Umbral / Recepción",
+      "center": [
+        0,
+        0,
+        -3.2
+      ],
+      "size": [
+        8,
+        4,
+        6
+      ],
+      "phase": "lanzamiento",
+      "accent": "#A98158"
+    },
+    {
+      "id": "metal",
+      "label": "Metal, piedra e instrumentos",
+      "center": [
+        -8.4,
+        0,
+        -3.2
+      ],
+      "size": [
+        8,
+        4,
+        6
+      ],
+      "phase": "lanzamiento",
+      "accent": "#344660"
+    },
+    {
+      "id": "taller",
+      "label": "Taller / Mesa de examen",
+      "center": [
+        8.4,
+        0,
+        -3.2
+      ],
+      "size": [
+        8,
+        4,
+        6
+      ],
+      "phase": "lanzamiento",
+      "accent": "#A88B61"
+    },
+    {
+      "id": "galeria_sur",
+      "label": "Galería sur del patio",
+      "center": [
+        0,
+        0,
+        -7.6
+      ],
+      "size": [
+        24.8,
+        4,
+        2
+      ],
+      "phase": "lanzamiento",
+      "accent": "#D5C5B0",
+      "openSky": true,
+      "role": "circulation"
+    },
+    {
+      "id": "patio",
+      "label": "Patio central",
+      "center": [
+        0,
+        0,
+        -14.0
+      ],
+      "size": [
+        10,
+        4,
+        10
+      ],
+      "phase": "lanzamiento",
+      "accent": "#D5C5B0",
+      "openSky": true
+    },
+    {
+      "id": "ceramica",
+      "label": "Cerámica",
+      "center": [
+        -9.4,
+        0,
+        -14.0
+      ],
+      "size": [
+        8,
+        4,
+        10
+      ],
+      "phase": "lanzamiento",
+      "accent": "#B96645"
+    },
+    {
+      "id": "textiles",
+      "label": "Textiles",
+      "center": [
+        9.4,
+        0,
+        -14.0
+      ],
+      "size": [
+        8,
+        4,
+        10
+      ],
+      "phase": "lanzamiento",
+      "accent": "#9E3441"
+    },
+    {
+      "id": "santuario",
+      "label": "Santuario precolombino",
+      "center": [
+        0,
+        0,
+        -25.2
+      ],
+      "size": [
+        12,
+        6.5,
+        10
+      ],
+      "phase": "lanzamiento",
+      "accent": "#795A44"
+    }
+  ],
+  "doors": [
+    {
+      "id": "D01",
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "wallDirection": "h",
+      "clearWidth": 1.6,
+      "clearTopWidth": 1.3,
+      "clearHeight": 2.6,
+      "depth": 0.4,
+      "shape": "trapezoid",
+      "leaf": false,
+      "fromRoom": "exterior",
+      "toRoom": "recepcion",
+      "moduleSize": [
+        2,
+        4,
+        0.4
+      ]
+    },
+    {
+      "id": "D02",
+      "center": [
+        0,
+        0,
+        -6.4
+      ],
+      "wallDirection": "h",
+      "clearWidth": 1.6,
+      "clearTopWidth": 1.3,
+      "clearHeight": 2.6,
+      "depth": 0.4,
+      "shape": "trapezoid",
+      "leaf": false,
+      "fromRoom": "recepcion",
+      "toRoom": "galeria_sur",
+      "moduleSize": [
+        2,
+        4,
+        0.4
+      ]
+    },
+    {
+      "id": "D03",
+      "center": [
+        -8.4,
+        0,
+        -6.4
+      ],
+      "wallDirection": "h",
+      "clearWidth": 1.6,
+      "clearTopWidth": 1.3,
+      "clearHeight": 2.6,
+      "depth": 0.4,
+      "shape": "trapezoid",
+      "leaf": false,
+      "fromRoom": "metal",
+      "toRoom": "galeria_sur",
+      "moduleSize": [
+        2,
+        4,
+        0.4
+      ]
+    },
+    {
+      "id": "D04",
+      "center": [
+        8.4,
+        0,
+        -6.4
+      ],
+      "wallDirection": "h",
+      "clearWidth": 1.6,
+      "clearTopWidth": 1.3,
+      "clearHeight": 2.6,
+      "depth": 0.4,
+      "shape": "trapezoid",
+      "leaf": false,
+      "fromRoom": "taller",
+      "toRoom": "galeria_sur",
+      "moduleSize": [
+        2,
+        4,
+        0.4
+      ]
+    },
+    {
+      "id": "D05",
+      "center": [
+        -5.2,
+        0,
+        -14.0
+      ],
+      "wallDirection": "v",
+      "clearWidth": 1.6,
+      "clearTopWidth": 1.3,
+      "clearHeight": 2.6,
+      "depth": 0.4,
+      "shape": "trapezoid",
+      "leaf": false,
+      "fromRoom": "patio",
+      "toRoom": "ceramica",
+      "moduleSize": [
+        2,
+        4,
+        0.4
+      ]
+    },
+    {
+      "id": "D06",
+      "center": [
+        5.2,
+        0,
+        -14.0
+      ],
+      "wallDirection": "v",
+      "clearWidth": 1.6,
+      "clearTopWidth": 1.3,
+      "clearHeight": 2.6,
+      "depth": 0.4,
+      "shape": "trapezoid",
+      "leaf": false,
+      "fromRoom": "patio",
+      "toRoom": "textiles",
+      "moduleSize": [
+        2,
+        4,
+        0.4
+      ]
+    },
+    {
+      "id": "D07",
+      "center": [
+        0,
+        0,
+        -19.6
+      ],
+      "wallDirection": "h",
+      "clearWidth": 2.4,
+      "clearTopWidth": 1.9,
+      "clearHeight": 4.2,
+      "depth": 1.2,
+      "shape": "trapezoid",
+      "leaf": false,
+      "fromRoom": "patio",
+      "toRoom": "santuario",
+      "moduleSize": [
+        3.6,
+        6.5,
+        1.2
+      ]
+    }
+  ],
+  "mainRoute": [
+    "recepcion",
+    "galeria_sur",
+    "patio",
+    "ceramica",
+    "patio",
+    "textiles",
+    "patio",
+    "galeria_sur",
+    "metal",
+    "galeria_sur",
+    "taller",
+    "galeria_sur",
+    "patio",
+    "santuario",
+    "patio",
+    "galeria_sur",
+    "recepcion"
+  ],
+  "shortRoute": [
+    "recepcion",
+    "galeria_sur",
+    "patio",
+    "santuario",
+    "patio",
+    "galeria_sur",
+    "taller",
+    "galeria_sur",
+    "recepcion"
+  ],
+  "exhibitSlots": [
+    {
+      "id": "C01",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "position": [
+        -12.3,
+        1,
+        -17.9
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -11.75,
+          1.1,
+          -17.9
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "C02",
+      "sala": "ceramica",
+      "tipo": "vitrina",
+      "position": [
+        -9.4,
+        0.9,
+        -17.9
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.6,
+        1.6,
+        0.6
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -8.85,
+          1.1,
+          -17.9
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "C03",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "position": [
+        -6.5,
+        1,
+        -17.9
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -5.95,
+          1.1,
+          -17.9
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "C04",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "position": [
+        -12.3,
+        1,
+        -14.0
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -11.75,
+          1.1,
+          -14.0
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "C05",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "position": [
+        -9.4,
+        1,
+        -14.0
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -8.85,
+          1.1,
+          -14.0
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "C06",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "position": [
+        -12.3,
+        1,
+        -10.1
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -11.75,
+          1.1,
+          -10.1
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "C07",
+      "sala": "ceramica",
+      "tipo": "vitrina",
+      "position": [
+        -9.4,
+        0.9,
+        -10.1
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.6,
+        1.6,
+        0.6
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -8.85,
+          1.1,
+          -10.1
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "C08",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "position": [
+        -6.5,
+        1,
+        -10.1
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -5.95,
+          1.1,
+          -10.1
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "T01",
+      "sala": "textiles",
+      "tipo": "peana",
+      "position": [
+        6.5,
+        0.9,
+        -17.8
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        0.9,
+        0.5
+      ],
+      "objectHeight": 0.6,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          7.05,
+          1.1,
+          -17.8
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      },
+      "panelSize": [
+        0.45,
+        0.6,
+        0.04
+      ],
+      "presentation": "panel_textil"
+    },
+    {
+      "id": "T02",
+      "sala": "textiles",
+      "tipo": "peana",
+      "position": [
+        9.4,
+        0.9,
+        -17.8
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        0.9,
+        0.5
+      ],
+      "objectHeight": 0.6,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          9.95,
+          1.1,
+          -17.8
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      },
+      "panelSize": [
+        0.45,
+        0.6,
+        0.04
+      ],
+      "presentation": "panel_textil"
+    },
+    {
+      "id": "T03",
+      "sala": "textiles",
+      "tipo": "peana",
+      "position": [
+        12.3,
+        0.9,
+        -17.8
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        0.9,
+        0.5
+      ],
+      "objectHeight": 0.6,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          12.85,
+          1.1,
+          -17.8
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      },
+      "panelSize": [
+        0.45,
+        0.6,
+        0.04
+      ],
+      "presentation": "panel_textil"
+    },
+    {
+      "id": "T04",
+      "sala": "textiles",
+      "tipo": "peana",
+      "position": [
+        6.5,
+        0.9,
+        -10.2
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        0.9,
+        0.5
+      ],
+      "objectHeight": 0.6,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          7.05,
+          1.1,
+          -10.2
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      },
+      "panelSize": [
+        0.45,
+        0.6,
+        0.04
+      ],
+      "presentation": "panel_textil"
+    },
+    {
+      "id": "T05",
+      "sala": "textiles",
+      "tipo": "peana",
+      "position": [
+        9.4,
+        0.9,
+        -10.2
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        0.9,
+        0.5
+      ],
+      "objectHeight": 0.6,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          9.95,
+          1.1,
+          -10.2
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      },
+      "panelSize": [
+        0.45,
+        0.6,
+        0.04
+      ],
+      "presentation": "panel_textil"
+    },
+    {
+      "id": "T06",
+      "sala": "textiles",
+      "tipo": "peana",
+      "position": [
+        12.3,
+        0.9,
+        -10.2
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        0.9,
+        0.5
+      ],
+      "objectHeight": 0.6,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          12.85,
+          1.1,
+          -10.2
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      },
+      "panelSize": [
+        0.45,
+        0.6,
+        0.04
+      ],
+      "presentation": "panel_textil"
+    },
+    {
+      "id": "T07",
+      "sala": "textiles",
+      "tipo": "mesa",
+      "position": [
+        7.7,
+        0.9,
+        -14.0
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        1.2,
+        0.9,
+        0.6
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          8.25,
+          1.1,
+          -14.0
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      },
+      "presentation": "textil_inclinado"
+    },
+    {
+      "id": "T08",
+      "sala": "textiles",
+      "tipo": "mesa",
+      "position": [
+        11.1,
+        0.9,
+        -14.0
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        1.2,
+        0.9,
+        0.6
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          11.65,
+          1.1,
+          -14.0
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      },
+      "presentation": "textil_inclinado"
+    },
+    {
+      "id": "M01",
+      "sala": "metal",
+      "tipo": "vitrina",
+      "position": [
+        -10.5,
+        0.9,
+        -5.6
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.6,
+        1.6,
+        0.6
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -9.95,
+          1.1,
+          -5.6
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "M02",
+      "sala": "metal",
+      "tipo": "peana",
+      "position": [
+        -6.3,
+        1,
+        -5.6
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -5.75,
+          1.1,
+          -5.6
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "M03",
+      "sala": "metal",
+      "tipo": "peana",
+      "position": [
+        -10.5,
+        1,
+        -3.2
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -9.95,
+          1.1,
+          -3.2
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "M04",
+      "sala": "metal",
+      "tipo": "peana",
+      "position": [
+        -6.3,
+        1,
+        -3.2
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -5.75,
+          1.1,
+          -3.2
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "M05",
+      "sala": "metal",
+      "tipo": "peana",
+      "position": [
+        -10.5,
+        1,
+        -0.8
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -9.95,
+          1.1,
+          -0.8
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "M06",
+      "sala": "metal",
+      "tipo": "vitrina",
+      "position": [
+        -6.3,
+        0.9,
+        -0.8
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.6,
+        1.6,
+        0.6
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -5.75,
+          1.1,
+          -0.8
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "W01",
+      "sala": "taller",
+      "tipo": "peana",
+      "position": [
+        4.85,
+        1,
+        -5.25
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          4.85,
+          1.1,
+          -4.8
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "W02",
+      "sala": "taller",
+      "tipo": "peana",
+      "position": [
+        11.95,
+        1,
+        -5.25
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          11.95,
+          1.1,
+          -4.8
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "W03",
+      "sala": "taller",
+      "tipo": "peana",
+      "position": [
+        4.85,
+        1,
+        -1.15
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          4.85,
+          1.1,
+          -1.6
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "W04",
+      "sala": "taller",
+      "tipo": "peana",
+      "position": [
+        11.95,
+        1,
+        -1.15
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          11.95,
+          1.1,
+          -1.6
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "W05",
+      "sala": "taller",
+      "tipo": "hornacina",
+      "position": [
+        8.4,
+        1,
+        -0.075
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        1.2,
+        2.4,
+        0.4
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          9.15,
+          1.1,
+          -0.36
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ],
+        "wallMounted": true
+      },
+      "presentation": "nicho_encalado"
+    },
+    {
+      "id": "W06",
+      "sala": "taller",
+      "tipo": "mesa",
+      "position": [
+        8.4,
+        0.9,
+        -3.2
+      ],
+      "orientation": [
+        0,
+        180,
+        0
+      ],
+      "supportSize": [
+        3,
+        0.9,
+        1.2
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          9.45,
+          1.0,
+          -3.5
+        ],
+        "orientation": [
+          -65,
+          180,
+          0
+        ],
+        "onSupport": true
+      },
+      "presentation": "mesa_examen"
+    },
+    {
+      "id": "S01",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "position": [
+        -6.125,
+        1,
+        -22.4
+      ],
+      "orientation": [
+        0,
+        90,
+        0
+      ],
+      "supportSize": [
+        1.2,
+        2.4,
+        0.4
+      ],
+      "objectHeight": 0.4,
+      "objectType": "replica",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -5.84,
+          0.8,
+          -22.4
+        ],
+        "orientation": [
+          -65,
+          90,
+          0
+        ],
+        "wallMounted": true
+      },
+      "presentation": "nicho_bronce"
+    },
+    {
+      "id": "S02",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "position": [
+        6.125,
+        1,
+        -22.4
+      ],
+      "orientation": [
+        0,
+        270,
+        0
+      ],
+      "supportSize": [
+        1.2,
+        2.4,
+        0.4
+      ],
+      "objectHeight": 0.4,
+      "objectType": "replica",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          5.84,
+          0.8,
+          -22.4
+        ],
+        "orientation": [
+          -65,
+          270,
+          0
+        ],
+        "wallMounted": true
+      },
+      "presentation": "nicho_bronce"
+    },
+    {
+      "id": "S03",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "position": [
+        -6.125,
+        1,
+        -25.4
+      ],
+      "orientation": [
+        0,
+        90,
+        0
+      ],
+      "supportSize": [
+        1.2,
+        2.4,
+        0.4
+      ],
+      "objectHeight": 0.4,
+      "objectType": "replica",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -5.84,
+          0.8,
+          -25.4
+        ],
+        "orientation": [
+          -65,
+          90,
+          0
+        ],
+        "wallMounted": true
+      },
+      "presentation": "nicho_bronce"
+    },
+    {
+      "id": "S04",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "position": [
+        6.125,
+        1,
+        -25.4
+      ],
+      "orientation": [
+        0,
+        270,
+        0
+      ],
+      "supportSize": [
+        1.2,
+        2.4,
+        0.4
+      ],
+      "objectHeight": 0.4,
+      "objectType": "replica",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          5.84,
+          0.8,
+          -25.4
+        ],
+        "orientation": [
+          -65,
+          270,
+          0
+        ],
+        "wallMounted": true
+      },
+      "presentation": "nicho_bronce"
+    },
+    {
+      "id": "S05",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "position": [
+        -6.125,
+        1,
+        -28.4
+      ],
+      "orientation": [
+        0,
+        90,
+        0
+      ],
+      "supportSize": [
+        1.2,
+        2.4,
+        0.4
+      ],
+      "objectHeight": 0.4,
+      "objectType": "replica",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          -5.84,
+          0.8,
+          -28.4
+        ],
+        "orientation": [
+          -65,
+          90,
+          0
+        ],
+        "wallMounted": true
+      },
+      "presentation": "nicho_bronce"
+    },
+    {
+      "id": "S06",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "position": [
+        6.125,
+        1,
+        -28.4
+      ],
+      "orientation": [
+        0,
+        270,
+        0
+      ],
+      "supportSize": [
+        1.2,
+        2.4,
+        0.4
+      ],
+      "objectHeight": 0.4,
+      "objectType": "replica",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          5.84,
+          0.8,
+          -28.4
+        ],
+        "orientation": [
+          -65,
+          270,
+          0
+        ],
+        "wallMounted": true
+      },
+      "presentation": "nicho_bronce"
+    },
+    {
+      "id": "S07",
+      "sala": "santuario",
+      "tipo": "peana",
+      "position": [
+        0,
+        1,
+        -22.4
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "replica",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          0.55,
+          1.1,
+          -22.4
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      },
+      "presentation": "basalto"
+    },
+    {
+      "id": "S08",
+      "sala": "santuario",
+      "tipo": "peana",
+      "position": [
+        0,
+        1,
+        -25.4
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "replica",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          0.55,
+          1.1,
+          -25.4
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      },
+      "presentation": "basalto"
+    },
+    {
+      "id": "S09",
+      "sala": "santuario",
+      "tipo": "peana",
+      "position": [
+        0,
+        1,
+        -28.4
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "replica",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          0.55,
+          1.1,
+          -28.4
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      },
+      "presentation": "basalto"
+    },
+    {
+      "id": "P01",
+      "sala": "patio",
+      "tipo": "peana",
+      "position": [
+        0,
+        1,
+        -11.4
+      ],
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "supportSize": [
+        0.5,
+        1,
+        0.5
+      ],
+      "objectHeight": 0.4,
+      "objectType": "artesania_contemporanea",
+      "illustrative": true,
+      "label": {
+        "size": [
+          0.5,
+          0.35
+        ],
+        "inclinationDegrees": 25,
+        "inclinationReference": "above_horizontal",
+        "position": [
+          0.55,
+          1.1,
+          -11.4
+        ],
+        "orientation": [
+          -65,
+          0,
+          0
+        ]
+      },
+      "presentation": "pieza_semana"
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "canal",
+      "type": "water_channel",
+      "room": "patio",
+      "center": [
+        0,
+        0.175,
+        -14.6
+      ],
+      "size": [
+        0.5,
+        0.35,
+        4
+      ],
+      "waterLevel": 0.28,
+      "waterPlane": true,
+      "navigable": false,
+      "note": "Dimensión exterior 0,50 X × 4 Z m; borde de piedra incluido."
+    },
+    {
+      "id": "mostrador",
+      "type": "reception_desk",
+      "room": "recepcion",
+      "center": [
+        -2.35,
+        0.5,
+        -3.6
+      ],
+      "size": [
+        2.6,
+        1,
+        0.9
+      ],
+      "accessibleSectionHeight": 0.75
+    },
+    {
+      "id": "lampara_examen",
+      "type": "articulated_lamp",
+      "room": "taller",
+      "center": [
+        9.25,
+        0.9,
+        -3.2
+      ],
+      "size": [
+        0.35,
+        0.9,
+        0.35
+      ],
+      "temperatureK": 4000
+    },
+    {
+      "id": "regla",
+      "type": "scale_ruler",
+      "room": "taller",
+      "center": [
+        8.95,
+        0.91,
+        -3.05
+      ],
+      "size": [
+        0.3,
+        0.01,
+        0.04
+      ]
+    },
+    {
+      "id": "lupa",
+      "type": "magnifier",
+      "room": "taller",
+      "center": [
+        8.9,
+        0.92,
+        -3.4
+      ],
+      "size": [
+        0.2,
+        0.02,
+        0.12
+      ]
+    }
+  ],
+  "skylight": {
+    "id": "ranura",
+    "room": "santuario",
+    "center": [
+      0,
+      6.5,
+      -25.4
+    ],
+    "size": [
+      0.6,
+      0.4,
+      7
+    ],
+    "openToSky": true,
+    "noVolumetricEffects": true
+  },
+  "architecture": {
+    "coordinateSemantics": {
+      "roomSize": "[X,Y,Z], dimensiones libres",
+      "doorCenter": "centro en planta a suelo; centro del espesor",
+      "slotPosition": "centro de superficie de apoyo, no base del mueble",
+      "orientation": "Euler grados [X,Y,Z]; yaw0 mira sur+Z,90 este+X,180 norte−Z,270 oeste−X"
+    },
+    "portal": {
+      "id": "D07",
+      "moduleBounds": {
+        "x": [
+          -1.8,
+          1.8
+        ],
+        "y": [
+          0,
+          6.5
+        ],
+        "z": [
+          -20.2,
+          -19
+        ]
+      },
+      "openingBaseWidth": 2.4,
+      "openingTopWidth": 1.9,
+      "openingHeight": 4.2,
+      "singleContinuousOpening": true
+    },
+    "northClosure": {
+      "patioScreenCenterZ": -19.2,
+      "screenThickness": 0.4,
+      "screenHeight": 4,
+      "screenXRanges": [
+        [
+          -5,
+          -1.8
+        ],
+        [
+          1.8,
+          5
+        ]
+      ],
+      "sanctuarySouthWallCenterZ": -20,
+      "sanctuarySouthWallXRanges": [
+        [
+          -6.4,
+          -1.8
+        ],
+        [
+          1.8,
+          6.4
+        ]
+      ],
+      "nonNavigableRecessDepth": 0.8,
+      "portalSideJambsCloseTunnel": true,
+      "note": "Pantalla de cierre del patio y muro sur del Santuario separados, ambos0,4m. Un solo paso D07 continuo de1,2m de profundidad. Retranqueos laterales exteriores cerrados al visitante; no son accesos adicionales."
+    },
+    "southGallery": {
+      "openConnectionToPatio": {
+        "x": [
+          -5,
+          5
+        ],
+        "z": -9,
+        "joiningBandZ": [
+          -9,
+          -8.6
+        ]
+      },
+      "closedSideEdgesX": [
+        -12.6,
+        12.6
+      ],
+      "sideWallHeight": 4,
+      "sideWallThickness": 0.4,
+      "southBoundaryWallZ": -6.4,
+      "note": "Galería exterior libre de2m z[-8,6,-6,6]; banda de unión central adicional0,4m z[-9,-8,6]. Muros sur de alas ocupan[-9,-8,6] sólo fuera del núcleo del patio. Sin estrechamiento lateral."
+    },
+    "ordinaryRoofHeight": 4,
+    "sanctuaryRoofHeight": 6.5,
+    "floorLevel": 0,
+    "baseboardHeight": 0.8,
+    "niche": {
+      "moduleSize": [
+        1.2,
+        2.4,
+        0.4
+      ],
+      "openingBaseWidth": 0.8,
+      "openingTopWidth": 0.65,
+      "openingHeight": 1.2,
+      "openingDepth": 0.25,
+      "shelfHeight": 1,
+      "sanctuaryLining": "bronze",
+      "workshopLining": "plaster"
+    },
+    "exhibitionCounts": {
+      "recepcion": 0,
+      "metal": 6,
+      "taller": 6,
+      "ceramica": 8,
+      "textiles": 8,
+      "santuario": 9,
+      "patio": 1
+    },
+    "minimumFurniturePassage": 1.8,
+    "doorException": "Accesos normales conservan1,60m base y1,30m arriba;1,80m aplica al paso entre muebles. Teletransporte a ambos lados y revisión en visor."
+  },
+  "cameraViews": [
+    {
+      "file": "03-axonometrica.png",
+      "projection": "orthographic",
+      "position": [
+        7.61831141,
+        45.67727288,
+        3.65598243
+      ],
+      "target": [
+        0,
+        0,
+        -15.2
+      ],
+      "elevationDegrees": 66,
+      "azimuthDegrees": 22,
+      "azimuthReference": "clockwise from south (+Z) toward east (+X)",
+      "directionFromTarget": [
+        0.1523662283,
+        0.9135454576,
+        0.3771196485
+      ],
+      "viewDirection": [
+        -0.1523662283,
+        -0.9135454576,
+        -0.3771196485
+      ],
+      "nominalDistanceMetres": 50,
+      "framing": "Fit projected full geometry into diagram viewport; distance does not change orthographic scale.",
+      "diagramViewportPixels": {
+        "x": 110,
+        "y": 300,
+        "width": 2260,
+        "height": 1330
+      },
+      "canvasPixels": [
+        3200,
+        1800
+      ],
+      "cutaway": "Only roof slabs removed; full 4.00 m ordinary walls and 6.50 m sanctuary walls preserved."
+    },
+    {
+      "file": "04a-umbral.png",
+      "position": [
+        0,
+        1.6,
+        -0.45
+      ],
+      "target": [
+        0,
+        1.6,
+        -24.4
+      ],
+      "horizontalFov": 90
+    },
+    {
+      "file": "04b-patio.png",
+      "position": [
+        0,
+        1.6,
+        -9.2
+      ],
+      "target": [
+        0,
+        1.6,
+        -22.4
+      ],
+      "horizontalFov": 100
+    },
+    {
+      "file": "04c-santuario-portal.png",
+      "position": [
+        0,
+        1.6,
+        -19.25
+      ],
+      "target": [
+        0,
+        1.6,
+        -29.4
+      ],
+      "horizontalFov": 100
+    },
+    {
+      "file": "04d-santuario-interior.png",
+      "position": [
+        0,
+        1.6,
+        -20.5
+      ],
+      "target": [
+        0,
+        2.9,
+        -29.1
+      ],
+      "horizontalFov": 108
+    },
+    {
+      "file": "04e-ceramica.png",
+      "position": [
+        -5.85,
+        1.6,
+        -14.0
+      ],
+      "target": [
+        -12.6,
+        1.6,
+        -14.0
+      ],
+      "horizontalFov": 100
+    },
+    {
+      "file": "04f-textiles.png",
+      "position": [
+        5.85,
+        1.6,
+        -14.0
+      ],
+      "target": [
+        12.6,
+        1.6,
+        -14.0
+      ],
+      "horizontalFov": 100
+    },
+    {
+      "file": "04g-metal-piedra-instrumentos.png",
+      "position": [
+        -8.4,
+        1.6,
+        -5.95
+      ],
+      "target": [
+        -8.4,
+        1.6,
+        -0.8
+      ],
+      "horizontalFov": 100
+    },
+    {
+      "file": "04h-taller.png",
+      "position": [
+        8.4,
+        1.6,
+        -5.95
+      ],
+      "target": [
+        8.4,
+        1.3,
+        -1.1
+      ],
+      "horizontalFov": 100
+    }
+  ],
+  "decisions": [
+    "Se añade galería sur exterior de2m. Tres salas sur suman24,8m y no admiten tres accesos en frente de patio10m manteniendo recepción centrada.",
+    "Recepción es acogida y favoritos, sin cuota expositiva. Las dos salas expositivas sur tienen6piezas cada una.",
+    "Textiles usa6peanas portapanel y2mesas, conservando tipo de slot válido y muestras de0,60m alto con centro a1,20m.",
+    "Todo hueco es abierto, sin hojas. Canal longitudinal norte-sur. No hay segunda salida norte ni ventanal de paisaje.",
+    "Puertas1,6m son estrechamientos solicitados;1,8m se verifica entre muebles, no en huecos.",
+    "Original documentado sólo se publicará con fuentes verificadas; todos los objetos de estas láminas son ilustraciones contemporáneas no vendibles."
+  ]
+}

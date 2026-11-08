@@ -1,0 +1,192 @@
+[
+  {
+    "file": "01-planta.png",
+    "bytes": 410817,
+    "sha256": "dbcb929e270a552a3f2f98af0ebe40476be40fced27192c1e99b0f1ac535f544"
+  },
+  {
+    "file": "01-planta.svg",
+    "bytes": 2816757,
+    "sha256": "ec2b2efe8f0795aa05adb0d6b86c43809353b8a70c30d771e449332c63962066"
+  },
+  {
+    "file": "02-layout.json",
+    "bytes": 44430,
+    "sha256": "fe85035baf66621768263744dd6decb73d4bb2906d2ad29867aea7b36402ffef"
+  },
+  {
+    "file": "03-axonometrica.png",
+    "bytes": 829697,
+    "sha256": "422d12eccab3e334fd5577afbde0bc8ef0c1e1295933897895c21511b47202d2"
+  },
+  {
+    "file": "04a-umbral.png",
+    "bytes": 2247178,
+    "sha256": "347d0f71446ebf18f8dd61c4cc025753bb775773597ae6f5622dd212e8c392bd"
+  },
+  {
+    "file": "04b-patio.png",
+    "bytes": 2462602,
+    "sha256": "bb4a18d2393fd48fdd21d72c8c38c7420de8962ead99485c90dd734e250b466d"
+  },
+  {
+    "file": "04c-santuario-portal.png",
+    "bytes": 2385193,
+    "sha256": "36ddd3b1946f35f4b8bc3806debf0d200b470b437211a9d9dae19bcecd098ce9"
+  },
+  {
+    "file": "04d-santuario-interior.png",
+    "bytes": 2245472,
+    "sha256": "ec9534eddeff97d179b5f82e06724a15f2d165499445017c19359ec9d8d3a7b0"
+  },
+  {
+    "file": "04e-ceramica.png",
+    "bytes": 2281989,
+    "sha256": "3e230fb95e427bbd44e5c7067951a4d30a098589b7528d35934244336433e5b3"
+  },
+  {
+    "file": "04f-textiles.png",
+    "bytes": 2301595,
+    "sha256": "e4e8129cf2f9180c4c059b18e228899ab7cceb242253285248b42f5c8637322d"
+  },
+  {
+    "file": "04g-metal-piedra-instrumentos.png",
+    "bytes": 2343142,
+    "sha256": "0d34df360bbfde8b0f47f9d05a75d32fbdf321d4e04d15e395bf700c23adeb24"
+  },
+  {
+    "file": "04h-taller.png",
+    "bytes": 2366060,
+    "sha256": "085bded5c66b297274cf95ea820bd1b8a7f7a4d495bd66fb3fefe9c164c681b7"
+  },
+  {
+    "file": "05a-cartela.png",
+    "bytes": 168713,
+    "sha256": "a5e39893f8cb76757d93acae7345801d8698397853027b4eddec3a58fc9bac87"
+  },
+  {
+    "file": "05b-ficha.png",
+    "bytes": 206755,
+    "sha256": "4ddf7d386a6e711f30411c162d1ce8977aa0633fa50378ecd2291aaa87340eed"
+  },
+  {
+    "file": "05c-ficha-santuario.png",
+    "bytes": 193713,
+    "sha256": "3642828ce14c3bb9859a3ce8fc4f2e9b525dbae3497d2d4b87840a9116d67cad"
+  },
+  {
+    "file": "05d-favoritos.png",
+    "bytes": 179141,
+    "sha256": "6f23cd0d1722e4272ab973474fd4c242ad2fc6611c7425ab1f1ae4825ea8b123"
+  },
+  {
+    "file": "05e-tutorial.png",
+    "bytes": 189543,
+    "sha256": "f8bcbcf7a1422ae7fc879f45706d7da7497cf226bf245d5b58c013208b611574"
+  },
+  {
+    "file": "06-kit.png",
+    "bytes": 229581,
+    "sha256": "30654b8dcc03256596245e51b58198aca3b7277fa7e4f431d4e68739aa597a05"
+  },
+  {
+    "file": "DISENO_FINAL.md",
+    "bytes": 37062,
+    "sha256": "e6315315bfdf9659d2963b6a09c5b3aa60443e7ffba3fadf6daf3e3ff63c16a6"
+  },
+  {
+    "file": "fuentes/CormorantGaramond-OFL.txt",
+    "bytes": 4387,
+    "sha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956"
+  },
+  {
+    "file": "fuentes/CormorantGaramond.ttf",
+    "bytes": 1195560,
+    "sha256": "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0"
+  },
+  {
+    "file": "fuentes/Inter-OFL.txt",
+    "bytes": 4377,
+    "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+  },
+  {
+    "file": "fuentes/Inter.ttf",
+    "bytes": 876576,
+    "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+  },
+  {
+    "file": "fuentes-graficas/03-axonometrica.svg",
+    "bytes": 3354583,
+    "sha256": "be88c892c645eff690c18b8f67ab6a8992db186e4f1252292c330cad71f1a698"
+  },
+  {
+    "file": "fuentes-graficas/06-kit.svg",
+    "bytes": 2790010,
+    "sha256": "c6062e7f78fad7563f9979ee05174e4cd21e913e393ae2f1f27417d18c72bc58"
+  },
+  {
+    "file": "fuentes-ui/05a-cartela.svg",
+    "bytes": 9175,
+    "sha256": "2f2c79852ac0d54b8a8a004a5218b4ee42b9b30581d096fd56c34a69563779f2"
+  },
+  {
+    "file": "fuentes-ui/05b-ficha.svg",
+    "bytes": 10713,
+    "sha256": "4bd5bc266cbf745e441020c4f462d8f611d13790dda865120c3bdc2df9237821"
+  },
+  {
+    "file": "fuentes-ui/05c-ficha-santuario.svg",
+    "bytes": 8317,
+    "sha256": "762123038719dc2d539b6f1231c92d59ba16bbb6b239400b4fb164238f321cf8"
+  },
+  {
+    "file": "fuentes-ui/05d-favoritos.svg",
+    "bytes": 12712,
+    "sha256": "e4b228fe8dfe7ec0526e7eccf951c52cb5cf5736c31ebb65ba94f9a897dcea9e"
+  },
+  {
+    "file": "fuentes-ui/05e-tutorial.svg",
+    "bytes": 10917,
+    "sha256": "6047594ee39ddb7373c4be7a85b3d977155b54729b5856a3a371d76b4a0ba375"
+  },
+  {
+    "file": "index.html",
+    "bytes": 24227,
+    "sha256": "8df6f7ac45869d6b8d62e1c04f07ae562e1e2a31f3f2ea8b990542f6d5c88a28"
+  },
+  {
+    "file": "LEEME.md",
+    "bytes": 1249,
+    "sha256": "67ba814bbaedf8d48ba69c996ef3d3d66b25445886355179113afcb815008315"
+  },
+  {
+    "file": "producto_ejemplo.json",
+    "bytes": 631,
+    "sha256": "4ce7c0e41c78d54a296e9869fa1eb85392bd955c01f23c77445be6c54c9fb6e7"
+  },
+  {
+    "file": "prompts-axono-umbral.json",
+    "bytes": 15539,
+    "sha256": "170b2d5a6729cd6018fc8e7253e6aa8fe08f73029ff86c7e16e5de86edc30353"
+  },
+  {
+    "file": "prompts-generacion.json",
+    "bytes": 32620,
+    "sha256": "9a05a90e81756004b7c411345d9ed004e27760faacbc097bffa31717adb2223c"
+  },
+  {
+    "file": "QA_AXONOMETRIA.json",
+    "bytes": 2809,
+    "sha256": "bf01274fc17c4ad817814f939409132b0b017438f07a75a6de3b10bd5421e928"
+  },
+  {
+    "file": "QA_ENTREGA.json",
+    "bytes": 1656,
+    "sha256": "0d5767fd856fca88491d10d76e01e3ce8532865d45aaf1ee3b476d8c900c3d72"
+  },
+  {
+    "file": "QA_GEOMETRIA.json",
+    "bytes": 1088,
+    "sha256": "7fb7cb55e017d59e6ab8e4f425bea4faa5740000d9c4eb9093052211fb4a1424"
+  }
+]

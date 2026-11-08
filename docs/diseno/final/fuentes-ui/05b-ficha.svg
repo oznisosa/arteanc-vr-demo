@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
+<defs><style>@font-face{font-family:Inter;src:url('../fuentes/Inter.ttf')}@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/CormorantGaramond.ttf')}text{font-feature-settings:'kern' 1}</style><linearGradient id="clay"><stop stop-color="#A45538"/><stop offset=".42" stop-color="#CC8862"/><stop offset="1" stop-color="#81452F"/></linearGradient><linearGradient id="claylight"><stop stop-color="#FFFFFF" stop-opacity=".02"/><stop offset=".38" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="1" stop-color="#000000" stop-opacity=".20"/></linearGradient><linearGradient id="paper" x2="0" y2="1"><stop stop-color="#FFF7EB"/><stop offset="1" stop-color="#F3E5D2"/></linearGradient></defs>
+<rect x="0" y="0" width="2400" height="1500" rx="0" fill="#F8F4ED" stroke="none" stroke-width="2"/>
+<text x="90" y="75" fill="#795A44" font-family="Inter" font-size="23" font-weight="550" text-anchor="start" letter-spacing="3">LA CASA ARTEANC   /   DISEÑO FINAL 1.0</text>
+<text x="90" y="162" fill="#493021" font-family="Cormorant Garamond" font-size="83" font-weight="500" text-anchor="start" letter-spacing="0">Una ficha clara y honesta</text>
+<text x="92" y="213" fill="#806D5B" font-family="Inter" font-size="27" font-weight="400" text-anchor="start" letter-spacing="0">Panel marfil mate · un panel principal abierto · anclado al puesto</text>
+<text x="2308" y="156" fill="#D5C5B0" font-family="Cormorant Garamond" font-size="82" font-weight="400" text-anchor="end" letter-spacing="0">05B</text>
+<path d="M90 250L2310 250" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<rect x="190" y="313" width="2020" height="758" rx="21" fill="#E3D5C2" stroke="none" stroke-width="2"/>
+<rect x="174" y="298" width="2020" height="758" rx="21" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<path d="M232 349L2118 349" stroke="#B96645" stroke-width="4" fill="none"/>
+<circle cx="2127" cy="401" r="24" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="1.5"/>
+<path d="M2120 394L2134 408" stroke="#493021" stroke-width="2" fill="none"/>
+<path d="M2120 408L2134 394" stroke="#493021" stroke-width="2" fill="none"/>
+<rect x="235" y="392" width="570" height="587" rx="12" fill="#EEE1CD" stroke="none" stroke-width="2"/>
+<g transform="translate(519 665) scale(1.02)">
+<ellipse cx="0" cy="205" rx="120" ry="19" fill="#D9C5AF" stroke="none" stroke-width="2"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#clay)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="#B96645" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#claylight)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="0" cy="-174" rx="44" ry="11" fill="#8B472F" stroke="none" stroke-width="2"/>
+<ellipse cx="0" cy="-176" rx="37" ry="6" fill="#572F22" stroke="none" stroke-width="2"/>
+<path d="M-113 19Q0 37 113 19" fill="none" stroke="#E9CDB0" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-110 43Q0 61 110 43" fill="none" stroke="#E9CDB0" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<text x="519" y="936" fill="#795A44" font-family="Inter" font-size="21" font-weight="500" text-anchor="middle" letter-spacing="1">OBJETO ILUSTRATIVO</text>
+<path d="M856 391L856 988" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="920" y="435" fill="#493021" font-family="Cormorant Garamond" font-size="76" font-weight="500" text-anchor="start" letter-spacing="0">Pieza de ejemplo</text>
+<rect x="920" y="471" width="805" height="52" rx="26" fill="#F2E4D2" stroke="#B96645" stroke-width="1.5"/>
+<circle cx="947" cy="497" r="6" fill="#B96645" stroke="none" stroke-width="2"/>
+<text x="967" y="506" fill="#B96645" font-family="Inter" font-size="28" font-weight="500" text-anchor="start" letter-spacing="0">Artesanía contemporánea</text>
+<text x="920" y="564" fill="#806D5B" font-family="Inter" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0">Tipo ilustrativo · DEMO-001 · no vendible</text>
+<text x="920" y="633" fill="#493021" font-family="Inter" font-size="48" font-weight="500" text-anchor="start" letter-spacing="0">USD 120</text>
+<rect x="1189" y="596" width="388" height="47" rx="5" fill="#EED9BE" stroke="none" stroke-width="2"/>
+<text x="1383" y="628" fill="#795A44" font-family="Inter" font-size="23" font-weight="600" text-anchor="middle" letter-spacing="1">PRECIO FICTICIO</text>
+<path d="M920 670L2078 670" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="920" y="720" fill="#806D5B" font-family="Inter" font-size="28" font-weight="400" text-anchor="start" letter-spacing="0">Material y dimensiones</text>
+<text x="1435" y="720" fill="#493021" font-family="Inter" font-size="29" font-weight="400" text-anchor="start" letter-spacing="0">Desconocidos</text>
+<text x="920" y="773" fill="#806D5B" font-family="Inter" font-size="28" font-weight="400" text-anchor="start" letter-spacing="0">Disponibilidad real</text>
+<text x="1435" y="773" fill="#493021" font-family="Inter" font-size="29" font-weight="400" text-anchor="start" letter-spacing="0">Sin verificar</text>
+<text x="920" y="826" fill="#806D5B" font-family="Inter" font-size="28" font-weight="400" text-anchor="start" letter-spacing="0">Fuentes</text>
+<text x="1435" y="826" fill="#493021" font-family="Inter" font-size="29" font-weight="400" text-anchor="start" letter-spacing="0">Sin fuentes verificadas</text>
+<rect x="920" y="883" width="598" height="76" rx="10" fill="#E0D7CB" stroke="#CDBDA9" stroke-width="2"/>
+<text x="1219.0" y="931" fill="#806D5B" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">Tienda no habilitada en demo</text>
+<rect x="1544" y="883" width="534" height="76" rx="10" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<text x="1811.0" y="931" fill="#493021" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">♡ Guardar ejemplo</text>
+<text x="181" y="1124" fill="#795A44" font-family="Inter" font-size="22" font-weight="600" text-anchor="start" letter-spacing="2">ESTADOS DE LA FICHA</text>
+<rect x="180" y="1155" width="392" height="185" rx="10" fill="#F0E8DB" stroke="#CDBDA9" stroke-width="2"/>
+<circle cx="207" cy="1188" r="6" fill="#806D5B" stroke="none" stroke-width="2"/>
+<text x="225" y="1198" fill="#806D5B" font-family="Inter" font-size="28" font-weight="550" text-anchor="start" letter-spacing="0">Cargando</text>
+<text x="202" y="1244" fill="#493021" font-family="Inter" font-size="23" font-weight="400" text-anchor="start" letter-spacing="0">Consultando datos…</text>
+<text x="202" y="1284" fill="#806D5B" font-family="Inter" font-size="18" font-weight="400" text-anchor="start" letter-spacing="0">Acción comercial inactiva.</text>
+<rect x="591" y="1155" width="392" height="185" rx="10" fill="#F0E8DB" stroke="#CDBDA9" stroke-width="2"/>
+<circle cx="618" cy="1188" r="6" fill="#246F6A" stroke="none" stroke-width="2"/>
+<text x="636" y="1198" fill="#246F6A" font-family="Inter" font-size="28" font-weight="550" text-anchor="start" letter-spacing="0">Disponible</text>
+<text x="613" y="1244" fill="#493021" font-family="Inter" font-size="23" font-weight="400" text-anchor="start" letter-spacing="0">Estado de ejemplo</text>
+<text x="613" y="1284" fill="#806D5B" font-family="Inter" font-size="18" font-weight="400" text-anchor="start" letter-spacing="0">Ver en tienda, con datos vigentes.</text>
+<rect x="1002" y="1155" width="392" height="185" rx="10" fill="#F0E8DB" stroke="#CDBDA9" stroke-width="2"/>
+<circle cx="1029" cy="1188" r="6" fill="#795A44" stroke="none" stroke-width="2"/>
+<text x="1047" y="1198" fill="#795A44" font-family="Inter" font-size="28" font-weight="550" text-anchor="start" letter-spacing="0">Agotado</text>
+<text x="1024" y="1244" fill="#493021" font-family="Inter" font-size="23" font-weight="400" text-anchor="start" letter-spacing="0">Pieza no disponible</text>
+<text x="1024" y="1284" fill="#806D5B" font-family="Inter" font-size="18" font-weight="400" text-anchor="start" letter-spacing="0">Conservar favorito; sin compra.</text>
+<rect x="1413" y="1155" width="392" height="185" rx="10" fill="#F0E8DB" stroke="#CDBDA9" stroke-width="2"/>
+<circle cx="1440" cy="1188" r="6" fill="#B96645" stroke="none" stroke-width="2"/>
+<text x="1458" y="1198" fill="#B96645" font-family="Inter" font-size="28" font-weight="550" text-anchor="start" letter-spacing="0">Error</text>
+<text x="1435" y="1244" fill="#493021" font-family="Inter" font-size="23" font-weight="400" text-anchor="start" letter-spacing="0">No se pudo consultar</text>
+<text x="1435" y="1284" fill="#806D5B" font-family="Inter" font-size="18" font-weight="400" text-anchor="start" letter-spacing="0">Reintentar consulta.</text>
+<rect x="1824" y="1155" width="392" height="185" rx="10" fill="#F0E8DB" stroke="#CDBDA9" stroke-width="2"/>
+<circle cx="1851" cy="1188" r="6" fill="#806D5B" stroke="none" stroke-width="2"/>
+<text x="1869" y="1198" fill="#806D5B" font-family="Inter" font-size="28" font-weight="550" text-anchor="start" letter-spacing="0">Sin conexión</text>
+<text x="1846" y="1244" fill="#493021" font-family="Inter" font-size="23" font-weight="400" text-anchor="start" letter-spacing="0">Datos sin actualizar</text>
+<text x="1846" y="1284" fill="#806D5B" font-family="Inter" font-size="18" font-weight="400" text-anchor="start" letter-spacing="0">Reconectar; no confirmar stock.</text>
+<path d="M90 1394L2310 1394" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="90" y="1444" fill="#493021" font-family="Cormorant Garamond" font-size="28" font-weight="600" text-anchor="start" letter-spacing="4">ARTEANC</text>
+<text x="310" y="1442" fill="#806D5B" font-family="Inter" font-size="21" font-weight="400" text-anchor="start" letter-spacing="0">Estados ilustrativos · null significa desconocido · los precios de demostración no se publican</text>
+<text x="2310" y="1442" fill="#795A44" font-family="Inter" font-size="21" font-weight="400" text-anchor="end" letter-spacing="0">VR / 1.0</text>
+</svg>

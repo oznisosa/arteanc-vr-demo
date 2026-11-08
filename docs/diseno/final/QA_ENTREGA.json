@@ -1,0 +1,90 @@
+{
+  "requiredDeliverables": 19,
+  "pngCount": 16,
+  "pngSizes": {
+    "01-planta.png": [
+      3400,
+      2400
+    ],
+    "03-axonometrica.png": [
+      3200,
+      1800
+    ],
+    "04a-umbral.png": [
+      1920,
+      1080
+    ],
+    "04b-patio.png": [
+      1920,
+      1080
+    ],
+    "04c-santuario-portal.png": [
+      1920,
+      1080
+    ],
+    "04d-santuario-interior.png": [
+      1920,
+      1080
+    ],
+    "04e-ceramica.png": [
+      1920,
+      1080
+    ],
+    "04f-textiles.png": [
+      1920,
+      1080
+    ],
+    "04g-metal-piedra-instrumentos.png": [
+      1920,
+      1080
+    ],
+    "04h-taller.png": [
+      1920,
+      1080
+    ],
+    "05a-cartela.png": [
+      2400,
+      1500
+    ],
+    "05b-ficha.png": [
+      2400,
+      1500
+    ],
+    "05c-ficha-santuario.png": [
+      2400,
+      1500
+    ],
+    "05d-favoritos.png": [
+      2400,
+      1500
+    ],
+    "05e-tutorial.png": [
+      2400,
+      1500
+    ],
+    "06-kit.png": [
+      2400,
+      1800
+    ]
+  },
+  "originalLayoutKeysPreserved": true,
+  "roomDimensionsChecked": true,
+  "doorDimensionsChecked": true,
+  "uniqueSlotIds": 38,
+  "exhibitCounts": {
+    "ceramica": 8,
+    "textiles": 8,
+    "metal": 6,
+    "taller": 6,
+    "santuario": 9,
+    "patio": 1
+  },
+  "routesConnected": true,
+  "svgXmlValid": true,
+  "jsonParseValid": true,
+  "offlineLinksExist": true,
+  "fictitiousPriceMarked": true,
+  "unknownStockAndProductUrlAreNull": true,
+  "questRuntimeTested": false,
+  "note": "Validación de archivos y datos. No es prueba de rendimiento ni de navegación en visor."
+}

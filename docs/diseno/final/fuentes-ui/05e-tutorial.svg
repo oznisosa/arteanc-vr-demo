@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
+<defs><style>@font-face{font-family:Inter;src:url('../fuentes/Inter.ttf')}@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/CormorantGaramond.ttf')}text{font-feature-settings:'kern' 1}</style><linearGradient id="clay"><stop stop-color="#A45538"/><stop offset=".42" stop-color="#CC8862"/><stop offset="1" stop-color="#81452F"/></linearGradient><linearGradient id="claylight"><stop stop-color="#FFFFFF" stop-opacity=".02"/><stop offset=".38" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="1" stop-color="#000000" stop-opacity=".20"/></linearGradient><linearGradient id="paper" x2="0" y2="1"><stop stop-color="#FFF7EB"/><stop offset="1" stop-color="#F3E5D2"/></linearGradient></defs>
+<rect x="0" y="0" width="2400" height="1500" rx="0" fill="#F8F4ED" stroke="none" stroke-width="2"/>
+<text x="90" y="75" fill="#795A44" font-family="Inter" font-size="23" font-weight="550" text-anchor="start" letter-spacing="3">LA CASA ARTEANC   /   DISEÑO FINAL 1.0</text>
+<text x="90" y="162" fill="#493021" font-family="Cormorant Garamond" font-size="83" font-weight="500" text-anchor="start" letter-spacing="0">Bienvenido a La Casa ArteAnc</text>
+<text x="92" y="213" fill="#806D5B" font-family="Inter" font-size="27" font-weight="400" text-anchor="start" letter-spacing="0">Tres gestos para empezar · controles propuestos para validar en Quest 3</text>
+<text x="2308" y="156" fill="#D5C5B0" font-family="Cormorant Garamond" font-size="82" font-weight="400" text-anchor="end" letter-spacing="0">05E</text>
+<path d="M90 250L2310 250" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<rect x="91" y="307" width="2218" height="1038" rx="20" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<rect x="148" y="365" width="660" height="678" rx="15" fill="#F5E9D7" stroke="#CDBDA9" stroke-width="2"/>
+<text x="186" y="420" fill="#795A44" font-family="Inter" font-size="31" font-weight="500" text-anchor="start" letter-spacing="0">01</text>
+<g transform="translate(312 614) scale(0.88)">
+<path d="M-85 -32Q-99 -80 -65 -103Q-5 -143 65 -103Q104 -79 84 -32L46 129Q39 163 4 167Q-31 169 -48 133Z" fill="#E7D6BE" stroke="#795A44" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="0" cy="-63" rx="87" ry="56" fill="#FFF4E6" stroke="#795A44" stroke-width="3"/>
+<ellipse cx="-20" cy="-78" rx="28" ry="18" fill="#B96645" stroke="#795A44" stroke-width="2"/>
+<circle cx="37" cy="-64" r="12" fill="#A98158" stroke="none" stroke-width="2"/>
+<circle cx="48" cy="-89" r="10" fill="#A98158" stroke="none" stroke-width="2"/>
+<path d="M-66 6Q-46 -6 -43 23L-47 71Q-53 92 -69 78Q-78 65 -73 41Z" fill="#C9B297" stroke="#795A44" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<path d="M421 637Q588 454 689 701" fill="none" stroke="#B96645" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M664 686l25 15l4 -30" fill="none" stroke="#B96645" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="680" cy="730" rx="65" ry="22" fill="none" stroke="#B96645" stroke-width="4"/>
+<path d="M532 777L742 777" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<path d="M548 749L716 749" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="478" y="864" fill="#493021" font-family="Cormorant Garamond" font-size="49" font-weight="500" text-anchor="middle" letter-spacing="0">Teletransporte</text>
+<path d="M186 889L770 889" stroke="#B96645" stroke-width="2" fill="none"/>
+<text x="478" y="942" fill="#493021" font-family="Inter" font-size="27" font-weight="400" text-anchor="middle" letter-spacing="0">Palanca izquierda:</text>
+<text x="478" y="985" fill="#493021" font-family="Inter" font-size="27" font-weight="400" text-anchor="middle" letter-spacing="0">apunta al suelo y suelta.</text>
+<rect x="870" y="365" width="660" height="678" rx="15" fill="#F5E9D7" stroke="#CDBDA9" stroke-width="2"/>
+<text x="908" y="420" fill="#795A44" font-family="Inter" font-size="31" font-weight="500" text-anchor="start" letter-spacing="0">02</text>
+<g transform="translate(1184 620) scale(0.9)">
+<path d="M-85 -32Q-99 -80 -65 -103Q-5 -143 65 -103Q104 -79 84 -32L46 129Q39 163 4 167Q-31 169 -48 133Z" fill="#E7D6BE" stroke="#795A44" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="0" cy="-63" rx="87" ry="56" fill="#FFF4E6" stroke="#795A44" stroke-width="3"/>
+<ellipse cx="-20" cy="-78" rx="28" ry="18" fill="#B96645" stroke="#795A44" stroke-width="2"/>
+<circle cx="37" cy="-64" r="12" fill="#A98158" stroke="none" stroke-width="2"/>
+<circle cx="48" cy="-89" r="10" fill="#A98158" stroke="none" stroke-width="2"/>
+<path d="M-66 6Q-46 -6 -43 23L-47 71Q-53 92 -69 78Q-78 65 -73 41Z" fill="#C9B297" stroke="#795A44" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<path d="M1053 528Q1184 404 1330 523" fill="none" stroke="#B96645" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1313 498l17 25l-34 0" fill="none" stroke="#B96645" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1197" y="435" fill="#B96645" font-family="Inter" font-size="36" font-weight="550" text-anchor="middle" letter-spacing="0">30°</text>
+<text x="1200" y="864" fill="#493021" font-family="Cormorant Garamond" font-size="49" font-weight="500" text-anchor="middle" letter-spacing="0">Giro de 30°</text>
+<path d="M908 889L1492 889" stroke="#B96645" stroke-width="2" fill="none"/>
+<text x="1200" y="942" fill="#493021" font-family="Inter" font-size="27" font-weight="400" text-anchor="middle" letter-spacing="0">Palanca derecha:</text>
+<text x="1200" y="985" fill="#493021" font-family="Inter" font-size="27" font-weight="400" text-anchor="middle" letter-spacing="0">un paso cada vez.</text>
+<rect x="1592" y="365" width="660" height="678" rx="15" fill="#F5E9D7" stroke="#CDBDA9" stroke-width="2"/>
+<text x="1630" y="420" fill="#795A44" font-family="Inter" font-size="31" font-weight="500" text-anchor="start" letter-spacing="0">03</text>
+<g transform="translate(1763 620) scale(0.88)">
+<path d="M-85 -32Q-99 -80 -65 -103Q-5 -143 65 -103Q104 -79 84 -32L46 129Q39 163 4 167Q-31 169 -48 133Z" fill="#E7D6BE" stroke="#795A44" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="0" cy="-63" rx="87" ry="56" fill="#FFF4E6" stroke="#795A44" stroke-width="3"/>
+<ellipse cx="-20" cy="-78" rx="28" ry="18" fill="#D4BEA2" stroke="#795A44" stroke-width="2"/>
+<circle cx="37" cy="-64" r="12" fill="#A98158" stroke="none" stroke-width="2"/>
+<circle cx="48" cy="-89" r="10" fill="#A98158" stroke="none" stroke-width="2"/>
+<path d="M-66 6Q-46 -6 -43 23L-47 71Q-53 92 -69 78Q-78 65 -73 41Z" fill="#B96645" stroke="#795A44" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g transform="translate(2078 632) scale(0.45)">
+<ellipse cx="0" cy="205" rx="120" ry="19" fill="#D9C5AF" stroke="none" stroke-width="2"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#clay)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="#B96645" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-43 -174 C-31 -147 -30 -131 -45 -103 C-65 -69 -119 -34 -116 42 C-114 124 -61 186 0 188 C61 186 114 124 116 42 C119 -34 65 -69 45 -103 C30 -131 31 -147 43 -174 Z" fill="url(#claylight)" stroke="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="0" cy="-174" rx="44" ry="11" fill="#8B472F" stroke="none" stroke-width="2"/>
+<ellipse cx="0" cy="-176" rx="37" ry="6" fill="#572F22" stroke="none" stroke-width="2"/>
+<path d="M-113 19Q0 37 113 19" fill="none" stroke="#E9CDB0" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-110 43Q0 61 110 43" fill="none" stroke="#E9CDB0" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<path d="M1860 648L1944 648" fill="none" stroke="#B96645" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1923 634l21 14l-21 14" fill="none" stroke="#B96645" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1922" y="864" fill="#493021" font-family="Cormorant Garamond" font-size="49" font-weight="500" text-anchor="middle" letter-spacing="0">Tomar piezas</text>
+<path d="M1630 889L2214 889" stroke="#B96645" stroke-width="2" fill="none"/>
+<text x="1922" y="942" fill="#493021" font-family="Inter" font-size="27" font-weight="400" text-anchor="middle" letter-spacing="0">Mantén el botón de agarre.</text>
+<text x="1922" y="985" fill="#493021" font-family="Inter" font-size="27" font-weight="400" text-anchor="middle" letter-spacing="0">Suelta para devolver la copia.</text>
+<rect x="149" y="1103" width="728" height="76" rx="10" fill="#795A44" stroke="#795A44" stroke-width="2"/>
+<text x="513.0" y="1151" fill="#FFF4E6" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">Comenzar</text>
+<rect x="904" y="1103" width="609" height="76" rx="10" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<text x="1208.5" y="1151" fill="#493021" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">Ver ayuda</text>
+<rect x="1540" y="1103" width="708" height="76" rx="10" fill="#FFF4E6" stroke="#CDBDA9" stroke-width="2"/>
+<text x="1894.0" y="1151" fill="#493021" font-family="Inter" font-size="27" font-weight="550" text-anchor="middle" letter-spacing="0">Modo sentado</text>
+<text x="149" y="1254" fill="#806D5B" font-family="Inter" font-size="27" font-weight="400" text-anchor="start" letter-spacing="0">Altura de ojos: 1,60 m de pie / 1,20 m sentado.</text>
+<text x="149" y="1302" fill="#806D5B" font-family="Inter" font-size="25" font-weight="400" text-anchor="start" letter-spacing="0">Moverse es opcional. La copia de examen vuelve a su escala y orientación iniciales.</text>
+<path d="M90 1394L2310 1394" stroke="#CDBDA9" stroke-width="2" fill="none"/>
+<text x="90" y="1444" fill="#493021" font-family="Cormorant Garamond" font-size="28" font-weight="600" text-anchor="start" letter-spacing="4">ARTEANC</text>
+<text x="310" y="1442" fill="#806D5B" font-family="Inter" font-size="21" font-weight="400" text-anchor="start" letter-spacing="0">Interacción por acción explícita · sin rotación automática · tutorial omisible</text>
+<text x="2310" y="1442" fill="#795A44" font-family="Inter" font-size="21" font-weight="400" text-anchor="end" letter-spacing="0">VR / 1.0</text>
+</svg>

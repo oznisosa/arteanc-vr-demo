@@ -8,6 +8,140 @@
 
 ---
 
+## 2026-11-08 — Diseño final incorporado y proyecto organizado
+
+**Tipo:** organización y documentación (no se cambió el código de la escena).
+
+### Qué se hizo
+1. **Revisión del diseño final** entregado por ChatGPT ("La Casa ArteAnc" con el
+   Santuario precolombino). Claude comprobó `02-layout.json` con un script
+   propio: salas sin solapes, 0,40 m de muro entre salas vecinas, accesos
+   centrados y 38 posiciones de exhibición bien ubicadas. Se aceptó como
+   referencia oficial (DT-009).
+2. **Incorporación a `docs/diseno/final/`.** Las 8 perspectivas pasaron de PNG
+   (~2,3 MB) a JPG (~230 KB). Detalles en [diseno/README.md](diseno/README.md).
+3. **Referencias** ligeras de los prototipos 1 y 2 en `docs/diseno/referencias/`;
+   los prompts de diseño, en `docs/diseno/encargos/`.
+4. **Limpieza (módulo 0.1 de la Fase 0).**
+   - `_archivo/`: entregas originales (ZIP, borradores de ChatGPT y SVG editables
+     pesados) y `index - copia.html`.
+   - `_fuentes-3d/escaneos-pruebas/`: los 23 archivos de escaneos de prueba que
+     no usa la escena.
+   - Ambas carpetas son **locales e ignoradas por Git**. No se borró nada.
+5. **Documentos actualizados:** `PLAN_MAESTRO.md` (el *greybox* se adelanta
+   a la Fase 1), `ARQUITECTURA.md` (contrato de datos y presupuesto
+   unificados), `VISION.md`, `DECISIONES.md` (DT-009 y DT-010),
+   `MAPA_ESCENA.md` y los README.
+6. **`CLAUDE.md` nuevo en la raíz:** instrucciones que Claude Code lee
+   automáticamente al empezar cada sesión (estado, siguiente paso y reglas de
+   documentación).
+
+### Conceptos que aparecen
+- **Fuente de verdad única.** Un solo archivo (`02-layout.json`) define las
+  medidas; las imágenes, el plano y el código derivan de él.
+- **Compresión con pérdida (JPG) frente a sin pérdida (PNG).** Para fotos y
+  renders, JPG ocupa 10 veces menos con una diferencia casi invisible; para
+  diagramas con texto (planta, fichas) conviene PNG o SVG.
+- **`.gitignore`.** Le dice a Git qué carpetas no debe subir nunca.
+- **`CLAUDE.md`.** Memoria del proyecto para el asistente: evita repetir el contexto en cada sesión.
+
+### Para el tutor
+- Ejercicio: abrir `docs/diseno/final/02-layout.json`, buscar el slot `S09` y
+  ubicarlo en `01-planta.png`. ¿Por qué su `y` vale 1 y la de `C02` vale 0,9?
+  (Pista: peana frente a vitrina.)
+
+### Pendientes
+- Confirmar el estado de las decisiones DT-001 a DT-007 (siguen como "Propuesta").
+- Siguiente sesión: Fase 0, desde el módulo 0.0 (rama `fase-0`).
+
+---
+
+## 2026-11-07 — Comparación de prototipos y encargo del diseño final
+
+**Tipo:** solo documentación. **Archivos:** `docs/diseno/PROMPT_DISENO_FINAL.md`
+(nuevo) y `docs/DECISIONES.md` (DT-008).
+
+Se compararon las dos propuestas de ChatGPT, llamadas **Prototipo 1**
+(Santuario) y **Prototipo 2** (La Casa). Se decidió combinarlas: la Casa como
+edificio y el Santuario como sala principal precolombina en el eje norte. Se
+escribió el encargo de un diseño final congelado con planta, coordenadas y
+posiciones de exhibición en `layout.json`.
+
+### Conceptos que aparecen
+- **Congelar un diseño.** Fijar una versión de referencia para que todos
+  construyan sobre lo mismo; los cambios posteriores se registran como versiones nuevas.
+- **Eje y remate.** En arquitectura, un eje que guía la mirada hacia un punto
+  final importante (aquí, el portal del Santuario).
+- **Jerarquía espacial.** Una sola sala con tratamiento especial se percibe
+  más valiosa que si todas fueran iguales.
+- **Sistema de coordenadas acordado.** Origen en la entrada, norte = −Z: así la
+  planta y el código hablan el mismo idioma.
+
+---
+
+## 2026-11-07 — Encargo de diseño visual de "La Casa ArteAnc"
+
+**Tipo:** solo documentación. **Archivo nuevo:** `docs/diseno/PROMPT_CASA_ARTEANC.md`.
+
+Se escribió un prompt para que una IA de imágenes (ChatGPT u otra) genere el
+diseño visual objetivo: guía de estilo, planta, vista isométrica, vistas de
+cada espacio, interfaz en VR y el kit arquitectónico modular. El prompt fija
+medidas y restricciones técnicas para que todas las imágenes muestren el mismo
+edificio y este se pueda construir en el Quest 3.
+
+### Conceptos que aparecen
+- **Concept art frente a especificación.** Una imagen inspira; las medidas y
+  los presupuestos de rendimiento son lo que se construye.
+- **Kit modular.** Diseñar piezas arquitectónicas repetibles (muro, puerta,
+  hornacina) en lugar de un edificio único: menos trabajo y mejor rendimiento.
+- **Prompting con restricciones.** Darle a una IA medidas, paleta y límites
+  produce resultados coherentes y utilizables.
+
+---
+
+## 2026-11-07 — Diagnóstico, visión y plan maestro
+
+**Tipo:** solo documentación (no se cambió código).
+**Archivos nuevos:** `docs/README.md`, `docs/DIAGNOSTICO.md`, `docs/VISION.md`,
+`docs/ARQUITECTURA.md`, `docs/PLAN_MAESTRO.md`, `docs/DECISIONES.md`.
+
+### Qué se hizo
+Se revisó el proyecto completo y se escribió la base de la planificación:
+- **Diagnóstico:** el prototipo funciona, pero todo está escrito a mano en un
+  solo HTML, los modelos pesan demasiado (19 MB) y la experiencia en VR carece
+  de confort (sin teletransporte) y de la función clave: examinar las piezas.
+- **Visión:** "La Casa ArteAnc", una casa andina con patio central y salas
+  temáticas alrededor, mesa de examen y compra en arteanc.com.
+- **Arquitectura:** se recomienda **seguir con A-Frame** y reorganizar el
+  proyecto para que la escena se construya a partir de datos JSON.
+- **Plan:** 8 fases (F0–F7) hasta la v1.0, mejoras posteriores y experimentos.
+- **Decisiones:** 7 decisiones registradas como "Propuesta", pendientes de aprobación.
+
+### Conceptos que aparecen
+1. **Separar datos y presentación.** Es el cambio más importante del plan: el
+   *qué* (catálogo) va separado del *cómo se muestra* (componentes).
+2. **Patrón entidad-componente (ECS).** Es la base de A-Frame. Una entidad es un
+   contenedor; los componentes le dan comportamiento.
+3. **Presupuesto de rendimiento.** En VR se planifica con límites medibles
+   (fps, triángulos, MB), no "a ojo".
+4. **Iluminación horneada.** Calcular la luz una vez y guardarla en texturas, en
+   lugar de calcularla en cada fotograma.
+5. **Registro de decisiones (ADR).** Anotar por qué se decide algo, no solo qué.
+6. **Fotogrametría → web.** Un escaneo crudo no está listo para publicarse:
+   necesita limpieza y compresión.
+
+### Para el tutor
+- Buen momento para repasar el vocabulario: WebXR, Three.js, glTF/GLB,
+  *draw call*, fps, *bundler*, JSON, componente.
+- Ejercicio sugerido: leer `VISION.md` y `PLAN_MAESTRO.md`, y explicar con
+  palabras propias por qué la Fase 0 no cambia nada visible y aun así va primero.
+
+### Pendientes
+- Aprobar o ajustar las decisiones DT-001 a DT-007.
+- Responder las "Preguntas abiertas para ArteAnc" de `PLAN_MAESTRO.md`.
+
+---
+
 ## 2026-11-07 — Panel de bienvenida integrado en la recepción
 
 **Archivos:** `index.html` (bloque `#bienvenidaRecepcion`), `docs/MAPA_ESCENA.md` (nuevo),
