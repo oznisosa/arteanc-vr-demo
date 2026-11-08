@@ -8,7 +8,26 @@
 
 ---
 
-## 2026-11-08 — Módulo 0.6: publicación automática con GitHub Actions (preparado)
+## 2026-11-08 — Módulo 0.6: publicación automática (se queda en modo rama)
+
+### Decisión final de Ozni
+Ozni preguntó si el cambio a GitHub Actions era necesario: "no veo gran
+ventaja realmente". Tiene razón por ahora: Pages ya publica sola la rama y los
+módulos funcionan sin build. **Se queda el modo "Deploy from a branch"**, se
+borró `.github/workflows/publicar.yml` (sigue en el commit `97fe7f9`) y DT-013
+pasa a "aplazada". Se retomará cuando la escena use paquetes de npm.
+Así el 0.6 se da por **hecho**: el criterio del plan era "despliegue
+automático confirmado desde `main`", y se comprobó con el push de Ozni.
+**Consecuencia práctica:** todo lo que use la escena debe funcionar sin build
+(rutas relativas, sin `import` de paquetes npm). Anotado en `CLAUDE.md`.
+
+Concepto extra para el tutor: **YAGNI** ("no lo vas a necesitar"): no añadir
+una pieza hasta que haga falta. Pregunta: ¿qué señal nos dirá que llegó el
+momento de activar GitHub Actions?
+
+Lo que sigue es lo que se había preparado (queda como referencia).
+
+### Preparación original (aplazada)
 
 **Tipo:** publicación. **La escena no cambió.**
 **Archivos:** `.github/workflows/publicar.yml` (nuevo), `README.md`,
@@ -56,7 +75,6 @@ Si un paso falla, no se publica nada y la web anterior sigue funcionando.
 - Pregunta: ¿qué pasaría con la web si alguien sube código con un error de sintaxis?
 
 ### Pendientes
-- Ozni activa "GitHub Actions" en Pages y confirma la primera publicación.
 - Siguiente: módulo 0.7 (`docs/PRUEBAS.md`), que cierra la Fase 0.
 
 ---
