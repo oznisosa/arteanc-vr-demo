@@ -389,7 +389,8 @@
           caminar-quest
           teletransporte="mando: #mando-derecho"
           giro-por-pasos="mando: #mando-derecho"
-          modo-sentado="mando: #mando-izquierdo">
+          modo-sentado="mando: #mando-izquierdo"
+          clic-en-suelo>
 
   <!-- Camara -->
   <a-camera id="camara" position="0 1.6 0">
@@ -412,6 +413,11 @@
     laser-controls="hand: right"
     raycaster="objects: .interactivo; far: 10">
   </a-entity>
+
+  <!-- Manos sin mandos (módulo 2.5): apuntar y pellizcar = seleccionar;
+       pellizcar apuntando a otra cosa = arco de salto, soltar = saltar -->
+  <a-entity id="mano-izquierda" hand-tracking-controls="hand: left" mano-puntero></a-entity>
+  <a-entity id="mano-derecha" hand-tracking-controls="hand: right" mano-puntero></a-entity>
 
 </a-entity>
 

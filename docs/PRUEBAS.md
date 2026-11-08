@@ -55,7 +55,11 @@ Si todo está bien: `Ctrl + C` para cerrar el servidor y hacer `git push`.
 | P8 | Recepción: clic en el mostrador | Aparece el letrero de bienvenida; otro clic lo oculta | |
 | P8b | Textos con tildes | "galería", "MONUMENTO HISTÓRICO", "ARTESANÍA", "Cerámica 01": tildes y eñes visibles; marca, nombres de sala y bienvenida en letra con remates (Cormorant); el título de la pieza en Inter, con números claros | |
 | P8c | Letrero "ARTEANC" del frente del mostrador | Se lee desde la galería | |
-| P9 | Moverse con W A S D y mirar con el ratón | Funciona (en PC se atraviesan paredes: conocido, Fase 2) | |
+| P9 | Moverse con W A S D y mirar con el ratón | Funciona; no se atraviesan paredes ni peanas (módulo 2.3) | |
+| P9b | Pasar el ratón por el suelo | Un anillo claro sigue al ratón donde se puede ir; desaparece sobre peanas, paredes y piezas | |
+| P9c | Clic en el suelo | Fundido breve y apareces allí | |
+| P9d | Arrastrar con el ratón para mirar y soltar sobre el suelo | Solo giras la vista; no saltas | |
+| P9e | Clic en una pieza | Se abre su ficha; no saltas | |
 | P10 | Añadir `?debug` a la dirección | Panel de A-Frame arriba a la izquierda y panel verde con fps, llamadas y triángulos | |
 | P11 | Quitar `?debug` | No aparece ningún panel | |
 | P12 | `npm run build` y `npm run preview` → `http://localhost:4173` | Repetir P1, P4 y P6: igual que en `npm run dev` | |
@@ -99,6 +103,20 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | Q30 | **De pie**, pulsar **Y** | No te baja; el aviso dice que ya estás a la altura de una persona de pie | |
 | Q31 | Con el modo sentado activo, salir de VR, recargar la página y volver a entrar **sentado** | Al medio segundo se activa solo (aviso con la subida); no hay que pulsar Y | |
 | Q32 | Pulsar Y para desactivar, salir y volver a entrar | Ya no se activa solo | |
+| Q33 | **Manos:** dejar los mandos y mirar tus manos | El Quest las muestra; de cada mano sale un rayo fino con un punto donde toca | |
+| Q34 | Apuntar con la mano a una pieza y **pellizcar** (pulgar + índice) | Se abre su ficha (como con el gatillo) | |
+| Q35 | Pellizcar apuntando a CERRAR, al botón de la puerta y al mostrador | Funcionan como con el mando | |
+| Q36 | Pellizcar apuntando al suelo y mantener | Aparece el arco del salto desde la mano; al soltar el pellizco, saltas | |
+| Q37 | Volver a coger los mandos | Los mandos funcionan como siempre (joystick, gatillo, Y) | |
+
+### 2.2c Móvil (navegador del teléfono) — misma dirección que `npm run quest`
+
+| # | Qué probar | Resultado esperado | ✓ |
+|---|---|---|---|
+| M1 | Abrir la página en el móvil | La sala aparece; al mover el teléfono o arrastrar el dedo, miras alrededor | |
+| M2 | **Tocar el suelo** | Fundido breve y apareces allí | |
+| M3 | Tocar una peana o una pared | No pasa nada | |
+| M4 | Tocar una pieza | Se abre su ficha | |
 
 ### 2.2b La Casa (greybox) — `casa.html`
 
@@ -134,9 +152,9 @@ Después del push, en https://github.com/oznisosa/arteanc-vr-demo/actions:
 | Problema | Se resolverá en |
 |---|---|
 | Falta `favicon.ico` (error 404 en la consola) | 1.5 o cuando haya logo |
-| En PC se atraviesan las paredes | 2.3 |
+| ~~En PC se atraviesan las paredes~~ | Resuelto en 2.3 |
 | El modelo pesa 19 MB y tarda en cargar | 3.3 |
-| Movimiento continuo (puede marear a algunas personas) | 2.1 y 2.2 |
+| Movimiento continuo (puede marear a algunas personas) | Hay alternativa: teletransporte (2.1) y giro por pasos (2.2) |
 
 ---
 

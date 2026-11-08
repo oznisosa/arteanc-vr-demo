@@ -42,6 +42,10 @@ import './componentes/teletransporte.js';
 import './componentes/giro-por-pasos.js';
 // componentes/modo-sentado.js → botón Y: vista elevada para quien está sentado (módulo 2.4)
 import './componentes/modo-sentado.js';
+// componentes/mano-puntero.js  → manos sin mandos: apuntar y pellizcar (módulo 2.5)
+import './componentes/mano-puntero.js';
+// componentes/clic-en-suelo.js → PC y móvil: clic o toque en el suelo para ir allí (módulo 2.6)
+import './componentes/clic-en-suelo.js';
 
 // 1. Lo que no depende de datos externos se prepara enseguida
 // (las piezas se montan solas: ver pieza-exhibida en index.html)

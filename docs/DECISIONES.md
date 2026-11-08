@@ -559,3 +559,44 @@ DT-018, la añadió la Fase 1). Se guarda solo si está activo, no la altura.
 Al entrar en VR con la preferencia activada se recalibra solo tras 0,6 s
 (el visor tarda un instante en dar la altura real). Salir de VR quita la
 subida pero no olvida la preferencia; pulsar Y para desactivar sí la olvida.
+
+---
+
+## DT-034 — Manos (pellizco = clic o salto) y clic en el suelo en PC y móvil
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** módulos 2.5 ("apuntar y pellizcar para seleccionar") y 2.6
+("clic en el suelo para desplazarse; controles táctiles básicos").
+ARQUITECTURA §7 pide además moverse con las manos ("pellizco y apuntar") y
+con el dedo en el móvil ("tocar el suelo"). Ozni pidió hacer los dos módulos
+de una vez.
+
+**Decisión:**
+- **Manos:** `hand-tracking-controls` de A-Frame (pinta las manos y avisa del
+  pellizco) + un componente propio `mano-puntero`. El rayo va del **hombro
+  estimado** (bajo la cabeza, hacia el lado de la mano) al **nudillo del
+  índice**, como el puntero del sistema del Quest; el nudillo se mueve poco al
+  pellizcar. Pellizco sobre algo `.interactivo` → `click` (como el gatillo);
+  sobre otra cosa → el arco del `teletransporte`, y soltar = saltar.
+- **El teletransporte se abre a otras fuentes:** `empezarAApuntar(fuente)`,
+  `soltar()`, `saltarA(punto)` y `mostrarMarcador(punto)`. Así el arco, el
+  anillo y el fundido son los mismos con el joystick, la mano y el ratón.
+- **PC y móvil:** componente `clic-en-suelo` con eventos *pointer* (ratón y
+  dedo a la vez). Es un clic si el puntero se mueve menos de 8 px y dura
+  menos de 0,6 s (si no, era arrastrar para mirar). El destino vale si lo
+  primero que toca el rayo desde la cámara es el suelo (así no se salta a
+  través de paredes) y si es pisable según el mapa. Con ratón, un anillo
+  sigue al puntero sobre el suelo válido. Mirar en el móvil: lo que ya hace
+  `look-controls` (arrastrar el dedo y girar el teléfono).
+
+**Alternativas:** rayo desde la orientación de la muñeca (tiembla mucho al
+pellizcar); clic en el suelo con movimiento suave en vez de salto (marea más
+y es más lento); botones táctiles en pantalla para caminar (más interfaz que
+mantener; el toque en el suelo basta para "controles básicos").
+
+**Consecuencias:** las manos y el ratón no necesitan código de movimiento
+propio: reutilizan el teletransporte y el mapa de zonas. Con las manos no
+hay giro por pasos (se gira el cuerpo); si hiciera falta, se añadiría un gesto.
+
+**Revisar:** tras probar las manos en el Quest (alcance y estabilidad del
+rayo) y el toque en un móvil real.

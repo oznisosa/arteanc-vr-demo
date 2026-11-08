@@ -136,8 +136,16 @@ El letrero de bienvenida no es `interactivo`, así que no intercepta los clics d
 | Cámara | `#camara` | `0 1.6 0` (local) | Cursor `rayOrigin: mouse` para clics en PC. En PC se mueve con WASD sin límites |
 | Mando izquierdo | `#mando-izquierdo` | — | `laser-controls`. El joystick camina (`caminar-quest`); botón Y = modo sentado (módulo 2.4) |
 | Mando derecho | `#mando-derecho` | — | `laser-controls`. Gatillo = seleccionar; joystick adelante = teletransporte (módulo 2.1); a los lados = giro de 30° (módulo 2.2). DT-031 |
+| Mano izquierda / derecha | `#mano-izquierda`, `#mano-derecha` | — (las pone el visor) | `hand-tracking-controls` + `mano-puntero` (módulo 2.5): rayo hombro→mano; pellizco = clic o arco de salto |
 
 Los tres raycasters filtran por `.interactivo` (los mandos con `far: 10`).
+Los rayos de las manos (`mano-puntero`) también, con 4 m de alcance.
+
+**Fuera de VR (módulo 2.6):** `clic-en-suelo` en el `#jugador`. Clic (PC) o
+toque (móvil) en el suelo → salto con fundido, si el primer objeto que toca
+el rayo desde la cámara es el suelo (y < 0,08 m) y el punto es pisable. Los
+objetos de ayuda (arco, anillo, fundido, rayos de las manos, mapa `?zonas`)
+llevan `userData.ayuda = true` y se ignoran.
 
 `caminar-quest` solo actúa en modo VR, a 1.2 m/s.
 

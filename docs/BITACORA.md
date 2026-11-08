@@ -8,6 +8,113 @@
 
 ---
 
+## 2026-11-08 — Módulos 2.5 y 2.6: manos sin mandos, y clic o toque en el suelo (DT-034)
+
+**Tipo:** movimiento e interacción (rama `fase-2`). Ozni pidió hacer los dos
+módulos de una vez.
+
+### Qué cambió
+| Antes | Después |
+|---|---|
+| Sin mandos, en el Quest no se podía hacer nada | **Manos:** un rayo sale de cada mano; **pellizcar** apuntando a una pieza o botón = seleccionar; apuntando a otra cosa = arco de salto, y al soltar, saltas |
+| PC: solo WASD | **Clic en el suelo** = ir allí (con fundido); el ratón muestra un anillo donde caerías |
+| Móvil: solo mirar | **Tocar el suelo** = ir allí; arrastrar el dedo sigue sirviendo para mirar |
+
+**Archivos:**
+- **Nuevos:** `src/componentes/mano-puntero.js` y `src/componentes/clic-en-suelo.js`.
+- `src/componentes/teletransporte.js`: ahora acepta otras "fuentes" de rayo:
+  `empezarAApuntar(fuente)`, `soltar()`, `saltarA(punto)` y
+  `mostrarMarcador(punto)`. Sus objetos llevan `userData.ayuda = true`.
+- `src/componentes/zonas-transitables.js`: el dibujo de `?zonas` también
+  lleva `userData.ayuda`.
+- `index.html` y `casa.html` (bloque `#jugador`): `clic-en-suelo` y dos
+  entidades `#mano-izquierda` y `#mano-derecha` con
+  `hand-tracking-controls` + `mano-puntero`.
+- `src/main.js` y `src/casa.js`: dos imports más.
+- Documentos: DT-034, PLAN_MAESTRO, MAPA_ESCENA, PRUEBAS (P9b–P9e,
+  Q33–Q37, M1–M4 y problemas conocidos), `CLAUDE.md` y esta entrada.
+
+### Cómo funciona (para estudiar el código)
+**Manos (`mano-puntero`):**
+1. `hand-tracking-controls` (de A-Frame) da la posición de las 25
+   articulaciones de cada mano en `jointPoses` (16 números por articulación:
+   una matriz 4×4) y emite `pinchstarted` / `pinchended` cuando la punta
+   del pulgar y la del índice están a menos de 1,5 cm.
+2. **El rayo** va del **hombro estimado** (18 cm bajo los ojos y 17 cm hacia
+   el lado de la mano) al **nudillo del índice** (articulación 6). Es lo que
+   hace el puntero del menú del Quest: es estable aunque la muñeca gire.
+3. Las articulaciones vienen en el espacio del `#jugador`; se pasan al mundo
+   con `jugador.localToWorld(...)` (el jugador puede estar movido, girado o
+   elevado por el modo sentado).
+4. Cada fotograma se lanza un `THREE.Raycaster` contra los `.interactivo`
+   (la lista se refresca una vez por segundo). El elemento apuntado recibe
+   `mouseenter`/`mouseleave`, como hace el cursor de A-Frame.
+5. **Pellizco:** si hay algo apuntado → `click` en ese elemento (la ficha, la
+   puerta y el mostrador ya escuchaban `click`). Si no → el teletransporte
+   empieza a apuntar **usando la mano como fuente** del arco. Al soltar → `soltar()`.
+
+**PC y móvil (`clic-en-suelo`):**
+1. Eventos *pointer* (`pointerdown`, `pointerup`, `pointermove`): sirven
+   igual para ratón y dedo.
+2. **¿Clic o arrastre?** Si entre pulsar y soltar el puntero se movió más de
+   8 px o pasaron más de 0,6 s, era para mirar: no se salta.
+3. **¿Adónde?** Rayo desde la cámara a través del punto de la pantalla
+   (`raycaster.setFromCamera`). Se mira **lo primero** que toca (sin contar
+   objetos invisibles ni de ayuda): si es una pieza, el clic es para el
+   cursor; si está a más de 8 cm del suelo, es una pared o un mueble; si es
+   el suelo y es pisable según el mapa, se salta con `saltarA()`.
+4. Con ratón, en cada fotograma (como mucho) se repite la búsqueda para
+   mover el anillo.
+
+### Conceptos que aparecen
+- **Seguimiento de manos (*hand tracking*):** el visor ve las manos con sus
+  cámaras y da la posición de cada articulación.
+- **Matriz 4×4:** guarda posición y rotación juntas; `setFromMatrixPosition` saca la posición.
+- **NDC (coordenadas normalizadas):** la pantalla de −1 a 1, lo que pide THREE.
+- **Eventos *pointer*:** una sola API para ratón, dedo y lápiz.
+- **Reutilizar en lugar de duplicar:** las manos y el ratón usan el mismo
+  arco, anillo, fundido y mapa que el joystick.
+
+### Dos "fallos" de prueba que no eran del código
+- El primer clic de ratón real "no abría la ficha": el script hacía clic sin
+  mover antes el ratón, y el cursor de A-Frame decide qué hay debajo al
+  moverse. Con un movimiento previo (como en uso real), funciona.
+- Un clic "junto a la peana" sí saltó: el punto elegido estaba a 1,1 m, que
+  es suelo válido. Ajustar las expectativas también es parte de probar.
+
+### Cómo se verificó
+Puerto 5174 con Playwright:
+- **PC, ratón real:** anillo al pasar por el suelo (captura revisada); clic
+  en el suelo → salto a (0,99; −2,18); arrastrar para mirar → no salta; clic
+  en una pieza (tras mover el ratón) → ficha, sin salto. Clics simulados en
+  peana y pared → no salta; anillo oculto sobre la peana.
+- **Móvil (toque simulado, `pointerType: touch`):** sin anillo; toque en el
+  suelo → salto a (−0,99; −2,48).
+- **Manos (Quest simulado: articulación 6 en `jointPoses`, `hasPoses`,
+  estado `vr-mode`):** el rayo apunta a la pieza 1 → pellizco → ficha
+  visible. Apuntando al suelo → pellizco → arco desde la mano (rayo oculto),
+  destino válido → soltar → la cabeza en el destino. Perder la mano a mitad
+  → el arco se cancela.
+- **`casa.html`:** clic en el suelo de la recepción y, a través de la
+  puerta, en el de la galería → salta. Las dos manos cargadas.
+- Consola sin errores. `npm run build`: 10 pruebas en verde, 32 módulos.
+- **Prueba de Ozni (2026-11-08):** "excelente, funciona a la perfección"
+  (manos en el Quest, modo sentado recordado y clic/toque en el suelo).
+
+### Ejercicio sugerido
+1. En `mano-puntero.js`, cambia `HOMBRO_LADO` a 0 y prueba en el Quest:
+   ¿apuntar es más cómodo o menos?
+2. En `clic-en-suelo.js`, cambia `MAXIMO_ARRASTRE` a 1. ¿Qué pasa al hacer
+   clic con un ratón que tiembla un poco?
+3. Pregunta a ChatGPT: ¿por qué los eventos *pointer* sustituyen a los de
+   *mouse* y *touch*?
+
+### Pendientes
+- **Todos los módulos de la Fase 2 están hechos.** Con todo probado, queda el criterio de la Fase 2: 3 personas que no
+  conozcan el proyecto recorren la sala sin mareo ni ayuda.
+
+---
+
 ## 2026-11-08 — El modo sentado se recuerda (estado `modoSentado`)
 
 **Tipo:** movimiento y accesibilidad (rama `fase-2`), ampliación de DT-033.

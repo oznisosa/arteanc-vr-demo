@@ -14,6 +14,13 @@
 //   posición(t) = origen + velocidad · t + ½ · gravedad · t²
 // Se calcula por tramos cortos y se comprueba dónde toca el suelo (y = 0).
 //
+// Otras formas de saltar (módulos 2.5 y 2.6) reutilizan el arco, el anillo
+// y el fundido de este componente:
+//   - empezarAApuntar(fuente) / soltar(): con una "fuente" que da el rayo
+//     (por ejemplo, la mano con mano-puntero), en lugar del mando.
+//   - saltarA(punto): salto directo, sin arco (clic en el suelo en el PC).
+//   - mostrarMarcador(punto | null): el anillo, sin arco (ratón sobre el suelo).
+//
 // Dónde se puede caer: lo decide el mapa de zonas-transitables (módulo 2.3,
 // DT-032), si el #jugador lo tiene. El arco se corta al tocar un muro, el
 // techo o un mueble, y solo vale caer en suelo pisable.
@@ -74,27 +81,54 @@ AFRAME.registerComponent('teletransporte', {
     // quedan libres para el giro por pasos (módulo 2.2).
     if (!this.apuntando && y < -0.6 && Math.abs(y) > Math.abs(x)) {
       this.empezarAApuntar();
-    } else if (this.apuntando && Math.hypot(x, y) < 0.25) {
+    } else if (this.apuntando && !this.fuente && Math.hypot(x, y) < 0.25) {
       // Joystick suelto (vuelve al centro): saltar si el destino vale
-      const saltar = this.destinoValido;
-      this.dejarDeApuntar();
-      if (saltar) this.saltar();
+      this.soltar();
     }
   },
 
-  empezarAApuntar: function () {
+  // `fuente` (opcional): objeto con obtenerRayo(origen, direccion) que rellena
+  // dos Vector3 en coordenadas del mundo. Sin fuente, el rayo es el del mando.
+  empezarAApuntar: function (fuente = null) {
+    if (this.apuntando) return;
     this.apuntando = true;
+    this.fuente = fuente;
     this.arco.visible = true;
-    // Mientras se apunta, se oculta el láser recto del mismo mando
-    this.data.mando.setAttribute('raycaster', 'showLine', false);
+    // Mientras se apunta con el mando, se oculta su láser recto
+    if (!fuente) this.data.mando.setAttribute('raycaster', 'showLine', false);
+  },
+
+  // Termina de apuntar y salta si el destino vale
+  soltar: function () {
+    if (!this.apuntando) return;
+    const saltar = this.destinoValido;
+    this.dejarDeApuntar();
+    if (saltar) this.saltar();
   },
 
   dejarDeApuntar: function () {
+    const conMando = this.apuntando && !this.fuente;
     this.apuntando = false;
+    this.fuente = null;
     this.destinoValido = false;
     this.arco.visible = false;
     this.marcador.visible = false;
-    this.data.mando.setAttribute('raycaster', 'showLine', true);
+    if (conMando) this.data.mando.setAttribute('raycaster', 'showLine', true);
+  },
+
+  // Salto directo a un punto del suelo (ya comprobado por quien llama)
+  saltarA: function (punto) {
+    if (this.fundidoActivo) return;
+    this.destino.set(punto.x, 0, punto.z);
+    this.marcador.visible = false;
+    this.saltar();
+  },
+
+  // Anillo sobre el suelo sin arco (null = ocultarlo). No hace nada mientras se apunta.
+  mostrarMarcador: function (punto) {
+    if (this.apuntando) return;
+    this.marcador.visible = !!punto;
+    if (punto) this.marcador.position.set(punto.x, 0.02, punto.z);
   },
 
   // ---------- Cada fotograma ----------
@@ -106,15 +140,20 @@ AFRAME.registerComponent('teletransporte', {
 
   calcularArco: function () {
     const d = this.data;
-    const mando = d.mando.object3D;
-    mando.updateMatrixWorld();
+    if (this.fuente) {
+      // Otra fuente (p. ej. la mano): ella da el rayo en coordenadas del mundo
+      if (!this.fuente.obtenerRayo(this.origen, this.direccion)) return;
+    } else {
+      const mando = d.mando.object3D;
+      mando.updateMatrixWorld();
 
-    // El arco sale de donde sale el láser. laser-controls ajusta el origen
-    // y la dirección del raycaster a cada modelo de mando.
-    const rayo = d.mando.getAttribute('raycaster');
-    this.origen.copy(rayo.origin);
-    mando.localToWorld(this.origen);
-    this.direccion.copy(rayo.direction).transformDirection(mando.matrixWorld);
+      // El arco sale de donde sale el láser. laser-controls ajusta el origen
+      // y la dirección del raycaster a cada modelo de mando.
+      const rayo = d.mando.getAttribute('raycaster');
+      this.origen.copy(rayo.origin);
+      mando.localToWorld(this.origen);
+      this.direccion.copy(rayo.direction).transformDirection(mando.matrixWorld);
+    }
 
     // Velocidad inicial del arco
     const vx = this.direccion.x * d.velocidad;
@@ -243,6 +282,7 @@ AFRAME.registerComponent('teletransporte', {
       color: '#F4E9D8', side: THREE.DoubleSide, transparent: true, opacity: 0.85
     });
     this.arco = new THREE.Mesh(this.arcoGeometria, this.arcoMaterial);
+    this.arco.userData.ayuda = true; // los clics en el suelo (2.6) lo ignoran
     this.arco.frustumCulled = false; // la geometría cambia cada fotograma
     this.arco.visible = false;
     this.el.sceneEl.object3D.add(this.arco);
@@ -256,6 +296,7 @@ AFRAME.registerComponent('teletransporte', {
       color: '#F4E9D8', transparent: true, opacity: 0.9
     });
     this.marcador = new THREE.Mesh(geometria, material);
+    this.marcador.userData.ayuda = true;
     this.marcador.visible = false;
     this.el.sceneEl.object3D.add(this.marcador);
   },
@@ -269,6 +310,7 @@ AFRAME.registerComponent('teletransporte', {
       opacity: 0, depthTest: false
     });
     this.fundido = new THREE.Mesh(geometria, this.fundidoMaterial);
+    this.fundido.userData.ayuda = true;
     this.fundido.renderOrder = 999;
     this.fundido.visible = false;
     this.data.camara.object3D.add(this.fundido);

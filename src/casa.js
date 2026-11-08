@@ -11,6 +11,8 @@ import './componentes/caminar-quest.js';
 import './componentes/teletransporte.js';
 import './componentes/giro-por-pasos.js';
 import './componentes/modo-sentado.js';
+import './componentes/mano-puntero.js';
+import './componentes/clic-en-suelo.js';
 import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';
 
 if (modoDepuracionActivo()) {

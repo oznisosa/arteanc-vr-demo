@@ -104,8 +104,8 @@ la aplicación.
 | 2.2 Giro por pasos ✅ 2026-11-08 | Joystick derecho a los lados para girar 30° (DT-031); el movimiento continuo sigue en el joystick izquierdo. Probado en el Quest por Ozni |
 | 2.3 Áreas transitables ✅ 2026-11-08 | *Navmesh* o colisiones simples; aplica a VR y a PC. Hecho con un mapa 2D propio (DT-032) en `index.html` y `casa.html`; probado en el Quest por Ozni |
 | 2.4 Altura y modo sentado ✅ 2026-11-08 | Altura calibrable; modo sentado que eleva la vista. Botón Y = modo sentado autocalibrado a 1,60 m (DT-033); probado en el Quest por Ozni |
-| 2.5 Manos | Seguimiento de manos básico: apuntar y pellizcar para seleccionar |
-| 2.6 Escritorio y móvil | Clic en el suelo para desplazarse; controles táctiles básicos |
+| 2.5 Manos ✅ 2026-11-08 | Seguimiento de manos básico: apuntar y pellizcar para seleccionar. Rayo hombro→mano; pellizco = seleccionar o arco de salto (DT-034); probado en el Quest por Ozni |
+| 2.6 Escritorio y móvil ✅ 2026-11-08 | Clic en el suelo para desplazarse; controles táctiles básicos. Clic o toque en el suelo visible y pisable, con anillo al pasar el ratón (DT-034); probado por Ozni |
 
 **Dependencias:** F0 (se puede hacer en paralelo con F1).
 **Terminada cuando:** 3 personas que no conocen el proyecto recorren la sala

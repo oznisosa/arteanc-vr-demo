@@ -30,12 +30,16 @@
               caminar-quest
               teletransporte="mando: #mando-derecho"
               giro-por-pasos="mando: #mando-derecho"
-              modo-sentado="mando: #mando-izquierdo">
+              modo-sentado="mando: #mando-izquierdo"
+              clic-en-suelo>
       <a-camera id="camara" position="0 1.6 0" wasd-controls="acceleration: 25">
         <a-entity cursor="rayOrigin: mouse" raycaster="objects: .interactivo"></a-entity>
       </a-camera>
       <a-entity id="mando-izquierdo" laser-controls="hand: left" raycaster="objects: .interactivo; far: 10"></a-entity>
       <a-entity id="mando-derecho" laser-controls="hand: right" raycaster="objects: .interactivo; far: 10"></a-entity>
+      <!-- Manos sin mandos (módulo 2.5) -->
+      <a-entity id="mano-izquierda" hand-tracking-controls="hand: left" mano-puntero></a-entity>
+      <a-entity id="mano-derecha" hand-tracking-controls="hand: right" mano-puntero></a-entity>
     </a-entity>
 
   </a-scene>

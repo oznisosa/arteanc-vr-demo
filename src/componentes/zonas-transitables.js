@@ -192,6 +192,7 @@ AFRAME.registerComponent('zonas-transitables', {
     }
 
     const grupo = new THREE.Group();
+    grupo.userData.ayuda = true; // los clics en el suelo (2.6) lo ignoran
     for (const [puntos, color] of [[verde, '#2E8B57'], [rojo, '#C0392B']]) {
       const geometria = new THREE.BufferGeometry();
       geometria.setAttribute('position', new THREE.Float32BufferAttribute(puntos, 3));
