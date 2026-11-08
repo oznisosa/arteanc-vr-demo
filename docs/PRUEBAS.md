@@ -25,7 +25,7 @@ En PowerShell, en la carpeta del proyecto:
 |---|---|---|---|
 | R1 | `npm run build` | Primero `✓ datos/catalogo.json: N piezas correctas`, luego `✓ built in …`, sin errores en rojo | |
 | R2 | `npm run dev` | Se abre el navegador con la sala | |
-| R3 | Clic en las 3 piezas | La ficha muestra nombre y precio de cada una | |
+| R3 | Clic en las 3 piezas | La ficha aparece **junto a cada pieza** con su chip, nombre y precio | |
 | R4 | Clic en **CERRAR** | La ficha desaparece | |
 | R5 | Clic en el botón de la puerta | Las puertas se abren; el letrero cambia a CERRAR | |
 | R6 | Abrir la consola del navegador (F12 → Console) | Ningún error en rojo, salvo `favicon.ico` (conocido) | |
@@ -44,7 +44,9 @@ Si todo está bien: `Ctrl + C` para cerrar el servidor y hacer `git push`.
 | P2 | Piezas sobre las peanas | El modelo, la esfera y el cono apoyados sobre su peana, sin flotar ni hundirse; el modelo mide ~65 cm | |
 | P2b | Clic en una peana (no en la pieza) | No abre la ficha | |
 | P3 | Suelo | Baldosas de piedra en 4 tonos (24 en total) | |
-| P4 | Ficha: clic en la esfera, el modelo y el cono | "CERAMICA 01 · US$ 35.00", "MODELO 3D DE PRUEBA · No disponible para venta", "FIGURA 03 · US$ 45.00" | |
+| P4 | Ficha: clic en la esfera, el modelo y el cono | Aparece a la derecha de la pieza, mirando hacia ti. Esfera: chip "ARTESANIA TRADICIONAL PERUANA", "CERAMICA 01", "Precio ficticio: US$ 35.00". Modelo: chip "ORIGINAL DOCUMENTADO", "No disponible para venta" y "Historia y fuentes: Sin fuentes verificadas". Cono: "FIGURA 03", "Precio ficticio: US$ 45.00". En las tres: "Clasificacion ilustrativa (demo)" | |
+| P4b | Ficha: clic en otra pieza con la ficha abierta | La ficha se mueve junto a la nueva pieza (solo hay una abierta) | |
+| P4c | Ficha: legibilidad | Ningún texto se superpone ni se sale del panel | |
 | P5 | Ficha: CERRAR | Se oculta | |
 | P6 | Puertas: botón interior | Se abren las dos hojas; letreros "CERRAR" | |
 | P7 | Puertas: botón exterior | Se cierran; letreros "ABRIR" (los dos botones controlan la misma puerta) | |

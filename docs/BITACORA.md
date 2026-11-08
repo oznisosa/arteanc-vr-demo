@@ -8,6 +8,79 @@
 
 ---
 
+## 2026-11-08 — Módulo 1.3: ficha pequeña junto a la pieza (`ficha-producto`)
+
+**Tipo:** interfaz. **Primer cambio visible de la Fase 1.**
+
+### Antes y después
+| | Antes | Ahora |
+|---|---|---|
+| Tamaño | 2,8 × 1,45 m | 0,95 m de ancho × 0,62 m (crece si hay mucho texto) |
+| Posición | Fija, flotando a 2,35 m sobre las piezas | Junto a la pieza elegida: 0,75 m a su derecha, 0,45 m hacia el visitante, centro a 1,45 m, girada hacia él |
+| Contenido | Nombre, precio, descripción | **Chip del tipo** (color por tipo) + aviso "demo", título, precio, disponibilidad, detalles conocidos, descripción |
+| Precio | Texto fijo del catálogo | Reglas del contrato: "Precio ficticio: US$ 35.00", "No disponible para venta", "Precio a consultar" |
+| Santuario | — | "Historia y fuentes: Sin fuentes verificadas" (o la lista de fuentes) |
+| Código | 45 líneas de HTML | 1 línea: `<a-entity id="ficha" ficha-producto>` |
+
+**Archivos:** `src/componentes/ficha-producto.js` (nuevo), `src/datos/textos-pieza.js`
+(nueva función `contenidoFicha()` con todas las reglas de textos),
+`src/interaccion/ficha.js` (solo conecta el clic con la ficha), `src/main.js`, `index.html`.
+
+**Colores del chip** (paleta del diseño final): original documentado =
+basalto `#302A27`; réplica = bronce `#795A44`; artesanía tradicional =
+terracota `#B96645`; contemporánea = ocre `#A88B61`; sin clasificar = gris.
+
+### Problemas encontrados al probar (y cómo se resolvieron)
+1. **Letra demasiado pequeña** en la primera versión (ilegible a 3 m) → se agrandó.
+2. **Textos superpuestos** al agrandarla: los títulos largos ocupaban dos
+   líneas y las posiciones eran fijas. Solución: calcular cuántas líneas
+   ocupa cada texto. Se midió la fuente de A-Frame en el navegador
+   (Roboto: `lineHeight` 44,1 y `widthFactor` 23,6), así que **una línea
+   ocupa 1,87 veces el ancho de una letra**. Con eso cada bloque se coloca
+   debajo del anterior y el panel crece si hace falta.
+3. **El "·" y el "×" no existen en la fuente** (salía un hueco) → se cambian
+   por "-" y "x" al mostrar, igual que las tildes, hasta el módulo 1.5.
+
+### Cómo se verificó
+- Capturas de cerca (como un visitante a 1,5 m) de la ficha del modelo
+  (Santuario) y de una pieza con **todos los datos y una descripción larga**
+  (catálogo modificado temporalmente y luego restaurado): nada se superpone,
+  el panel crece y el chip sin "demo" se ve bien con datos reales.
+- **Clics reales con el ratón:** pieza01 → ficha a su lado; pieza03 → la
+  ficha se mueve (una sola abierta); CERRAR → se oculta y el botón deja de ser
+  clicable; pieza02 → vuelve a aparecer.
+- `npm run build` + `npm run preview`: mismos textos en las 3 fichas.
+- **Pendiente:** prueba de Ozni en el Quest (legibilidad dentro del visor).
+
+### Conceptos que aparecen
+- **Diseño de interfaz en VR (UI diegética).** La información aparece en el
+  espacio, junto al objeto, en lugar de un cartel gigante fijo.
+- **Valla publicitaria (*billboard*).** Girar un panel para que mire al
+  visitante: ángulo con `Math.atan2(dx, dz)`.
+- **Vector perpendicular.** La "derecha" del visitante se obtiene girando 90°
+  la dirección pieza → visitante: `(z, 0, −x)`.
+- **Maquetación (*layout*) con flujo.** Cada bloque se coloca según el alto
+  real del anterior, como en una página web.
+- **Métricas de fuente.** Alto de línea y ancho medio de letra: permiten
+  calcular cuánto ocupa un texto antes de dibujarlo.
+- **Reglas de presentación separadas de los datos.** `contenidoFicha()` decide
+  qué se muestra; el componente solo lo dibuja.
+
+### Para el tutor
+- Ejercicio: en `index.html`, poner `ficha-producto="lado: izquierda"` y ver
+  dónde aparece la ficha.
+- Ejercicio: cambiar `"stock": null` por `0` en `pieza01` (y `"naturaleza": "producto"`)
+  y ver "Agotado".
+- Pregunta: ¿por qué no se muestra "Material: desconocido" cuando el material es `null`?
+
+### Pendientes
+- Prueba de Ozni en el Quest: ¿se lee bien la ficha dentro del visor? ¿Está
+  a buena altura y distancia?
+- Más adelante (F6): botón "Ver en la tienda" y favorito en la ficha.
+- Siguiente: módulo 1.4 (`datos/salas.json`).
+
+---
+
 ## 2026-11-08 — Módulo 1.2: componente `pieza-exhibida`
 
 **Tipo:** componente nuevo. **La escena se ve igual** (misma captura, 34
@@ -89,8 +162,12 @@ Detalles en `CLAUDE.md` y en DT-030 (rama `fase-2`).
 - Pregunta: ¿por qué la ficha sigue funcionando si el clic lo recibe la pieza
   hija y no la entidad con `id="pieza02"`?
 
+### Prueba de Ozni en el Quest
+✅ "Cada una abre su ficha y únicamente el del medio gira, igual que antes."
+Las tres giran, pero la esfera y el cono son simétricos alrededor del eje
+vertical, así que su giro no se ve.
+
 ### Pendientes
-- Prueba de Ozni en el Quest.
 - Siguiente: módulo 1.3 (`ficha-producto`: ficha pequeña junto a la pieza,
   con el tipo de pieza).
 

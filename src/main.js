@@ -8,8 +8,9 @@
 //   datos/textos-pieza.js       → convierte los datos de una pieza en textos
 //   componentes/caminar-quest.js → componente A-Frame de movimiento (se registra al importarlo)
 //   componentes/pieza-exhibida.js → peana + modelo de cada pieza, desde el catálogo (1.2)
+//   componentes/ficha-producto.js → ficha pequeña junto a la pieza (1.3)
 //   escena/suelo.js             → baldosas del suelo
-//   interaccion/ficha.js        → ficha de producto
+//   interaccion/ficha.js        → conecta el clic en cada pieza con la ficha
 //   interaccion/puertas.js      → puertas corredizas
 //   interaccion/recepcion.js    → letrero de bienvenida
 //   depuracion.js               → medidor de rendimiento, solo con ?debug
@@ -20,6 +21,7 @@
 import { catalogoListo } from './datos/catalogo-servicio.js';
 import './componentes/caminar-quest.js';
 import './componentes/pieza-exhibida.js';
+import './componentes/ficha-producto.js';
 import { crearBaldosas } from './escena/suelo.js';
 import { iniciarFicha } from './interaccion/ficha.js';
 import { iniciarPuertas } from './interaccion/puertas.js';

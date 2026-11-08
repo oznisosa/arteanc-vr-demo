@@ -27,7 +27,7 @@ Con `rotation="0 180 0"` pasan a mirar hacia **−z**.
  z = -6   ┌──────────── PARED FONDO + 3 paneles (z -5.78) ────────────┐
           │                                                            │
  z = -3.5 │        (P1)            (P2)            (P3)    pedestales  │
- z = -3.05│                    [ FICHA y 2.35 ]                        │
+ z ≈ -3.5 │      [ficha junto a la pieza elegida, y 1.45]             │
  z = -2.82│                   placa monumento                          │
           │                                                            │
  z =  0   │                     ● cámara (0, 1.6, 0)                   │
@@ -93,9 +93,18 @@ Los tres productos tienen las clases `producto` e `interactivo`.
 
 ## Ficha de producto (`#ficha`)
 
-- Posición `0 2.35 -3.05`, mira hacia +z (hacia la cámara). Empieza oculta (`visible="false"`).
-- Fondo de 2.8 × 1.45.
-- Hijos: `#nombre`, `#precio`, `#descripcion` y el botón `#cerrarFicha` (local `0 -0.53 0.04`, clase `interactivo`).
+Desde el módulo 1.3: `<a-entity id="ficha" ficha-producto>` (componente en
+`src/componentes/ficha-producto.js`). Empieza oculta.
+- **Posición: variable.** Al hacer clic en una pieza aparece a **0,75 m a su
+  derecha** (vista desde el visitante), **0,45 m adelantada** hacia él, con el
+  centro a **y = 1,45**, y girada para mirarle. Por ejemplo, desde el inicio:
+  pieza01 → x −1,13; pieza02 → x 0,75; pieza03 → x 2,43 (z ≈ −3,5).
+- Fondo marfil `#FFF4E6` de **0,95 m** de ancho y **0,62 m** de alto mínimo (crece con el texto).
+- Contenido: chip del tipo de pieza (color según el tipo), aviso "Clasificación
+  ilustrativa (demo)", título, precio, disponibilidad, detalles conocidos y descripción.
+- Botón `#cerrarFicha` abajo a la derecha (0,26 × 0,09); tiene la clase
+  `interactivo` solo mientras la ficha está visible.
+- Antes del 1.3: panel fijo en `0 2.35 -3.05` de 2,8 × 1,45 con `#nombre`, `#precio` y `#descripcion`.
 
 ## Recepción
 
@@ -137,7 +146,7 @@ x −4.8..4.8 y z −4.8..1.6.
 - **Código**: un solo `<script type="module" src="./src/main.js">` al final del `<body>`. `main.js` importa los demás módulos de `src/` (desde el módulo 0.4; antes eran `catalogo.js` y `app.js`).
 - **`datos/catalogo.json`** (desde el módulo 1.1; se descarga con `fetch`): cada pieza tiene un campo `id` (`pieza01`, `pieza02`, `pieza03`) que debe coincidir con el `id` de su entidad en `index.html`.
 - **Los módulos de `src/`** necesitan que existan estos ids en `index.html`:
-  `#ficha`, `#nombre`, `#precio`, `#descripcion`, `#cerrarFicha`,
+  `#ficha` (los demás elementos de la ficha los crea su componente),
   `#baldosas`, `#camara`, `#mando-izquierdo`, `#botonPuerta`,
   `#botonPuertaExterior`, `#textoPuerta`, `#textoPuertaExterior`,
   `#puertaIzquierda`, `#puertaDerecha`, `#mostradorRecepcion` y

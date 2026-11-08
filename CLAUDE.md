@@ -23,7 +23,8 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   [docs/PRUEBAS.md](docs/PRUEBAS.md).
 - **Fase 1 (Datos y componentes) en curso.** Hecho: 1.1 (`datos/catalogo.json`,
   guía [docs/CATALOGO.md](docs/CATALOGO.md), `npm run validar`).
-  Hecho: 1.2 (`pieza-exhibida`). Siguiente: 1.3 `ficha-producto`.
+  Hecho: 1.2 (`pieza-exhibida`) y 1.3 (`ficha-producto`, ficha junto a la pieza).
+  Siguiente: 1.4 datos de salas (`datos/salas.json` desde `02-layout.json`).
   Ver el plan para el orden y los criterios.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 

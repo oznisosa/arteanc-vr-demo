@@ -372,47 +372,10 @@
               pieza-exhibida="pieza: pieza03; peanaForma: cilindro; peanaTamano: 1.3 1 1.3;
                               tamanoSinMedidas: 0.7; formaProvisional: cono; colorProvisional: #8A6650"></a-entity>
 
-    <!-- FICHA ÚNICA -->
-    <a-entity id="ficha"
-              position="0 2.35 -3.05"
-              visible="false">
-
-      <a-plane width="2.8"
-               height="1.45"
-               color="#FFF4E6"></a-plane>
-
-      <a-text id="nombre"
-              position="-1.25 0.47 0.02"
-              color="#493021"
-              width="3"></a-text>
-
-      <a-text id="precio"
-              position="-1.25 0.15 0.02"
-              color="#876142"
-              width="2.8"></a-text>
-
-      <a-text id="descripcion"
-              position="-1.25 -0.13 0.02"
-              color="#493021"
-              width="2.4"
-              wrap-count="42"></a-text>
-
-      <!-- BOTÓN CERRAR -->
-      <a-plane id="cerrarFicha"
-               class="interactivo"
-               position="0 -0.53 0.04"
-               width="0.9"
-               height="0.25"
-               color="#795A44">
-
-        <a-text value="CERRAR"
-                position="0 0 0.02"
-                align="center"
-                color="white"
-                width="1.8"></a-text>
-
-      </a-plane>
-    </a-entity>
+    <!-- FICHA DE PRODUCTO (módulo 1.3)
+         Una sola ficha pequeña que aparece junto a la pieza elegida.
+         La construye el componente ficha-producto (src/componentes/ficha-producto.js). -->
+    <a-entity id="ficha" ficha-producto></a-entity>
 
     <!-- CÁMARA Y RATÓN -->
     

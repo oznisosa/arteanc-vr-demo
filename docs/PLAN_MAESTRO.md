@@ -74,7 +74,7 @@ al hacer push.
 |---|---|
 | 1.1 Esquema del catálogo | ✅ **Hecho el 2026-11-08**: `datos/catalogo.json` (contrato del diseño final + DT-014), guía [CATALOGO.md](CATALOGO.md), validador `npm run validar`; las 3 piezas migradas |
 | 1.2 `pieza-exhibida` | ✅ **Hecho el 2026-11-08**: componente que crea la peana, coloca el modelo de `modelos.galeria` a escala real (`dimensiones_m.alto`) o provisional, y lo hace interactivo; cada pieza es una línea en `index.html` |
-| 1.3 `ficha-producto` | Ficha pequeña junto a la pieza (no un panel gigante) con todos los campos, incluido el tipo de pieza |
+| 1.3 `ficha-producto` | ✅ **Hecho el 2026-11-08**: ficha de 0,95 m junto a la pieza, mirando al visitante, con chip de tipo, precio y disponibilidad según el contrato, detalles conocidos y "Sin fuentes verificadas" en el Santuario; crece con el texto |
 | 1.4 Datos de salas | `datos/salas.json` a partir de [diseno/final/02-layout.json](diseno/final/02-layout.json): salas, accesos, `exhibitSlots` y `fixtures` |
 | 1.7 *Greybox* de la casa | El constructor levanta **toda la casa** con volúmenes simples a escala real (muros, huecos trapezoidales, peanas, canal) desde `salas.json`. Se recorre en el Quest para validar escala, recorrido y legibilidad **antes** de la Fase 4 |
 | 1.5 Textos y fuente | Textos de la UI en `datos/textos/es.json`; fuente MSDF con tildes y eñes; corregir los textos sin tilde y el letrero al revés |
