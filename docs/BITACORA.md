@@ -8,6 +8,61 @@
 
 ---
 
+## 2026-11-08 — Módulo 0.3: abrir la escena en el Quest 3 por wifi (preparado)
+
+**Tipo:** herramientas de desarrollo. **La escena no cambió.**
+**Archivos:** `package.json` (orden `quest` y dependencia nueva), `vite.config.js`,
+`README.md`, `CLAUDE.md`, `docs/PLAN_MAESTRO.md`.
+
+### Qué cambió
+- **Nueva orden `npm run quest`** (= `vite --mode quest`). En ese modo:
+  - `server.host: true`: el servidor escucha en la red local, no solo en el PC.
+  - Plugin **`@vitejs/plugin-basic-ssl`** (2.3.0): sirve por **HTTPS** con un
+    certificado **autofirmado** generado al momento.
+  - No abre el navegador del PC.
+- **`npm run dev` sigue igual** (HTTP, solo `localhost`, abre el navegador):
+  así en el PC no aparece el aviso del certificado.
+- Se eligió **wifi** en lugar de cable USB (`adb reverse`) porque no requiere
+  activar el modo desarrollador del Quest ni instalar herramientas de Android.
+
+### Por qué hace falta HTTPS
+WebXR solo funciona en un **contexto seguro**: `https://` o `localhost`. Desde
+el Quest, el PC no es `localhost` sino `192.168.200.6`, así que hace falta
+HTTPS. Sin él, el botón VR no aparece.
+
+### Cómo se verificó
+- `npm run quest` arranca y responde en `https://192.168.200.6:5173/` (código
+  200); el modelo `.glb` (18,9 MB) se descarga completo por HTTPS.
+- `http://` (sin s) en ese puerto no responde: solo hay HTTPS en este modo.
+- El navegador de pruebas rechaza el certificado con `ERR_CERT_AUTHORITY_INVALID`:
+  es lo esperado con un certificado autofirmado.
+- **Pendiente:** Ozni abre la dirección en el Quest, entra en VR y confirma
+  que la escena, la ficha, las puertas y el joystick funcionan.
+
+### Conceptos que aparecen
+- **Contexto seguro (*secure context*).** Funciones sensibles del navegador
+  (WebXR, cámara, micrófono) solo se activan en HTTPS o `localhost`.
+- **Certificado TLS.** Prueba que un sitio es quien dice ser. Los de verdad los
+  firma una autoridad (p. ej. Let's Encrypt); uno **autofirmado** cifra igual,
+  pero el navegador no puede verificar quién lo emitió y avisa.
+- **IP local y red privada.** `192.168.x.x` son direcciones dentro de tu casa;
+  no se ven desde internet.
+- **Modo de Vite (`--mode`).** Una misma configuración que cambia según el modo.
+- **Cortafuegos (firewall).** Windows puede preguntar si Node.js puede recibir
+  conexiones; hay que permitirlo solo en redes **privadas**.
+
+### Para el tutor
+- Ejercicio: explicar por qué `npm run dev` no necesita HTTPS en el PC y el
+  Quest sí lo necesita.
+- Pregunta: ¿por qué es aceptable saltarse el aviso del certificado aquí y
+  nunca en una web desconocida?
+
+### Pendientes
+- Prueba de Ozni en el Quest 3 (resultado se anota aquí).
+- Siguiente: módulo 0.4 (dividir `app.js` en módulos).
+
+---
+
 ## 2026-11-08 — Módulo 0.2: Node.js y Vite
 
 **Tipo:** herramientas de desarrollo. **La escena no cambió.**

@@ -8,7 +8,13 @@
 // Vite no los empaqueta. Por eso, al terminar el build, los copiamos a `dist/`
 // junto con los modelos. Esto desaparecerá en el módulo 0.4 (módulos JS).
 
+// Modo "quest" (módulo 0.3): `npm run quest` abre el servidor a la red local
+// con HTTPS, para entrar desde el navegador del Quest 3 por wifi. WebXR solo
+// funciona en páginas seguras (HTTPS o localhost). El certificado es
+// autofirmado: el navegador avisará la primera vez y hay que aceptarlo.
+
 import { defineConfig } from 'vite';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import { cpSync } from 'node:fs';
 
 // Archivos que la escena carga directamente y que Vite no ve por sí solo.
@@ -26,18 +32,26 @@ function copiarArchivosClasicos() {
   };
 }
 
-export default defineConfig({
-  // Rutas relativas: la web funciona igual en GitHub Pages
-  // (que la sirve desde /arteanc-vr-demo/) y en local.
-  base: './',
+export default defineConfig(({ mode }) => {
+  const paraQuest = mode === 'quest';
 
-  // No hay carpeta `public/` todavía; evitamos que Vite busque una.
-  publicDir: false,
+  return {
+    // Rutas relativas: la web funciona igual en GitHub Pages
+    // (que la sirve desde /arteanc-vr-demo/) y en local.
+    base: './',
 
-  server: {
-    port: 5173,
-    open: true, // abre el navegador al arrancar
-  },
+    // No hay carpeta `public/` todavía; evitamos que Vite busque una.
+    publicDir: false,
 
-  plugins: [copiarArchivosClasicos()],
+    server: {
+      port: 5173,
+      open: !paraQuest, // en el PC abre el navegador; para el Quest, no
+      host: paraQuest,  // true = visible desde otros equipos de la red local
+    },
+
+    plugins: [
+      copiarArchivosClasicos(),
+      ...(paraQuest ? [basicSsl()] : []), // HTTPS solo en modo quest
+    ],
+  };
 });

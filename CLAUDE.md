@@ -59,7 +59,8 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   plano (puerto 5173); para probar el build, `npm run build` y
   `npx vite preview` (puerto 4173). Abrir con Playwright para clics y capturas
   (guardar en `.playwright-mcp/`, carpeta ignorada). Borrar `dist/` al terminar.
-- Ozni usa `npm run dev`, que abre el navegador solo.
+- Ozni usa `npm run dev`, que abre el navegador solo, y `npm run quest` para el
+  visor (HTTPS autofirmado por wifi; IP del PC: 192.168.200.6 por Ethernet).
 - Mientras `app.js` y `catalogo.js` sean scripts clásicos, `vite.config.js` los
   copia a `dist/` junto con `modelos/` (se quitará en el módulo 0.4).
 - El modo VR del Quest 3 lo prueba Ozni en el visor; pedirle confirmación y anotar el resultado en la bitácora.

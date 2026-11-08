@@ -6,10 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "quest": "vite --mode quest",
     "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
     "vite": "^8.3.6"
   }
 }

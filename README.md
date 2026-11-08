@@ -24,6 +24,17 @@ npm install
 Después, cada vez que se trabaje:
 ```
 npm run dev        # servidor local en http://localhost:5173 con recarga automática
+npm run quest      # igual, pero con HTTPS y abierto a la red local, para el Quest 3
 npm run build      # genera la versión publicable en dist/
 npm run preview    # prueba esa versión publicable en http://localhost:4173
 ```
+
+## Probar en el Meta Quest 3 (por wifi)
+1. El PC y el Quest deben estar en la **misma red** (mismo router).
+2. En el PC: `npm run quest`. En la terminal aparece una línea
+   `Network: https://192.168.x.x:5173/`.
+3. Si Windows pregunta por el firewall, **permitir el acceso en redes privadas**.
+4. En el navegador del Quest, escribir esa dirección **con `https://`**.
+5. Aparecerá un aviso de conexión no privada (el certificado es de prueba):
+   **Configuración avanzada → Continuar a 192.168.x.x**.
+6. Pulsar el botón **VR** de la escena.
