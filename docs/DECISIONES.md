@@ -238,14 +238,12 @@ midiendo en el Quest.
 ---
 
 ## DT-013 — Publicar con GitHub Actions (build de Vite) en lugar de la rama
-**Estado:** Propuesta — **aplazada por Ozni** el 2026-11-08 · **Fecha:** 2026-11-08
+**Estado:** Aceptada · **Fecha:** 2026-11-08
 
-> **Por qué se aplazó:** hoy la ventaja es pequeña. Pages ya publica sola la
-> rama, y los módulos de `src/` funcionan sin build. Se activará cuando la
-> escena use paquetes de npm (p. ej. teletransporte en F2 o el descompresor
-> de modelos en F3), que solo funcionan tras `npm run build`. El flujo
-> preparado está en el commit `97fe7f9` (`.github/workflows/publicar.yml`) y
-> se puede recuperar con `git show 97fe7f9:.github/workflows/publicar.yml`.
+> **Historia:** primero se aplazó (commit `3f4a8cf`) porque hoy la ventaja es
+> pequeña. Al saber que hará falta en cuanto la escena use paquetes de npm
+> (teletransporte en F2, descompresor de modelos en F3), Ozni decidió
+> activarla ya, para que la base quede lista.
 
 **Contexto:** GitHub Pages publicaba la raíz de `main` tal cual ("Deploy from
 a branch"). Funcionaba, pero publicaba también `docs/` (≈ 10 MB de diseño),

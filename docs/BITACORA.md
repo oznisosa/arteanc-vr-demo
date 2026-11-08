@@ -8,9 +8,21 @@
 
 ---
 
-## 2026-11-08 — Módulo 0.6: publicación automática (se queda en modo rama)
+## 2026-11-08 — Módulo 0.6: publicación automática con GitHub Actions
 
-### Decisión final de Ozni
+### Decisión final: se activa GitHub Actions
+Tras saber que el build hará falta en cuanto la escena use paquetes de npm,
+Ozni decidió activarlo ya: "hagámoslo de una vez". Se recuperó el flujo con
+`git show 97fe7f9:.github/workflows/publicar.yml` y DT-013 pasa a "Aceptada".
+**Nueva regla:** antes de cada push, comprobar que `npm run build` funciona,
+porque si falla en GitHub no se publica.
+**Pendiente:** Ozni cambia Settings → Pages → Source a "GitHub Actions", hace
+push y se confirma la primera publicación (✅ verde en la pestaña Actions).
+
+Concepto para el tutor: **recuperar un archivo borrado del historial** con
+`git show <commit>:<ruta>`. Git no olvida nada de lo que se guardó en un commit.
+
+### Primer planteamiento (aplazar)
 Ozni preguntó si el cambio a GitHub Actions era necesario: "no veo gran
 ventaja realmente". Tiene razón por ahora: Pages ya publica sola la rama y los
 módulos funcionan sin build. **Se queda el modo "Deploy from a branch"**, se
@@ -164,6 +176,10 @@ pegada a la cámara, así que se lee también en VR.
 es el único modelo 3D. Con 20 piezas así se pasaría de 1,9 millones de
 triángulos. Esto confirma la DT-012: en la sala, versión de galería ligera;
 la detallada, solo al examinar.
+
+**Medición en el PC de Ozni** (captura de pantalla, vista inicial, ventana ancha):
+fps 59 · llamadas 38 · triángulos 104 023. Coincide con la anterior; las 4
+llamadas de más se deben a que la vista ancha incluye más objetos.
 
 **Medición en el Quest 3 (pendiente, la hace Ozni):**
 | Métrica | Fuera de VR | Dentro de VR |

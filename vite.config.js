@@ -7,7 +7,7 @@
 // El código está en `src/` como módulos ES (módulo 0.4) y Vite lo empaqueta.
 // Los modelos `.glb` se cargan desde el HTML con `url(./modelos/…)`, que Vite
 // no ve; por eso, al terminar el build, copiamos `modelos/` a `dist/`.
-// (La web publicada usa la raíz de `main`, no `dist/`: ver DT-013.)
+// (GitHub Actions publica `dist/` en cada push: ver DT-013.)
 
 // Modo "quest" (módulo 0.3): `npm run quest` abre el servidor a la red local
 // con HTTPS, para entrar desde el navegador del Quest 3 por wifi. WebXR solo

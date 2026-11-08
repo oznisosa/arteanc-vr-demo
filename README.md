@@ -32,9 +32,9 @@ Añadir `?debug` a la dirección (p. ej. `http://localhost:5173/?debug`) muestra
 medidor de rendimiento: fps, llamadas de dibujo y triángulos (también dentro del visor).
 
 ## Publicación
-Cada `git push` a `main` publica la web en
-https://oznisosa.github.io/arteanc-vr-demo/ (GitHub Pages, modo "Deploy from a
-branch": se publica la raíz de `main` tal cual, en 1–2 minutos).
+Cada `git push` a `main` construye la web con Vite y la publica en
+https://oznisosa.github.io/arteanc-vr-demo/ (GitHub Actions; el progreso se ve
+en la pestaña **Actions** del repositorio).
 
 ## Probar en el Meta Quest 3 (por wifi)
 1. El PC y el Quest deben estar en la **misma red** (mismo router).
