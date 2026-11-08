@@ -8,6 +8,76 @@
 
 ---
 
+## 2026-11-08 — Módulo 0.5: medidor de rendimiento con `?debug`
+
+**Tipo:** herramienta de medición. **El visitante no ve ningún cambio** (sin
+`?debug` no aparece nada).
+
+### Qué cambió
+| Archivo | Qué es |
+|---|---|
+| `src/componentes/medidor-rendimiento.js` (nuevo) | Componente A-Frame: panel negro con texto verde que muestra **fps**, **llamadas de dibujo** y **triángulos**, actualizado cada 0,5 s |
+| `src/depuracion.js` (nuevo) | Lee la dirección; si contiene `?debug`, activa el panel `stats` de A-Frame y cuelga el medidor de la cámara (a 0,8 m, abajo a la izquierda) |
+| `src/main.js` | Dos líneas: `if (modoDepuracionActivo()) activarDepuracion();` |
+| `README.md` | Cómo usar `?debug` |
+
+¿Por qué un panel propio? El panel `stats` de A-Frame es HTML: se ve en el PC
+pero **desaparece dentro del visor**. El medidor propio es una entidad 3D
+pegada a la cámara, así que se lee también en VR.
+
+### Primera medición (PC, Chrome de Playwright, vista inicial)
+| Métrica | Valor | Presupuesto (ARQUITECTURA §5) |
+|---|---|---|
+| fps | 60 (límite de la pantalla del PC) | 72 en el Quest |
+| Llamadas de dibujo | **34** | < 100 ✅ |
+| Triángulos en vista | **104 015** | < 250 000 ✅ |
+| …de ellos, el modelo `Untitle123d.glb` | **97 075 (93 %)** | galería 5–15 mil ❌ · examen ≤ 100 mil ✅ |
+| Mallas visibles en la escena | 68 | — |
+
+**Lectura:** la sala vacía cuesta muy poco (unos 7 000 triángulos); casi todo
+es el único modelo 3D. Con 20 piezas así se pasaría de 1,9 millones de
+triángulos. Esto confirma la DT-012: en la sala, versión de galería ligera;
+la detallada, solo al examinar.
+
+**Medición en el Quest 3 (pendiente, la hace Ozni):**
+| Métrica | Fuera de VR | Dentro de VR |
+|---|---|---|
+| fps | | |
+| llamadas | | |
+| triángulos | | |
+(En VR se dibuja una vez por ojo: llamadas y triángulos salen aproximadamente al doble.)
+
+### Cómo se verificó
+- `http://localhost:5173/?debug`: aparece el panel de A-Frame (arriba a la
+  izquierda) y el medidor propio con "PC fps: 60 · llamadas: 34 · triangulos: 104.015".
+- `http://localhost:5173/` (sin `?debug`): ni panel ni medidor.
+
+### Conceptos que aparecen
+- **fps (fotogramas por segundo).** Por debajo de 72 en el Quest, la imagen
+  tiembla y marea. Es la métrica más importante en VR.
+- **Llamada de dibujo (*draw call*).** Cada vez que la CPU le pide a la GPU que
+  dibuje un objeto. Muchas llamadas saturan la CPU aunque haya pocos triángulos.
+- **Triángulos.** Cada modelo 3D está hecho de triángulos; más triángulos = más
+  trabajo para la GPU.
+- **`renderer.info`.** Contadores de Three.js con lo dibujado en el último fotograma.
+- **Parámetros de la URL (*query string*).** Lo que va tras `?`. Se lee con
+  `URLSearchParams`. Sirve para activar opciones sin cambiar el código.
+- **Medir antes de optimizar.** Sin números no se sabe qué optimizar; aquí el
+  número dice claramente que el problema es el modelo, no la sala.
+
+### Para el tutor
+- Ejercicio: abrir `?debug`, acercarse al modelo y alejarse. ¿Cambian los
+  triángulos? ¿Por qué no? (Pista: no hay LOD todavía.)
+- Ejercicio: cerrar la ficha y abrirla. ¿Cuántas llamadas de dibujo añade?
+- Pregunta: si el modelo es el 93 % de los triángulos, ¿qué ganaríamos
+  reduciéndolo a 10 000?
+
+### Pendientes
+- Ozni mide en el Quest (fuera y dentro de VR) y se completa la tabla.
+- Siguiente: módulo 0.6 (publicación automática).
+
+---
+
 ## 2026-11-08 — Módulo 0.4: el código dividido en módulos (`src/`)
 
 **Tipo:** reorganización del código. **La escena no cambió.**

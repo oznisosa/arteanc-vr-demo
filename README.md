@@ -28,6 +28,8 @@ npm run quest      # igual, pero con HTTPS y abierto a la red local, para el Que
 npm run build      # genera la versión publicable en dist/
 npm run preview    # prueba esa versión publicable en http://localhost:4173
 ```
+Añadir `?debug` a la dirección (p. ej. `http://localhost:5173/?debug`) muestra el
+medidor de rendimiento: fps, llamadas de dibujo y triángulos (también dentro del visor).
 
 ## Probar en el Meta Quest 3 (por wifi)
 1. El PC y el Quest deben estar en la **misma red** (mismo router).

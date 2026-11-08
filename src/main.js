@@ -10,6 +10,7 @@
 //   interaccion/ficha.js        → ficha de producto
 //   interaccion/puertas.js      → puertas corredizas
 //   interaccion/recepcion.js    → letrero de bienvenida
+//   depuracion.js               → medidor de rendimiento, solo con ?debug
 //
 // Este archivo solo usa rutas relativas ("./…"), así que funciona igual con
 // Vite y servido tal cual por GitHub Pages.
@@ -21,6 +22,7 @@ import { ajustarModeloAPedestal } from './escena/ajustar-modelo.js';
 import { iniciarFicha } from './interaccion/ficha.js';
 import { iniciarPuertas } from './interaccion/puertas.js';
 import { iniciarRecepcion } from './interaccion/recepcion.js';
+import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';
 
 iniciarFicha(catalogo);
 
@@ -30,3 +32,7 @@ ajustarModeloAPedestal('#pieza02', 0.65, 1.02);
 crearBaldosas();
 iniciarPuertas();
 iniciarRecepcion();
+
+if (modoDepuracionActivo()) {
+  activarDepuracion();
+}
