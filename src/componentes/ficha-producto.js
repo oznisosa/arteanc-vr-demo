@@ -72,9 +72,10 @@ function crearTexto(valor, x, y, ancho, letra, color, align = 'left') {
 AFRAME.registerComponent('ficha-producto', {
   schema: {
     lado: { default: 'derecha', oneOf: ['derecha', 'izquierda'] }, // lado de la pieza
-    separacion: { type: 'number', default: 0.75 },  // m, de lado desde el eje de la pieza
-    adelanto: { type: 'number', default: 0.45 },    // m, hacia el visitante
-    altura: { type: 'number', default: 1.45 }       // m, centro del panel sobre el suelo
+    separacion: { type: 'number', default: 0.85 },  // m, de lado desde el eje de la pieza
+    adelanto: { type: 'number', default: 0.45 },    // m, hacia el frente de la pieza
+    altura: { type: 'number', default: 1.45 },      // m, centro del panel sobre el suelo
+    giro: { type: 'number', default: 15 }           // grados, inclinación hacia la pieza
   },
 
   init: function () {
@@ -162,29 +163,33 @@ AFRAME.registerComponent('ficha-producto', {
     this.boton.classList.remove('interactivo');
   },
 
-  // Coloca el panel al lado de la pieza, un poco adelantado y mirando al visitante
+  // Coloca el panel al lado de la pieza, como una cartela de museo.
+  // La orientación depende SOLO de la pieza (no de dónde esté el visitante),
+  // así todas las fichas quedan igual de ordenadas respecto a su pieza.
   colocarJunto: function (elPieza) {
-    const camara = this.el.sceneEl.camera.el.object3D;
-
     const posPieza = new THREE.Vector3();
     elPieza.object3D.getWorldPosition(posPieza);
-    const posCamara = new THREE.Vector3();
-    camara.getWorldPosition(posCamara);
 
-    // Dirección horizontal de la pieza hacia el visitante, y su "derecha"
-    const haciaVisitante = posCamara.clone().sub(posPieza).setY(0).normalize();
-    const derecha = new THREE.Vector3(haciaVisitante.z, 0, -haciaVisitante.x);
+    // "Frente" de la pieza: su eje +Z en el mundo (hacia donde se la mira de frente)
+    const giroPieza = new THREE.Quaternion();
+    elPieza.object3D.getWorldQuaternion(giroPieza);
+    const frente = new THREE.Vector3(0, 0, 1).applyQuaternion(giroPieza).setY(0).normalize();
+
+    // "Derecha" de quien mira la pieza de frente
+    const derecha = new THREE.Vector3(frente.z, 0, -frente.x);
     const signo = this.data.lado === 'derecha' ? 1 : -1;
 
     const pos = posPieza.clone()
       .addScaledVector(derecha, signo * this.data.separacion)
-      .addScaledVector(haciaVisitante, this.data.adelanto);
+      .addScaledVector(frente, this.data.adelanto);
     pos.y = this.data.altura;
 
-    // Girar el panel (su frente es +Z) para que mire al visitante
-    const giro = Math.atan2(posCamara.x - pos.x, posCamara.z - pos.z);
+    // Misma orientación que la pieza, girada `giro` grados hacia ella
+    // (como la página de un libro abierto junto a la pieza)
+    const orientacion = Math.atan2(frente.x, frente.z)
+      - signo * THREE.MathUtils.degToRad(this.data.giro);
 
     this.el.object3D.position.copy(pos);
-    this.el.object3D.rotation.set(0, giro, 0);
+    this.el.object3D.rotation.set(0, orientacion, 0);
   }
 });

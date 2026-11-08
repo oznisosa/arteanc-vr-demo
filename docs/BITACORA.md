@@ -73,6 +73,23 @@ terracota `#B96645`; contemporánea = ocre `#A88B61`; sin clasificar = gris.
   y ver "Agotado".
 - Pregunta: ¿por qué no se muestra "Material: desconocido" cuando el material es `null`?
 
+### Corrección tras la revisión de Ozni: fichas "desordenadas"
+Ozni preguntó: "¿por qué las fichas no tienen el mismo ángulo de rotación?
+Parece desordenado". **Causa:** cada ficha giraba para mirar a la cámara
+desde su propia posición (*billboard*), así que la de la izquierda, la del
+centro y la de la derecha quedaban con ángulos distintos (p. ej. +20°, 0°, −20°).
+**Solución:** la ficha se orienta como una **cartela de museo**: con la
+orientación de **la pieza** (su eje +Z) girada **15° hacia ella**, como la
+página de un libro abierto. Ahora las tres quedan iguales (giro −15°, z −3,05,
+centro a 1,45 m), da igual desde dónde se haga clic. Además, la separación
+lateral pasó de 0,75 a **0,85 m** porque la ficha de la izquierda tapaba el
+borde de la esfera. Se comprobó con una imagen que muestra las tres fichas a la vez.
+Nueva opción del componente: `giro` (grados, por defecto 15).
+
+Concepto: **orientación relativa a un objeto frente a relativa al
+observador.** La primera da orden visual y coherencia; la segunda asegura que
+siempre se lea de frente. En un museo se usa la primera.
+
 ### Pendientes
 - Prueba de Ozni en el Quest: ¿se lee bien la ficha dentro del visor? ¿Está
   a buena altura y distancia?

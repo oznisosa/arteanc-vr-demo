@@ -27,7 +27,7 @@ Con `rotation="0 180 0"` pasan a mirar hacia **−z**.
  z = -6   ┌──────────── PARED FONDO + 3 paneles (z -5.78) ────────────┐
           │                                                            │
  z = -3.5 │        (P1)            (P2)            (P3)    pedestales  │
- z ≈ -3.5 │      [ficha junto a la pieza elegida, y 1.45]             │
+ z = -3.05│      [ficha a la derecha de la pieza elegida, y 1.45]     │
  z = -2.82│                   placa monumento                          │
           │                                                            │
  z =  0   │                     ● cámara (0, 1.6, 0)                   │
@@ -95,10 +95,12 @@ Los tres productos tienen las clases `producto` e `interactivo`.
 
 Desde el módulo 1.3: `<a-entity id="ficha" ficha-producto>` (componente en
 `src/componentes/ficha-producto.js`). Empieza oculta.
-- **Posición: variable.** Al hacer clic en una pieza aparece a **0,75 m a su
-  derecha** (vista desde el visitante), **0,45 m adelantada** hacia él, con el
-  centro a **y = 1,45**, y girada para mirarle. Por ejemplo, desde el inicio:
-  pieza01 → x −1,13; pieza02 → x 0,75; pieza03 → x 2,43 (z ≈ −3,5).
+- **Posición: depende de la pieza, no del visitante** (como una cartela de
+  museo). Aparece **0,85 m a la derecha** de la pieza (mirándola de frente),
+  **0,45 m por delante** de ella, con el centro a **y = 1,45**, y con la
+  orientación de la pieza girada **15° hacia ella**. Con las piezas actuales:
+  pieza01 → `-1.15 1.45 -3.05`; pieza02 → `0.85 1.45 -3.05`;
+  pieza03 → `2.85 1.45 -3.05`; las tres con giro −15°.
 - Fondo marfil `#FFF4E6` de **0,95 m** de ancho y **0,62 m** de alto mínimo (crece con el texto).
 - Contenido: chip del tipo de pieza (color según el tipo), aviso "Clasificación
   ilustrativa (demo)", título, precio, disponibilidad, detalles conocidos y descripción.
