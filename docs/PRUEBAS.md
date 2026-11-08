@@ -99,7 +99,7 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | C1 | Abrir `casa.html?debug` | Aparece la Recepción con el mostrador; medidor ≈ 25 llamadas y ≈ 4 000 triángulos | |
 | C2 | Caminar hacia el norte | Galería sur → patio con el canal de agua y la peana P01 | |
 | C3 | Accesos | Huecos trapezoidales (más estrechos arriba), sin puertas | |
-| C4 | Salas laterales del patio | Cerámica (oeste) y Textiles (este), 8 posiciones cada una | |
+| C4 | Salas laterales del patio | Cerámica (oeste) y Textiles (este), 8 posiciones cada una; al entrar desde el patio, el nombre de la sala se ve de frente | |
 | C5 | Portal del Santuario | Bloque de 6,5 m con túnel de 1,2 m; al fondo, 3 peanas negras en el eje | |
 | C6 | Santuario | Techo a 6,5 m con ranura abierta al cielo; 6 hornacinas laterales con fondo bronce | |
 | C7 | Escala (en el Quest) | Las salas, peanas (1 m) y puertas (2,6 m) se sienten de tamaño real | |
@@ -141,7 +141,8 @@ Después del push, en https://github.com/oznisosa/arteanc-vr-demo/actions:
 | PC de pruebas (Playwright) | 60 | 34 | 104 015 | 2026-11-08 |
 | PC de Ozni (ventana ancha) | 59 | 38 | 104 023 | 2026-11-08 |
 | Quest 3, fuera de VR | | | | pendiente |
-| Quest 3, dentro de VR | | | | pendiente |
+| Quest 3, dentro de VR (`index.html`) | | | | pendiente |
+| Quest 3, dentro de VR (`casa.html`, greybox) | **90** | ≈ 25 (PC) | ≈ 4 000 (PC) | 2026-11-08 |
 
 Presupuesto ([ARQUITECTURA.md](ARQUITECTURA.md) §5): 72 fps en el Quest ·
 menos de 100 llamadas · menos de 250 000 triángulos. Si un cambio sube mucho

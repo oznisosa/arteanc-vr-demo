@@ -508,8 +508,26 @@ movimiento provisional se borra al fusionar.
   puerta? (Respuesta: nueva versión del diseño → `npm run salas` → la casa
   se reconstruye sola.)
 
+### Primer recorrido de Ozni en el Quest
+- Al principio abría `https://192.168.200.6:5173/` y veía la sala de siempre:
+  la casa está en **`/casa.html`** (DT-016). Con la dirección correcta: "de maravilla".
+- **Corrección:** "los textos de Textiles y Cerámica no están bien
+  posicionados: al entrar por la puerta no se ven y se muestran girados".
+  **Causa:** los nombres se ponían en el centro de la sala mirando solo al
+  norte y al sur, pero a Cerámica y Textiles se entra por el este y el oeste
+  (desde el patio). **Solución:** un letrero **por cada entrada** de la sala,
+  desplazado un 35 % desde el centro hacia esa entrada y girado para mirarla
+  (`atan2`). La lista de entradas sale de `accesos` de `salas.json`, más la
+  apertura libre de la galería al patio. Resultado: 11 letreros (Recepción 2,
+  Patio 4, el resto 1), cada uno de frente a su entrada. Verificado con una
+  captura entrando a Cerámica desde el patio.
+  Concepto: **diseñar la señalética desde el recorrido del visitante**, no
+  desde la planta.
+
+- ✅ **Recorrido completo:** **90 fps dentro de VR** (objetivo 72; 90 es el
+  máximo del Quest 3) y "ahora está todo perfecto". Módulo 1.7 terminado.
+
 ### Pendientes
-- Recorrido de Ozni en el Quest.
 - Asignar las piezas del catálogo a posiciones de la casa.
 - Decidir cuándo `casa.html` pasa a ser la escena principal (nueva DT).
 
