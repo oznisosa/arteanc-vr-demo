@@ -99,6 +99,12 @@ crea la cartela y conecta la ficha.
 
 ### Estructura de carpetas propuesta
 
+> **Estado (0.4, 2026-11-08):** ya existen `src/main.js`, `src/componentes/`
+> (`caminar-quest.js`) y dos carpetas provisionales: `src/escena/` (suelo,
+> ajuste del modelo) y `src/interaccion/` (ficha, puertas, recepción). En la
+> Fase 1 su contenido pasará a componentes y al constructor. El catálogo está
+> en `src/datos/catalogo.js` hasta que sea `datos/catalogo.json` (1.1).
+
 ```
 ArteAnc-VR/
 ├── index.html              ← escena mínima: carga módulos y entorno

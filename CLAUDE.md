@@ -14,12 +14,13 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 4. Las últimas entradas de [docs/BITACORA.md](docs/BITACORA.md).
 
 ## Estado actual (2026-11-08)
-- Prototipo funcional de una sola sala en `index.html` + `app.js` + `catalogo.js`.
+- Prototipo funcional de una sola sala: `index.html` (escena) + código en `src/`
+  (módulos ES; entrada `src/main.js`).
   Su inventario está en [docs/MAPA_ESCENA.md](docs/MAPA_ESCENA.md).
 - Diseño final de "La Casa ArteAnc" congelado en `docs/diseno/final/`.
 - Limpieza del repositorio hecha (módulo 0.1).
 - **Siguiente paso: resto de la Fase 0 (Cimientos).** Orden sugerido:
-  ~~0.2 Node + Vite~~ ✅ → ~~0.3 prueba en el Quest~~ ✅ → 0.4 módulos JS →
+  ~~0.2 Node + Vite~~ ✅ → ~~0.3 prueba en el Quest~~ ✅ → ~~0.4 módulos JS~~ ✅ →
   0.5 medidor de fps con `?debug` → 0.6 publicación → 0.7 `docs/PRUEBAS.md`.
   La escena visible **no debe cambiar** en la Fase 0.
 
@@ -61,7 +62,14 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   (guardar en `.playwright-mcp/`, carpeta ignorada). Borrar `dist/` al terminar.
 - Ozni usa `npm run dev`, que abre el navegador solo, y `npm run quest` para el
   visor (HTTPS autofirmado por wifi; IP del PC: 192.168.200.6 por Ethernet).
-- Mientras `app.js` y `catalogo.js` sean scripts clásicos, `vite.config.js` los
-  copia a `dist/` junto con `modelos/` (se quitará en el módulo 0.4).
+- `vite.config.js` copia `modelos/` a `dist/` en el build (se quitará en el 0.6,
+  al mover los modelos a `public/`).
+- **Al terminar las pruebas, cerrar los servidores de verdad:** detener la tarea
+  no cierra el proceso `node` de Vite. Buscar los `node.exe` con `vite` y
+  `--strictPort` en la línea de comandos y cerrarlos; **no** cerrar los de Ozni
+  (sin `--strictPort`, p. ej. su `npm run quest`).
+- **Prueba de equivalencia** (Fase 0): el mismo script de Playwright en la web
+  publicada y en local debe dar el mismo resultado (modelo 0,650 m con base en
+  y 1,020; 24 baldosas; 3 fichas; puertas; recepción).
 - El modo VR del Quest 3 lo prueba Ozni en el visor; pedirle confirmación y anotar el resultado en la bitácora.
 - `file://` no sirve: los `.glb` necesitan HTTP.

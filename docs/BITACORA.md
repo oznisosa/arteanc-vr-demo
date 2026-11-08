@@ -8,6 +8,98 @@
 
 ---
 
+## 2026-11-08 — Módulo 0.4: el código dividido en módulos (`src/`)
+
+**Tipo:** reorganización del código. **La escena no cambió.**
+
+### Qué cambió
+**Antes:** dos scripts clásicos al final de `index.html`:
+```html
+<script src="./catalogo.js"></script>   <!-- define window.catalogoArteAnc -->
+<script src="./app.js"></script>        <!-- 244 líneas: todo lo demás -->
+```
+**Ahora:** un solo módulo de entrada:
+```html
+<script type="module" src="./src/main.js"></script>
+```
+y el código repartido por responsabilidad:
+
+| Archivo nuevo | Viene de | Exporta |
+|---|---|---|
+| `src/main.js` | — | nada: importa todo y lo pone en marcha |
+| `src/datos/catalogo.js` | `catalogo.js` | `catalogo` |
+| `src/componentes/caminar-quest.js` | `app.js` (joystick) | nada: registra el componente al importarse |
+| `src/escena/suelo.js` | `app.js` (baldosas) | `crearBaldosas()` |
+| `src/escena/ajustar-modelo.js` | `app.js` (ajuste del modelo) | `ajustarModeloAPedestal(selector, tamanoMaximo, alturaApoyo)` |
+| `src/interaccion/ficha.js` | `app.js` (ficha) | `iniciarFicha(catalogo)` |
+| `src/interaccion/puertas.js` | `app.js` (puertas) | `iniciarPuertas()` |
+| `src/interaccion/recepcion.js` | `app.js` (recepción) | `iniciarRecepcion()` |
+
+- `app.js` y `catalogo.js` se **borraron** con `git rm` (siguen en el historial).
+- `window.catalogoArteAnc` ya no existe: el catálogo se pasa como parámetro.
+- El ajuste del modelo ahora recibe sus números (0,65 m y 1,02 m) como
+  parámetros en `main.js`, en lugar de tenerlos escritos dentro.
+- `caminar-quest` usa `AFRAME.THREE` en vez de la variable global `THREE`
+  (es el mismo objeto, pero así la dependencia se ve).
+- `vite.config.js`: el plugin ahora se llama `copiar-modelos` y solo copia
+  `modelos/` (el código ya lo empaqueta Vite en `dist/assets/index-….js`, 4 kB).
+- Los textos de la escena **no** se tocaron (siguen sin tildes hasta el 1.5).
+
+### Por qué sigue funcionando en GitHub Pages
+Los navegadores entienden `import`/`export` sin Vite, siempre que las rutas
+sean relativas (`./…`). Por eso la web publicada desde la raíz de `main`
+funciona igual. Vite solo hace falta para el desarrollo y para `dist/`.
+
+### Cómo se verificó (prueba de equivalencia)
+Un mismo script de Playwright se ejecutó en 4 lugares: la **web publicada**
+(código viejo, como referencia), `npm run dev`, `dist/` con `npm run preview`
+y los archivos servidos tal cual con Python (como GitHub Pages). Los 4 dieron
+**el mismo resultado**:
+- modelo: dimensión mayor 0,650 m, base en y 1,020;
+- 24 baldosas; componente `caminar-quest` presente;
+- fichas: "CERAMICA 01", "MODELO 3D DE PRUEBA", "FIGURA 03"; se cierra bien;
+- puertas: ambos letreros cambian a "CERRAR" y vuelven a "ABRIR";
+- recepción: el letrero pasa de oculto a visible.
+
+En las 3 versiones nuevas también se simuló el joystick: el rig se desplaza
+(0,72–0,74 m en 0,6 s). Único error en consola: falta `favicon.ico` (ya pasaba).
+**Pendiente:** Ozni lo prueba en el Quest con `npm run quest`.
+
+### Observación (sin corregir: la Fase 0 no cambia el comportamiento)
+En la simulación, joystick hacia delante movió el rig hacia +z (sur). Puede
+que en el visor el movimiento vaya al revés. Anotado en `MAPA_ESCENA.md`.
+
+### Incidente: servidores que no se cerraban
+Al detener las pruebas del 0.2, los procesos `node` de Vite siguieron abiertos
+y ocuparon los puertos 5173 y 4173. Al limpiarlos también se cerró un
+`npm run quest` de Ozni (ya había terminado su prueba). Se anotó en
+`CLAUDE.md` cómo cerrarlos sin tocar los de Ozni.
+
+### Conceptos que aparecen
+- **Módulo ES.** Archivo con su propio ámbito: lo que no se `export`a, no se ve fuera.
+- **`import` / `export`.** Cómo un módulo pide y ofrece funciones o datos.
+- **Punto de entrada.** El único archivo que carga el HTML (`main.js`).
+- **Importación por efecto secundario.** `import './componentes/caminar-quest.js'`
+  no trae nada; solo ejecuta el archivo (que registra el componente).
+- **Variables globales frente a parámetros.** Pasar `catalogo` a `iniciarFicha`
+  deja claro de qué depende la función.
+- **Refactorizar.** Cambiar la estructura del código sin cambiar lo que hace;
+  por eso se comprueba con una prueba de equivalencia.
+
+### Para el tutor
+- Ejercicio: agregar una pieza `pieza04` a `src/datos/catalogo.js` y explicar
+  qué más faltaría en `index.html` para que aparezca (respuesta: la entidad con
+  `id="pieza04"` y la clase `producto`). Es justo lo que resolverá la Fase 1.
+- Pregunta: ¿por qué `caminar-quest.js` no exporta nada y aun así hace falta importarlo?
+- Ejercicio: en el navegador, abrir las herramientas de desarrollo → Red y ver
+  cómo `npm run dev` carga cada módulo por separado, mientras `dist/` carga uno solo.
+
+### Pendientes
+- Prueba de Ozni en el Quest (y comprobar la dirección del joystick).
+- Siguiente: módulo 0.5 (medidor de fps con `?debug`).
+
+---
+
 ## 2026-11-08 — Módulo 0.3: abrir la escena en el Quest 3 por wifi
 
 **Tipo:** herramientas de desarrollo. **La escena no cambió.**

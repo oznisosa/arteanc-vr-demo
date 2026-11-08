@@ -1,5 +1,10 @@
+// CATÁLOGO DE PIEZAS - ARTEANC VR
+//
+// Las claves (pieza01, pieza02…) deben coincidir con el `id` de cada
+// producto en index.html. Son piezas de prueba (ilustrativas).
+// En la Fase 1 este archivo pasará a ser datos/catalogo.json.
 
-window.catalogoArteAnc = {
+export const catalogo = {
 
   pieza01: {
     nombre: "CERAMICA 01",

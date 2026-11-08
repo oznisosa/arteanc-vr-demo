@@ -4,9 +4,10 @@
 //   - `npm run dev`:   servidor local con recarga automática al guardar.
 //   - `npm run build`: genera en `dist/` la versión lista para publicar.
 //
-// Mientras `app.js` y `catalogo.js` sean scripts clásicos (sin `import`),
-// Vite no los empaqueta. Por eso, al terminar el build, los copiamos a `dist/`
-// junto con los modelos. Esto desaparecerá en el módulo 0.4 (módulos JS).
+// El código está en `src/` como módulos ES (módulo 0.4) y Vite lo empaqueta.
+// Los modelos `.glb` se cargan desde el HTML con `url(./modelos/…)`, que Vite
+// no ve; por eso, al terminar el build, copiamos `modelos/` a `dist/`.
+// En el módulo 0.6 pasarán a `public/modelos/` y esto desaparecerá.
 
 // Modo "quest" (módulo 0.3): `npm run quest` abre el servidor a la red local
 // con HTTPS, para entrar desde el navegador del Quest 3 por wifi. WebXR solo
@@ -17,12 +18,12 @@ import { defineConfig } from 'vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { cpSync } from 'node:fs';
 
-// Archivos que la escena carga directamente y que Vite no ve por sí solo.
-const ARCHIVOS_A_COPIAR = ['app.js', 'catalogo.js', 'modelos'];
+// Carpetas que la escena carga directamente y que Vite no ve por sí solo.
+const ARCHIVOS_A_COPIAR = ['modelos'];
 
-function copiarArchivosClasicos() {
+function copiarModelos() {
   return {
-    name: 'copiar-archivos-clasicos',
+    name: 'copiar-modelos',
     apply: 'build', // solo al ejecutar `npm run build`
     closeBundle() {
       for (const ruta of ARCHIVOS_A_COPIAR) {
@@ -50,7 +51,7 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
-      copiarArchivosClasicos(),
+      copiarModelos(),
       ...(paraQuest ? [basicSsl()] : []), // HTTPS solo en modo quest
     ],
   };

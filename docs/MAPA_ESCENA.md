@@ -43,7 +43,7 @@ Con `rotation="0 180 0"` pasan a mirar hacia **−z**.
 | Elemento | Posición | Dimensiones | Notas |
 |---|---|---|---|
 | Suelo (`a-plane`) | `0 0 -3` | 12 × 12 | Cubre x −6..6, z −9..3 |
-| Baldosas (`#baldosas`) | x −5..5, z −5..1 (paso 2) | 1.96 × 1.96, y 0.012 | Las genera `app.js` (4 filas × 6 columnas) |
+| Baldosas (`#baldosas`) | x −5..5, z −5..1 (paso 2) | 1.96 × 1.96, y 0.012 | Las genera `src/escena/suelo.js` (4 filas × 6 columnas) |
 | Pared del fondo | `0 2 -6` | 12 × 4 × 0.2 | Texto "ARTEANC" en `0 3 -5.85` |
 | Pared izquierda | `-5.95 2 -1.5` | 0.1 × 4 × 9 | z −6..3 |
 | Pared derecha | `5.95 2 -1.5` | 0.1 × 4 × 9 | z −6..3 |
@@ -80,7 +80,7 @@ Los pedestales son cilindros de radio 0.65 y altura 1, centrados en y 0.5, con l
 | Pedestal central | — | `0 0.5 -3.5` | |
 | Pedestal der. | — | `2 0.5 -3.5` | |
 | Producto 1 | `#pieza01` | `-2 1.35 -3.5` | Esfera r 0.35 |
-| Producto 2 | `#pieza02` | `0 0 -3.5` | Modelo `modelos/Untitle123d.glb`. `app.js` lo escala a 0.65 m y apoya su base en y 1.02 |
+| Producto 2 | `#pieza02` | `0 0 -3.5` | Modelo `modelos/Untitle123d.glb`. `src/escena/ajustar-modelo.js` lo escala a 0.65 m y apoya su base en y 1.02 (valores en `src/main.js`) |
 | Producto 3 | `#pieza03` | `2 1.35 -3.5` | Cono h 0.7 |
 | Placa del monumento | — | `0 0.68 -2.82` | 1 × 0.25, texto "MONUMENTO HISTORICO" |
 
@@ -129,9 +129,9 @@ x −4.8..4.8 y z −4.8..1.6.
 ## Dependencias
 
 - **A-Frame 1.8.0** desde el CDN `https://aframe.io/releases/1.8.0/aframe.min.js`. Sin conexión la escena no carga.
-- **Orden de los scripts**: `catalogo.js` debe cargarse antes que `app.js`, porque define `window.catalogoArteAnc`. Ambos están al final del `<body>`, después de la escena.
-- **`catalogo.js`**: claves `pieza01`, `pieza02` y `pieza03`, que deben coincidir con los `id` de los productos.
-- **`app.js`** necesita que existan estos ids en `index.html`:
+- **Código**: un solo `<script type="module" src="./src/main.js">` al final del `<body>`. `main.js` importa los demás módulos de `src/` (desde el módulo 0.4; antes eran `catalogo.js` y `app.js`).
+- **`src/datos/catalogo.js`**: claves `pieza01`, `pieza02` y `pieza03`, que deben coincidir con los `id` de los productos.
+- **Los módulos de `src/`** necesitan que existan estos ids en `index.html`:
   `#ficha`, `#nombre`, `#precio`, `#descripcion`, `#cerrarFicha`, `#pieza02`,
   `#baldosas`, `#camara`, `#mando-izquierdo`, `#botonPuerta`,
   `#botonPuertaExterior`, `#textoPuerta`, `#textoPuertaExterior`,
@@ -145,3 +145,4 @@ x −4.8..4.8 y z −4.8..1.6.
 
 - El texto "ARTEANC" del frente del mostrador (`-3.7 0.75 0.91`) no tiene rotación, así que su cara visible mira hacia +z, hacia el propio mostrador. Desde la galería se ve por detrás y probablemente no aparezca. Para que mire a la galería necesitaría `rotation="0 180 0"`.
 - En PC, la cámara se mueve con WASD sin los límites de `caminar-quest`, así que se pueden atravesar las paredes.
+- **Por confirmar en el Quest:** en una simulación (Playwright), empujar el joystick hacia delante (`y = −1`) movió el rig hacia +z, es decir, hacia el sur. `getWorldDirection` sobre el `object3D` de la cámara devuelve su eje +z, que apunta hacia atrás. Si en el visor el joystick funciona al revés, esa es la causa. Se rehará en la Fase 2.
