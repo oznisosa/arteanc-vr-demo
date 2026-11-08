@@ -41,7 +41,8 @@ Si todo está bien: `Ctrl + C` para cerrar el servidor y hacer `git push`.
 | # | Qué probar | Resultado esperado | ✓ |
 |---|---|---|---|
 | P1 | Cargar la página | La sala aparece en menos de 10 s; el modelo 3D aparece sobre el pedestal central | |
-| P2 | Modelo 3D | Apoyado sobre el pedestal, sin flotar ni hundirse; mide ~65 cm | |
+| P2 | Piezas sobre las peanas | El modelo, la esfera y el cono apoyados sobre su peana, sin flotar ni hundirse; el modelo mide ~65 cm | |
+| P2b | Clic en una peana (no en la pieza) | No abre la ficha | |
 | P3 | Suelo | Baldosas de piedra en 4 tonos (24 en total) | |
 | P4 | Ficha: clic en la esfera, el modelo y el cono | "CERAMICA 01 · US$ 35.00", "MODELO 3D DE PRUEBA · No disponible para venta", "FIGURA 03 · US$ 45.00" | |
 | P5 | Ficha: CERRAR | Se oculta | |
@@ -118,6 +119,6 @@ estas cifras sin motivo, investigar antes de publicar.
 
 Durante la Fase 0, Claude comprueba con Playwright que la escena local y la
 publicada dan los mismos valores: modelo con dimensión mayor 0,650 m y base
-en y = 1,020; 24 baldosas; las 3 fichas; puertas; recepción; y el joystick
+en y = 1,000 (1,020 antes del módulo 1.2); esfera y cono con base en 1,000; 24 baldosas; las 3 fichas; puertas; recepción; y el joystick
 simulado en las cuatro direcciones. Sirve para detectar cambios que a simple
 vista pasarían desapercibidos.

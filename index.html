@@ -334,14 +334,6 @@
 </a-text>
 
 
-    <!-- PEDESTALES -->
-    <a-cylinder position="-2 0.5 -3.5"
-                radius="0.65" height="1"
-                color="#755C45"></a-cylinder>
-
-    <a-cylinder position="0 0.5 -3.5"
-                radius="0.65" height="1"
-                color="#755C45"></a-cylinder>
 
           
 <!-- PLACA INFORMATIVA DEL MONUMENTO -->
@@ -361,42 +353,24 @@
 </a-text>
       
 
-    <a-cylinder position="2 0.5 -3.5"
-                radius="0.65" height="1"
-                color="#755C45"></a-cylinder>
 
-    <!-- PRODUCTO 1 -->
-    <a-sphere id="pieza01"
-              class="producto interactivo"
-              position="-2 1.35 -3.5"
-              radius="0.35"
-              color="#C07746"></a-sphere>
+    <!-- PIEZAS EXHIBIDAS (módulo 1.2)
+         Cada pieza es UNA línea: el componente pieza-exhibida crea la peana y
+         la pieza a partir de datos/catalogo.json (src/componentes/pieza-exhibida.js).
+         `position` = punto del suelo en el centro de la peana.
+         Las peanas conservan el tamaño del prototipo (cilindro de 1,3 m) hasta
+         el greybox (1.7), donde saldrán de 02-layout.json. -->
+    <a-entity id="pieza01" class="producto" position="-2 0 -3.5"
+              pieza-exhibida="pieza: pieza01; peanaForma: cilindro; peanaTamano: 1.3 1 1.3;
+                              tamanoSinMedidas: 0.7; formaProvisional: esfera; colorProvisional: #C07746"></a-entity>
 
-    <!-- PRODUCTO 2 -->
-      
-<!-- PRODUCTO 2: MODELO 3D REAL -->
-<a-entity
-  id="pieza02"
-  class="producto interactivo"
-  gltf-model="url(./modelos/Untitle123d.glb)"
-  position="0 0 -3.5"
-  animation__girar="
-    property: rotation;
-    from: 0 0 0;
-    to: 0 360 0;
-    dur: 1200;
-    startEvents: click">
-</a-entity>
+    <a-entity id="pieza02" class="producto" position="0 0 -3.5"
+              pieza-exhibida="pieza: pieza02; peanaForma: cilindro; peanaTamano: 1.3 1 1.3;
+                              tamanoSinMedidas: 0.65"></a-entity>
 
-
-    <!-- PRODUCTO 3 -->
-    <a-cone id="pieza03"
-            class="producto interactivo"
-            position="2 1.35 -3.5"
-            radius-bottom="0.35"
-            radius-top="0.1"
-            height="0.7"
-            color="#8A6650"></a-cone>
+    <a-entity id="pieza03" class="producto" position="2 0 -3.5"
+              pieza-exhibida="pieza: pieza03; peanaForma: cilindro; peanaTamano: 1.3 1 1.3;
+                              tamanoSinMedidas: 0.7; formaProvisional: cono; colorProvisional: #8A6650"></a-entity>
 
     <!-- FICHA ÚNICA -->
     <a-entity id="ficha"

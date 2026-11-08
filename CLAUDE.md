@@ -23,7 +23,8 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   [docs/PRUEBAS.md](docs/PRUEBAS.md).
 - **Fase 1 (Datos y componentes) en curso.** Hecho: 1.1 (`datos/catalogo.json`,
   guía [docs/CATALOGO.md](docs/CATALOGO.md), `npm run validar`).
-  Siguiente: 1.2 `pieza-exhibida`. Ver el plan para el orden y los criterios.
+  Hecho: 1.2 (`pieza-exhibida`). Siguiente: 1.3 `ficha-producto`.
+  Ver el plan para el orden y los criterios.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 
 ## Reglas de trabajo
@@ -72,11 +73,16 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 - `vite.config.js` copia `modelos/` a `dist/` en el build (Vite no ve los
   `.glb` porque se cargan desde el HTML).
 - **Al terminar las pruebas, cerrar los servidores de verdad:** detener la tarea
-  no cierra el proceso `node` de Vite. Buscar los `node.exe` con `vite` y
-  `--strictPort` en la línea de comandos y cerrarlos; **no** cerrar los de Ozni
-  (sin `--strictPort`, p. ej. su `npm run quest`).
-- **Prueba de equivalencia** (Fase 0): el mismo script de Playwright en la web
+  no cierra el proceso `node` de Vite. Cerrar los `node.exe` cuya línea de
+  comandos contenga `C:\arteanc\ArteAnc-VR\node_modules` **y** `--strictPort`.
+  **No** cerrar los de Ozni (sin `--strictPort`, p. ej. su `npm run quest`) ni
+  los del worktree `ArteAnc-VR-fase2`.
+- **Trabajo en paralelo (desde el 2026-11-08, DT-030 en la rama `fase-2`):**
+  otra sesión hace la Fase 2 en el worktree `C:\arteanc\ArteAnc-VR-fase2`.
+  Fase 1 (aquí) usa DT-015 a DT-029 y los puertos 5173/4173; Fase 2 usa DT-030+
+  y 5174/4174. Aquí no se toca `caminar-quest.js` ni el bloque `#jugador`.
+- **Prueba de equivalencia:** el mismo script de Playwright en la web
   publicada y en local debe dar el mismo resultado (modelo 0,650 m con base en
-  y 1,020; 24 baldosas; 3 fichas; puertas; recepción).
+  y 1,000; esfera y cono con base en 1,000; 24 baldosas; 3 fichas; puertas; recepción).
 - El modo VR del Quest 3 lo prueba Ozni en el visor; pedirle confirmación y anotar el resultado en la bitácora.
 - `file://` no sirve: los `.glb` necesitan HTTP.

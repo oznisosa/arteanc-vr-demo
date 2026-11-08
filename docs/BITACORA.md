@@ -8,6 +8,94 @@
 
 ---
 
+## 2026-11-08 — Módulo 1.2: componente `pieza-exhibida`
+
+**Tipo:** componente nuevo. **La escena se ve igual** (misma captura, 34
+llamadas y 104 015 triángulos en `?debug`).
+
+### Qué cambió
+**Antes** (`index.html`, 41 líneas): 3 `<a-cylinder>` de pedestal, una
+`<a-sphere>`, un `<a-cone>` y un `<a-entity gltf-model>`, cada uno con su
+posición y sus medidas a mano; además `src/escena/ajustar-modelo.js` escalaba el modelo.
+**Ahora** (15 líneas, cada pieza en una línea):
+```html
+<a-entity id="pieza02" class="producto" position="0 0 -3.5"
+          pieza-exhibida="pieza: pieza02; peanaForma: cilindro; peanaTamano: 1.3 1 1.3;
+                          tamanoSinMedidas: 0.65"></a-entity>
+```
+El componente (`src/componentes/pieza-exhibida.js`):
+1. crea la **peana** (caja o cilindro) con la base en el suelo;
+2. espera el catálogo y coloca la **pieza** encima:
+   - si hay `modelos.galeria` → carga el `.glb` (la ruta ya no está en el HTML,
+     sale del catálogo);
+   - si `dimensiones_m.alto` es conocido → **escala real** (alto del modelo = alto del catálogo);
+   - si no → la dimensión mayor mide `tamanoSinMedidas` (provisional);
+   - sin modelo → **forma provisional** (esfera, cono o caja);
+3. la hace **interactiva**: la pieza lleva la clase `.interactivo` y gira una
+   vuelta al hacer clic (antes solo la `pieza02`); la peana no es clicable.
+
+**Otros archivos:** `src/datos/catalogo-servicio.js` (nuevo: el catálogo se
+descarga una sola vez y lo comparten la ficha y las piezas); `src/main.js`;
+borrado `src/escena/ajustar-modelo.js` (su lógica está ahora en el componente).
+
+**Único cambio medible:** la base del modelo 3D queda en y = **1,000** (sobre
+la peana) en lugar de 1,020 (flotaba 2 cm).
+
+### Un error encontrado y corregido durante la prueba
+La esfera y el cono salieron **medio hundidos** en la peana (base en 0,65).
+Causa: se subían moviendo el `object3D` directamente, pero al insertarse la
+entidad A-Frame vuelve a aplicar el atributo `position` y borra ese cambio.
+Solución: calcular la altura correcta **en el atributo** (`alturaPeana + tamaño/2`).
+Lección: en A-Frame, mientras una entidad no está cargada, modificar sus
+atributos, no su `object3D`.
+
+### Cómo se verificó
+- Medidas (Playwright): esfera y cono de 0,700 m y modelo de 0,650 m, los
+  tres con la base en y = 1,000; centros de esfera y cono en y = 1,35 (como antes).
+- **Clic real con el ratón** (rayo del cursor) sobre cada pieza → abre su
+  ficha correcta; clic en la peana → no abre nada.
+- **Escala real:** con `dimensiones_m.alto = 0.3` temporal en el catálogo, el
+  modelo midió **0,300 m** exactos (luego se restauró el catálogo).
+- `npm run build` + `npm run preview`: mismos valores. Captura idéntica a la del 0.5.
+- **Pendiente:** prueba de Ozni en el Quest (clic con el láser en las 3 piezas).
+
+### Coordinación con la sesión de la Fase 2
+Ozni abrió otra sesión de Claude que trabaja la **Fase 2** en el worktree
+`C:\arteanc\ArteAnc-VR-fase2` (rama `fase-2`). Las dos sesiones acordaron por
+mensaje: números DT-015–029 (Fase 1) y DT-030+ (Fase 2); archivos de cada una;
+puertos de prueba; y cómo resolver los conflictos de la bitácora al fusionar.
+Detalles en `CLAUDE.md` y en DT-030 (rama `fase-2`).
+
+### Conceptos que aparecen
+- **Componente con esquema (`schema`).** Las opciones del componente
+  (`peanaForma`, `peanaTamano`…) con su tipo y valor por defecto.
+- **Entidades hijas.** El componente crea entidades dentro de la suya: al
+  mover la pieza se mueven la peana y el modelo juntos.
+- **Promesa compartida.** `catalogoListo` se descarga una vez y muchos la esperan.
+- **Propagación de eventos (*bubbling*).** El clic llega a la pieza (hija) y
+  "sube" hasta la entidad `.producto` (madre), donde lo escucha la ficha.
+- **Caja envolvente (`Box3`).** El rectángulo 3D mínimo que contiene un modelo;
+  sirve para medirlo y apoyarlo.
+- **Escala real frente a tamaño provisional.** Con medidas conocidas, el
+  modelo mide lo que mide la pieza real; sin ellas, se usa un tamaño de exhibición.
+- **Ramas (*worktrees*) en paralelo.** Dos carpetas del mismo repositorio, cada
+  una en su rama, para trabajar dos cosas a la vez.
+
+### Para el tutor
+- Ejercicio: en `index.html`, cambiar `peanaForma: cilindro` por `caja` y
+  `peanaTamano: 0.5 1 0.5` en una pieza (las medidas del diseño final). ¿Qué cambia?
+- Ejercicio: poner `"dimensiones_m": { "alto": 0.24, "ancho": 0.16, "fondo": 0.18 }`
+  en `pieza02` del catálogo y ver el modelo a 24 cm.
+- Pregunta: ¿por qué la ficha sigue funcionando si el clic lo recibe la pieza
+  hija y no la entidad con `id="pieza02"`?
+
+### Pendientes
+- Prueba de Ozni en el Quest.
+- Siguiente: módulo 1.3 (`ficha-producto`: ficha pequeña junto a la pieza,
+  con el tipo de pieza).
+
+---
+
 ## 2026-11-08 — Módulo 1.1: el catálogo pasa a `datos/catalogo.json`
 
 **Tipo:** datos. **La escena se ve igual** (las fichas muestran los mismos textos).
