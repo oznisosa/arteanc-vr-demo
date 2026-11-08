@@ -10,7 +10,7 @@ se entienda **por qué** se hizo algo así y cuándo convendría cambiarlo.
 ---
 
 ## DT-001 — Seguir con A-Frame para la versión 1.0
-**Estado:** Propuesta · **Fecha:** 2026-11-07
+**Estado:** Aceptada (aprobada por Ozni el 2026-11-08) · **Fecha:** 2026-11-07
 
 **Contexto:** el prototipo usa A-Frame 1.8.0. Se planteó si convenía cambiar
 de tecnología antes de crecer.
@@ -30,7 +30,7 @@ un editor visual en equipo, o una función clave no tiene solución madura.
 ---
 
 ## DT-002 — La escena se construye a partir de datos (JSON)
-**Estado:** Propuesta · **Fecha:** 2026-11-07
+**Estado:** Aceptada (aprobada por Ozni el 2026-11-08) · **Fecha:** 2026-11-07
 
 **Contexto:** las piezas se declaran en el HTML con coordenadas escritas a mano
 y sus datos viven aparte en `catalogo.js`.
@@ -48,7 +48,7 @@ JSON y la carga de datos asíncrona.
 ---
 
 ## DT-003 — Introducir Node.js y Vite en la Fase 0
-**Estado:** Propuesta · **Fecha:** 2026-11-07
+**Estado:** Aceptada (aprobada por Ozni el 2026-11-08) · **Fecha:** 2026-11-07
 
 **Contexto:** el proyecto no tiene herramientas de compilación. Para probar en
 el Quest hace falta HTTPS; los scripts de optimización de modelos necesitan
@@ -66,7 +66,7 @@ npm. A cambio se obtienen recarga automática, HTTPS local y una publicación op
 ---
 
 ## DT-004 — La compra se completa en arteanc.com
-**Estado:** Propuesta · **Fecha:** 2026-11-07
+**Estado:** Aceptada (aprobada por Ozni el 2026-11-08) · **Fecha:** 2026-11-07
 
 **Contexto:** procesar pagos dentro de la VR implica seguridad, impuestos,
 envíos y aduanas, que la tienda ya resuelve.
@@ -83,7 +83,7 @@ los datos muestran que los visitantes abandonan al salir de la VR.
 ---
 
 ## DT-005 — Arquitectura modelada en Blender con iluminación horneada
-**Estado:** Propuesta · **Fecha:** 2026-11-07
+**Estado:** Aceptada (aprobada por Ozni el 2026-11-08) · **Fecha:** 2026-11-07
 
 **Contexto:** las primitivas de A-Frame con luces dinámicas se ven planas,
 y muchas luces dinámicas son caras en el Quest.
@@ -98,7 +98,7 @@ aprender Blender, y cambiar la luz requiere volver a hornear.
 ---
 
 ## DT-006 — Proceso obligatorio de optimización de modelos
-**Estado:** Propuesta · **Fecha:** 2026-11-07
+**Estado:** Aceptada (aprobada por Ozni el 2026-11-08) · **Fecha:** 2026-11-07
 
 **Contexto:** el modelo actual pesa 19 MB y los escaneos originales, 38 MB.
 
@@ -108,10 +108,12 @@ El origen va en la base de la pieza y la escala, en metros reales.
 
 **Consecuencias:** carga rápida y fps estables; un paso más en la producción de cada pieza.
 
+**Matizada por DT-012:** optimizar nunca debe hacer que la pieza se vea distinta de la real.
+
 ---
 
 ## DT-007 — Los archivos 3D fuente no se guardan en Git
-**Estado:** Propuesta · **Fecha:** 2026-11-07
+**Estado:** Aceptada (aprobada por Ozni el 2026-11-08) · **Fecha:** 2026-11-07
 
 **Contexto:** hay más de 200 MB de escaneos de prueba en `modelos/`. Git guarda
 cada versión de cada binario para siempre, y el repositorio crecería sin control.
@@ -178,3 +180,57 @@ muro. Cualquier cambio futuro se publica como v1.1, v1.2… y se registra aquí.
 - dos versiones de cada pieza: galería (5–15 mil triángulos) y examen (30–60 mil).
 
 Detalle en [ARQUITECTURA.md](ARQUITECTURA.md) §5. Se valida midiendo en el Quest 3.
+
+---
+
+## DT-011 — Se trabaja directamente en la rama `main`
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** el plan proponía una rama por fase (`fase-0`, `fase-1`…) porque
+GitHub Pages publica la web desde `main`. Ozni prefiere trabajar solo en `main`
+para que el flujo sea más simple mientras aprende Git.
+
+**Decisión:** todo se hace en `main`. Se descarta el módulo 0.0.
+
+**Regla que lo compensa:** antes de cada `push`, la escena se prueba en local
+(clics, ficha, puertas, movimiento) y debe verse igual o mejor que antes. Un
+cambio a medias se guarda con commit local, pero no se sube hasta que funcione.
+
+**Alternativas:** una rama por fase (más segura, un concepto más que aprender).
+
+**Consecuencias:** flujo más sencillo; un error subido rompe la web pública
+hasta que se corrija (se puede deshacer con `git revert`).
+
+**Revisar si:** la web publicada se rompe más de una vez, o si empiezan a
+visitarla clientes reales.
+
+---
+
+## DT-012 — La fidelidad visual de las piezas tiene prioridad
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** al aprobar DT-006, Ozni recordó que en la VR se presentan
+artesanías y artefactos que **se venden**: el comprador debe ver la pieza tal
+cual es (color, textura, desgaste, marcas). Optimizar no puede costar fidelidad.
+
+**Decisión:** cada pieza tiene dos versiones con objetivos distintos:
+- **Galería** (la que está en la peana, vista a 1–3 m y junto a muchas otras):
+  ligera, ≤ 3 MB, textura de 2048 px. Aquí el presupuesto manda.
+- **Examen** (la que se carga **solo** cuando el visitante toma o examina esa
+  pieza, una a la vez): aquí **manda la fidelidad**. Hasta ~10 MB, textura de
+  hasta 4096 px y hasta ~100 000 triángulos. Se descarga al soltarla.
+
+Además, el detalle fino del escaneo denso (relieves, grietas, trama del
+tejido) se conserva en un **mapa de normales**, y el color se calibra con las
+fotos de referencia.
+
+**Criterio de aceptación de cada pieza:** comparar en el Quest, a menos de
+50 cm, la versión de examen con fotos de la pieza real. Si Ozni nota una
+diferencia que un comprador notaría, la pieza no se publica.
+
+**Alternativas:** una sola versión ligera (rápida, pero pierde detalle) o una
+sola versión pesada (fiel, pero 20 piezas así harían la carga lenta y bajarían los fps).
+
+**Consecuencias:** un poco más de trabajo por pieza (dos exportaciones). Los
+valores de la versión de examen son iniciales y se validan en el módulo 3.3
+midiendo en el Quest.

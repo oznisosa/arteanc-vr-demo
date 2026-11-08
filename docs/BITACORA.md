@@ -8,6 +8,43 @@
 
 ---
 
+## 2026-11-08 — Decisiones aprobadas: trabajo en `main` y fidelidad de las piezas
+
+**Tipo:** solo documentación. **Archivos:** `docs/DECISIONES.md`, `CLAUDE.md`,
+`docs/PLAN_MAESTRO.md`, `docs/ARQUITECTURA.md` y esta bitácora.
+
+### Qué cambió
+1. **DT-001 a DT-007 aprobadas por Ozni.** Pasan de "Propuesta" a "Aceptada".
+2. **DT-011 (nueva): se trabaja directamente en `main`**, sin rama `fase-0`.
+   El módulo 0.0 queda descartado. Regla compensatoria: antes de cada `push`
+   la escena se prueba en local, porque `main` publica la web.
+3. **DT-012 (nueva): la fidelidad visual de las piezas tiene prioridad.** Ozni
+   señaló que las piezas son productos en venta y deben verse como las reales.
+   - Antes: pieza ≤ 3 MB (estrella ≤ 6 MB), textura 2048 px, examen 30–60 mil triángulos.
+   - Después: **galería** ≤ 3 MB y 2048 px (sin cambios); **examen** ≤ ~10 MB,
+     hasta 4096 px y 30–100 mil triángulos, cargada solo al examinar la pieza.
+   - Cada pieza se acepta comparándola en el Quest con fotos de la real.
+
+### Conceptos que aparecen
+- **Rama de Git.** Una línea de trabajo paralela. Se decidió no usarla todavía
+  para simplificar; `git revert` deshace un commit subido por error.
+- **Carga bajo demanda.** Descargar algo solo cuando se necesita. Permite una
+  versión muy detallada sin hacer lenta la entrada a la casa.
+- **Nivel de detalle (LOD).** Lo lejano se dibuja simple; lo cercano, detallado.
+- **Mapa de normales.** Una textura que "finge" relieve: guarda el detalle del
+  escaneo denso sobre una malla con menos triángulos.
+
+### Para el tutor
+- Ejercicio: explicar por qué 20 piezas de 10 MB en la sala serían un problema
+  y una sola pieza de 10 MB en la mano no lo es.
+- Ejercicio de Git: ¿qué hace `git revert` y en qué se diferencia de borrar un commit?
+
+### Pendientes
+- Hacer una copia de seguridad externa de `_fuentes-3d/` (DT-007).
+- Siguiente: módulo 0.2 (Node + Vite).
+
+---
+
 ## 2026-11-08 — Diseño final incorporado y proyecto organizado
 
 **Tipo:** organización y documentación (no se cambió el código de la escena).
@@ -52,7 +89,9 @@
 
 ### Pendientes
 - Confirmar el estado de las decisiones DT-001 a DT-007 (siguen como "Propuesta").
-- Siguiente sesión: Fase 0, desde el módulo 0.0 (rama `fase-0`).
+- Siguiente sesión: Fase 0, desde el módulo 0.2 (Node + Vite).
+- Actualización: Ozni decidió trabajar en `main` sin rama `fase-0` (DT-011);
+  el módulo 0.0 queda descartado.
 
 ---
 

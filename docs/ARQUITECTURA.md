@@ -117,7 +117,7 @@ ArteAnc-VR/
 │   ├── salas.json
 │   └── textos/es.json, en.json
 ├── public/
-│   ├── modelos/            ← SOLO modelos optimizados (≤ 3 MB c/u)
+│   ├── modelos/            ← SOLO modelos optimizados (galería ≤ 3 MB, examen ≤ ~10 MB)
 │   ├── entorno/            ← arquitectura exportada desde Blender
 │   ├── fuentes/            ← fuente MSDF con tildes
 │   └── audio/
@@ -154,9 +154,9 @@ reales en la Fase 0:
 | Triángulos visibles por vista | < 250 000 |
 | Descarga inicial | ≤ 20 MB |
 | Texturas residentes | ≤ 256 MB |
-| Peso por pieza (`.glb`) | ≤ 3 MB (pieza estrella: ≤ 6 MB) |
-| Triángulos por pieza | galería 5 000–15 000 · examen 30 000–60 000 (dos versiones: `modelos.galeria` y `modelos.examen`) |
-| Textura por pieza | 2048 px como máximo, en KTX2 o WebP |
+| Peso por pieza (`.glb`) | galería ≤ 3 MB · examen ≤ ~10 MB, cargada solo al examinarla (DT-012) |
+| Triángulos por pieza | galería 5 000–15 000 · examen 30 000–100 000 (dos versiones: `modelos.galeria` y `modelos.examen`) |
+| Textura por pieza | galería 2048 px · examen hasta 4096 px; en KTX2 o WebP, con mapa de normales |
 | Carga inicial hasta poder moverse | < 8 s con buena wifi |
 | Luces dinámicas | Mínimas; iluminación horneada en la arquitectura |
 
@@ -174,7 +174,8 @@ reales en la Fase 0:
 Fotos ──▶ RealityScan ──▶ Blender ────────────▶ glTF-Transform ──▶ public/modelos/
           (malla densa,   (limpiar, fijar        (simplificar,
            ~38 MB)         origen en la base,     Meshopt,
-                           escala en metros,      KTX2, ≤ 3 MB)
+                           escala en metros,      KTX2; galería ≤ 3 MB
+                                                  y examen ≤ ~10 MB)
                            orientación)
 ```
 

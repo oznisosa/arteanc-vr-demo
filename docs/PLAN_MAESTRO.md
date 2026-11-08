@@ -48,7 +48,7 @@ decisiones de diseño de la [visión](VISION.md) y los datos de las salas (F1).
 | Módulo | Entregable |
 |---|---|
 | 0.1 Limpieza | ✅ **Hecho el 2026-11-08**: `index - copia.html` y las entregas de diseño originales están en `_archivo/`; los escaneos de prueba, en `_fuentes-3d/` (ambas carpetas ignoradas por Git); `.gitignore` ampliado |
-| 0.0 Rama de trabajo | Crear la rama `fase-0` para no tocar `main` (que publica la web) hasta validar |
+| 0.0 Rama de trabajo | ❌ **Descartado el 2026-11-08** (DT-011): se trabaja en `main`, probando en local antes de cada push |
 | 0.2 Node y Vite | `package.json`; `npm run dev` levanta un servidor local con recarga automática; `npm run build` genera la versión publicable |
 | 0.3 Prueba en el Quest | Servidor HTTPS por wifi (o `adb reverse`) para abrir la escena en el Quest 3 desde el PC de desarrollo |
 | 0.4 Módulos JS | `app.js` dividido en `src/` con un archivo por responsabilidad (`import`/`export`) |
@@ -119,7 +119,7 @@ raycasting · vectores y cuaterniones básicos · *navmesh*.
 |---|---|
 | 3.1 Proceso documentado | `docs/PROCESO_MODELOS.md`: de la foto al `.glb` final, paso a paso |
 | 3.2 Script de optimización | `npm run optimizar` aplica glTF-Transform a todo lo que esté en una carpeta de entrada |
-| 3.3 Primera pieza real | El modelo actual pasa de 19 MB a ≤ 3 MB y se compara visualmente en el visor |
+| 3.3 Primera pieza real | El modelo actual (19 MB) se convierte en versión de galería (≤ 3 MB) y de examen (≤ ~10 MB); la de examen se compara en el Quest con fotos de la pieza real (DT-012) |
 | 3.4 Lote inicial | 12–20 productos reales escaneados, limpiados y optimizados |
 | 3.5 Carga | Indicador de carga y *placeholder* mientras llega cada modelo |
 
