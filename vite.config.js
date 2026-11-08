@@ -51,6 +51,16 @@ export default defineConfig(({ mode }) => {
       host: paraQuest,  // true = visible desde otros equipos de la red local
     },
 
+    // Dos páginas (DT-016): la escena principal y la casa en greybox
+    build: {
+      rollupOptions: {
+        input: {
+          principal: 'index.html',
+          casa: 'casa.html',
+        },
+      },
+    },
+
     plugins: [
       copiarCarpetas(),
       ...(paraQuest ? [basicSsl()] : []), // HTTPS solo en modo quest

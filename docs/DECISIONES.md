@@ -311,3 +311,25 @@ ejecución y obliga a publicar `docs/`).
 **Consecuencias:** una sola fuente de verdad; los errores de geometría se
 detectan antes de construir el *greybox*. Cambiar la casa exige una versión
 nueva del diseño.
+
+---
+
+## DT-016 — El *greybox* de la casa se construye en una página aparte (`casa.html`)
+**Estado:** Aceptada (aprobada por Ozni) · **Fecha:** 2026-11-08
+
+**Contexto:** el módulo 1.7 levanta la Casa ArteAnc completa (≈ 28 × 31 m) a
+partir de `datos/salas.json`. Sustituir ya la sala actual (`index.html`)
+rompería lo que funciona y chocaría con la otra sesión, que trabaja el
+movimiento (Fase 2) sobre la sala actual, cuyo joystick limita al visitante a
+x ±4,8 y z −4,8…1,6.
+
+**Decisión:** el *greybox* vive en **`casa.html`** con su propio punto de
+entrada (`src/casa.js`). `index.html` no cambia. Vite construye las dos
+páginas y ambas se publican (`…/arteanc-vr-demo/casa.html`). Mientras la
+Fase 2 no se fusione, `casa.html` usa un movimiento provisional sin límites
+(`src/casa/mover-provisional.js`), que se borrará al integrar la Fase 2.
+
+**Consecuencias:** se puede recorrer la casa en el Quest sin tocar la escena
+actual. Cuando el *greybox* esté validado, se decidirá cómo pasa a ser la
+escena principal (otra DT).
+
