@@ -24,7 +24,8 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 - **Fase 1 (Datos y componentes) en curso.** Hecho: 1.1 (`datos/catalogo.json`,
   guía [docs/CATALOGO.md](docs/CATALOGO.md), `npm run validar`).
   Hecho: 1.2 (`pieza-exhibida`) y 1.3 (`ficha-producto`, ficha junto a la pieza).
-  Siguiente: 1.4 datos de salas (`datos/salas.json` desde `02-layout.json`).
+  Hecho: 1.4 (`datos/salas.json` generado con `npm run salas`, DT-015; guía
+  [docs/SALAS.md](docs/SALAS.md)). Siguiente: 1.7 greybox (o 1.5 textos y fuente).
   Ver el plan para el orden y los criterios.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 
@@ -46,7 +47,7 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 4. **Español** en documentos, comentarios del código y textos de la escena.
 5. **No inventar datos** de productos ni atribuciones culturales.
    `null` = desconocido. Las piezas de prueba se marcan como ilustrativas.
-6. **Coordenadas del diseño final:** 1 unidad = 1 m; origen en el umbral sur;
+6. **Coordenadas del diseño final** (`datos/salas.json` se genera de `02-layout.json`; no editarlo a mano): 1 unidad = 1 m; origen en el umbral sur;
    X = este; Y = arriba; norte = −Z. En `02-layout.json`, `rooms.size` son
    **medidas libres interiores** `[ancho X, alto Y, fondo Z]`: no restar el muro otra vez.
 7. **Rendimiento (Quest 3):** respetar el presupuesto de

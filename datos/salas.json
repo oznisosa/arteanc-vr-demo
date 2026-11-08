@@ -1,0 +1,882 @@
+{
+  "version": 1,
+  "origen": "docs/diseno/final/02-layout.json (diseño congelado v1.0)",
+  "nota": "ARCHIVO GENERADO con `npm run salas`: no editar a mano. Guía: docs/SALAS.md. Unidades en metros; X = este, Y = arriba, norte = −Z; origen en el umbral sur. tamano = medidas LIBRES interiores [ancho X, alto Y, fondo Z] (no restar el muro otra vez).",
+  "limites": {
+    "x": [-13.8, 13.8],
+    "z": [-30.6, 0.2]
+  },
+  "grosorMuro": 0.4,
+  "alturaTecho": 4,
+  "alturaTechoSantuario": 6.5,
+  "alturaZocalo": 0.8,
+  "pasoMinimoEntreMuebles": 1.8,
+  "recorrido": ["recepcion", "galeria_sur", "patio", "ceramica", "patio", "textiles", "patio", "galeria_sur", "metal", "galeria_sur", "taller", "galeria_sur", "patio", "santuario", "patio", "galeria_sur", "recepcion"],
+  "salas": [
+    {
+      "id": "recepcion",
+      "nombre": "Umbral / Recepción",
+      "centro": [0, 0, -3.2],
+      "tamano": [8, 4, 6],
+      "acento": "#A98158",
+      "cieloAbierto": false,
+      "papel": "sala"
+    },
+    {
+      "id": "metal",
+      "nombre": "Metal, piedra e instrumentos",
+      "centro": [-8.4, 0, -3.2],
+      "tamano": [8, 4, 6],
+      "acento": "#344660",
+      "cieloAbierto": false,
+      "papel": "sala"
+    },
+    {
+      "id": "taller",
+      "nombre": "Taller / Mesa de examen",
+      "centro": [8.4, 0, -3.2],
+      "tamano": [8, 4, 6],
+      "acento": "#A88B61",
+      "cieloAbierto": false,
+      "papel": "sala"
+    },
+    {
+      "id": "galeria_sur",
+      "nombre": "Galería sur del patio",
+      "centro": [0, 0, -7.6],
+      "tamano": [24.8, 4, 2],
+      "acento": "#D5C5B0",
+      "cieloAbierto": true,
+      "papel": "circulacion"
+    },
+    {
+      "id": "patio",
+      "nombre": "Patio central",
+      "centro": [0, 0, -14],
+      "tamano": [10, 4, 10],
+      "acento": "#D5C5B0",
+      "cieloAbierto": true,
+      "papel": "sala"
+    },
+    {
+      "id": "ceramica",
+      "nombre": "Cerámica",
+      "centro": [-9.4, 0, -14],
+      "tamano": [8, 4, 10],
+      "acento": "#B96645",
+      "cieloAbierto": false,
+      "papel": "sala"
+    },
+    {
+      "id": "textiles",
+      "nombre": "Textiles",
+      "centro": [9.4, 0, -14],
+      "tamano": [8, 4, 10],
+      "acento": "#9E3441",
+      "cieloAbierto": false,
+      "papel": "sala"
+    },
+    {
+      "id": "santuario",
+      "nombre": "Santuario precolombino",
+      "centro": [0, 0, -25.2],
+      "tamano": [12, 6.5, 10],
+      "acento": "#795A44",
+      "cieloAbierto": false,
+      "papel": "sala"
+    }
+  ],
+  "accesos": [
+    {
+      "id": "D01",
+      "desde": "exterior",
+      "hacia": "recepcion",
+      "centro": [0, 0, 0],
+      "muro": "este-oeste",
+      "forma": "trapecio",
+      "anchoBase": 1.6,
+      "anchoSuperior": 1.3,
+      "alto": 2.6,
+      "fondo": 0.4,
+      "modulo": [2, 4, 0.4],
+      "conPuerta": false
+    },
+    {
+      "id": "D02",
+      "desde": "recepcion",
+      "hacia": "galeria_sur",
+      "centro": [0, 0, -6.4],
+      "muro": "este-oeste",
+      "forma": "trapecio",
+      "anchoBase": 1.6,
+      "anchoSuperior": 1.3,
+      "alto": 2.6,
+      "fondo": 0.4,
+      "modulo": [2, 4, 0.4],
+      "conPuerta": false
+    },
+    {
+      "id": "D03",
+      "desde": "metal",
+      "hacia": "galeria_sur",
+      "centro": [-8.4, 0, -6.4],
+      "muro": "este-oeste",
+      "forma": "trapecio",
+      "anchoBase": 1.6,
+      "anchoSuperior": 1.3,
+      "alto": 2.6,
+      "fondo": 0.4,
+      "modulo": [2, 4, 0.4],
+      "conPuerta": false
+    },
+    {
+      "id": "D04",
+      "desde": "taller",
+      "hacia": "galeria_sur",
+      "centro": [8.4, 0, -6.4],
+      "muro": "este-oeste",
+      "forma": "trapecio",
+      "anchoBase": 1.6,
+      "anchoSuperior": 1.3,
+      "alto": 2.6,
+      "fondo": 0.4,
+      "modulo": [2, 4, 0.4],
+      "conPuerta": false
+    },
+    {
+      "id": "D05",
+      "desde": "patio",
+      "hacia": "ceramica",
+      "centro": [-5.2, 0, -14],
+      "muro": "norte-sur",
+      "forma": "trapecio",
+      "anchoBase": 1.6,
+      "anchoSuperior": 1.3,
+      "alto": 2.6,
+      "fondo": 0.4,
+      "modulo": [2, 4, 0.4],
+      "conPuerta": false
+    },
+    {
+      "id": "D06",
+      "desde": "patio",
+      "hacia": "textiles",
+      "centro": [5.2, 0, -14],
+      "muro": "norte-sur",
+      "forma": "trapecio",
+      "anchoBase": 1.6,
+      "anchoSuperior": 1.3,
+      "alto": 2.6,
+      "fondo": 0.4,
+      "modulo": [2, 4, 0.4],
+      "conPuerta": false
+    },
+    {
+      "id": "D07",
+      "desde": "patio",
+      "hacia": "santuario",
+      "centro": [0, 0, -19.6],
+      "muro": "este-oeste",
+      "forma": "trapecio",
+      "anchoBase": 2.4,
+      "anchoSuperior": 1.9,
+      "alto": 4.2,
+      "fondo": 1.2,
+      "modulo": [3.6, 6.5, 1.2],
+      "conPuerta": false
+    }
+  ],
+  "posiciones": [
+    {
+      "id": "C01",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "apoyo": [-12.3, 1, -17.9],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-11.75, 1.1, -17.9],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "C02",
+      "sala": "ceramica",
+      "tipo": "vitrina",
+      "apoyo": [-9.4, 0.9, -17.9],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.6, 1.6, 0.6],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-8.85, 1.1, -17.9],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "C03",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "apoyo": [-6.5, 1, -17.9],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-5.95, 1.1, -17.9],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "C04",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "apoyo": [-12.3, 1, -14],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-11.75, 1.1, -14],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "C05",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "apoyo": [-9.4, 1, -14],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-8.85, 1.1, -14],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "C06",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "apoyo": [-12.3, 1, -10.1],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-11.75, 1.1, -10.1],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "C07",
+      "sala": "ceramica",
+      "tipo": "vitrina",
+      "apoyo": [-9.4, 0.9, -10.1],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.6, 1.6, 0.6],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-8.85, 1.1, -10.1],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "C08",
+      "sala": "ceramica",
+      "tipo": "peana",
+      "apoyo": [-6.5, 1, -10.1],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-5.95, 1.1, -10.1],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "T01",
+      "sala": "textiles",
+      "tipo": "peana",
+      "apoyo": [6.5, 0.9, -17.8],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 0.9, 0.5],
+      "altoPieza": 0.6,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [7.05, 1.1, -17.8],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      },
+      "tamanoPanel": [0.45, 0.6, 0.04],
+      "presentacion": "panel_textil"
+    },
+    {
+      "id": "T02",
+      "sala": "textiles",
+      "tipo": "peana",
+      "apoyo": [9.4, 0.9, -17.8],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 0.9, 0.5],
+      "altoPieza": 0.6,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [9.95, 1.1, -17.8],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      },
+      "tamanoPanel": [0.45, 0.6, 0.04],
+      "presentacion": "panel_textil"
+    },
+    {
+      "id": "T03",
+      "sala": "textiles",
+      "tipo": "peana",
+      "apoyo": [12.3, 0.9, -17.8],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 0.9, 0.5],
+      "altoPieza": 0.6,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [12.85, 1.1, -17.8],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      },
+      "tamanoPanel": [0.45, 0.6, 0.04],
+      "presentacion": "panel_textil"
+    },
+    {
+      "id": "T04",
+      "sala": "textiles",
+      "tipo": "peana",
+      "apoyo": [6.5, 0.9, -10.2],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 0.9, 0.5],
+      "altoPieza": 0.6,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [7.05, 1.1, -10.2],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      },
+      "tamanoPanel": [0.45, 0.6, 0.04],
+      "presentacion": "panel_textil"
+    },
+    {
+      "id": "T05",
+      "sala": "textiles",
+      "tipo": "peana",
+      "apoyo": [9.4, 0.9, -10.2],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 0.9, 0.5],
+      "altoPieza": 0.6,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [9.95, 1.1, -10.2],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      },
+      "tamanoPanel": [0.45, 0.6, 0.04],
+      "presentacion": "panel_textil"
+    },
+    {
+      "id": "T06",
+      "sala": "textiles",
+      "tipo": "peana",
+      "apoyo": [12.3, 0.9, -10.2],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 0.9, 0.5],
+      "altoPieza": 0.6,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [12.85, 1.1, -10.2],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      },
+      "tamanoPanel": [0.45, 0.6, 0.04],
+      "presentacion": "panel_textil"
+    },
+    {
+      "id": "T07",
+      "sala": "textiles",
+      "tipo": "mesa",
+      "apoyo": [7.7, 0.9, -14],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [1.2, 0.9, 0.6],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [8.25, 1.1, -14],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      },
+      "presentacion": "textil_inclinado"
+    },
+    {
+      "id": "T08",
+      "sala": "textiles",
+      "tipo": "mesa",
+      "apoyo": [11.1, 0.9, -14],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [1.2, 0.9, 0.6],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [11.65, 1.1, -14],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      },
+      "presentacion": "textil_inclinado"
+    },
+    {
+      "id": "M01",
+      "sala": "metal",
+      "tipo": "vitrina",
+      "apoyo": [-10.5, 0.9, -5.6],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.6, 1.6, 0.6],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-9.95, 1.1, -5.6],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "M02",
+      "sala": "metal",
+      "tipo": "peana",
+      "apoyo": [-6.3, 1, -5.6],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-5.75, 1.1, -5.6],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "M03",
+      "sala": "metal",
+      "tipo": "peana",
+      "apoyo": [-10.5, 1, -3.2],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-9.95, 1.1, -3.2],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "M04",
+      "sala": "metal",
+      "tipo": "peana",
+      "apoyo": [-6.3, 1, -3.2],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-5.75, 1.1, -3.2],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "M05",
+      "sala": "metal",
+      "tipo": "peana",
+      "apoyo": [-10.5, 1, -0.8],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-9.95, 1.1, -0.8],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "M06",
+      "sala": "metal",
+      "tipo": "vitrina",
+      "apoyo": [-6.3, 0.9, -0.8],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.6, 1.6, 0.6],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-5.75, 1.1, -0.8],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "W01",
+      "sala": "taller",
+      "tipo": "peana",
+      "apoyo": [4.85, 1, -5.25],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [4.85, 1.1, -4.8],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "W02",
+      "sala": "taller",
+      "tipo": "peana",
+      "apoyo": [11.95, 1, -5.25],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [11.95, 1.1, -4.8],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "W03",
+      "sala": "taller",
+      "tipo": "peana",
+      "apoyo": [4.85, 1, -1.15],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [4.85, 1.1, -1.6],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "W04",
+      "sala": "taller",
+      "tipo": "peana",
+      "apoyo": [11.95, 1, -1.15],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [11.95, 1.1, -1.6],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      }
+    },
+    {
+      "id": "W05",
+      "sala": "taller",
+      "tipo": "hornacina",
+      "apoyo": [8.4, 1, -0.075],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [1.2, 2.4, 0.4],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [9.15, 1.1, -0.36],
+        "orientacion": [-65, 180, 0],
+        "enMuro": true
+      },
+      "presentacion": "nicho_encalado"
+    },
+    {
+      "id": "W06",
+      "sala": "taller",
+      "tipo": "mesa",
+      "apoyo": [8.4, 0.9, -3.2],
+      "orientacion": [0, 180, 0],
+      "tamanoSoporte": [3, 0.9, 1.2],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [9.45, 1, -3.5],
+        "orientacion": [-65, 180, 0],
+        "enMuro": false
+      },
+      "presentacion": "mesa_examen"
+    },
+    {
+      "id": "S01",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "apoyo": [-6.125, 1, -22.4],
+      "orientacion": [0, 90, 0],
+      "tamanoSoporte": [1.2, 2.4, 0.4],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-5.84, 0.8, -22.4],
+        "orientacion": [-65, 90, 0],
+        "enMuro": true
+      },
+      "presentacion": "nicho_bronce"
+    },
+    {
+      "id": "S02",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "apoyo": [6.125, 1, -22.4],
+      "orientacion": [0, 270, 0],
+      "tamanoSoporte": [1.2, 2.4, 0.4],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [5.84, 0.8, -22.4],
+        "orientacion": [-65, 270, 0],
+        "enMuro": true
+      },
+      "presentacion": "nicho_bronce"
+    },
+    {
+      "id": "S03",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "apoyo": [-6.125, 1, -25.4],
+      "orientacion": [0, 90, 0],
+      "tamanoSoporte": [1.2, 2.4, 0.4],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-5.84, 0.8, -25.4],
+        "orientacion": [-65, 90, 0],
+        "enMuro": true
+      },
+      "presentacion": "nicho_bronce"
+    },
+    {
+      "id": "S04",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "apoyo": [6.125, 1, -25.4],
+      "orientacion": [0, 270, 0],
+      "tamanoSoporte": [1.2, 2.4, 0.4],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [5.84, 0.8, -25.4],
+        "orientacion": [-65, 270, 0],
+        "enMuro": true
+      },
+      "presentacion": "nicho_bronce"
+    },
+    {
+      "id": "S05",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "apoyo": [-6.125, 1, -28.4],
+      "orientacion": [0, 90, 0],
+      "tamanoSoporte": [1.2, 2.4, 0.4],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [-5.84, 0.8, -28.4],
+        "orientacion": [-65, 90, 0],
+        "enMuro": true
+      },
+      "presentacion": "nicho_bronce"
+    },
+    {
+      "id": "S06",
+      "sala": "santuario",
+      "tipo": "hornacina",
+      "apoyo": [6.125, 1, -28.4],
+      "orientacion": [0, 270, 0],
+      "tamanoSoporte": [1.2, 2.4, 0.4],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [5.84, 0.8, -28.4],
+        "orientacion": [-65, 270, 0],
+        "enMuro": true
+      },
+      "presentacion": "nicho_bronce"
+    },
+    {
+      "id": "S07",
+      "sala": "santuario",
+      "tipo": "peana",
+      "apoyo": [0, 1, -22.4],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [0.55, 1.1, -22.4],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      },
+      "presentacion": "basalto"
+    },
+    {
+      "id": "S08",
+      "sala": "santuario",
+      "tipo": "peana",
+      "apoyo": [0, 1, -25.4],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [0.55, 1.1, -25.4],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      },
+      "presentacion": "basalto"
+    },
+    {
+      "id": "S09",
+      "sala": "santuario",
+      "tipo": "peana",
+      "apoyo": [0, 1, -28.4],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [0.55, 1.1, -28.4],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      },
+      "presentacion": "basalto"
+    },
+    {
+      "id": "P01",
+      "sala": "patio",
+      "tipo": "peana",
+      "apoyo": [0, 1, -11.4],
+      "orientacion": [0, 0, 0],
+      "tamanoSoporte": [0.5, 1, 0.5],
+      "altoPieza": 0.4,
+      "cartela": {
+        "tamano": [0.5, 0.35],
+        "centro": [0.55, 1.1, -11.4],
+        "orientacion": [-65, 0, 0],
+        "enMuro": false
+      },
+      "presentacion": "pieza_semana"
+    }
+  ],
+  "elementos": [
+    {
+      "id": "canal",
+      "tipo": "canal_agua",
+      "sala": "patio",
+      "centro": [0, 0.175, -14.6],
+      "tamano": [0.5, 0.35, 4],
+      "nivelAgua": 0.28,
+      "transitable": false
+    },
+    {
+      "id": "mostrador",
+      "tipo": "mostrador",
+      "sala": "recepcion",
+      "centro": [-2.35, 0.5, -3.6],
+      "tamano": [2.6, 1, 0.9],
+      "alturaTramoAccesible": 0.75
+    },
+    {
+      "id": "lampara_examen",
+      "tipo": "lampara_articulada",
+      "sala": "taller",
+      "centro": [9.25, 0.9, -3.2],
+      "tamano": [0.35, 0.9, 0.35],
+      "temperaturaLuzK": 4000
+    },
+    {
+      "id": "regla",
+      "tipo": "regla_escala",
+      "sala": "taller",
+      "centro": [8.95, 0.91, -3.05],
+      "tamano": [0.3, 0.01, 0.04]
+    },
+    {
+      "id": "lupa",
+      "tipo": "lupa",
+      "sala": "taller",
+      "centro": [8.9, 0.92, -3.4],
+      "tamano": [0.2, 0.02, 0.12]
+    }
+  ],
+  "arquitectura": {
+    "portalSantuario": {
+      "acceso": "D07",
+      "limites": {
+        "x": [-1.8, 1.8],
+        "y": [0, 6.5],
+        "z": [-20.2, -19]
+      },
+      "anchoBase": 2.4,
+      "anchoSuperior": 1.9,
+      "alto": 4.2
+    },
+    "cierreNorte": {
+      "pantallaPatioZ": -19.2,
+      "pantallaGrosor": 0.4,
+      "pantallaAlto": 4,
+      "pantallaTramosX": [
+        [-5, -1.8],
+        [1.8, 5]
+      ],
+      "muroSurSantuarioZ": -20,
+      "muroSurSantuarioTramosX": [
+        [-6.4, -1.8],
+        [1.8, 6.4]
+      ],
+      "retranqueoNoTransitable": 0.8
+    },
+    "galeriaSur": {
+      "aperturaAlPatio": {
+        "x": [-5, 5],
+        "z": -9,
+        "joiningBandZ": [-9, -8.6]
+      },
+      "bordesCerradosX": [-12.6, 12.6],
+      "muroLateralAlto": 4,
+      "muroLateralGrosor": 0.4,
+      "muroSurZ": -6.4
+    },
+    "hornacina": {
+      "modulo": [1.2, 2.4, 0.4],
+      "anchoBase": 0.8,
+      "anchoSuperior": 0.65,
+      "alto": 1.2,
+      "fondo": 0.25,
+      "alturaRepisa": 1,
+      "forroSantuario": "bronze",
+      "forroTaller": "plaster"
+    },
+    "ranuraCenital": {
+      "sala": "santuario",
+      "centro": [0, 6.5, -25.4],
+      "tamano": [0.6, 0.4, 7]
+    }
+  }
+}

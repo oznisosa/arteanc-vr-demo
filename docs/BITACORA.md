@@ -8,6 +8,60 @@
 
 ---
 
+## 2026-11-08 — Módulo 1.4: datos de las salas (`datos/salas.json`)
+
+**Tipo:** datos y herramientas. **La escena no cambia** (los usará el *greybox*, módulo 1.7).
+
+### Qué se hizo
+```
+docs/diseno/final/02-layout.json ──(npm run salas)──▶ datos/salas.json
+```
+- **`herramientas/generar-salas.js`** (`npm run salas`): lee el diseño
+  congelado y escribe `datos/salas.json` con claves en español: 8 `salas`,
+  7 `accesos`, 38 `posiciones`, 5 `elementos` y la `arquitectura` especial
+  (portal y cierre norte del Santuario, galería sur, hornacinas, ranura cenital).
+  Las listas de números van en una línea (`[-9.4, 0, -14]`): el archivo pasa
+  de 31 a 21 kB y se lee mejor.
+- **`herramientas/validar-salas.js`** (dentro de `npm run validar`, y por
+  tanto de cada build): comprueba que `salas.json` está **al día** con el
+  diseño y que la **geometría** es coherente.
+- **`docs/SALAS.md`**: guía del archivo. **DT-015**: por qué se genera y no se copia.
+- `package.json`: scripts `salas` y `validar` (ahora valida catálogo y salas).
+
+### Cómo se verificó (rompiéndolo a propósito)
+1. Se cambió a mano `"grosorMuro"` en `salas.json` → **"no coincide con el diseño. Ejecuta: npm run salas"**.
+2. Se estropeó una copia del diseño (posición C01 movida a x = 0, acceso D05
+   movido a x = −3, Taller desplazado hasta solaparse con Recepción) → el
+   validador encontró **6 errores**: los 3 provocados y 3 consecuencias reales
+   (el otro lado de D05 y dos hornacinas del Taller que quedaban fuera).
+3. Se restauró el diseño → todo en verde.
+
+### Conceptos que aparecen
+- **Fuente única de verdad + archivo generado.** Se edita el original y el
+  derivado se produce con un programa; nunca se editan los dos.
+- **Transformar datos (mapear).** `diseno.rooms.map(r => ({ id: r.id, nombre: r.label, … }))`.
+- **Comprobaciones geométricas.** Rectángulos en planta, solape de intervalos,
+  "¿está este punto dentro?", con tolerancia de 1 mm.
+- **Probar un validador rompiendo cosas a propósito.** Si nunca se ha visto
+  fallar, no se sabe si funciona.
+- **Expresiones regulares.** La que junta las listas en una línea:
+  `/\[\s+([^[\]{}]*?)\s+\]/g`.
+
+### Para el tutor
+- Ejercicio: abrir `datos/salas.json`, buscar la posición `S01` y ubicarla en
+  `docs/diseno/final/01-planta.png`. ¿Por qué su `tipo` es `hornacina` y su
+  `apoyo` cae fuera del rectángulo de la sala?
+- Ejercicio: cambiar un número en `salas.json`, ejecutar `npm run validar`,
+  leer el error y arreglarlo con `npm run salas`.
+- Pregunta: ¿por qué `salas.json` se guarda en Git si se puede generar?
+  (Pista: la escena publicada lo necesita y así se ve en GitHub qué cambió.)
+
+### Pendientes
+- Decidir en el 1.7 cómo se asigna cada pieza del catálogo a una posición.
+- Siguiente: 1.7 *greybox* de la casa (o 1.5 textos y fuente MSDF).
+
+---
+
 ## 2026-11-08 — Módulo 1.3: ficha pequeña junto a la pieza (`ficha-producto`)
 
 **Tipo:** interfaz. **Primer cambio visible de la Fase 1.**
@@ -116,9 +170,10 @@ independiente de los fps** (`1 − e^(−k·Δt)`); **camino angular más corto*
 (`atan2(sen, cos)` para no girar 350° en lugar de 10°); **recolector de
 basura** (*garbage collector*).
 
+### Prueba de Ozni en el Quest
+✅ "De maravilla, funciona a la perfección."
+
 ### Pendientes
-- Prueba de Ozni en el Quest: ¿se lee bien la ficha dentro del visor? ¿Está
-  a buena altura y distancia? ¿El seguimiento resulta cómodo o marea?
 - Más adelante (F6): botón "Ver en la tienda" y favorito en la ficha.
 - Siguiente: módulo 1.4 (`datos/salas.json`).
 
