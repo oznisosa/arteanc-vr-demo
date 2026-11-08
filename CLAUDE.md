@@ -25,7 +25,9 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   guía [docs/CATALOGO.md](docs/CATALOGO.md), `npm run validar`).
   Hecho: 1.2 (`pieza-exhibida`) y 1.3 (`ficha-producto`, ficha junto a la pieza).
   Hecho: 1.4 (`datos/salas.json` generado con `npm run salas`, DT-015; guía
-  [docs/SALAS.md](docs/SALAS.md)). Siguiente: 1.7 greybox (o 1.5 textos y fuente).
+  [docs/SALAS.md](docs/SALAS.md)). 1.7 greybox construido en `casa.html` (DT-016,
+  componente `src/constructor/casa-greybox.js`); falta el recorrido en el Quest.
+  Después: 1.5 textos y fuente MSDF, 1.6 estado.
   Ver el plan para el orden y los criterios.
 - **Fase 2 (Movimiento y confort) en curso en paralelo (DT-030)**, en la rama
   `fase-2` y la carpeta `C:\arteanc\ArteAnc-VR-fase2` (worktree). Hecho:
@@ -104,7 +106,11 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 - **Trabajo en paralelo (desde el 2026-11-08, DT-030 en la rama `fase-2`):**
   otra sesión hace la Fase 2 en el worktree `C:\arteanc\ArteAnc-VR-fase2`.
   Fase 1 (aquí) usa DT-015 a DT-029 y los puertos 5173/4173; Fase 2 usa DT-030+
-  y 5174/4174. Aquí no se toca `caminar-quest.js` ni el bloque `#jugador`.
+  y 5174/4174. Aquí no se toca `caminar-quest.js` ni el bloque `#jugador` de
+  `index.html`. La sesión que programa la Fase 2 es `arteanc-vr-fase2-27`.
+  `casa.html` usa los mismos ids de jugador (`#jugador`, `#camara`,
+  `#mando-izquierdo`, `#mando-derecho`) y un movimiento provisional
+  (`src/casa/mover-provisional.js`) que se borrará al fusionar la Fase 2.
 - **Prueba de equivalencia:** el mismo script de Playwright en la web
   publicada y en local debe dar el mismo resultado (modelo 0,650 m con base en
   y 1,000; esfera y cono con base en 1,000; 24 baldosas; 3 fichas; puertas; recepción).

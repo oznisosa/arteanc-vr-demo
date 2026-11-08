@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArteAnc VR - La Casa (greybox)</title>
+  <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+</head>
+
+<body>
+  <!-- LA CASA ARTEANC EN VOLÚMENES SIMPLES (módulo 1.7, DT-016)
+       Se construye entera desde datos/salas.json con el componente casa-greybox
+       (src/constructor/casa-greybox.js). Sirve para validar escala y recorrido
+       en el Quest antes de modelar la arquitectura definitiva (Fase 4).
+       La escena principal sigue siendo index.html. -->
+  <a-scene background="color: #CFE0EA">
+
+    <!-- Luz neutra y uniforme: el greybox no busca belleza, sino medidas -->
+    <a-entity light="type: hemisphere; color: #FFFFFF; groundColor: #B8A88F; intensity: 1.1"></a-entity>
+    <a-entity light="type: directional; intensity: 0.7" position="-3 10 4"></a-entity>
+
+    <!-- LA CASA -->
+    <a-entity casa-greybox></a-entity>
+
+    <!-- JUGADOR: mismos ids que en index.html para que encajen los componentes
+         de la Fase 2. Empieza dentro de la Recepción, mirando al norte. -->
+    <a-entity id="jugador" position="0 0 -1.2" mover-provisional>
+      <a-camera id="camara" position="0 1.6 0" wasd-controls="acceleration: 25">
+        <a-entity cursor="rayOrigin: mouse" raycaster="objects: .interactivo"></a-entity>
+      </a-camera>
+      <a-entity id="mando-izquierdo" laser-controls="hand: left" raycaster="objects: .interactivo; far: 10"></a-entity>
+      <a-entity id="mando-derecho" laser-controls="hand: right" raycaster="objects: .interactivo; far: 10"></a-entity>
+    </a-entity>
+
+  </a-scene>
+
+  <script type="module" src="./src/casa.js"></script>
+</body>
+</html>

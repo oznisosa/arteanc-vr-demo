@@ -31,6 +31,13 @@ npm run preview    # prueba esa versión publicable en http://localhost:4173
 Añadir `?debug` a la dirección (p. ej. `http://localhost:5173/?debug`) muestra el
 medidor de rendimiento: fps, llamadas de dibujo y triángulos (también dentro del visor).
 
+## La Casa ArteAnc (greybox)
+`casa.html` levanta la casa completa del diseño final con volúmenes simples, a
+escala real, para recorrerla y validar medidas: `http://localhost:5173/casa.html`
+en local o https://oznisosa.github.io/arteanc-vr-demo/casa.html publicada.
+En el Quest: joystick izquierdo para caminar y derecho para girar 30°
+(movimiento provisional, todavía atraviesa muros).
+
 ## Publicación
 Cada `git push` a `main` construye la web con Vite y la publica en
 https://oznisosa.github.io/arteanc-vr-demo/ (GitHub Actions; el progreso se ve

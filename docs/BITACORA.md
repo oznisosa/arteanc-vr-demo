@@ -8,6 +8,30 @@
 
 ---
 
+## 2026-11-08 — Segunda unión: `git merge main` trae la casa en *greybox* (1.7)
+
+**Tipo:** organización (Git). Llega a `fase-2` el commit `7217f87` de `main`
+(módulo 1.7): `casa.html`, `src/casa.js`, `src/constructor/` y el movimiento
+provisional `src/casa/mover-provisional.js`. `vite.config.js` construye ahora
+dos páginas (`index.html` y `casa.html`).
+
+**Conflictos:** otra vez solo `docs/BITACORA.md` y `docs/DECISIONES.md`
+(entradas nuevas en el mismo sitio). Resueltos igual que la primera vez:
+se conservan las dos partes; DT-016 queda antes que DT-030 y DT-031.
+
+**Cómo se verificó:** `npm run build` genera `dist/index.html` y
+`dist/casa.html` (23 módulos; catálogo y salas correctos). En `index.html`:
+24 baldosas, ficha al hacer clic, salto (cabeza en 0,2; −2,856) y giro
+(−30°). En `casa.html`: la casa se construye (mallas `greybox-<color>`).
+Consola: solo el `favicon.ico` conocido.
+
+**Pendiente para el 2.3:** `casa.html` todavía usa `mover-provisional`
+(atraviesa muros). Al integrar la Fase 2 allí, se borra y se usan
+`caminar-quest`, `teletransporte` y `giro-por-pasos` con las zonas de
+`datos/salas.json`.
+
+---
+
 ## 2026-11-08 — Unión: `git merge main` en la rama `fase-2`
 
 **Tipo:** organización (Git). **La escena de `fase-2` gana lo de la Fase 1.**
@@ -292,6 +316,87 @@ git worktree list                                # muestra las dos carpetas
 - Hecho: la sesión de la Fase 1 propuso el reparto (DT-015–029 para F1, DT-030+ para F2; archivos y puertos) y se aceptó; detalle en DT-030.
 - Empezar el módulo 2.1 (Teletransporte).
 - Al unir, los documentos compartidos tendrán conflictos: conservar ambas entradas.
+
+---
+
+## 2026-11-08 — Módulo 1.7: la Casa ArteAnc en *greybox* (`casa.html`)
+
+**Tipo:** escena nueva. **`index.html` no cambia** (DT-016, aprobada por Ozni:
+"me parece genial así, deja registro y adelante").
+
+### Qué se construyó
+- **`casa.html`** + **`src/casa.js`**: página nueva con la casa completa.
+  Vite construye ahora dos páginas (`vite.config.js`, `rollupOptions.input`).
+- **`src/constructor/casa-greybox.js`**: componente que lee `datos/salas.json` y levanta:
+  - suelos de las 8 salas y techos (sin techo en patio y galería: cielo abierto);
+  - **muros de 0,40 m**: cada sala aporta 4; los de salas vecinas caen en la
+    misma línea y **se unen** (19 tramos en total);
+  - **7 accesos trapezoidales** recortados en los muros (base 1,60 / arriba
+    1,30 / alto 2,60) y el **portal del Santuario** (bloque de 3,6 × 6,5 × 1,2 m
+    con túnel de 2,40 / 1,90 / 4,20);
+  - la **apertura libre** de la galería sur al patio (x −5…5);
+  - **7 hornacinas** (6 del Santuario con fondo bronce, 1 del Taller encalada);
+  - **38 soportes** (peanas, vitrinas con urna de vidrio, mesas), sus
+    **cartelas** inclinadas y una **pieza de referencia** (cilindro terracota
+    del alto previsto) en cada posición, para juzgar la escala;
+  - canal de agua, mostrador, lámpara, regla y lupa; nombre de cada sala.
+- **`src/constructor/geometria.js`**: funciones de geometría (muro con huecos,
+  losa con agujeros, caja, portal) y **`fusionar()`**.
+- **`src/casa/mover-provisional.js`**: joystick izquierdo para caminar y
+  derecho para girar 30°. **Temporal** hasta fusionar la Fase 2.
+
+### Rendimiento: fusionar geometrías
+Todo lo que comparte color se junta en **una sola malla**: la casa entera son
+**13 mallas**, unas **25 llamadas de dibujo** y **≈ 3 600 triángulos**
+(presupuesto: < 100 llamadas y < 250 000 triángulos). Sin fusionar habrían
+sido cientos de llamadas (cada muro, peana y cartela por separado).
+
+### Cómo se verificó
+- **Vista cenital** (sin techos) comparada con `docs/diseno/final/01-planta.png`:
+  coinciden salas, accesos, portal, canal, mostrador y las 38 posiciones.
+- Vistas a la altura de los ojos: Recepción (hueco hacia la galería y el patio
+  al fondo), patio mirando al portal (se ven las peanas del Santuario por el
+  túnel), interior del Santuario (techo de 6,5 m, ranura cenital, hornacinas).
+- Corregido durante la prueba: los nombres de las salas eran enormes al pasar
+  por debajo (se redujeron) y el agua del canal quedaba tapada por el borde de
+  piedra (ahora el borde llega al nivel del agua).
+- `index.html` sigue igual (bases a 1,000, ficha, 24 baldosas).
+- **Nota sobre los fps:** en estas pruebas el navegador de Playwright daba
+  2 fps **también en `index.html`** (por la mañana daba 60): el navegador de
+  pruebas estaba ralentizado, no la casa. Los fps reales se miden en el Quest.
+- **Pendiente:** recorrido de Ozni en el Quest (escala, orientación, comodidad).
+
+### Coordinación con la Fase 2
+La sesión que programa la Fase 2 es `arteanc-vr-fase2-27` (la `arteanc-vr-8e`
+solo preparó el worktree). Acordado: `casa.html` usa los mismos ids de
+jugador; su módulo de zonas transitables (2.3) leerá `datos/salas.json`; el
+movimiento provisional se borra al fusionar.
+
+### Conceptos que aparecen
+- ***Greyboxing*.** Construir con volúmenes simples para probar escala y
+  recorrido antes de invertir en modelos y texturas.
+- **Extrusión (`ExtrudeGeometry`).** Dibujar un contorno 2D (el muro con sus
+  huecos) y darle grosor.
+- **Contornos y agujeros (`Shape` y `holes`).** Los accesos "muerden" el
+  borde inferior; las hornacinas son agujeros interiores.
+- **Unión de intervalos.** Juntar tramos de muro solapados de una misma línea.
+- **Fusión de geometrías y llamadas de dibujo.** Menos mallas = menos trabajo
+  para la CPU del Quest.
+- **Aplicación multipágina (MPA)** en Vite.
+
+### Para el tutor
+- Ejercicio: en `casa.html?debug`, comparar las llamadas de dibujo con las de
+  `index.html?debug`. ¿Por qué la casa, mucho más grande, cuesta parecido?
+- Ejercicio: en `src/constructor/casa-greybox.js`, cambiar `COLOR.muro` y ver
+  cómo cambian todos los muros a la vez (es una sola malla).
+- Pregunta: ¿qué pasaría con el *greybox* si mañana el diseño mueve una
+  puerta? (Respuesta: nueva versión del diseño → `npm run salas` → la casa
+  se reconstruye sola.)
+
+### Pendientes
+- Recorrido de Ozni en el Quest.
+- Asignar las piezas del catálogo a posiciones de la casa.
+- Decidir cuándo `casa.html` pasa a ser la escena principal (nueva DT).
 
 ---
 
