@@ -288,3 +288,57 @@ legal (módulo 7.5). La regla del diseño se mantiene: ese tipo exige
 documentación de **cada pieza**; el nombre de la sala no basta.
 
 **Revisar:** cuando ArteAnc confirme qué vende realmente (pregunta abierta n.º 2).
+
+---
+
+## DT-030 — Trabajo en paralelo: la Fase 2 en su propia rama y carpeta (worktree)
+**Estado:** Aceptada · **Fecha:** 2026-11-08 · **Matiza:** DT-011
+
+**Contexto:** Ozni quiere avanzar la Fase 1 y la Fase 2 a la vez, con dos
+sesiones de Claude Code. El plan ya permite hacerlas en paralelo. Si las dos
+sesiones trabajan en la misma carpeta, se pisan: una carpeta de Git solo
+tiene una rama activa y los mismos archivos para todos.
+
+**Decisión:**
+- La Fase 1 sigue en `main`, en `C:\arteanc\ArteAnc-VR` (DT-011 no cambia ahí).
+- La Fase 2 se hace en la rama `fase-2`, en una **segunda carpeta**
+  `C:\arteanc\ArteAnc-VR-fase2`, creada con `git worktree`.
+- `fase-2` **no publica**: GitHub Actions solo publica desde `main` (DT-013).
+  Se puede hacer push de `fase-2` como copia de seguridad.
+- Para unir: cuando un módulo de la Fase 2 esté probado, se actualiza
+  `fase-2` con lo último de `main` (`git merge main`), se prueba otra vez y
+  después se une a `main` (`git merge fase-2`) con la prueba rápida de
+  PRUEBAS.md §1 antes del push.
+- Puertos de prueba: la Fase 1 usa 5173 (dev) y 4173 (preview); la Fase 2,
+  **5174** y **4174** (`npx vite --port 5174 --strictPort --open false`).
+  Al cerrar servidores, cada sesión filtra los `node.exe` por la ruta de **su**
+  carpeta (`ArteAnc-VR/node_modules` o `ArteAnc-VR-fase2/node_modules`) para
+  no cerrar los de la otra.
+
+**Reparto de archivos (acordado entre las dos sesiones):**
+- Fase 2: `src/componentes/caminar-quest.js`, componentes nuevos de
+  movimiento y el bloque `#jugador` (cámara y mandos) de `index.html`.
+- Fase 1: entidades de producto, ficha y recepción de `index.html`,
+  `src/interaccion/ficha.js`, `src/datos/`, `datos/catalogo.json` y
+  `src/componentes/pieza-exhibida.js`. La Fase 2 no los toca.
+- `src/main.js`: los imports de la Fase 2 van en un bloque propio con el
+  comentario `// FASE 2 - movimiento`.
+
+Los documentos compartidos (`BITACORA.md`,
+`DECISIONES.md`, `PLAN_MAESTRO.md`, `CLAUDE.md`) chocarán al unir: se
+resuelven conservando **las dos** entradas.
+
+**Numeración de decisiones:** la Fase 1 usa DT-015 a DT-029; la Fase 2,
+DT-030 en adelante (esta es la DT-030). Así no se repiten números al unir.
+Antes de unir, Ozni decide si `fase-2` se actualiza con `git merge main` o
+con `git rebase main`.
+
+**Alternativas:** una sola sesión (más lenta); dos sesiones en la misma
+carpeta (se pisan); clonar el repositorio dos veces (funciona, pero duplica
+la historia y hay que sincronizar por GitHub).
+
+**Consecuencias:** se aprende un concepto nuevo (ramas, `merge`, worktree);
+puede haber conflictos que resolver a mano al unir.
+
+**Revisar:** al terminar la Fase 2, borrar el worktree
+(`git worktree remove ..\ArteAnc-VR-fase2`) y volver a DT-011.

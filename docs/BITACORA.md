@@ -8,6 +8,63 @@
 
 ---
 
+## 2026-11-08 — Fase 2 en paralelo: rama `fase-2` en un *worktree* (DT-030)
+
+**Tipo:** organización del trabajo. **La escena no cambia.**
+
+### Qué cambió
+| Antes | Después |
+|---|---|
+| Una sola carpeta de trabajo (`ArteAnc-VR`) y una rama (`main`) | Dos carpetas conectadas al mismo repositorio |
+| Todo en `main` (DT-011) | Fase 1 en `main`; Fase 2 en la rama `fase-2`, carpeta `ArteAnc-VR-fase2` |
+
+**Archivos modificados (solo en la rama `fase-2`):** `docs/DECISIONES.md`
+(DT-030), `CLAUDE.md` (estado y regla de Git), `docs/PLAN_MAESTRO.md`
+(Fase 2 en curso) y esta bitácora.
+
+### Por qué
+Ozni quiere que dos sesiones de Claude Code avancen a la vez: una con la
+Fase 1 y otra con la Fase 2. El plan ya decía que la F2 puede ir en paralelo.
+Una **rama sola no basta**: una carpeta de Git tiene una única rama activa,
+así que si una sesión cambia de rama, los archivos cambian también para la
+otra. Por eso se usa un *worktree*: otra carpeta con su propia rama.
+
+### Comandos usados
+```powershell
+git worktree add ..\ArteAnc-VR-fase2 -b fase-2   # carpeta nueva + rama nueva
+cd ..\ArteAnc-VR-fase2
+npm ci                                           # node_modules no se comparte
+git worktree list                                # muestra las dos carpetas
+```
+
+### Conceptos que aparecen
+- **Rama (*branch*):** una línea de trabajo independiente. `main` es la que
+  publica la web; `fase-2` no publica nada.
+- **Worktree:** una segunda carpeta de trabajo del mismo repositorio. Las dos
+  comparten la historia (commits), pero cada una tiene sus archivos y su rama.
+- **Merge (unir):** traer los commits de una rama a otra. Si las dos ramas
+  cambiaron las mismas líneas, hay un **conflicto** que se resuelve a mano.
+- **Puertos:** dos servidores no pueden usar el mismo puerto; esta carpeta
+  usa el 5174 (y el 4174 para `vite preview`).
+
+### Cómo se verificó
+`git worktree list` muestra `C:/arteanc/ArteAnc-VR [main]` y
+`C:/arteanc/ArteAnc-VR-fase2 [fase-2]`, ambas en el commit `1f3333f`.
+`npm ci` terminó sin errores (0 vulnerabilidades).
+
+### Ejercicio sugerido
+1. En cada carpeta, ejecuta `git branch` y mira cuál tiene el asterisco.
+2. Cuando haya un commit en `main`, ejecuta `git log --oneline --all --graph`
+   desde cualquiera de las dos carpetas y observa cómo se separan las ramas.
+3. Pregunta a ChatGPT: ¿qué diferencia hay entre `git merge` y `git rebase`?
+
+### Pendientes
+- Hecho: la sesión de la Fase 1 propuso el reparto (DT-015–029 para F1, DT-030+ para F2; archivos y puertos) y se aceptó; detalle en DT-030.
+- Empezar el módulo 2.1 (Teletransporte).
+- Al unir, los documentos compartidos tendrán conflictos: conservar ambas entradas.
+
+---
+
 ## 2026-11-08 — Módulo 1.1: el catálogo pasa a `datos/catalogo.json`
 
 **Tipo:** datos. **La escena se ve igual** (las fichas muestran los mismos textos).

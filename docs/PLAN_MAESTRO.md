@@ -93,6 +93,9 @@ la aplicación.
 
 ## FASE 2 — Movimiento y confort
 
+> **En curso desde el 2026-11-08** en la rama `fase-2` (carpeta
+> `C:\arteanc\ArteAnc-VR-fase2`), en paralelo con la Fase 1 (DT-030).
+
 **Objetivo:** que cualquier persona se mueva sin marearse y sin atravesar paredes.
 
 | Módulo | Entregable |

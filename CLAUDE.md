@@ -24,6 +24,9 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 - **Fase 1 (Datos y componentes) en curso.** Hecho: 1.1 (`datos/catalogo.json`,
   guía [docs/CATALOGO.md](docs/CATALOGO.md), `npm run validar`).
   Siguiente: 1.2 `pieza-exhibida`. Ver el plan para el orden y los criterios.
+- **Fase 2 (Movimiento y confort) en curso en paralelo (DT-030)**, en la rama
+  `fase-2` y la carpeta `C:\arteanc\ArteAnc-VR-fase2` (worktree). Siguiente:
+  2.1 Teletransporte. La Fase 1 sigue en `main`, en la otra carpeta, con otra sesión.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 
 ## Reglas de trabajo
@@ -39,6 +42,23 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
    - No hacer commit ni push si Ozni no lo pide.
    - Se trabaja directamente en `main` (DT-011). Como `main` publica la web,
      **antes de cada push** la escena se prueba en local y debe funcionar igual o mejor.
+   - **Excepción (DT-030):** la Fase 2 se trabaja en la rama `fase-2`, en
+     `C:\arteanc\ArteAnc-VR-fase2`. Desde esa carpeta no tocar la carpeta de
+     `main` (la usa la sesión de la Fase 1).
+     - Decisiones: Fase 1 usa DT-015 a DT-029; Fase 2, **DT-030 en adelante**.
+     - Archivos de la Fase 2: `src/componentes/caminar-quest.js`, componentes
+       nuevos de movimiento y el bloque `#jugador` de `index.html`. **No tocar**
+       las entidades de producto/ficha/recepción de `index.html`,
+       `src/interaccion/ficha.js`, `src/datos/`, `datos/catalogo.json` ni
+       `src/componentes/pieza-exhibida.js`.
+     - En `src/main.js`, los imports de la Fase 2 van en un bloque con el
+       comentario `// FASE 2 - movimiento`.
+     - Puertos de prueba: **5174** (dev: `npx vite --port 5174 --strictPort --open false`)
+       y **4174** (preview). Al cerrar servidores, filtrar los `node.exe` por
+       `C:\arteanc\ArteAnc-VR-fase2\node_modules`, para no cerrar los de la otra sesión.
+     - Para unir: actualizar `fase-2` con `main` (`git merge main` o
+       `git rebase main`, lo decide Ozni), probar, y luego `git merge fase-2` en `main`.
+       En los documentos compartidos, conservar las entradas de ambas ramas.
    - Al proponer un commit, listar los archivos explícitamente (nunca `git add .`)
      y dar los comandos para que Ozni los ejecute y aprenda.
 4. **Español** en documentos, comentarios del código y textos de la escena.
