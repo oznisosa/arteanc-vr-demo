@@ -5,6 +5,11 @@
 
 import './escena/fuentes.js'; // primero: fuente con tildes (1.5)
 import './constructor/casa-greybox.js';
+// Piezas del catálogo y su ficha dentro de la casa (módulo 1.8)
+import './componentes/pieza-exhibida.js';
+import './componentes/ficha-producto.js';
+import { catalogoListo } from './datos/catalogo-servicio.js';
+import { iniciarFicha } from './interaccion/ficha.js';
 import './casa/mover-provisional.js';
 import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';
 
@@ -12,7 +17,8 @@ if (modoDepuracionActivo()) {
   activarDepuracion();
 }
 
-// Mensaje en la consola con el resumen de lo construido
-document.querySelector('[casa-greybox]').addEventListener('casa-construida', (e) => {
+// Cuando la casa está construida (con sus piezas), se conecta la ficha
+document.querySelector('[casa-greybox]').addEventListener('casa-construida', async (e) => {
   console.info('[ArteAnc] Casa greybox construida:', e.detail.resumen);
+  iniciarFicha(await catalogoListo);
 });

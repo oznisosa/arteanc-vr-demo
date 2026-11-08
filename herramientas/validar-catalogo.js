@@ -7,7 +7,9 @@
 //   - es JSON válido (sin comas de más, comillas bien cerradas…);
 //   - cada pieza tiene todos los campos (con valor o con null);
 //   - los valores de tipoPieza, naturaleza, sala, moneda… son de las listas permitidas;
-//   - no hay `id` ni `sku` repetidos.
+//   - no hay `id` ni `sku` repetidos;
+//   - cada `posicion` existe en datos/salas.json, es de la misma sala que la
+//     pieza y no la ocupa otra pieza (módulo 1.8).
 // Guía de campos: docs/CATALOGO.md
 
 import { readFileSync } from 'node:fs';
@@ -15,7 +17,7 @@ import { readFileSync } from 'node:fs';
 const RUTA = 'datos/catalogo.json';
 
 const CAMPOS = [
-  'id', 'sku', 'titulo', 'descripcion', 'sala', 'tipoPieza',
+  'id', 'sku', 'titulo', 'descripcion', 'sala', 'posicion', 'tipoPieza',
   'tipoPiezaEsIlustrativo', 'naturaleza', 'cultura', 'epoca', 'material',
   'dimensiones_m', 'procedencia', 'fuentes', 'estadoEditorial', 'moneda',
   'precio', 'precioEsFicticio', 'stock', 'urlProducto', 'modelos', 'actualizadoEn'
@@ -46,6 +48,12 @@ if (!Array.isArray(datos.piezas)) {
   process.exit(1);
 }
 
+// Posiciones de exhibición de la casa (para comprobar el campo `posicion`)
+const posiciones = Object.fromEntries(
+  JSON.parse(readFileSync('datos/salas.json', 'utf8')).posiciones.map((p) => [p.id, p])
+);
+const ocupadas = {};
+
 // 2. Cada pieza
 const ids = new Set();
 const skus = new Set();
@@ -71,6 +79,17 @@ datos.piezas.forEach((p, i) => {
   if (skus.has(p.sku)) error(donde, `"sku" repetido: ${p.sku}`);
   ids.add(p.id);
   skus.add(p.sku);
+
+  if (p.posicion !== null && p.posicion !== undefined) {
+    const pos = posiciones[p.posicion];
+    if (!pos) {
+      error(donde, `"posicion" ${JSON.stringify(p.posicion)} no existe en datos/salas.json (ej.: "C05", "S07")`);
+    } else {
+      if (p.sala !== pos.sala) error(donde, `la posición ${p.posicion} es de la sala "${pos.sala}", pero la pieza dice "sala": ${JSON.stringify(p.sala)}`);
+      if (ocupadas[p.posicion]) error(donde, `la posición ${p.posicion} ya la ocupa la pieza "${ocupadas[p.posicion]}"`);
+      ocupadas[p.posicion] = p.id;
+    }
+  }
 
   if (p.precio !== null && (typeof p.precio !== 'number' || p.precio < 0)) {
     error(donde, '"precio" debe ser un número (sin comillas) o null');
@@ -104,4 +123,4 @@ if (errores.length > 0) {
   console.error(`✗ ${RUTA}: ${errores.length} error(es)\n${errores.join('\n')}`);
   process.exit(1);
 }
-console.log(`✓ ${RUTA}: ${datos.piezas.length} piezas correctas`);
+console.log(`✓ ${RUTA}: ${datos.piezas.length} piezas correctas (${Object.keys(ocupadas).length} colocadas en la casa)`);

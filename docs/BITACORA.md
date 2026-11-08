@@ -8,6 +8,63 @@
 
 ---
 
+## 2026-11-08 — Módulo 1.8: las piezas del catálogo, en su sitio de la casa
+
+**Tipo:** datos + escena. Añadido para cerrar la Fase 1 (Ozni: "empieza para
+cerrar fase 1 ya"). **`index.html` no cambia.**
+
+### Qué cambió
+- **Campo nuevo en el catálogo: `"posicion"`**, el código de una posición de
+  exhibición de `datos/salas.json`. Asignación de demostración:
+  `pieza01` → **C05** (peana central de Cerámica), `pieza02` (el modelo 3D,
+  "Cerámica Moche") → **S07** (primera peana del Santuario, la que se ve al
+  cruzar el portal). `pieza03` no tiene sala (`null`), así que tampoco
+  posición: no se inventa (decide Ozni).
+- **Validador:** la posición debe existir, ser de la misma sala que la pieza
+  y no estar ocupada. Probado rompiéndolo: posición de otra sala, posición
+  repetida y posición inexistente (`Z99`) → los tres errores detectados.
+- **`casa-greybox`** descarga salas y catálogo a la vez; en las posiciones
+  con pieza **no** pone el cilindro de referencia y monta la pieza real con
+  `pieza-exhibida` (`peanaForma: ninguna`, porque el soporte ya lo dibuja el
+  greybox), mirando según la orientación de la posición y con el tamaño
+  previsto en el diseño (`altoPieza`) mientras no haya medidas reales.
+- **`pieza-exhibida`**: nueva opción `peanaForma: ninguna`.
+- **`casa.html`**: tiene la misma ficha que `index.html`; `src/casa.js` la conecta
+  cuando la casa termina de construirse (evento `casa-construida`).
+- Guías: `CATALOGO.md` (campo `posicion`), `SALAS.md`, `PRUEBAS.md` (C7b).
+
+### Cómo se verificó
+- Resumen de la casa: **2 piezas colocadas**. pieza01 en C05 (centro −9,40 /
+  −14,00, base 1,000 m); pieza02 en S07 (centro 0,01 / −22,48, base 1,000 m),
+  las dos de 0,40 m.
+- Clic en el modelo del Santuario → ficha "ORIGINAL DOCUMENTADO · Modelo 3D
+  de prueba" y el estado anota `piezaSeleccionada: pieza02`. Captura tomada.
+- `index.html` igual: tres piezas con peana, bases a 1,000, ficha.
+- **Pendiente:** prueba de Ozni en el Quest.
+
+### Conceptos que aparecen
+- **Clave foránea.** `posicion: "S07"` en el catálogo apunta a un registro de
+  otro archivo (`salas.json`); el validador comprueba que el destino existe,
+  como hace una base de datos.
+- **Restricción de unicidad.** Dos piezas no pueden ocupar la misma posición.
+- **`Promise.all`.** Esperar dos descargas que van en paralelo.
+- **Reutilizar componentes.** La misma `pieza-exhibida` y la misma ficha
+  sirven en la sala vieja y en la casa.
+
+### Para el tutor
+- Ejercicio: en `datos/catalogo.json`, mover `pieza01` de `"C05"` a `"C01"` y
+  verlo en `casa.html`. Después probar `"T01"` y leer el error del validador.
+- Pregunta: ¿por qué en la casa la pieza usa `peanaForma: ninguna` y en
+  `index.html` no?
+
+### Pendientes
+- Decidir con Ozni la posición (y sala) de `pieza03`.
+- **Último paso de la Fase 1:** que `casa.html` sea la escena principal.
+  Conviene fusionar antes la rama `fase-2` (teletransporte, giro, paredes
+  sólidas y modo sentado). Lo decide Ozni.
+
+---
+
 ## 2026-11-08 — Módulo 1.6: el estado de la aplicación · **Fase 1 completa**
 
 **Tipo:** servicio interno. **El visitante no ve cambios todavía**: lo usarán

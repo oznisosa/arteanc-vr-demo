@@ -92,6 +92,7 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | C5 | Portal del Santuario | Bloque de 6,5 m con túnel de 1,2 m; al fondo, 3 peanas negras en el eje | |
 | C6 | Santuario | Techo a 6,5 m con ranura abierta al cielo; 6 hornacinas laterales con fondo bronce | |
 | C7 | Escala (en el Quest) | Las salas, peanas (1 m) y puertas (2,6 m) se sienten de tamaño real | |
+| C7b | Piezas del catálogo | El modelo 3D está sobre la primera peana del Santuario (S07) y una caja terracota en la peana central de Cerámica (C05); clic → su ficha | |
 | C8 | `index.html` | Sigue igual que antes | |
 
 ### 2.3 Web publicada

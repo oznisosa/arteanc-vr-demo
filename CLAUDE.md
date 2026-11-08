@@ -30,7 +30,9 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   1.5 hecho (DT-017): textos en `datos/textos/es.json` con `t('clave')`; fuentes
   MSDF en `fuentes/` (guía `fuentes/LEEME.md`). 1.6 hecho (DT-018): estado en
   `src/servicios/estado.js`; pruebas con `npm run probar` (`pruebas/*.test.js`).
-  **Fase 1: todos los módulos hechos**; falta revisar sus criterios de cierre.
+  1.8 hecho: campo `posicion` del catálogo → la pieza aparece en `casa.html`.
+  **Fase 1: todos los módulos hechos.** Para cerrarla falta que `casa.html` sea la
+  escena principal (conviene fusionar antes la rama `fase-2`; lo decide Ozni).
   Ver el plan para el orden y los criterios.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 

@@ -20,7 +20,9 @@ const THREE = AFRAME.THREE;
 AFRAME.registerComponent('pieza-exhibida', {
   schema: {
     pieza: { type: 'string' },                              // `id` en datos/catalogo.json
-    peanaForma: { default: 'caja', oneOf: ['caja', 'cilindro'] },
+    // 'ninguna': la pieza se apoya directamente en la posición de la entidad
+    // (en la casa, el soporte ya lo dibuja el greybox: módulo 1.8)
+    peanaForma: { default: 'caja', oneOf: ['caja', 'cilindro', 'ninguna'] },
     peanaTamano: { type: 'vec3', default: { x: 0.5, y: 1, z: 0.5 } }, // ancho, alto, fondo (m)
     peanaColor: { type: 'color', default: '#755C45' },
     tamanoSinMedidas: { type: 'number', default: 0.4 },    // m, si dimensiones_m es null
@@ -44,6 +46,7 @@ AFRAME.registerComponent('pieza-exhibida', {
 
   // 1. PEANA: su base toca el suelo (y = 0 de la entidad)
   crearPeana: function () {
+    if (this.data.peanaForma === 'ninguna') return;
     const t = this.data.peanaTamano;
     const peana = document.createElement(this.data.peanaForma === 'cilindro' ? 'a-cylinder' : 'a-box');
 
@@ -62,7 +65,7 @@ AFRAME.registerComponent('pieza-exhibida', {
 
   // 2. PIEZA: modelo 3D o forma provisional, apoyada sobre la peana
   crearPieza: function (datos) {
-    const alturaPeana = this.data.peanaTamano.y;
+    const alturaPeana = this.data.peanaForma === 'ninguna' ? 0 : this.data.peanaTamano.y;
     const rutaModelo = datos?.modelos?.galeria;
 
     const pieza = document.createElement('a-entity');
