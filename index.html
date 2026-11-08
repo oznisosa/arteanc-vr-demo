@@ -443,7 +443,7 @@
     <!-- CÁMARA Y RATÓN -->
     
 <!-- JUGADOR: CAMARA Y MANDOS -->
-<a-entity id="jugador" caminar-quest>
+<a-entity id="jugador" caminar-quest teletransporte="mando: #mando-derecho">
 
   <!-- Camara -->
   <a-camera id="camara" position="0 1.6 0">
@@ -453,15 +453,16 @@
     </a-entity>
   </a-camera>
 
-  <!-- Mando izquierdo: movimiento -->
+  <!-- Mando izquierdo: caminar con el joystick (caminar-quest) -->
   <a-entity
     id="mando-izquierdo"
     laser-controls="hand: left"
     raycaster="objects: .interactivo; far: 10">
   </a-entity>
 
-  <!-- Mando derecho: seleccionar -->
+  <!-- Mando derecho: gatillo = seleccionar; joystick adelante = teletransporte -->
   <a-entity
+    id="mando-derecho"
     laser-controls="hand: right"
     raycaster="objects: .interactivo; far: 10">
   </a-entity>

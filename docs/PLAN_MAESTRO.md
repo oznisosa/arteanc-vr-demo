@@ -100,8 +100,8 @@ la aplicación.
 
 | Módulo | Entregable |
 |---|---|
-| 2.1 Teletransporte | Joystick hacia delante para apuntar y soltar para saltar, con un arco y un marcador en el suelo |
-| 2.2 Giro por pasos | Joystick derecho para girar 30–45°; el movimiento continuo queda como opción |
+| 2.1 Teletransporte ✅ 2026-11-08 | Joystick hacia delante para apuntar y soltar para saltar, con un arco y un marcador en el suelo. Hecho con el joystick derecho (DT-031); probado en el Quest por Ozni |
+| 2.2 Giro por pasos | Joystick derecho a los lados para girar 30° (DT-031); el movimiento continuo sigue en el joystick izquierdo |
 | 2.3 Áreas transitables | *Navmesh* o colisiones simples; aplica a VR y a PC |
 | 2.4 Altura y modo sentado | Altura calibrable; modo sentado que eleva la vista |
 | 2.5 Manos | Seguimiento de manos básico: apuntar y pellizcar para seleccionar |

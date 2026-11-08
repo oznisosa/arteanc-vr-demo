@@ -25,8 +25,9 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   guía [docs/CATALOGO.md](docs/CATALOGO.md), `npm run validar`).
   Siguiente: 1.2 `pieza-exhibida`. Ver el plan para el orden y los criterios.
 - **Fase 2 (Movimiento y confort) en curso en paralelo (DT-030)**, en la rama
-  `fase-2` y la carpeta `C:\arteanc\ArteAnc-VR-fase2` (worktree). Siguiente:
-  2.1 Teletransporte. La Fase 1 sigue en `main`, en la otra carpeta, con otra sesión.
+  `fase-2` y la carpeta `C:\arteanc\ArteAnc-VR-fase2` (worktree). Hecho:
+  2.1 Teletransporte (joystick derecho, DT-031; probado en el Quest).
+  Siguiente: 2.2 Giro por pasos. La Fase 1 sigue en `main`, en la otra carpeta, con otra sesión.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 
 ## Reglas de trabajo

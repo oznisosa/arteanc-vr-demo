@@ -342,3 +342,42 @@ puede haber conflictos que resolver a mano al unir.
 
 **Revisar:** al terminar la Fase 2, borrar el worktree
 (`git worktree remove ..\ArteAnc-VR-fase2`) y volver a DT-011.
+
+---
+
+## DT-031 — Controles del Quest: joystick izquierdo camina, joystick derecho salta y gira
+**Estado:** Aceptada · **Fecha:** 2026-11-08 · **Modifica:** DISENO_FINAL.md
+(tutorial: "palanca izquierda para teletransporte") y ARQUITECTURA.md §7
+
+**Contexto:** el diseño congelado ponía el teletransporte en el joystick
+izquierdo y el giro en el derecho. Pero el joystick izquierdo ya sirve para
+caminar (`caminar-quest`), y Ozni quiere conservarlo. Ozni propuso saltar con
+el gatillo, pero el gatillo ya es "seleccionar" (láser + gatillo) y el agarre
+está reservado para "tomar una copia de la pieza".
+
+**Decisión:**
+- **Joystick izquierdo:** caminar (movimiento continuo, como hasta ahora).
+- **Joystick derecho hacia delante:** apuntar con un arco; al soltar, saltar
+  (módulo 2.1). **A los lados:** giro por pasos de 30° (módulo 2.2).
+- Gatillo y agarre no cambian.
+- El teletransporte es un **componente propio**
+  (`src/componentes/teletransporte.js`), sin librerías: la conocida
+  `aframe-teleport-controls` lleva años sin mantenerse y no está probada con
+  A-Frame 1.8; además, escribirlo enseña eventos, parábolas y vectores.
+- Destinos válidos, provisionales: el suelo dentro del mismo rectángulo que
+  usa `caminar-quest` (x −4,8..4,8; z −4,8..1,6). Las peanas y el mostrador
+  se tratarán en el módulo 2.3.
+
+**Alternativas:** el reparto del diseño congelado (no se podría caminar hasta
+tener un menú de opciones); saltar con el gatillo izquierdo (el gatillo
+izquierdo dejaría de seleccionar y habría que adivinar si se quiere
+seleccionar o saltar).
+
+**Consecuencias:** se puede caminar y saltar sin menús. Riesgo: quien no
+conozca el proyecto puede usar el joystick izquierdo y marearse con el
+movimiento continuo; se vigila en la prueba de las 3 personas (criterio de
+la Fase 2). El tutorial (diseño 05e) deberá mostrar este reparto.
+
+**Revisar:** tras la prueba con las 3 personas; si alguien se marea, valorar
+una viñeta (oscurecer los bordes al caminar) o dejar el movimiento continuo
+como opción desactivada por defecto.

@@ -25,6 +25,10 @@ import { iniciarPuertas } from './interaccion/puertas.js';
 import { iniciarRecepcion } from './interaccion/recepcion.js';
 import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';
 
+// FASE 2 - movimiento
+// componentes/teletransporte.js → joystick derecho adelante: arco y salto (módulo 2.1)
+import './componentes/teletransporte.js';
+
 // 1. Lo que no depende de datos externos se prepara enseguida
 // El modelo 3D (#pieza02): dimensión mayor 0.65 m, apoyado a 1.02 m de altura
 ajustarModeloAPedestal('#pieza02', 0.65, 1.02);

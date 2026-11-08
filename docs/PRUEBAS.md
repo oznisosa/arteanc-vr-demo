@@ -73,6 +73,11 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | Q11 | Caminar hacia una pared con el joystick | Te detienes antes de atravesarla | |
 | Q12 | Panel verde (`?debug`) dentro de VR | Visible abajo a la izquierda; anotar los números (sección 4) | |
 | Q13 | Mareo o tirones | Movimiento fluido; fps cerca de 72 | |
+| Q14 | **Joystick derecho adelante** (mantener) y apuntar al suelo | Sale un arco claro del mando derecho y un anillo en el suelo; el láser recto se oculta | |
+| Q15 | Soltar el joystick derecho | Fundido a negro muy breve y apareces con los pies en el anillo | |
+| Q16 | Apuntar el arco a una pared o muy lejos | Arco rojo, sin anillo; al soltar no te mueves | |
+| Q17 | Dar un paso real en tu habitación y repetir Q14–Q15 | Igual apareces sobre el anillo (no desplazado) | |
+| Q18 | Joystick derecho a un lado | No sale el arco (queda para el giro, módulo 2.2) | |
 
 ### 2.3 Web publicada
 

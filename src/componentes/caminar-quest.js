@@ -2,7 +2,8 @@
 //
 // Componente A-Frame. Se usa en index.html así: <a-entity id="jugador" caminar-quest>
 // Al importar este archivo, el componente queda registrado (no exporta nada).
-// En la Fase 2 se sustituirá por teletransporte y giro por pasos.
+// Usa el joystick IZQUIERDO. El derecho es para el teletransporte
+// (componentes/teletransporte.js) y el giro por pasos (DT-031).
 
 const THREE = AFRAME.THREE;
 

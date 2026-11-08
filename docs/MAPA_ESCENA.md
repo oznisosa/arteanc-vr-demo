@@ -116,15 +116,22 @@ El letrero de bienvenida no es `interactivo`, así que no intercepta los clics d
 
 | Elemento | id | Posición | Notas |
 |---|---|---|---|
-| Rig | `#jugador` | `0 0 0` | Componente `caminar-quest` |
+| Rig | `#jugador` | `0 0 0` | Componentes `caminar-quest` y `teletransporte` |
 | Cámara | `#camara` | `0 1.6 0` (local) | Cursor `rayOrigin: mouse` para clics en PC. En PC se mueve con WASD sin límites |
-| Mando izquierdo | `#mando-izquierdo` | — | `laser-controls`. El joystick mueve el rig |
-| Mando derecho | — | — | `laser-controls` para seleccionar |
+| Mando izquierdo | `#mando-izquierdo` | — | `laser-controls`. El joystick camina (`caminar-quest`) |
+| Mando derecho | `#mando-derecho` | — | `laser-controls`. Gatillo = seleccionar; joystick adelante = teletransporte (desde el módulo 2.1, DT-031) |
 
 Los tres raycasters filtran por `.interactivo` (los mandos con `far: 10`).
 
 `caminar-quest` solo actúa en modo VR, a 1.2 m/s, y limita el rig a
 x −4.8..4.8 y z −4.8..1.6.
+
+`teletransporte` (`src/componentes/teletransporte.js`) solo acepta destinos
+en el suelo dentro de ese mismo rectángulo (provisional hasta el módulo 2.3).
+El arco, el anillo y la esfera del fundido son objetos de THREE.js creados
+por código: no aparecen en `index.html`. El arco y el anillo se añaden a la
+escena y solo se ven al apuntar; la esfera del fundido es hija de `#camara`.
+Peanas y mostrador **aún no** bloquean el destino.
 
 ## Dependencias
 

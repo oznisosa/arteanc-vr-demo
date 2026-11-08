@@ -8,6 +8,109 @@
 
 ---
 
+## 2026-11-08 — Módulo 2.1: teletransporte con el joystick derecho (DT-031)
+
+**Tipo:** movimiento (rama `fase-2`). **En el PC la escena se ve igual**; el
+cambio solo se nota dentro de VR.
+
+### Qué cambió
+| Antes | Después |
+|---|---|
+| Joystick izquierdo: caminar. Joystick derecho: nada | Joystick izquierdo: caminar (igual). **Joystick derecho adelante: apuntar con un arco; al soltar, saltar** |
+| `<a-entity id="jugador" caminar-quest>` | `<a-entity id="jugador" caminar-quest teletransporte="mando: #mando-derecho">` |
+| Mando derecho sin `id` | `id="mando-derecho"` |
+
+**Archivos:**
+- **Nuevo:** `src/componentes/teletransporte.js` (componente `teletransporte`).
+- `index.html`: solo el bloque `#jugador` (líneas de arriba y comentarios).
+- `src/main.js`: bloque `// FASE 2 - movimiento` con el `import`.
+- `src/componentes/caminar-quest.js`: solo el comentario de cabecera.
+- Documentos: DT-031, PLAN_MAESTRO (2.1 y 2.2), MAPA_ESCENA (jugador y
+  controles), PRUEBAS (Q14–Q18) y esta entrada.
+
+**Valores elegidos:** velocidad de salida del arco 7 m/s; gravedad −9,8 m/s²;
+40 tramos de 0,04 s; anillo de radio 0,22–0,30 m; fundido de 90 ms al
+oscurecer y 90 ms al aclarar; destino válido dentro de x −4,8..4,8 y
+z −4,8..1,6 (los mismos límites que `caminar-quest`).
+
+### Por qué
+El plan pide teletransporte porque es la forma de moverse que **menos marea**:
+el cuerpo no ve un desplazamiento que no siente. Ozni quería seguir pudiendo
+caminar con el joystick izquierdo, así que el salto va en el **derecho**
+(DT-031). El gatillo no se usó porque ya sirve para seleccionar.
+
+### Cómo funciona (para estudiar el código)
+1. **Evento `thumbstickmoved`:** el mando avisa cada vez que se mueve el
+   joystick, con `x` e `y` entre −1 y 1. Hacia delante es **y negativo**.
+   Si `y < −0,6` y el empuje es más vertical que lateral, empieza a apuntar.
+   Cuando el joystick vuelve al centro (distancia < 0,25), se suelta.
+2. **El arco es una parábola:** `p(t) = origen + v·t + ½·g·t²`. Cada fotograma
+   se calculan 40 puntos. Si un tramo cruza `y = 0`, se interpola el punto
+   exacto donde toca el suelo. Si sale del rectángulo de la sala o pasa del
+   techo, el arco termina ahí y se pinta rojo.
+3. **El arco es una "cinta":** dos vértices por punto (uno a cada lado), unidos
+   con triángulos. Es una `BufferGeometry` cuyas posiciones se actualizan cada
+   fotograma (`needsUpdate = true`), sin crear objetos nuevos.
+4. **El salto mueve al `#jugador`, no a la cámara.** En el Quest la cámara la
+   mueve el visor. Si la persona dio un paso real en su habitación, la cabeza
+   no está en el centro del `#jugador`. Por eso se mueve el jugador
+   **lo que separa la cabeza del destino**: `jugador += destino − cabeza`
+   (solo en x y z).
+5. **El fundido:** una esfera negra pequeña, hija de la cámara, vista por
+   dentro (`BackSide`). Su opacidad sube de 0 a 1 en 90 ms; con todo negro
+   se mueve al jugador, y la opacidad baja de nuevo a 0.
+
+### Conceptos que aparecen
+- **Vección:** la sensación de moverse que da la vista sin que el cuerpo la
+  sienta; es lo que marea en VR. El teletransporte y el fundido la evitan.
+- **Parábola y gravedad:** la misma física de un lanzamiento.
+- **Interpolación lineal (`lerp`):** encontrar un punto intermedio entre dos.
+- **Espacio local y espacio del mundo:** `localToWorld` y `transformDirection`
+  pasan el origen y la dirección del láser del mando al mundo.
+- **Rig:** el `#jugador`, que contiene la cámara y los mandos; se mueve el rig
+  para mover todo junto.
+- **Reutilizar vectores:** crearlos una vez en `init` y no en cada fotograma,
+  para no generar basura de memoria (pausas en el Quest).
+
+### Cómo se verificó
+Servidor de pruebas en el puerto 5174 con Playwright y un **mando simulado**
+(se coloca `#mando-derecho` a 1,2 m de altura, inclinado −0,2 rad, y se
+emiten eventos `thumbstickmoved`):
+- Joystick adelante: arco y anillo visibles, láser recto oculto. Destino
+  (0,2; 0; −2,856), que coincide con el cálculo a mano de la parábola
+  (t ≈ 0,373 s).
+- Con la cabeza desplazada 0,5 m dentro del rig, al soltar: la cabeza acaba
+  en (0,2; 1,6; −2,856), justo sobre el anillo; el rig en (−0,3; 0; −2,856).
+- Fundido: opacidad 0,55 a mitad del salto y 0 al terminar; arco y anillo
+  ocultos y láser restaurado.
+- Apuntando alto hacia la pared: arco rojo (`#d9534f`), sin anillo; al
+  soltar el jugador no se mueve.
+- Joystick a un lado: no se activa el arco.
+- Sin cambios en lo demás: 24 baldosas; modelo de 0,650 m con base en
+  y 1,020; consola sin errores (salvo `favicon.ico`). `npm run build` correcto.
+- **Prueba en el Quest 3 (Ozni, 2026-11-08):** "funciona de maravilla".
+  Observación: hay lugares donde no deja saltar. Es el rectángulo provisional
+  (x −4,8..4,8; z −4,8..1,6): quedan fuera ~1 m junto a las paredes laterales
+  y del fondo, y la zona de la entrada y el mostrador (z > 1,6). Se resuelve
+  en el módulo 2.3.
+
+### Ejercicio sugerido
+1. En `teletransporte.js`, cambia `velocidad` de 7 a 5 (en `index.html`:
+   `teletransporte="mando: #mando-derecho; velocidad: 5"`). ¿Llega el arco más
+   cerca o más lejos? ¿Por qué?
+2. Cambia `DURACION_FUNDIDO` a 400. ¿Es más cómodo o más molesto?
+3. Pregunta a ChatGPT: ¿por qué se mueve el `#jugador` lo que separa la
+   cabeza del destino, y no se pone el `#jugador` directamente en el destino?
+
+### Pendientes
+- Módulo 2.3: ampliar las zonas donde se puede saltar y caminar (hoy el
+  rectángulo provisional deja fuera los bordes y la entrada).
+- El anillo puede caer pegado a una peana o dentro de ella: se arregla en el
+  módulo 2.3 (áreas transitables).
+- Siguiente: módulo 2.2, giro por pasos de 30° con el joystick derecho a los lados.
+
+---
+
 ## 2026-11-08 — Fase 2 en paralelo: rama `fase-2` en un *worktree* (DT-030)
 
 **Tipo:** organización del trabajo. **La escena no cambia.**
