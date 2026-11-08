@@ -8,6 +8,66 @@
 
 ---
 
+## 2026-11-08 — Módulo 0.7: lista de pruebas · **Fase 0 terminada** ✅
+
+**Tipo:** documentación. **Archivos:** `docs/PRUEBAS.md` (nuevo),
+`docs/PLAN_MAESTRO.md`, `docs/README.md`, `CLAUDE.md`.
+
+### Qué es `docs/PRUEBAS.md`
+La lista de lo que hay que comprobar para saber que nada se rompió:
+1. **Prueba rápida** (≈ 3 min, antes de **cada** push): `npm run build`,
+   fichas, puertas y consola sin errores.
+2. **Prueba completa** (≈ 15 min, al terminar un módulo): 12 comprobaciones en
+   PC, 13 en el Quest (incluidas las 4 direcciones del joystick y el giro de
+   cabeza) y 3 en la web publicada.
+3. **Problemas conocidos:** lo que falla a propósito por ahora (tildes, paredes
+   en PC, modelo pesado…), con el módulo que lo resolverá.
+4. **Valores de referencia** del medidor `?debug`, para notar si un cambio
+   empeora el rendimiento.
+5. **Prueba automática de equivalencia** que hace Claude con Playwright.
+
+### Balance de la Fase 0 (Cimientos)
+| Módulo | Resultado |
+|---|---|
+| 0.0 Rama | Descartado: se trabaja en `main` (DT-011) |
+| 0.1 Limpieza | `_archivo/` y `_fuentes-3d/` fuera de Git |
+| 0.2 Node y Vite | `npm run dev`, `build`, `preview` |
+| 0.3 Quest | `npm run quest` con HTTPS por wifi; probado en el visor |
+| 0.4 Módulos | `app.js` + `catalogo.js` → 9 archivos en `src/` |
+| 0.5 Medición | `?debug`, visible también en VR; primera medición |
+| 0.6 Publicación | GitHub Actions publica `dist/` en cada push (DT-013) |
+| 0.7 Pruebas | `docs/PRUEBAS.md` |
+| Extra | Joystick invertido corregido |
+
+**Criterios del plan:** la escena se ve y funciona igual (salvo el joystick, que
+ahora va bien) ✅ · se abre con `npm run dev` ✅ · probada en el Quest desde el
+servidor local ✅ · se publica sola al hacer push ✅.
+
+### Conceptos que aparecen
+- **Prueba de humo (*smoke test*).** Una prueba corta que detecta si algo
+  básico se rompió ("¿sale humo al encenderlo?"). Es la prueba rápida.
+- **Prueba de regresión.** Comprobar que lo que ya funcionaba sigue funcionando
+  tras un cambio. Es la prueba completa.
+- **Problemas conocidos.** Anotarlos evita confundirlos con fallos nuevos.
+- **Línea base (*baseline*).** Valores de referencia para comparar después.
+
+### Para el tutor
+- Ejercicio: hacer la prueba completa del Quest marcando cada ✓ y completar
+  la tabla de la sección 4 con los números dentro de VR.
+- Repaso de la Fase 0: pedir a Ozni que explique con sus palabras qué hace
+  cada una de estas órdenes: `npm run dev`, `npm run quest`, `npm run build`,
+  `git push`; y qué pasa en GitHub después del push.
+- Pregunta: ¿por qué la Fase 0 no cambió nada visible y aun así fue necesaria?
+
+### Pendientes
+- Números de `?debug` dentro de VR (PRUEBAS.md §4).
+- **Siguiente: Fase 1 — Datos y componentes**, módulo 1.1 (`datos/catalogo.json`).
+  Antes conviene responder la pregunta abierta n.º 2 del plan: ¿qué tipos de
+  piezas vende ArteAnc (originales, réplicas, artesanía contemporánea…)?
+  Afecta al esquema del catálogo.
+
+---
+
 ## 2026-11-08 — Módulo 0.6: publicación automática con GitHub Actions
 
 ### Decisión final: se activa GitHub Actions
@@ -16,8 +76,10 @@ Ozni decidió activarlo ya: "hagámoslo de una vez". Se recuperó el flujo con
 `git show 97fe7f9:.github/workflows/publicar.yml` y DT-013 pasa a "Aceptada".
 **Nueva regla:** antes de cada push, comprobar que `npm run build` funciona,
 porque si falla en GitHub no se publica.
-**Pendiente:** Ozni cambia Settings → Pages → Source a "GitHub Actions", hace
-push y se confirma la primera publicación (✅ verde en la pestaña Actions).
+✅ **Confirmado:** Ozni cambió la fuente de Pages e hizo push ("todo funciona
+y quedó a la perfección"). La ejecución "Publicar en GitHub Pages" del commit
+`c8dce17` terminó en verde; la web carga `assets/index-….js` (el build) y
+`docs/` ya no se publica (404).
 
 Concepto para el tutor: **recuperar un archivo borrado del historial** con
 `git show <commit>:<ruta>`. Git no olvida nada de lo que se guardó en un commit.

@@ -18,11 +18,12 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   (módulos ES; entrada `src/main.js`).
   Su inventario está en [docs/MAPA_ESCENA.md](docs/MAPA_ESCENA.md).
 - Diseño final de "La Casa ArteAnc" congelado en `docs/diseno/final/`.
-- Limpieza del repositorio hecha (módulo 0.1).
-- **Siguiente paso: resto de la Fase 0 (Cimientos).** Orden sugerido:
-  ~~0.2 Node + Vite~~ ✅ → ~~0.3 prueba en el Quest~~ ✅ → ~~0.4 módulos JS~~ ✅ →
-  ~~0.5 medidor de fps con `?debug`~~ ✅ → 0.6 publicación (🟡 falta activar Actions en GitHub) → 0.7 `docs/PRUEBAS.md`.
-  La escena visible **no debe cambiar** en la Fase 0.
+- **Fase 0 (Cimientos) terminada el 2026-11-08:** Vite, `npm run quest`,
+  módulos en `src/`, medidor `?debug`, publicación con GitHub Actions y
+  [docs/PRUEBAS.md](docs/PRUEBAS.md).
+- **Siguiente paso: Fase 1 (Datos y componentes)**, empezando por 1.1
+  (`datos/catalogo.json`). Ver el plan para el orden y los criterios.
+- Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 
 ## Reglas de trabajo
 1. **Documentar siempre, a medida que se avanza.** Por cada cambio:
@@ -65,7 +66,8 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 - **Publicación (DT-013):** cada push a `main` ejecuta
   `.github/workflows/publicar.yml` (GitHub Actions): `npm ci` → `npm run build`
   → publica `dist/` en GitHub Pages. Si el build falla, no se publica.
-  **Antes de cada push, comprobar que `npm run build` funciona.**
+  **Antes de cada push: la prueba rápida de [docs/PRUEBAS.md](docs/PRUEBAS.md) §1.**
+  Si un cambio añade algo visible, añadir su comprobación a PRUEBAS.md.
 - `vite.config.js` copia `modelos/` a `dist/` en el build (Vite no ve los
   `.glb` porque se cargan desde el HTML).
 - **Al terminar las pruebas, cerrar los servidores de verdad:** detener la tarea

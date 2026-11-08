@@ -6,7 +6,8 @@ Lecturas previas: [DIAGNOSTICO.md](DIAGNOSTICO.md), [VISION.md](VISION.md) y
 
 > **Estado al 2026-11-08:** el diseño de la casa está **congelado** en
 > [diseno/final/](diseno/final/) (DT-009), con planta, coordenadas y 38
-> posiciones de exhibición en `02-layout.json`. **Siguiente paso: Fase 0.**
+> posiciones de exhibición en `02-layout.json`. **Fase 0 terminada.
+> Siguiente paso: Fase 1 (Datos y componentes).**
 
 ## Cómo leer este plan
 
@@ -41,7 +42,7 @@ decisiones de diseño de la [visión](VISION.md) y los datos de las salas (F1).
 
 ---
 
-## FASE 0 — Cimientos
+## FASE 0 — Cimientos ✅ (terminada el 2026-11-08)
 
 **Objetivo:** ordenar el proyecto sin cambiar lo que el visitante ve.
 
@@ -53,8 +54,8 @@ decisiones de diseño de la [visión](VISION.md) y los datos de las salas (F1).
 | 0.3 Prueba en el Quest | ✅ **Hecho el 2026-11-08**: `npm run quest` (HTTPS por wifi con `@vitejs/plugin-basic-ssl`); Ozni lo probó en el visor y funciona |
 | 0.4 Módulos JS | ✅ **Hecho el 2026-11-08**: `app.js` y `catalogo.js` divididos en 8 módulos dentro de `src/` (entrada `src/main.js`) |
 | 0.5 Medición | ✅ **Hecho el 2026-11-08**: `?debug` muestra `stats` de A-Frame y un panel propio visible en VR (`medidor-rendimiento`); primera medición en PC registrada. Falta la del Quest |
-| 0.6 Publicación | 🟡 **Preparado el 2026-11-08**: `.github/workflows/publicar.yml` construye con Vite y publica `dist/` en GitHub Pages en cada push (DT-013). Falta que Ozni cambie la fuente de Pages a "GitHub Actions" y se confirme la primera publicación |
-| 0.7 Lista de pruebas | `docs/PRUEBAS.md`: comprobaciones manuales en PC y Quest (clics, ficha, puertas, movimiento) |
+| 0.6 Publicación | ✅ **Hecho el 2026-11-08**: `.github/workflows/publicar.yml` construye con Vite y publica `dist/` en GitHub Pages en cada push (DT-013); primera publicación en verde |
+| 0.7 Lista de pruebas | ✅ **Hecho el 2026-11-08**: [PRUEBAS.md](PRUEBAS.md) con prueba rápida (antes de cada push), prueba completa (PC, Quest, web publicada), problemas conocidos y valores de referencia |
 
 **Dependencias:** ninguna.
 **Terminada cuando:** la escena se ve y funciona igual que hoy; se abre con
