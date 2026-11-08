@@ -139,15 +139,22 @@ El letrero de bienvenida no es `interactivo`, así que no intercepta los clics d
 
 Los tres raycasters filtran por `.interactivo` (los mandos con `far: 10`).
 
-`caminar-quest` solo actúa en modo VR, a 1.2 m/s, y limita el rig a
-x −4.8..4.8 y z −4.8..1.6.
+`caminar-quest` solo actúa en modo VR, a 1.2 m/s.
 
-`teletransporte` (`src/componentes/teletransporte.js`) solo acepta destinos
-en el suelo dentro de ese mismo rectángulo (provisional hasta el módulo 2.3).
+**Zonas transitables (módulo 2.3, DT-032):** el `#jugador` lleva
+`zonas-transitables="suelos: -5.9 5.9 -5.9 2.82; alto: 4; obstaculos: .peana, #mostradorRecepcion"`.
+- Suelo: el interior de los muros (x −5.9..5.9, z −5.9..2.82), techo a 4 m.
+- Obstáculos medidos al cargar: las 3 peanas (círculos de radio 0.65 en
+  x −2, 0, 2; z −3.5) y el mostrador (2 × 0.75 en −3.7, 1.3).
+- La cabeza se mantiene a 0.25 m (radio del cuerpo) de muros y obstáculos.
+- Si se cambia una pieza de sitio, su peana se mide sola en la nueva posición.
+- `?zonas` en la dirección dibuja el mapa en el suelo.
+
+`teletransporte` (`src/componentes/teletransporte.js`) usa ese mapa: el arco
+se corta al tocar muro, techo o mueble, y solo vale caer en suelo pisable.
 El arco, el anillo y la esfera del fundido son objetos de THREE.js creados
 por código: no aparecen en `index.html`. El arco y el anillo se añaden a la
 escena y solo se ven al apuntar; la esfera del fundido es hija de `#camara`.
-Peanas y mostrador **aún no** bloquean el destino.
 
 ## Dependencias
 

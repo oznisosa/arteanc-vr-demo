@@ -4,7 +4,11 @@
 // usando src/main.js y no cambia.
 
 import './constructor/casa-greybox.js';
-import './casa/mover-provisional.js';
+// FASE 2 - movimiento (módulo 2.3): los mismos componentes que index.html
+import './componentes/zonas-transitables.js';
+import './componentes/caminar-quest.js';
+import './componentes/teletransporte.js';
+import './componentes/giro-por-pasos.js';
 import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';
 
 if (modoDepuracionActivo()) {

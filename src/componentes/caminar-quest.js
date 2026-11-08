@@ -4,6 +4,8 @@
 // Al importar este archivo, el componente queda registrado (no exporta nada).
 // Usa el joystick IZQUIERDO. El derecho es para el teletransporte
 // (componentes/teletransporte.js) y el giro por pasos (DT-031).
+// Los límites salen de zonas-transitables (módulo 2.3, DT-032): si el
+// #jugador lo tiene, se camina deslizándose por paredes y muebles.
 
 const THREE = AFRAME.THREE;
 
@@ -52,14 +54,18 @@ AFRAME.registerComponent('caminar-quest', {
     const movimiento = Math.min(delta / 1000, 0.05)
       * this.velocidad;
 
-    const posicion = this.el.object3D.position;
+    // Desplazamiento de este fotograma: avanzar/retroceder + lateral
+    const dx = this.adelante.x * -y * movimiento + this.derecha.x * x * movimiento;
+    const dz = this.adelante.z * -y * movimiento + this.derecha.z * x * movimiento;
 
-    // Avanzar, retroceder y moverse lateralmente
-    posicion.addScaledVector(this.adelante, -y * movimiento);
-    posicion.addScaledVector(this.derecha, x * movimiento);
-
-    // Limites provisionales de nuestra sala
-    posicion.x = THREE.MathUtils.clamp(posicion.x, -4.8, 4.8);
-    posicion.z = THREE.MathUtils.clamp(posicion.z, -4.8, 1.6);
+    // Con zonas-transitables, el mapa decide hasta dónde se puede llegar.
+    // (Antes había aquí límites fijos de la sala vieja: x ±4.8, z −4.8..1.6.)
+    const zonas = this.el.components['zonas-transitables'];
+    if (zonas) {
+      zonas.moverJugador(dx, dz);
+    } else {
+      this.el.object3D.position.x += dx;
+      this.el.object3D.position.z += dz;
+    }
   }
 });

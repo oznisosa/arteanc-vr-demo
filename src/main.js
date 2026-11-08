@@ -29,6 +29,8 @@ import { iniciarRecepcion } from './interaccion/recepcion.js';
 import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';
 
 // FASE 2 - movimiento
+// componentes/zonas-transitables.js → mapa de dónde se puede pisar (módulo 2.3)
+import './componentes/zonas-transitables.js';
 // componentes/teletransporte.js → joystick derecho adelante: arco y salto (módulo 2.1)
 import './componentes/teletransporte.js';
 // componentes/giro-por-pasos.js → joystick derecho a los lados: girar 30° (módulo 2.2)

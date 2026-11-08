@@ -380,7 +380,13 @@
     <!-- CÁMARA Y RATÓN -->
     
 <!-- JUGADOR: CAMARA Y MANDOS -->
-<a-entity id="jugador" caminar-quest teletransporte="mando: #mando-derecho" giro-por-pasos="mando: #mando-derecho">
+<!-- zonas-transitables (módulo 2.3): suelo libre de la sala = interior de los
+     muros (x −5.9..5.9, z −5.9..2.82); las peanas y el mostrador se miden solos. -->
+<a-entity id="jugador"
+          zonas-transitables="suelos: -5.9 5.9 -5.9 2.82; alto: 4; obstaculos: .peana, #mostradorRecepcion"
+          caminar-quest
+          teletransporte="mando: #mando-derecho"
+          giro-por-pasos="mando: #mando-derecho">
 
   <!-- Camara -->
   <a-camera id="camara" position="0 1.6 0">

@@ -14,9 +14,9 @@
 //   posición(t) = origen + velocidad · t + ½ · gravedad · t²
 // Se calcula por tramos cortos y se comprueba dónde toca el suelo (y = 0).
 //
-// Dónde se puede caer (PROVISIONAL): dentro de un rectángulo de la sala,
-// con margen junto a las paredes. Peanas y mostrador se tratarán en el
-// módulo 2.3 (áreas transitables).
+// Dónde se puede caer: lo decide el mapa de zonas-transitables (módulo 2.3,
+// DT-032), si el #jugador lo tiene. El arco se corta al tocar un muro, el
+// techo o un mueble, y solo vale caer en suelo pisable.
 
 const THREE = AFRAME.THREE;
 
@@ -30,15 +30,7 @@ AFRAME.registerComponent('teletransporte', {
   schema: {
     mando: {type: 'selector', default: '#mando-derecho'},
     camara: {type: 'selector', default: '#camara'},
-    velocidad: {type: 'number', default: 7},   // m/s con que "sale" el arco
-    // Rectángulo donde se puede caer (provisional hasta el módulo 2.3).
-    // Son los mismos límites que usa caminar-quest, para que los dos
-    // movimientos dejen al visitante en la misma zona.
-    minX: {type: 'number', default: -4.8},
-    maxX: {type: 'number', default: 4.8},
-    minZ: {type: 'number', default: -4.8},
-    maxZ: {type: 'number', default: 1.6},
-    techo: {type: 'number', default: 4}
+    velocidad: {type: 'number', default: 7}    // m/s con que "sale" el arco
   },
 
   init: function () {
@@ -133,6 +125,9 @@ AFRAME.registerComponent('teletransporte', {
     this.lateral.set(-this.direccion.z, 0, this.direccion.x).normalize()
       .multiplyScalar(ANCHO_ARCO / 2);
 
+    // El mapa de zonas-transitables (null si aún no está listo o no hay)
+    const mapa = this.el.components['zonas-transitables']?.mapa ?? null;
+
     const vertices = this.arcoGeometria.attributes.position;
     this.puntoAnterior.copy(this.origen);
     let ultimo = TRAMOS;     // índice del último punto dibujado
@@ -151,14 +146,14 @@ AFRAME.registerComponent('teletransporte', {
         const f = this.puntoAnterior.y / (this.puntoAnterior.y - this.punto.y);
         this.punto.lerpVectors(this.puntoAnterior, this.punto, f);
         this.punto.y = 0;
-        valido = this.dentroDeLaSala(this.punto);
+        valido = mapa ? mapa.esTransitable(this.punto.x, this.punto.z) : true;
         this.ponerVertice(vertices, i, this.punto);
         ultimo = i;
         break;
       }
 
-      // ¿Atraviesa una pared o el techo? Entonces el arco termina aquí
-      if (i > 0 && (!this.dentroDeLaSala(this.punto) || this.punto.y > d.techo)) {
+      // ¿Choca con un muro, el techo o un mueble? Entonces el arco termina aquí
+      if (i > 0 && mapa && !mapa.aireLibre(this.punto.x, this.punto.y, this.punto.z)) {
         this.ponerVertice(vertices, i, this.punto);
         ultimo = i;
         break;
@@ -182,11 +177,6 @@ AFRAME.registerComponent('teletransporte', {
       this.destino.copy(this.punto);
       this.marcador.position.set(this.punto.x, 0.02, this.punto.z);
     }
-  },
-
-  dentroDeLaSala: function (p) {
-    const d = this.data;
-    return p.x >= d.minX && p.x <= d.maxX && p.z >= d.minZ && p.z <= d.maxZ;
   },
 
   // Cada punto del arco son dos vértices (izquierda y derecha de la cinta)

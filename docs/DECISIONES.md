@@ -425,3 +425,41 @@ la Fase 2). El tutorial (diseño 05e) deberá mostrar este reparto.
 **Revisar:** tras la prueba con las 3 personas; si alguien se marea, valorar
 una viñeta (oscurecer los bordes al caminar) o dejar el movimiento continuo
 como opción desactivada por defecto.
+
+---
+
+## DT-032 — Zonas transitables: un mapa 2D propio en lugar de un *navmesh*
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** el módulo 2.3 pide que nadie atraviese paredes "en ninguna
+plataforma", con *navmesh* o colisiones simples. La Fase 1 pidió además que
+los límites no estén fijos en el código, para que sirvan en `index.html` y en
+`casa.html` (`datos/salas.json`). Toda la casa es de un solo nivel y plana.
+
+**Decisión:**
+- Un **mapa 2D visto desde arriba** (`src/movimiento/mapa-transitable.js`,
+  JavaScript puro, sin A-Frame): **suelos** (rectángulos de salas y huecos de
+  paso), **obstáculos** (rectángulos girados y círculos, con altura) y
+  **espacios** de aire (cada sala con su techo, o sin techo si es a cielo abierto).
+- El cuerpo es un círculo de **0,25 m** alrededor de la cabeza.
+- Un componente `zonas-transitables` en el `#jugador` prepara el mapa
+  desde `salas.json` (`datos: …`) o desde el HTML (`suelos`, `alto` y un
+  selector de `obstaculos` que se miden solos) y lo comparte:
+  `caminar-quest` se desliza por paredes; `teletransporte` corta el arco
+  en muros, techos y muebles y solo acepta suelo pisable; y cada fotograma
+  devuelve la cabeza a un punto válido (WASD en el PC y pasos reales en el visor).
+- Los huecos de paso se alargan **dos radios** dentro de cada sala para que
+  el suelo quede continuo (con uno quedaba una franja sin suelo).
+- En `casa.html` se borra `src/casa/mover-provisional.js` (acordado con la Fase 1).
+
+**Alternativas:** un *navmesh* real (p. ej. con una librería de
+navegación): más general (escaleras, rampas) pero añade una dependencia,
+un paso de generación y es más difícil de entender; colisiones con la
+física (raycasts contra las mallas): más caro en el Quest y más frágil.
+
+**Consecuencias:** sin dependencias nuevas, rápido (unas decenas de
+comprobaciones por fotograma) y se prueba con Node. Las salas se tratan como
+rectángulos: si el diseño tuviera muros curvos o desniveles, habría que
+pasar a un *navmesh*.
+
+**Revisar:** si la casa añade escaleras, rampas o salas no rectangulares.

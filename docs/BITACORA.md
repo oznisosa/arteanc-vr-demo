@@ -8,6 +8,121 @@
 
 ---
 
+## 2026-11-08 — Módulo 2.3: zonas transitables (mapa 2D, DT-032)
+
+**Tipo:** movimiento (rama `fase-2`). Se nota en VR y también en el PC
+(WASD ya no atraviesa paredes ni peanas). Ahora también en `casa.html`.
+
+### Qué cambió
+| Antes | Después |
+|---|---|
+| `caminar-quest` con límites fijos (x ±4,8; z −4,8..1,6) | Pregunta al mapa y **se desliza** por paredes y muebles |
+| Salto válido solo en ese rectángulo | Cualquier suelo libre (también la entrada y junto a las paredes); rojo sobre o junto a peanas y muebles |
+| El arco solo comprobaba el rectángulo y el techo | Se corta al tocar un muro, techo o mueble de verdad |
+| WASD (PC) y pasos reales atravesaban todo | La cabeza se mantiene a 0,25 m de muros y obstáculos |
+| `casa.html` con `mover-provisional` (atraviesa muros) | Los mismos componentes que `index.html`, con zonas de `datos/salas.json` |
+
+**Archivos:**
+- **Nuevos:** `src/movimiento/mapa-transitable.js` (el mapa, JavaScript puro)
+  y `src/componentes/zonas-transitables.js` (componente).
+- `src/componentes/caminar-quest.js`: fuera los límites fijos; usa el mapa.
+- `src/componentes/teletransporte.js`: fuera `minX/maxX/minZ/maxZ/techo`; usa el mapa.
+- `index.html` (bloque `#jugador`):
+  `zonas-transitables="suelos: -5.9 5.9 -5.9 2.82; alto: 4; obstaculos: .peana, #mostradorRecepcion"`.
+- `casa.html` (bloque `#jugador`): `zonas-transitables="datos: ./datos/salas.json"`
+  + `caminar-quest`, `teletransporte` y `giro-por-pasos`.
+- `src/main.js` y `src/casa.js`: imports de la Fase 2.
+- **Borrado:** `src/casa/mover-provisional.js` (acordado con la Fase 1).
+- Documentos: DT-032, PLAN_MAESTRO, MAPA_ESCENA, PRUEBAS (Q11, Q22–Q26,
+  C9–C12), `CLAUDE.md` y esta entrada.
+
+### Por qué así
+El plan permitía *navmesh* o colisiones simples. La casa es plana y de un
+solo nivel, así que basta un **mapa visto desde arriba** hecho de
+rectángulos y círculos: es fácil de entender, no añade librerías y se
+puede probar con Node. Y los límites salen de los datos (petición de la
+Fase 1), no de números escritos en el código.
+
+### Cómo funciona (para estudiar el código)
+1. **El cuerpo es un círculo** de 0,25 m alrededor de la cabeza.
+   `esTransitable(x, z)` comprueba que ese círculo cabe en algún suelo y no
+   toca ningún obstáculo (a cada obstáculo se le suma el radio).
+2. **Obstáculos girados:** para saber si un punto cae dentro de una mesa
+   girada, se gira el punto al revés hasta los ejes de la mesa y allí se
+   compara con su ancho y fondo (lo mismo que hace `applyAxisAngle`, a mano).
+3. **Deslizar:** si el paso completo choca, se prueba solo en X y luego
+   solo en Z. Por eso, al caminar en diagonal contra una pared, se avanza a
+   lo largo de ella.
+4. **El arco** pregunta `aireLibre(x, y, z)`: el punto debe estar dentro de
+   una sala (por debajo de su techo, o a cualquier altura si es a cielo
+   abierto) y no dentro de un mueble.
+5. **Cada fotograma** el componente mira dónde está la cabeza. Si está en
+   un sitio no válido (WASD o un paso real), mueve el `#jugador` para
+   devolverla deslizando desde el último punto válido.
+6. **En `index.html` los obstáculos se miden solos:** el selector
+   `.peana, #mostradorRecepcion` encuentra los elementos; los cilindros se
+   convierten en círculos y lo demás en su caja (`THREE.Box3`).
+
+### Dos fallos encontrados y corregidos al probar
+- **Las peanas se medían en (0, 0).** La peana es hija de la pieza, y al
+  medirla la posición de la pieza todavía no se había aplicado a sus hijos.
+  Solución: `updateWorldMatrix(true, true)` (actualiza también los padres).
+- **No se podía cruzar una puerta caminando.** Cada suelo se "encoge" un
+  radio por todos los lados; la puerta se metía solo un radio en cada sala,
+  así que quedaba una franja de 5 cm sin suelo. Solución: alargar los huecos
+  **dos** radios. Lección: probar no solo *estar* en un punto, sino *ir* de
+  uno a otro (por eso se añadió la prueba de alcance de abajo).
+
+### Conceptos que aparecen
+- ***Navmesh* frente a mapa 2D:** la malla de navegación sirve para
+  cualquier forma y desnivel; el mapa 2D basta para suelos planos.
+- **Suma de Minkowski (idea):** agrandar los obstáculos el radio del
+  cuerpo permite tratar el cuerpo como un punto.
+- **Cambio de sistema de coordenadas:** del mundo a los ejes del objeto.
+- **Relleno por inundación (*flood fill*):** marcar todo lo alcanzable desde
+  un punto, como el bote de pintura de un programa de dibujo.
+- **Código puro probado con Node:** separar la lógica de la escena para
+  poder probarla sin navegador.
+
+### Cómo se verificó
+- **Node, con `datos/salas.json`:** 20 puntos conocidos (puertas, muros,
+  mostrador, canal, peanas, portal, fuera de la casa). Tres "fallos" eran
+  puntos que caían sobre muebles del diseño (C05, S07, mesa W06): el mapa
+  tenía razón. **Relleno desde la entrada (0; −1,2), cuadrícula de 10 cm:
+  las 8 salas son alcanzables y no queda ninguna zona pisable aislada.**
+- **`index.html` (Playwright, puerto 5174):**
+  - Mapa: mostrador 2 × 0,75 en (−3,7; 1,3) y 3 peanas de radio 0,65 en x −2, 0, 2.
+  - Caminar hacia la peana central: se detiene en z −2,6 (0,65 + 0,25 de
+    su centro); en diagonal la rodea y pasa entre dos peanas.
+  - WASD simulado contra la pared este: la cabeza se queda en x 5.
+  - Salto: suelo libre válido; justo delante de la peana, rojo; contra la
+    peana, el arco se corta a 0,83 m de altura.
+- **`casa.html`:**
+  - Caminando hacia el norte desde la recepción: cruza la galería, entra
+    al patio y se detiene ante la peana P01 (z −10,85).
+  - Hacia el oeste fuera del acceso a Cerámica: se detiene en el muro.
+  - Salto del patio al Santuario por el portal: válido, se aparece en
+    (1; −21,02). Corto, dentro del túnel: rojo. Contra el muro norte del
+    patio: el arco se corta a 0,93 m.
+- `npm run build`: dos páginas, 24 módulos, catálogo y salas correctos.
+- **Prueba en el Quest 3 (Ozni, 2026-11-08):** "de maravilla, funciona bien"
+  (`index.html` y `casa.html`).
+
+### Ejercicio sugerido
+1. Abre `index.html?zonas` en el PC: verás el mapa dibujado en el suelo.
+   Cambia `RADIO_CUERPO` a 0.4 en `mapa-transitable.js` y recarga: ¿qué
+   pasa con las líneas y con el hueco entre peanas?
+2. En `mapa-transitable.js`, vuelve a poner `a.fondo / 2 + radio + 0.05` en
+   los accesos y camina en `casa.html` hacia el norte: ¿dónde te quedas?
+3. Pregunta a ChatGPT: ¿qué es la suma de Minkowski y por qué permite
+   tratar al visitante como un punto?
+
+### Pendientes
+- Traer de `main` el commit `61874f5` (nombres de sala de la casa) con otro `git merge main`.
+- Siguiente: módulo 2.4, altura y modo sentado.
+
+---
+
 ## 2026-11-08 — Segunda unión: `git merge main` trae la casa en *greybox* (1.7)
 
 **Tipo:** organización (Git). Llega a `fase-2` el commit `7217f87` de `main`

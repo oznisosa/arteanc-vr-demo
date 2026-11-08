@@ -24,7 +24,12 @@
 
     <!-- JUGADOR: mismos ids que en index.html para que encajen los componentes
          de la Fase 2. Empieza dentro de la Recepción, mirando al norte. -->
-    <a-entity id="jugador" position="0 0 -1.2" mover-provisional>
+    <!-- Movimiento de la Fase 2 (módulo 2.3): las zonas salen de datos/salas.json -->
+    <a-entity id="jugador" position="0 0 -1.2"
+              zonas-transitables="datos: ./datos/salas.json"
+              caminar-quest
+              teletransporte="mando: #mando-derecho"
+              giro-por-pasos="mando: #mando-derecho">
       <a-camera id="camara" position="0 1.6 0" wasd-controls="acceleration: 25">
         <a-entity cursor="rayOrigin: mouse" raycaster="objects: .interactivo"></a-entity>
       </a-camera>

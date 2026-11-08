@@ -75,7 +75,7 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | Q8 | Joystick atrás | Retrocedes | |
 | Q9 | Joystick derecha / izquierda | Te desplazas a la derecha / izquierda | |
 | Q10 | Girar la cabeza 90° y repetir Q7 | Avanzas hacia la **nueva** dirección de la mirada | |
-| Q11 | Caminar hacia una pared con el joystick | Te detienes antes de atravesarla | |
+| Q11 | Caminar hacia una pared con el joystick | Te detienes antes de atravesarla y, si vas en diagonal, te deslizas a lo largo de ella | |
 | Q12 | Panel verde (`?debug`) dentro de VR | Visible abajo a la izquierda; anotar los números (sección 4) | |
 | Q13 | Mareo o tirones | Movimiento fluido; fps cerca de 72 | |
 | Q14 | **Joystick derecho adelante** (mantener) y apuntar al suelo | Sale un arco claro del mando derecho y un anillo en el suelo; el láser recto se oculta | |
@@ -86,6 +86,11 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | Q19 | Joystick derecho a la derecha y soltar; luego a la izquierda | Giras 30° de golpe hacia ese lado, sin animación | |
 | Q20 | Mantener el joystick derecho a un lado | Solo gira una vez; para girar otra vez hay que soltarlo | |
 | Q21 | Dar un paso real a un lado y girar varias veces | Giras sobre ti mismo, sin desplazarte | |
+| Q22 | Caminar con el joystick hacia una peana o el mostrador | Te detienes a ~25 cm; en diagonal rodeas la peana | |
+| Q23 | Saltar a la zona de la entrada y junto a las paredes | Ahora sí deja (antes no); el anillo queda a ~25 cm de la pared | |
+| Q24 | Apuntar el arco a una peana o justo delante de ella | Arco rojo (choca con la peana o no cabes) | |
+| Q25 | Dar pasos reales hacia una pared | La vista se detiene en la pared (no la atraviesas) | |
+| Q26 | PC: WASD contra una pared o una peana | Te detienes; no la atraviesas | |
 
 ### 2.2b La Casa (greybox) — `casa.html`
 
@@ -99,6 +104,10 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | C6 | Santuario | Techo a 6,5 m con ranura abierta al cielo; 6 hornacinas laterales con fondo bronce | |
 | C7 | Escala (en el Quest) | Las salas, peanas (1 m) y puertas (2,6 m) se sienten de tamaño real | |
 | C8 | `index.html` | Sigue igual que antes | |
+| C9 | Controles en la casa (módulo 2.3) | Los mismos que en `index.html`: joystick izq. camina, der. salta y gira | |
+| C10 | Recorrer las 8 salas caminando y saltando | Se cruzan todos los accesos; nunca se atraviesa un muro, mueble ni el canal | |
+| C11 | Saltar del patio al Santuario por el portal | Válido si el arco pasa por el túnel; rojo contra el muro de al lado o dentro del túnel | |
+| C12 | `casa.html?zonas` (o `index.html?zonas`) | Líneas verdes (suelo útil) y rojas (obstáculos con margen) en el suelo | |
 
 ### 2.3 Web publicada
 
