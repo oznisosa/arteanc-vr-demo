@@ -53,7 +53,7 @@ decisiones de diseño de la [visión](VISION.md) y los datos de las salas (F1).
 | 0.3 Prueba en el Quest | ✅ **Hecho el 2026-11-08**: `npm run quest` (HTTPS por wifi con `@vitejs/plugin-basic-ssl`); Ozni lo probó en el visor y funciona |
 | 0.4 Módulos JS | ✅ **Hecho el 2026-11-08**: `app.js` y `catalogo.js` divididos en 8 módulos dentro de `src/` (entrada `src/main.js`) |
 | 0.5 Medición | ✅ **Hecho el 2026-11-08**: `?debug` muestra `stats` de A-Frame y un panel propio visible en VR (`medidor-rendimiento`); primera medición en PC registrada. Falta la del Quest |
-| 0.6 Publicación | Despliegue automático confirmado (GitHub Pages o similar) desde `main` |
+| 0.6 Publicación | 🟡 **Preparado el 2026-11-08**: `.github/workflows/publicar.yml` construye con Vite y publica `dist/` en GitHub Pages en cada push (DT-013). Falta que Ozni cambie la fuente de Pages a "GitHub Actions" y se confirme la primera publicación |
 | 0.7 Lista de pruebas | `docs/PRUEBAS.md`: comprobaciones manuales en PC y Quest (clics, ficha, puertas, movimiento) |
 
 **Dependencias:** ninguna.

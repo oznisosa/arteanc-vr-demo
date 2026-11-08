@@ -21,7 +21,7 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 - Limpieza del repositorio hecha (módulo 0.1).
 - **Siguiente paso: resto de la Fase 0 (Cimientos).** Orden sugerido:
   ~~0.2 Node + Vite~~ ✅ → ~~0.3 prueba en el Quest~~ ✅ → ~~0.4 módulos JS~~ ✅ →
-  ~~0.5 medidor de fps con `?debug`~~ ✅ → 0.6 publicación → 0.7 `docs/PRUEBAS.md`.
+  ~~0.5 medidor de fps con `?debug`~~ ✅ → 0.6 publicación (🟡 falta activar Actions en GitHub) → 0.7 `docs/PRUEBAS.md`.
   La escena visible **no debe cambiar** en la Fase 0.
 
 ## Reglas de trabajo

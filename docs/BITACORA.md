@@ -8,6 +8,59 @@
 
 ---
 
+## 2026-11-08 — Módulo 0.6: publicación automática con GitHub Actions (preparado)
+
+**Tipo:** publicación. **La escena no cambió.**
+**Archivos:** `.github/workflows/publicar.yml` (nuevo), `README.md`,
+`CLAUDE.md`, `docs/DECISIONES.md` (DT-013), `docs/PLAN_MAESTRO.md`.
+
+### Antes y después
+| | Antes | Después |
+|---|---|---|
+| Modo de Pages | "Deploy from a branch": copia la raíz de `main` | "GitHub Actions": ejecuta un flujo de trabajo |
+| Qué se publica | Todo el repositorio (`docs/`, `package.json`…) | Solo `dist/`: `index.html`, un `.js` empaquetado y `modelos/` |
+| Código | Los 9 módulos de `src/` por separado | Un solo archivo de 5 kB |
+
+### El flujo de trabajo (`publicar.yml`)
+Se dispara con cada push a `main` (o a mano desde la pestaña Actions):
+1. **construir:** descarga el código → instala Node 24 → `npm ci` →
+   `npm run build` → sube `dist/` como "artefacto".
+2. **publicar:** toma ese artefacto y lo publica en GitHub Pages.
+Si un paso falla, no se publica nada y la web anterior sigue funcionando.
+
+### Cómo se verificó
+- Se clonó el repositorio en una carpeta limpia (como hará GitHub), se ejecutó
+  `npm ci` y `npm run build`: `dist/` contiene `index.html` (9,6 kB),
+  `assets/index-….js` (5,4 kB) y el modelo (18,9 MB). Sin `docs/`.
+- Se sirvió `dist/` desde una subcarpeta (como `/arteanc-vr-demo/`): modelo
+  0,650 m con base en 1,020; 24 baldosas; fichas, puertas y recepción bien.
+- La web publicada con el push de Ozni (aún en modo rama) ya usa
+  `src/main.js` y funciona: mismos valores y `?debug` con 34 llamadas y 104 015 triángulos.
+- **Pendiente:** Ozni cambia Settings → Pages → Source a "GitHub Actions",
+  hace push y se confirma la primera publicación por Actions.
+
+### Conceptos que aparecen
+- **Integración y despliegue continuos (CI/CD).** Automatizar construir y
+  publicar en cada cambio, siempre igual, sin pasos manuales.
+- **GitHub Actions.** Servidores de GitHub que ejecutan los pasos de un archivo YAML.
+- **YAML.** Formato de configuración basado en sangrías (como JSON, pero más legible).
+- **`npm ci` frente a `npm install`.** `ci` instala exactamente lo de
+  `package-lock.json` y falla si no coincide: ideal para servidores.
+- **Artefacto.** El resultado de un paso (aquí, la carpeta `dist/`) que se pasa al siguiente.
+- **Permisos mínimos.** El flujo solo pide lo que necesita (`pages: write`).
+
+### Para el tutor
+- Ejercicio: leer `publicar.yml` y explicar con palabras propias qué hace cada `step`.
+- Ejercicio: después del primer push, abrir la pestaña Actions y localizar
+  el paso "Construir la web con Vite": ¿cuánto tardó?
+- Pregunta: ¿qué pasaría con la web si alguien sube código con un error de sintaxis?
+
+### Pendientes
+- Ozni activa "GitHub Actions" en Pages y confirma la primera publicación.
+- Siguiente: módulo 0.7 (`docs/PRUEBAS.md`), que cierra la Fase 0.
+
+---
+
 ## 2026-11-08 — Corrección: el joystick del Quest iba al revés
 
 **Tipo:** corrección de un error (*bug*). **Archivo:** `src/componentes/caminar-quest.js` (1 línea).

@@ -234,3 +234,24 @@ sola versión pesada (fiel, pero 20 piezas así harían la carga lenta y bajarí
 **Consecuencias:** un poco más de trabajo por pieza (dos exportaciones). Los
 valores de la versión de examen son iniciales y se validan en el módulo 3.3
 midiendo en el Quest.
+
+---
+
+## DT-013 — Publicar con GitHub Actions (build de Vite) en lugar de la rama
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** GitHub Pages publicaba la raíz de `main` tal cual ("Deploy from
+a branch"). Funcionaba, pero publicaba también `docs/` (≈ 10 MB de diseño),
+`package.json`, etc., y el código sin optimizar.
+
+**Decisión:** un flujo de GitHub Actions (`.github/workflows/publicar.yml`)
+ejecuta `npm ci` y `npm run build` en cada push a `main` y publica solo `dist/`.
+
+**Alternativas:** seguir publicando la rama (más simple, pero sin build);
+Netlify o Vercel (más funciones, otra cuenta que mantener).
+
+**Consecuencias:** se publica solo lo necesario y optimizado; el paso de build
+queda registrado en la pestaña Actions (si falla, no se publica y la web
+anterior sigue en pie). Requiere cambiar una vez Settings → Pages → Source.
+
+**Revisar si:** se necesita un dominio propio con funciones de servidor (F7).
