@@ -8,6 +8,77 @@
 
 ---
 
+## 2026-11-08 — Módulo 2.2: giro por pasos de 30° con el joystick derecho
+
+**Tipo:** movimiento (rama `fase-2`). **En el PC la escena se ve igual**; el
+cambio solo se nota dentro de VR.
+
+### Qué cambió
+| Antes | Después |
+|---|---|
+| Joystick derecho a los lados: nada | **Giro de 30° de golpe** hacia ese lado |
+| `#jugador` con `caminar-quest teletransporte="…"` | Además `giro-por-pasos="mando: #mando-derecho"` |
+
+**Archivos:**
+- **Nuevo:** `src/componentes/giro-por-pasos.js` (componente `giro-por-pasos`,
+  propiedad `angulo`, 30 por defecto, como pide el diseño final).
+- `index.html`: solo el bloque `#jugador` (atributo y comentario del mando derecho).
+- `src/main.js`: un `import` más en el bloque `// FASE 2 - movimiento`.
+- Documentos: PLAN_MAESTRO, MAPA_ESCENA, PRUEBAS (Q19–Q21), `CLAUDE.md` y esta entrada.
+
+### Por qué
+Sin girar con el mando, para darse la vuelta hay que girar el cuerpo entero,
+lo que es incómodo sentado o con el cable del cargador. El giro es **de golpe**
+(sin animación) porque un giro suave hace que la vista se mueva sin que el
+oído interno lo sienta, y eso es lo que más marea (vección).
+
+### Cómo funciona (para estudiar el código)
+1. **Disparo único:** con el joystick a un lado (|x| > 0,7 y más horizontal
+   que vertical) gira **una** vez y se "desarma" (`preparado = false`). Se
+   vuelve a armar cuando el joystick regresa al centro (distancia < 0,3).
+   Es el mismo patrón que tiene un botón: actuar al pulsar, no mientras se mantiene.
+2. **Convivencia con el teletransporte:** comparten el joystick derecho.
+   Si `teletransporte.apuntando` es verdadero, el giro no hace nada.
+3. **Girar alrededor de la cabeza:** rotar el rig sobre su propio centro
+   haría que la cabeza (que puede estar a 0,5 m del centro tras pasos reales)
+   describiera un círculo: la persona "volaría" de lado. Fórmula:
+   `nuevaPosición = cabeza + rotar(posición − cabeza)`, y `rotation.y += ángulo`.
+4. **Signo:** en A-Frame, un ángulo positivo en Y gira hacia la izquierda
+   (antihorario visto desde arriba). Por eso joystick a la derecha = −30°.
+
+### Conceptos que aparecen
+- **Rotación alrededor de un punto:** trasladar al origen, rotar y volver.
+- **`applyAxisAngle`:** rota un vector alrededor de un eje (aquí el vertical).
+- **Grados y radianes:** THREE.js usa radianes; `degToRad(30)` ≈ 0,524.
+- **Detección de flanco:** reaccionar al *cambio* (de centro a lado), no al estado.
+
+### Cómo se verificó
+Puerto 5174, Playwright, mando simulado (eventos `thumbstickmoved`):
+- Derecha mantenida (3 eventos seguidos): gira solo −30°. Tras soltar y otra
+  vez derecha: −60°. Dos a la izquierda: vuelve a 0°. 12 giros: 360°.
+- Con la cabeza desplazada (0,5; 1,6; 0) dentro del rig: tras cada giro la
+  cabeza sigue en (0,5; 1,6; 0); tras volver a 0° el rig vuelve a (0; 0; 0).
+- Apuntando un salto y desviando el joystick a un lado: no gira.
+- Tras girar 90° a la derecha, el arco del salto va hacia +x (este), y el
+  salto deja la cabeza sobre el destino (3,056; −3,156).
+- `npm run build` correcto (3 piezas, 16 módulos).
+- **Prueba en el Quest 3 (Ozni, 2026-11-08):** "funciona a la perfección,
+  rotación 30 grados con el joystick derecho perfecto". Se mantiene 30°.
+
+### Ejercicio sugerido
+1. Cambia el ángulo a 45° en `index.html`:
+   `giro-por-pasos="mando: #mando-derecho; angulo: 45"`. ¿Cuál prefieres?
+2. En `girar()`, comenta las líneas de `position.x` y `position.z` y gira
+   después de dar un paso a un lado en el Quest. ¿Qué notas?
+3. Pregunta a ChatGPT: ¿qué es una matriz de rotación 2D y cómo se relaciona
+   con `applyAxisAngle` alrededor del eje Y?
+
+### Pendientes
+- Siguiente: módulo 2.3, áreas transitables (ampliar dónde se puede saltar y
+  caminar; peanas y mostrador como obstáculos).
+
+---
+
 ## 2026-11-08 — Módulo 2.1: teletransporte con el joystick derecho (DT-031)
 
 **Tipo:** movimiento (rama `fase-2`). **En el PC la escena se ve igual**; el

@@ -27,7 +27,8 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
 - **Fase 2 (Movimiento y confort) en curso en paralelo (DT-030)**, en la rama
   `fase-2` y la carpeta `C:\arteanc\ArteAnc-VR-fase2` (worktree). Hecho:
   2.1 Teletransporte (joystick derecho, DT-031; probado en el Quest).
-  Siguiente: 2.2 Giro por pasos. La Fase 1 sigue en `main`, en la otra carpeta, con otra sesión.
+  2.2 Giro por pasos de 30° (probado en el Quest).
+  Siguiente: 2.3 Áreas transitables. La Fase 1 sigue en `main`, en la otra carpeta, con otra sesión.
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 
 ## Reglas de trabajo

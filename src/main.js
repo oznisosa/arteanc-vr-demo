@@ -28,6 +28,8 @@ import { modoDepuracionActivo, activarDepuracion } from './depuracion.js';
 // FASE 2 - movimiento
 // componentes/teletransporte.js → joystick derecho adelante: arco y salto (módulo 2.1)
 import './componentes/teletransporte.js';
+// componentes/giro-por-pasos.js → joystick derecho a los lados: girar 30° (módulo 2.2)
+import './componentes/giro-por-pasos.js';
 
 // 1. Lo que no depende de datos externos se prepara enseguida
 // El modelo 3D (#pieza02): dimensión mayor 0.65 m, apoyado a 1.02 m de altura

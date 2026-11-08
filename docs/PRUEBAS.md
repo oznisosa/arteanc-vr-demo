@@ -77,7 +77,10 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | Q15 | Soltar el joystick derecho | Fundido a negro muy breve y apareces con los pies en el anillo | |
 | Q16 | Apuntar el arco a una pared o muy lejos | Arco rojo, sin anillo; al soltar no te mueves | |
 | Q17 | Dar un paso real en tu habitación y repetir Q14–Q15 | Igual apareces sobre el anillo (no desplazado) | |
-| Q18 | Joystick derecho a un lado | No sale el arco (queda para el giro, módulo 2.2) | |
+| Q18 | Joystick derecho a un lado | No sale el arco (es el giro, Q19) | |
+| Q19 | Joystick derecho a la derecha y soltar; luego a la izquierda | Giras 30° de golpe hacia ese lado, sin animación | |
+| Q20 | Mantener el joystick derecho a un lado | Solo gira una vez; para girar otra vez hay que soltarlo | |
+| Q21 | Dar un paso real a un lado y girar varias veces | Giras sobre ti mismo, sin desplazarte | |
 
 ### 2.3 Web publicada
 

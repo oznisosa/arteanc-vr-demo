@@ -116,10 +116,10 @@ El letrero de bienvenida no es `interactivo`, así que no intercepta los clics d
 
 | Elemento | id | Posición | Notas |
 |---|---|---|---|
-| Rig | `#jugador` | `0 0 0` | Componentes `caminar-quest` y `teletransporte` |
+| Rig | `#jugador` | `0 0 0` | Componentes `caminar-quest`, `teletransporte` y `giro-por-pasos`. El giro cambia su `rotation.y` (y su posición, para girar sobre la cabeza) |
 | Cámara | `#camara` | `0 1.6 0` (local) | Cursor `rayOrigin: mouse` para clics en PC. En PC se mueve con WASD sin límites |
 | Mando izquierdo | `#mando-izquierdo` | — | `laser-controls`. El joystick camina (`caminar-quest`) |
-| Mando derecho | `#mando-derecho` | — | `laser-controls`. Gatillo = seleccionar; joystick adelante = teletransporte (desde el módulo 2.1, DT-031) |
+| Mando derecho | `#mando-derecho` | — | `laser-controls`. Gatillo = seleccionar; joystick adelante = teletransporte (módulo 2.1); a los lados = giro de 30° (módulo 2.2). DT-031 |
 
 Los tres raycasters filtran por `.interactivo` (los mandos con `far: 10`).
 
