@@ -552,3 +552,10 @@ botón Y. Cuando haya menú de opciones, el modo sentado debe estar también ah�
 
 **Revisar:** cuando exista el menú de opciones o si las pruebas con
 personas muestran que el botón no se descubre.
+
+**Ampliación (2026-11-08, aprobada por Ozni):** el modo sentado **se
+recuerda** con la clave `modoSentado` del estado (`src/servicios/estado.js`,
+DT-018, la añadió la Fase 1). Se guarda solo si está activo, no la altura.
+Al entrar en VR con la preferencia activada se recalibra solo tras 0,6 s
+(el visor tarda un instante en dar la altura real). Salir de VR quita la
+subida pero no olvida la preferencia; pulsar Y para desactivar sí la olvida.

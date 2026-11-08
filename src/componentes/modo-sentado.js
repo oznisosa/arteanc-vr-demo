@@ -14,14 +14,22 @@
 //     la referencia del diseño final). Para recalibrar: desactivar y activar.
 //   - Al DESACTIVAR se vuelve a la altura real.
 //   - Un aviso breve delante de la vista confirma lo que ha pasado.
+//   - SE RECUERDA (clave `modoSentado` de src/servicios/estado.js, módulo 1.6):
+//     al volver a entrar en VR se recalibra solo, sin pulsar Y. Se guarda si
+//     está activo, NO la altura: otro día puede ser otra silla.
 //
 // De pie no hace falta nada: el Quest ya usa la altura real (conoce el suelo
 // por el límite del Guardian). Solo se cambia la altura (Y) del #jugador, así
 // que caminar, saltar, girar y las zonas transitables siguen igual.
 
 import { t } from '../datos/textos.js';
+import { estado } from '../servicios/estado.js';
 
 const DURACION_AVISO = 2500; // ms
+// Al entrar en VR, el visor tarda un instante en dar la altura real de la
+// cabeza. Antes de eso la cámara sigue a 1,60 m (la del PC) y la calibración
+// saldría mal (subida 0). Por eso se espera un poco.
+const ESPERA_AL_ENTRAR = 600; // ms
 
 AFRAME.registerComponent('modo-sentado', {
   schema: {
@@ -39,8 +47,22 @@ AFRAME.registerComponent('modo-sentado', {
 
     // Al salir de VR se vuelve a la altura normal: en el PC la cámara ya
     // está a 1,60 m y la subida la dejaría flotando.
-    this.alSalirDeVR = () => { if (this.activo) this.desactivar(false); };
+    // La preferencia guardada NO cambia: al volver a entrar se aplica otra vez.
+    this.alSalirDeVR = () => {
+      clearTimeout(this.esperaEntrada);
+      if (this.activo) this.desactivar(false);
+    };
     this.el.sceneEl.addEventListener('exit-vr', this.alSalirDeVR);
+
+    // Al entrar en VR: si el visitante lo dejó activado, se activa solo
+    this.alEntrarEnVR = () => {
+      if (!estado.obtener('modoSentado')) return;
+      clearTimeout(this.esperaEntrada);
+      this.esperaEntrada = setTimeout(() => {
+        if (this.el.sceneEl.is('vr-mode') && !this.activo) this.activar();
+      }, ESPERA_AL_ENTRAR);
+    };
+    this.el.sceneEl.addEventListener('enter-vr', this.alEntrarEnVR);
 
     this.crearAviso();
   },
@@ -48,12 +70,16 @@ AFRAME.registerComponent('modo-sentado', {
   remove: function () {
     this.data.mando.removeEventListener('ybuttondown', this.alternar);
     this.el.sceneEl.removeEventListener('exit-vr', this.alSalirDeVR);
+    this.el.sceneEl.removeEventListener('enter-vr', this.alEntrarEnVR);
+    clearTimeout(this.esperaEntrada);
     this.aviso.remove();
   },
 
+  // Botón Y: cambia el modo y RECUERDA la elección para la próxima vez
   alternar: function () {
     if (this.activo) this.desactivar(true);
     else this.activar();
+    estado.cambiar('modoSentado', this.activo);
   },
 
   activar: function () {

@@ -8,6 +8,64 @@
 
 ---
 
+## 2026-11-08 — El modo sentado se recuerda (estado `modoSentado`)
+
+**Tipo:** movimiento y accesibilidad (rama `fase-2`), ampliación de DT-033.
+
+### Qué cambió
+| Antes | Después |
+|---|---|
+| Cada visita había que pulsar Y | Si lo dejaste activado, **al entrar en VR se activa solo** (recalibrado) |
+| Salir de VR desactivaba y se olvidaba | Salir de VR quita la subida, pero **recuerda** la preferencia |
+| — | Pulsar Y para desactivar **olvida** la preferencia |
+
+**Archivos:** `src/componentes/modo-sentado.js` (usa `estado.obtener` y
+`estado.cambiar`); `git merge main` trae `b6fa7e0` de la Fase 1, que añade la
+clave `modoSentado` (booleana, `false` por defecto) a `src/servicios/estado.js`
+con su prueba. Documentos: DT-033 (ampliación), PRUEBAS (Q31–Q32) y esta entrada.
+
+### Por qué
+Ozni lo aprobó: quien usa el visor siempre sentado (por ejemplo, en silla de
+ruedas) no debería tener que pulsar Y cada vez. Se guarda **si está activo**,
+pero **no la altura**: otro día puede ser otra silla, y por eso se recalibra
+siempre al entrar.
+
+### Cómo funciona
+1. **`estado`** (módulo 1.6, de la Fase 1) guarda `modoSentado` en
+   `localStorage` (memoria del navegador que sobrevive al cerrar), dentro de
+   la clave `arteanc.estado.v1`.
+2. Al pulsar Y: `estado.cambiar('modoSentado', this.activo)`.
+3. Al entrar en VR (`enter-vr`): si `estado.obtener('modoSentado')` es
+   verdadero, se espera **0,6 s** y se activa. ¿Por qué esperar? Justo al
+   entrar, la cámara todavía está a 1,60 m (la del PC); el visor tarda un
+   instante en dar la altura real, y calibrar antes daría subida 0.
+
+### Conceptos que aparecen
+- **Persistencia (`localStorage`):** guardar datos pequeños en el navegador.
+- **Preferencia frente a medida:** se recuerda la decisión de la persona,
+  no un número que depende del momento.
+- **Condición de carrera (*race condition*):** el resultado depende de qué
+  llega antes (la calibración o la altura real del visor); la espera lo evita.
+
+### Cómo se verificó
+Puerto 5174, Playwright (se simula entrar y salir de VR con
+`addState('vr-mode')` y los eventos `enter-vr` y `exit-vr`):
+- Sin preferencia guardada, entrar en VR no activa nada.
+- Y → activo, subida 0,40 m, guardado `true`. Salir de VR → subida 0, sigue `true`.
+- **Recargar la página** y entrar en VR con la cabeza a 1,10 m: a los 0,35 s
+  aún no; tras la espera, activo con subida 0,50 m y su aviso.
+- Y → desactivado y guardado `false`; volver a entrar → no se activa.
+- `npm run build` con las **10 pruebas** de la Fase 1 en verde.
+- **Pendiente:** prueba en el Quest (Q31–Q32).
+
+### Ejercicio sugerido
+1. En el navegador del PC, abre las herramientas (F12) → Application →
+   Local Storage y busca `arteanc.estado.v1`. ¿Qué guarda?
+2. Cambia `ESPERA_AL_ENTRAR` a 0 y prueba en el Quest a entrar sentado con
+   la preferencia guardada. ¿Cuánto sube? ¿Por qué?
+
+---
+
 ## 2026-11-08 — Tercera unión (módulos 1.5 y 1.6) y el aviso del modo sentado con tildes
 
 **Tipo:** organización (Git) + textos. El aviso del modo sentado se ve igual,

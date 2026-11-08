@@ -97,6 +97,8 @@ En el PC: `npm run quest`. En el navegador del Quest:
 | Q28 | Con el modo activo: caminar, saltar y girar | Todo igual; la vista sigue elevada | |
 | Q29 | Pulsar **Y** otra vez | Aviso "DESACTIVADO"; vuelves a tu altura real | |
 | Q30 | **De pie**, pulsar **Y** | No te baja; el aviso dice que ya estás a la altura de una persona de pie | |
+| Q31 | Con el modo sentado activo, salir de VR, recargar la página y volver a entrar **sentado** | Al medio segundo se activa solo (aviso con la subida); no hay que pulsar Y | |
+| Q32 | Pulsar Y para desactivar, salir y volver a entrar | Ya no se activa solo | |
 
 ### 2.2b La Casa (greybox) — `casa.html`
 
