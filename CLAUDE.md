@@ -30,7 +30,9 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   1.5 hecho (DT-017): textos en `datos/textos/es.json` con `t('clave')`; fuentes
   MSDF en `fuentes/` (guía `fuentes/LEEME.md`). 1.6 hecho (DT-018): estado en
   `src/servicios/estado.js`; pruebas con `npm run probar` (`pruebas/*.test.js`).
-  **Fase 1: todos los módulos hechos**; falta revisar sus criterios de cierre.
+  1.8 hecho: campo `posicion` del catálogo → la pieza aparece en `casa.html`.
+  **Fase 1: todos los módulos hechos.** Para cerrarla falta que `casa.html` sea la
+  escena principal (conviene fusionar antes la rama `fase-2`; lo decide Ozni).
   Ver el plan para el orden y los criterios.
 - **Fase 2 (Movimiento y confort) en curso en paralelo (DT-030)**, en la rama
   `fase-2` y la carpeta `C:\arteanc\ArteAnc-VR-fase2` (worktree). Hecho:
@@ -39,9 +41,9 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   2.3 Áreas transitables (mapa 2D propio, DT-032; también en `casa.html`;
   probado en el Quest). 2.4 Modo sentado (botón Y, DT-033; probado
   en el Quest). 2.5 Manos y 2.6 Escritorio y móvil (DT-034; probados).
-  **Todos los módulos de la Fase 2 hechos.** Falta su criterio final: 3 personas
-  que no conocen el proyecto recorren la sala sin mareo ni ayuda.
-  La Fase 1 sigue en `main`, en la otra carpeta, con otra sesión.
+  **Todos los módulos de la Fase 2 hechos y fusionados en `main` el 2026-11-08.**
+  Falta su criterio final: 3 personas que no conocen el proyecto recorren la
+  sala sin mareo ni ayuda. El worktree sigue hasta cerrarla (DT-030).
 - Pendiente de Ozni: números de `?debug` dentro de VR (PRUEBAS.md §4).
 
 ## Reglas de trabajo
@@ -119,8 +121,9 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   y 5174/4174. Aquí no se toca `caminar-quest.js` ni el bloque `#jugador` de
   `index.html`. La sesión que programa la Fase 2 es `arteanc-vr-fase2-27`.
   `casa.html` usa los mismos ids de jugador (`#jugador`, `#camara`,
-  `#mando-izquierdo`, `#mando-derecho`) y un movimiento provisional
-  (`src/casa/mover-provisional.js`) que se borrará al fusionar la Fase 2.
+  `#mando-izquierdo`, `#mando-derecho`, `#mano-izquierda`, `#mano-derecha`) y
+  los mismos componentes de movimiento que `index.html` (el movimiento
+  provisional se borró en el módulo 2.3).
 - **Prueba de equivalencia:** el mismo script de Playwright en la web
   publicada y en local debe dar el mismo resultado (modelo 0,650 m con base en
   y 1,000; esfera y cono con base en 1,000; 24 baldosas; 3 fichas; puertas; recepción).

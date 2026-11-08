@@ -35,6 +35,7 @@ cultura o la época, se deja `null` y la ficha no lo mostrará.
 | `titulo` | Nombre visible, **con tildes** | `"Vasija retrato"` | obligatorio |
 | `descripcion` | Texto corto de la ficha | `"Vasija de asa estribo…"` | `null` |
 | `sala` | Sala del diseño final | `"santuario"` | `null` |
+| `posicion` | Posición de exhibición en la casa (`datos/salas.json`): la pieza aparece ahí en `casa.html`. Debe ser de la misma sala y no estar ocupada | `"S07"` | `null` (no se expone en la casa) |
 | `tipoPieza` | Clasificación (tabla de abajo) | `"artesania_tradicional"` | `null` → "Sin clasificación verificada" |
 | `tipoPiezaEsIlustrativo` | `true` si la clasificación es de demostración | `true` | — |
 | `naturaleza` | `"producto"` (se vende) o `"demostracion_no_vendible"` | `"producto"` | — |
@@ -83,5 +84,9 @@ Son los `id` de `docs/diseno/final/02-layout.json`.
 - Que cada pieza tenga **todos** los campos (con valor o `null`) y ninguno mal escrito.
 - Que `tipoPieza`, `naturaleza`, `sala`, `estadoEditorial` y `moneda` sean valores permitidos.
 - Que no se repitan `id` ni `sku`; que `precio` y `stock` sean números.
+- Que cada `posicion` exista en `datos/salas.json`, sea de la misma sala que la
+  pieza y no la ocupe otra pieza. La lista de posiciones por sala está en
+  [SALAS.md](SALAS.md) y en `docs/diseno/final/01-planta.png` (C01…C08, T01…T08,
+  M01…M06, W01…W06, S01…S09, P01).
 - Que un `"producto"` en venta no sea ilustrativo, tenga `tipoPieza`, y si es
   `original_documentado`, al menos una fuente.

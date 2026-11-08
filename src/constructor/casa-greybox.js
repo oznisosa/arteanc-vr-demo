@@ -7,7 +7,9 @@
 //   - el portal del Santuario (bloque de 1,2 m de fondo con su túnel);
 //   - soportes de exhibición (peanas, vitrinas, mesas), cartelas y una pieza
 //     de referencia del tamaño previsto en cada posición;
-//   - elementos fijos (canal, mostrador, lámpara, regla, lupa) y el nombre de cada sala.
+//   - elementos fijos (canal, mostrador, lámpara, regla, lupa) y el nombre de cada sala;
+//   - las PIEZAS DEL CATÁLOGO en su `posicion` (módulo 1.8): en esas posiciones
+//     no se pone el cilindro de referencia, sino la pieza real con pieza-exhibida.
 //
 // Uso:  <a-entity casa-greybox></a-entity>   (en casa.html)
 //
@@ -16,6 +18,7 @@
 
 import { geometriaMuro, geometriaPortal, geometriaLosa, geometriaCaja, fusionar } from './geometria.js';
 import { FUENTES } from '../escena/fuentes.js';
+import { catalogoListo } from '../datos/catalogo-servicio.js';
 
 const THREE = AFRAME.THREE;
 
@@ -46,10 +49,43 @@ AFRAME.registerComponent('casa-greybox', {
   },
 
   init: async function () {
-    const respuesta = await fetch(this.data.datos);
+    // Las salas y el catálogo se descargan a la vez
+    const [respuesta, catalogo] = await Promise.all([fetch(this.data.datos), catalogoListo]);
     this.salas = await respuesta.json();
+
+    // Qué pieza del catálogo va en cada posición: { S07: {…pieza02…}, C05: {…} }
+    this.piezasPorPosicion = {};
+    for (const pieza of Object.values(catalogo)) {
+      if (pieza.posicion) this.piezasPorPosicion[pieza.posicion] = pieza;
+    }
+
     this.construir(this.salas);
+    this.colocarPiezas(this.salas);
     this.el.emit('casa-construida', { resumen: this.resumen });
+  },
+
+  // Monta cada pieza del catálogo sobre su posición (módulo 1.8).
+  // La entidad lleva el `id` de la pieza y la clase .producto: así la ficha
+  // la reconoce igual que en index.html.
+  colocarPiezas: function (d) {
+    this.resumen.piezasColocadas = 0;
+    for (const p of d.posiciones) {
+      const pieza = this.piezasPorPosicion[p.id];
+      if (!pieza) continue;
+      const entidad = document.createElement('a-entity');
+      entidad.id = pieza.id;
+      entidad.classList.add('producto');
+      entidad.setAttribute('position', p.apoyo.join(' '));          // superficie de apoyo
+      entidad.setAttribute('rotation', `0 ${p.orientacion[1]} 0`);   // hacia donde mira la posición
+      entidad.setAttribute('pieza-exhibida', {
+        pieza: pieza.id,
+        peanaForma: 'ninguna',          // el soporte ya está en el greybox
+        tamanoSinMedidas: p.altoPieza   // si no hay medidas reales, el tamaño previsto en el diseño
+      });
+      entidad.dataset.posicion = p.id;
+      this.el.appendChild(entidad);
+      this.resumen.piezasColocadas++;
+    }
   },
 
   construir: function (d) {
@@ -227,10 +263,13 @@ AFRAME.registerComponent('casa-greybox', {
       }
       // (las hornacinas ya son huecos en el muro)
 
-      // Pieza de referencia: cilindro del alto previsto, para juzgar la escala
-      const pieza = new THREE.CylinderGeometry(0.11, 0.13, p.altoPieza, 16);
-      pieza.translate(x, y + p.altoPieza / 2, z);
-      anadir(COLOR.pieza, pieza);
+      // Pieza de referencia: cilindro del alto previsto, para juzgar la escala.
+      // Si el catálogo pone una pieza real aquí, no hace falta (ver colocarPiezas).
+      if (!this.piezasPorPosicion?.[p.id]) {
+        const pieza = new THREE.CylinderGeometry(0.11, 0.13, p.altoPieza, 16);
+        pieza.translate(x, y + p.altoPieza / 2, z);
+        anadir(COLOR.pieza, pieza);
+      }
 
       // Cartela: placa marfil con su inclinación
       const [cw, ch] = p.cartela.tamano;

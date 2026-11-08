@@ -8,6 +8,54 @@
 
 ---
 
+## 2026-11-08 — Fusión de la Fase 2 en `main`: las dos ramas quedan iguales
+
+**Tipo:** organización (Git). **La web publicada recibe toda la Fase 2**
+(y los módulos de la Fase 1 que aún no estaban en GitHub).
+
+### Pasos (DT-030)
+1. **En `fase-2`:** `git merge main` (trae el módulo 1.8: piezas del
+   catálogo colocadas en la casa).
+2. Probar todo en `fase-2` (abajo).
+3. **En `main`** (lo hace la sesión de la Fase 1, en su carpeta):
+   `git merge fase-2`. Como `fase-2` ya contiene todo `main`, es un
+   ***fast-forward***: `main` simplemente avanza hasta `fase-2`, sin
+   conflictos ni commit nuevo. Prueba rápida (PRUEBAS §1) y `git push`, que
+   publica la web con GitHub Actions.
+4. Las dos ramas apuntan al mismo commit.
+
+### Conflictos de esta última unión
+- `src/casa.js` (**código**): la Fase 1 añadió las piezas y la ficha a la
+  casa (1.8) y la Fase 2 los componentes de movimiento. Se conservan los dos
+  bloques, **sin** la línea `import './casa/mover-provisional.js'`: el
+  archivo ya se borró en el 2.3 (acordado con la Fase 1) y en `main` aún
+  quedaba su import.
+- `docs/BITACORA.md`: las entradas de las dos ramas.
+- `CLAUDE.md` (unido solo por Git): se actualiza la nota de `casa.html`
+  (ya no hay movimiento provisional) y el estado de la Fase 2 (fusionada).
+
+### Conceptos que aparecen
+- ***Fast-forward*:** si una rama ya contiene todos los commits de la otra,
+  unir es solo "mover la etiqueta" hacia delante.
+- **Integración continua:** el push a `main` dispara el build y la
+  publicación (DT-013); si algo fallara, la web no cambia.
+
+### Cómo se verificó (en `fase-2`, antes de unir)
+- `npm run build`: catálogo (3 piezas, 2 colocadas en la casa), salas y 10
+  pruebas automáticas en verde; 32 módulos.
+- `index.html`: 24 baldosas; piezas con base en y 1,000; puerta → CERRAR;
+  giro −30°; clic real en una pieza → ficha; clic real en el suelo → salto.
+- `casa.html`: casa construida con las 2 piezas del catálogo y la ficha;
+  mapa de zonas listo; los 7 componentes del jugador; clic real en el suelo → salto.
+- Consola sin errores (salvo `favicon.ico`).
+
+### Pendientes
+- Criterio final de la Fase 2: prueba con 3 personas que no conocen el proyecto.
+- Al cerrar la Fase 2, borrar el worktree (`git worktree remove ..\ArteAnc-VR-fase2`)
+  y volver a trabajar solo en `main` (DT-030).
+
+---
+
 ## 2026-11-08 — Módulos 2.5 y 2.6: manos sin mandos, y clic o toque en el suelo (DT-034)
 
 **Tipo:** movimiento e interacción (rama `fase-2`). Ozni pidió hacer los dos
@@ -715,6 +763,63 @@ git worktree list                                # muestra las dos carpetas
 - Hecho: la sesión de la Fase 1 propuso el reparto (DT-015–029 para F1, DT-030+ para F2; archivos y puertos) y se aceptó; detalle en DT-030.
 - Empezar el módulo 2.1 (Teletransporte).
 - Al unir, los documentos compartidos tendrán conflictos: conservar ambas entradas.
+
+---
+
+## 2026-11-08 — Módulo 1.8: las piezas del catálogo, en su sitio de la casa
+
+**Tipo:** datos + escena. Añadido para cerrar la Fase 1 (Ozni: "empieza para
+cerrar fase 1 ya"). **`index.html` no cambia.**
+
+### Qué cambió
+- **Campo nuevo en el catálogo: `"posicion"`**, el código de una posición de
+  exhibición de `datos/salas.json`. Asignación de demostración:
+  `pieza01` → **C05** (peana central de Cerámica), `pieza02` (el modelo 3D,
+  "Cerámica Moche") → **S07** (primera peana del Santuario, la que se ve al
+  cruzar el portal). `pieza03` no tiene sala (`null`), así que tampoco
+  posición: no se inventa (decide Ozni).
+- **Validador:** la posición debe existir, ser de la misma sala que la pieza
+  y no estar ocupada. Probado rompiéndolo: posición de otra sala, posición
+  repetida y posición inexistente (`Z99`) → los tres errores detectados.
+- **`casa-greybox`** descarga salas y catálogo a la vez; en las posiciones
+  con pieza **no** pone el cilindro de referencia y monta la pieza real con
+  `pieza-exhibida` (`peanaForma: ninguna`, porque el soporte ya lo dibuja el
+  greybox), mirando según la orientación de la posición y con el tamaño
+  previsto en el diseño (`altoPieza`) mientras no haya medidas reales.
+- **`pieza-exhibida`**: nueva opción `peanaForma: ninguna`.
+- **`casa.html`**: tiene la misma ficha que `index.html`; `src/casa.js` la conecta
+  cuando la casa termina de construirse (evento `casa-construida`).
+- Guías: `CATALOGO.md` (campo `posicion`), `SALAS.md`, `PRUEBAS.md` (C7b).
+
+### Cómo se verificó
+- Resumen de la casa: **2 piezas colocadas**. pieza01 en C05 (centro −9,40 /
+  −14,00, base 1,000 m); pieza02 en S07 (centro 0,01 / −22,48, base 1,000 m),
+  las dos de 0,40 m.
+- Clic en el modelo del Santuario → ficha "ORIGINAL DOCUMENTADO · Modelo 3D
+  de prueba" y el estado anota `piezaSeleccionada: pieza02`. Captura tomada.
+- `index.html` igual: tres piezas con peana, bases a 1,000, ficha.
+- **Pendiente:** prueba de Ozni en el Quest.
+
+### Conceptos que aparecen
+- **Clave foránea.** `posicion: "S07"` en el catálogo apunta a un registro de
+  otro archivo (`salas.json`); el validador comprueba que el destino existe,
+  como hace una base de datos.
+- **Restricción de unicidad.** Dos piezas no pueden ocupar la misma posición.
+- **`Promise.all`.** Esperar dos descargas que van en paralelo.
+- **Reutilizar componentes.** La misma `pieza-exhibida` y la misma ficha
+  sirven en la sala vieja y en la casa.
+
+### Para el tutor
+- Ejercicio: en `datos/catalogo.json`, mover `pieza01` de `"C05"` a `"C01"` y
+  verlo en `casa.html`. Después probar `"T01"` y leer el error del validador.
+- Pregunta: ¿por qué en la casa la pieza usa `peanaForma: ninguna` y en
+  `index.html` no?
+
+### Pendientes
+- Decidir con Ozni la posición (y sala) de `pieza03`.
+- **Último paso de la Fase 1:** que `casa.html` sea la escena principal.
+  Conviene fusionar antes la rama `fase-2` (teletransporte, giro, paredes
+  sólidas y modo sentado). Lo decide Ozni.
 
 ---
 

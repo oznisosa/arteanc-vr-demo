@@ -61,7 +61,7 @@ en Y: **0 = mira al sur (+Z)**, 90 = este, 180 = norte, 270 = oeste.
 
 ## Qué NO está aquí
 
-- **Qué pieza va en cada posición.** Eso lo decide el catálogo (se definirá
-  en el módulo 1.7). El `objectType` de las piezas de referencia del diseño
+- **Qué pieza va en cada posición.** Eso lo decide el catálogo con el campo
+  `posicion` (módulo 1.8; ver [CATALOGO.md](CATALOGO.md)). El `objectType` de las piezas de referencia del diseño
   no se copia: la clasificación comercial manda en el catálogo (DT-014).
 - Las cámaras de las láminas del diseño (`cameraViews`): solo sirven para las imágenes.
