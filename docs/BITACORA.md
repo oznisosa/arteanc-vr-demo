@@ -53,7 +53,7 @@
 3. `npm run build` + `npm run preview`: el modelo carga y la ficha funciona
    desde `dist/`.
 4. Único error en la consola: falta `favicon.ico` (ya pasaba antes; sin efecto).
-5. **Pendiente:** Ozni ejecuta `npm run dev` en su PC y lo confirma.
+5. ✅ Ozni ejecutó `npm run dev` en su PC: funciona.
 
 ### Conceptos que aparecen
 - **Node.js y npm.** Node ejecuta JavaScript fuera del navegador; npm instala
@@ -72,8 +72,21 @@
   explicar por qué el proyecto vuelve a funcionar igual.
 - Pregunta: ¿por qué `dist/` y `node_modules/` no se suben a Git y `package-lock.json` sí?
 
+### Primer intento de Ozni: error de PowerShell
+Al escribir `npm run dev`, PowerShell respondió: *"No se puede cargar el
+archivo `C:\Program Files\nodejs\npm.ps1` porque la ejecución de scripts está
+deshabilitada en este sistema"*.
+- **Causa:** la **directiva de ejecución** (*execution policy*) de Windows
+  bloquea por defecto los scripts `.ps1`, y en PowerShell `npm` es un `.ps1`.
+- **Solución:** `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
+  (una sola vez, solo para el usuario actual). Alternativa sin cambiar nada: `npm.cmd run dev`.
+- **Concepto:** `RemoteSigned` deja ejecutar scripts creados en el PC y exige
+  firma digital a los descargados de internet. Es una medida de seguridad,
+  no un error del proyecto.
+- Ejercicio: ejecutar `Get-ExecutionPolicy -List` y explicar cada ámbito (*scope*).
+
 ### Pendientes
-- Confirmación de Ozni con `npm run dev` en su PC.
+- ✅ Ozni confirmó que `npm run dev` funciona en su PC (tras cambiar la directiva de ejecución).
 - Siguiente: módulo 0.3 (abrir la escena en el Quest 3 desde el PC, con HTTPS).
 
 ---

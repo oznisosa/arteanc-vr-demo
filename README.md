@@ -10,6 +10,13 @@ y navegadores de escritorio, construida con [A-Frame](https://aframe.io/) y WebX
 - **Registro de avances:** [docs/BITACORA.md](docs/BITACORA.md)
 
 ## Probar en local
+En Windows, si PowerShell responde "la ejecución de scripts está deshabilitada",
+ejecutar una sola vez:
+```
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+(o usar `npm.cmd` en lugar de `npm`).
+
 La primera vez, instalar las dependencias (requiere Node.js):
 ```
 npm install
