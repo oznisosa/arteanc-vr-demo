@@ -19,6 +19,8 @@
 // por el límite del Guardian). Solo se cambia la altura (Y) del #jugador, así
 // que caminar, saltar, girar y las zonas transitables siguen igual.
 
+import { t } from '../datos/textos.js';
+
 const DURACION_AVISO = 2500; // ms
 
 AFRAME.registerComponent('modo-sentado', {
@@ -63,9 +65,9 @@ AFRAME.registerComponent('modo-sentado', {
     this.el.object3D.position.y = this.subida;
     this.activo = true;
 
-    this.mostrarAviso(this.subida > 0.01
-      ? `MODO SENTADO: ACTIVADO\nvista elevada ${Math.round(this.subida * 100)} cm`
-      : 'MODO SENTADO: ACTIVADO\nya estas a la altura de una persona de pie');
+    this.mostrarAviso(t('movimiento.modoSentadoActivado') + '\n' + (this.subida > 0.01
+      ? t('movimiento.modoSentadoElevado', {cm: Math.round(this.subida * 100)})
+      : t('movimiento.modoSentadoYaDePie')));
     this.el.emit('modo-sentado', {activo: true, subida: this.subida});
   },
 
@@ -73,12 +75,14 @@ AFRAME.registerComponent('modo-sentado', {
     this.el.object3D.position.y = 0;
     this.subida = 0;
     this.activo = false;
-    if (avisar) this.mostrarAviso('MODO SENTADO: DESACTIVADO\naltura real');
+    if (avisar) {
+      this.mostrarAviso(t('movimiento.modoSentadoDesactivado') + '\n' + t('movimiento.modoSentadoAlturaReal'));
+    }
     this.el.emit('modo-sentado', {activo: false, subida: 0});
   },
 
   // ---------- Aviso delante de la vista ----------
-  // (sin tildes: la fuente por defecto de A-Frame no las tiene; módulo 1.5)
+  // Los textos están en datos/textos/es.json, sección "movimiento" (módulo 1.5).
 
   crearAviso: function () {
     const aviso = document.createElement('a-entity');

@@ -23,7 +23,7 @@ En PowerShell, en la carpeta del proyecto:
 
 | # | Paso | Resultado esperado | ✓ |
 |---|---|---|---|
-| R1 | `npm run build` | Primero `✓ datos/catalogo.json: N piezas correctas` y `✓ datos/salas.json: al día con el diseño…`, luego `✓ built in …`, sin errores en rojo | |
+| R1 | `npm run build` | Primero `✓ datos/catalogo.json: N piezas correctas` y `✓ datos/salas.json: al día con el diseño…`; después las pruebas (`ℹ pass 9`, `ℹ fail 0`) y `✓ built in …`, sin errores en rojo | |
 | R2 | `npm run dev` | Se abre el navegador con la sala | |
 | R3 | Clic en las 3 piezas | La ficha aparece **junto a cada pieza** con su chip, nombre y precio | |
 | R4 | Clic en **CERRAR** | La ficha desaparece | |
@@ -53,6 +53,8 @@ Si todo está bien: `Ctrl + C` para cerrar el servidor y hacer `git push`.
 | P6 | Puertas: botón interior | Se abren las dos hojas; letreros "CERRAR" | |
 | P7 | Puertas: botón exterior | Se cierran; letreros "ABRIR" (los dos botones controlan la misma puerta) | |
 | P8 | Recepción: clic en el mostrador | Aparece el letrero de bienvenida; otro clic lo oculta | |
+| P8b | Textos con tildes | "galería", "MONUMENTO HISTÓRICO", "ARTESANÍA", "Cerámica 01": tildes y eñes visibles; marca, nombres de sala y bienvenida en letra con remates (Cormorant); el título de la pieza en Inter, con números claros | |
+| P8c | Letrero "ARTEANC" del frente del mostrador | Se lee desde la galería | |
 | P9 | Moverse con W A S D y mirar con el ratón | Funciona (en PC se atraviesan paredes: conocido, Fase 2) | |
 | P10 | Añadir `?debug` a la dirección | Panel de A-Frame arriba a la izquierda y panel verde con fps, llamadas y triángulos | |
 | P11 | Quitar `?debug` | No aparece ningún panel | |
@@ -130,8 +132,6 @@ Después del push, en https://github.com/oznisosa/arteanc-vr-demo/actions:
 | Problema | Se resolverá en |
 |---|---|
 | Falta `favicon.ico` (error 404 en la consola) | 1.5 o cuando haya logo |
-| Textos sin tildes ni eñes ("CERAMICA") | 1.5 (fuente MSDF) |
-| El letrero "ARTEANC" del mostrador mira al revés | 1.5 |
 | En PC se atraviesan las paredes | 2.3 |
 | El modelo pesa 19 MB y tarda en cargar | 3.3 |
 | Movimiento continuo (puede marear a algunas personas) | 2.1 y 2.2 |
@@ -154,7 +154,16 @@ estas cifras sin motivo, investigar antes de publicar.
 
 ---
 
-## 5. Prueba automática de equivalencia (la ejecuta Claude)
+## 5. Pruebas automáticas (`npm run probar`)
+
+Comprueban la lógica que no necesita navegador. Se ejecutan solas antes de
+cada build. Hoy: 9 pruebas del estado (`pruebas/estado.test.js`): favoritos
+que se marcan, se guardan y se recuperan al recargar, la pieza seleccionada
+que no se guarda, avisos de cambios, datos guardados estropeados, navegación
+privada. Para ver el estado en el navegador: abrir con `?debug`, F12 →
+Consola → `arteanc.estado.instantanea()`.
+
+## 6. Prueba automática de equivalencia (la ejecuta Claude)
 
 Durante la Fase 0, Claude comprueba con Playwright que la escena local y la
 publicada dan los mismos valores: modelo con dimensión mayor 0,650 m y base

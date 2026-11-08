@@ -37,7 +37,7 @@
            depth="0.2"
            color="#D5C5B0"></a-box>
 
-    <a-text value="ARTEANC"
+    <a-text texto="clave: escena.marca; fuente: titulo"
             position="0 3 -5.85"
             align="center"
             color="#493021"
@@ -188,10 +188,12 @@
   color="#A98158">
 </a-box>
 
-<!-- Letrero frontal -->
+<!-- Letrero frontal: girado 180° para que mire a la galería (−z),
+     desde donde llega el visitante (antes se leía al revés) -->
 <a-text
-  value="ARTEANC"
+  texto="clave: escena.marca; fuente: titulo"
   position="-3.7 0.75 0.91"
+  rotation="0 180 0"
   align="center"
   width="2.5"
   color="#E8C99A">
@@ -228,7 +230,7 @@
 
   <!-- Titulo -->
   <a-text
-    value="BIENVENIDO A ARTEANC"
+    texto="clave: escena.bienvenidaTitulo; fuente: titulo"
     position="0 0.14 0.01"
     align="center"
     width="1.2"
@@ -237,7 +239,7 @@
 
   <!-- Instrucciones -->
   <a-text
-    value="Explora nuestra galeria y selecciona una pieza para conocer su historia."
+    texto="clave: escena.bienvenidaTexto"
     position="0 -0.08 0.01"
     align="center"
     width="1.1"
@@ -303,7 +305,7 @@
 
 <a-text
   id="textoPuerta"
-  value="ABRIR"
+  texto="clave: escena.puertaAbrir"
   position="-2.45 1.45 2.59"
   rotation="0 180 0"
   align="center"
@@ -326,7 +328,7 @@
 <!-- TEXTO EXTERIOR -->
 <a-text
   id="textoPuertaExterior"
-  value="ABRIR"
+  texto="clave: escena.puertaAbrir"
   position="-2.45 1.45 3.125"
   align="center"
   width="1.5"
@@ -345,7 +347,7 @@
 </a-plane>
 
 <a-text
-  value="MONUMENTO HISTORICO"
+  texto="clave: escena.placaMonumento"
   position="0 0.68 -2.805"
   align="center"
   width="1.25"

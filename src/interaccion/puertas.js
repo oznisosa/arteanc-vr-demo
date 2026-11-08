@@ -3,6 +3,8 @@
 // Los dos botones (interior y exterior) abren o cierran las dos hojas
 // de la puerta corrediza y actualizan sus letreros.
 
+import { t } from '../datos/textos.js';
+
 export function iniciarPuertas() {
 
   const botonesPuerta = [
@@ -37,7 +39,7 @@ export function iniciarPuertas() {
     textosPuerta.forEach(function (texto) {
       texto.setAttribute(
         'value',
-        puertasAbiertas ? 'CERRAR' : 'ABRIR'
+        puertasAbiertas ? t('escena.puertaCerrar') : t('escena.puertaAbrir')
       );
     });
   }

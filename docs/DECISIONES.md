@@ -335,6 +335,61 @@ escena principal (otra DT).
 
 ---
 
+## DT-017 — Fuentes MSDF del diseño (Inter y Cormorant) y textos en `datos/textos/es.json`
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** la fuente que trae A-Frame no tiene tildes ni eñes; hasta el
+1.4 se quitaban al mostrar ("CERAMICA"). Los textos de la interfaz estaban
+repartidos por el HTML y el código.
+
+**Decisión:**
+- Las tipografías del diseño final (Inter para textos y botones, Cormorant
+  Garamond para la marca, los nombres de sala y la bienvenida —no para títulos
+  con números, por sus cifras de estilo antiguo, decisión de Ozni—; licencia SIL OFL) se convierten a **MSDF**
+  con `msdf-bmfont-xml` y se guardan en `fuentes/` (126 caracteres, incluidos
+  los españoles). `src/escena/fuentes.js` cambia el valor por defecto del
+  componente `text` de A-Frame: `font` = Inter, `shader` = `msdf`, `negate` = false.
+- El generador **no** se instala en el proyecto: sus dependencias antiguas
+  traen 30 avisos de seguridad (solo de desarrollo) y GitHub lo instalaría en
+  cada publicación. Se usa una vez desde una carpeta aparte (`fuentes/LEEME.md`).
+- Todos los textos de la interfaz pasan a `datos/textos/es.json` y se leen
+  con `t('clave')` (`src/datos/textos.js`); en el HTML, con el componente
+  `texto="clave: …"`. Vite incluye el JSON en el código al construir.
+
+**Alternativas:** Roboto MSDF de A-Frame (no es la tipografía del diseño);
+texto como imágenes (no escala ni se traduce); `troika-three-text` (genera
+las letras al vuelo, más pesado para el Quest).
+
+**Consecuencias:** textos correctos en español y con la identidad del
+diseño; preparado para el inglés (v1.1: añadir `en.json`). Para añadir un
+carácter nuevo hay que regenerar las fuentes.
+
+---
+
+## DT-018 — Estado propio y pequeño, guardado en `localStorage`, con pruebas automáticas
+**Estado:** Aceptada · **Fecha:** 2026-11-08
+
+**Contexto:** el módulo 1.6 pide un servicio de estado (pieza seleccionada,
+favoritos, idioma). Los favoritos deben sobrevivir al cerrar la página
+(DISENO_FINAL.md §7) y llevarse fuera de la VR (F6).
+
+**Decisión:** `src/servicios/estado.js`, sin librerías: `obtener`, `cambiar`,
+`alCambiar` (avisos con `EventTarget`) y atajos de favoritos. Se guardan
+**solo** `favoritos` e `idioma` en `localStorage` (clave `arteanc.estado.v1`);
+la pieza seleccionada no. Los datos guardados se revisan al leerlos (si están
+estropeados, se ignoran). Las pruebas automáticas usan el corredor que trae
+Node (`node --test`, `npm run probar`) y se ejecutan antes de cada build.
+
+**Alternativas:** el sistema de estado de A-Frame o librerías (Zustand,
+Redux): más piezas que aprender para tres datos.
+
+**Consecuencias:** cualquier componente puede reaccionar a los cambios; los
+favoritos persisten en el mismo navegador (no se sincronizan entre el Quest y
+el PC: eso es el módulo 6.3). Para guardar algo nuevo (p. ej. el modo
+sentado de la Fase 2) se añade su clave a `INICIAL` y a `GUARDADOS`.
+
+---
+
 ## DT-030 — Trabajo en paralelo: la Fase 2 en su propia rama y carpeta (worktree)
 **Estado:** Aceptada · **Fecha:** 2026-11-08 · **Matiza:** DT-011
 

@@ -27,7 +27,10 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
   Hecho: 1.4 (`datos/salas.json` generado con `npm run salas`, DT-015; guía
   [docs/SALAS.md](docs/SALAS.md)). 1.7 greybox construido en `casa.html` (DT-016,
   componente `src/constructor/casa-greybox.js`); probado en el Quest: 90 fps.
-  Después: 1.5 textos y fuente MSDF, 1.6 estado.
+  1.5 hecho (DT-017): textos en `datos/textos/es.json` con `t('clave')`; fuentes
+  MSDF en `fuentes/` (guía `fuentes/LEEME.md`). 1.6 hecho (DT-018): estado en
+  `src/servicios/estado.js`; pruebas con `npm run probar` (`pruebas/*.test.js`).
+  **Fase 1: todos los módulos hechos**; falta revisar sus criterios de cierre.
   Ver el plan para el orden y los criterios.
 - **Fase 2 (Movimiento y confort) en curso en paralelo (DT-030)**, en la rama
   `fase-2` y la carpeta `C:\arteanc\ArteAnc-VR-fase2` (worktree). Hecho:
@@ -72,6 +75,8 @@ El propietario, Ozni, aprende desarrollo mientras se construye el proyecto.
    - Al proponer un commit, listar los archivos explícitamente (nunca `git add .`)
      y dar los comandos para que Ozni los ejecute y aprenda.
 4. **Español** en documentos, comentarios del código y textos de la escena.
+   Los textos que ve el visitante van en `datos/textos/es.json` (nunca escritos
+   en el código), **con tildes y eñes** (las fuentes MSDF las tienen).
 5. **No inventar datos** de productos ni atribuciones culturales.
    `null` = desconocido. Las piezas de prueba se marcan como ilustrativas.
 6. **Coordenadas del diseño final** (`datos/salas.json` se genera de `02-layout.json`; no editarlo a mano): 1 unidad = 1 m; origen en el umbral sur;

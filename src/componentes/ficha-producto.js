@@ -13,7 +13,10 @@
 //   ficha.components['ficha-producto'].mostrar(datosDelCatalogo, entidadDeLaPieza);
 //   ficha.components['ficha-producto'].ocultar();
 
-import { contenidoFicha, paraFuenteSinTildes as t } from '../datos/textos-pieza.js';
+import { contenidoFicha } from '../datos/textos-pieza.js';
+import { t } from '../datos/textos.js';
+import { FUENTES } from '../escena/fuentes.js';
+import { estado } from '../servicios/estado.js';
 
 const THREE = AFRAME.THREE;
 
@@ -34,9 +37,11 @@ const COLORES = {
 // (Pensado para leerse a 1,5–2 m; el diseño pide letra de 18–24 mm a 1,5 m.)
 const LETRA = { titulo: 0.030, precio: 0.024, cuerpo: 0.021, aviso: 0.018, chip: 0.016, boton: 0.024 };
 
-// En la fuente de A-Frame (Roboto), cada línea ocupa 1,87 veces el ancho de
-// una letra (lineHeight 44,1 / widthFactor 23,6, medido en el navegador).
-const ALTO_LINEA = 1.87;
+// Cada línea ocupa ALTO_LINEA veces el ancho de una letra. Medido en el
+// navegador como lineHeight / widthFactor de la fuente:
+//   Roboto (A-Frame, hasta el 1.4): 44,1 / 23,6 = 1,87
+//   Inter y Cormorant MSDF (desde el 1.5): 58 / 28,5 = 2,035
+const ALTO_LINEA = 2.035;
 
 // Cuántas líneas ocupará un texto si caben `letras` caracteres por línea.
 // Reparte palabra por palabra, como hace A-Frame. Las mayúsculas son más
@@ -62,10 +67,10 @@ function contarLineas(texto, letras) {
 }
 
 // Crea una entidad de texto anclada por arriba a la izquierda (o centrada)
-function crearTexto(valor, x, y, ancho, letra, color, align = 'left') {
+function crearTexto(valor, x, y, ancho, letra, color, align = 'left', fuente = FUENTES.texto) {
   const el = document.createElement('a-entity');
   el.setAttribute('text', {
-    value: valor, color, align, width: ancho, wrapCount: Math.round(ancho / letra),
+    value: valor, color, align, width: ancho, wrapCount: Math.round(ancho / letra), font: fuente,
     anchor: align === 'center' ? 'center' : 'left', baseline: 'top'
   });
   el.setAttribute('position', `${x} ${y} 0.002`);
@@ -106,7 +111,7 @@ AFRAME.registerComponent('ficha-producto', {
     this.boton.id = 'cerrarFicha';
     this.boton.setAttribute('geometry', { primitive: 'plane', width: 0.26, height: 0.09 });
     this.boton.setAttribute('material', { color: COLORES.boton, shader: 'flat' });
-    this.boton.appendChild(crearTexto('CERRAR', 0, LETRA.boton * ALTO_LINEA / 2, 0.26, LETRA.boton, '#FFFFFF', 'center'));
+    this.boton.appendChild(crearTexto(t('ficha.cerrar'), 0, LETRA.boton * ALTO_LINEA / 2, 0.26, LETRA.boton, '#FFFFFF', 'center'));
     this.boton.addEventListener('click', () => this.ocultar());
     this.el.appendChild(this.boton);
   },
@@ -123,7 +128,7 @@ AFRAME.registerComponent('ficha-producto', {
     const izq = -ANCHO_TEXTO / 2;
 
     // 1. Chip del tipo de pieza (su ancho depende del largo de la etiqueta)
-    const etiqueta = t(c.chip.toUpperCase());
+    const etiqueta = c.chip.toUpperCase();
     const anchoChip = 0.04 + etiqueta.length * LETRA.chip;
     const altoChip = LETRA.chip * ALTO_LINEA + 0.02;
     const chip = document.createElement('a-entity');
@@ -137,8 +142,8 @@ AFRAME.registerComponent('ficha-producto', {
     let altoCabecera = altoChip;
     if (c.aviso) {
       const anchoAviso = ANCHO_TEXTO - anchoChip - 0.025;
-      const lineas = contarLineas(t(c.aviso), Math.round(anchoAviso / LETRA.aviso));
-      this.contenido.appendChild(crearTexto(t(c.aviso), izq + anchoChip + 0.025, y, anchoAviso, LETRA.aviso, COLORES.suave));
+      const lineas = contarLineas(c.aviso, Math.round(anchoAviso / LETRA.aviso));
+      this.contenido.appendChild(crearTexto(c.aviso, izq + anchoChip + 0.025, y, anchoAviso, LETRA.aviso, COLORES.suave));
       altoCabecera = Math.max(altoChip, lineas * LETRA.aviso * ALTO_LINEA);
     }
     y -= altoCabecera + SEPARACION * 1.5;
@@ -146,14 +151,16 @@ AFRAME.registerComponent('ficha-producto', {
     // 3. Bloques de texto uno debajo de otro
     const cuerpo = [...c.detalles, c.descripcion].filter(Boolean).join('\n');
     const bloques = [
-      { valor: t(c.titulo.toUpperCase()), letra: LETRA.titulo, color: COLORES.tinta },
-      { valor: t(c.precio), letra: LETRA.precio, color: COLORES.suave },
-      { valor: t(c.disponibilidad), letra: LETRA.cuerpo, color: COLORES.suave },
-      { valor: t(cuerpo), letra: LETRA.cuerpo, color: COLORES.tinta }
+      // Título de la pieza en Inter (no en Cormorant): sus números de estilo
+      // antiguo hacían que "01" pareciera "oı" (decisión de Ozni, 2026-11-08)
+      { valor: c.titulo, letra: LETRA.titulo, color: COLORES.tinta, fuente: FUENTES.texto },
+      { valor: c.precio, letra: LETRA.precio, color: COLORES.suave },
+      { valor: c.disponibilidad, letra: LETRA.cuerpo, color: COLORES.suave },
+      { valor: cuerpo, letra: LETRA.cuerpo, color: COLORES.tinta }
     ];
     for (const b of bloques) {
       if (!b.valor) continue;
-      this.contenido.appendChild(crearTexto(b.valor, izq, y, ANCHO_TEXTO, b.letra, b.color));
+      this.contenido.appendChild(crearTexto(b.valor, izq, y, ANCHO_TEXTO, b.letra, b.color, 'left', b.fuente));
       y -= contarLineas(b.valor, Math.round(ANCHO_TEXTO / b.letra)) * b.letra * ALTO_LINEA + SEPARACION;
     }
 
@@ -166,6 +173,7 @@ AFRAME.registerComponent('ficha-producto', {
 
     // Al abrirse se coloca de golpe; después, tick() la mantiene en su sitio
     this.elPieza = elPieza;
+    estado.cambiar('piezaSeleccionada', pieza.id); // módulo 1.6
     this.calcularDestino();
     this.el.object3D.position.copy(this.destino);
     this.el.object3D.rotation.set(0, this.giroDestino, 0);
@@ -175,6 +183,7 @@ AFRAME.registerComponent('ficha-producto', {
 
   ocultar: function () {
     this.elPieza = null;
+    estado.cambiar('piezaSeleccionada', null); // módulo 1.6
     this.el.setAttribute('visible', false);
     this.boton.classList.remove('interactivo');
   },

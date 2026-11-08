@@ -1,0 +1,46 @@
+{
+  "escena": {
+    "marca": "ARTEANC",
+    "bienvenidaTitulo": "BIENVENIDO A ARTEANC",
+    "bienvenidaTexto": "Explora nuestra galería y selecciona una pieza para conocer su historia.",
+    "puertaAbrir": "ABRIR",
+    "puertaCerrar": "CERRAR",
+    "placaMonumento": "MONUMENTO HISTÓRICO"
+  },
+  "ficha": {
+    "cerrar": "CERRAR",
+    "avisoIlustrativo": "Clasificación ilustrativa (demo)",
+    "precioFicticio": "Precio ficticio: {importe}",
+    "noDisponible": "No disponible para venta",
+    "precioConsultar": "Precio a consultar",
+    "demostracion": "Pieza de demostración · no está a la venta",
+    "disponibilidadSinConfirmar": "Disponibilidad sin confirmar",
+    "agotado": "Agotado",
+    "disponible": "Disponible",
+    "material": "Material: {valor}",
+    "medidas": "Medidas: {alto} × {ancho} × {fondo} cm (alto × ancho × fondo)",
+    "cultura": "Cultura: {valor}",
+    "epoca": "Época: {valor}",
+    "fuentes": "Fuentes: {valor}",
+    "sinFuentes": "Historia y fuentes: Sin fuentes verificadas"
+  },
+  "tipos": {
+    "original_documentado": "Original documentado",
+    "replica": "Réplica",
+    "artesania_tradicional": "Artesanía tradicional peruana",
+    "artesania_contemporanea": "Artesanía contemporánea",
+    "sinClasificar": "Sin clasificación verificada"
+  },
+  "depuracion": {
+    "fps": "fps",
+    "llamadas": "llamadas",
+    "triangulos": "triángulos"
+  },
+  "movimiento": {
+    "modoSentadoActivado": "Modo sentado: activado",
+    "modoSentadoElevado": "Vista elevada {cm} cm",
+    "modoSentadoYaDePie": "Ya estás a la altura de una persona de pie",
+    "modoSentadoDesactivado": "Modo sentado: desactivado",
+    "modoSentadoAlturaReal": "Altura real"
+  }
+}

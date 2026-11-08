@@ -6,7 +6,7 @@
 //
 // El código está en `src/` como módulos ES (módulo 0.4) y Vite lo empaqueta.
 // Los modelos `.glb` se cargan desde el HTML con `url(./modelos/…)`, que Vite
-// no ve; por eso, al terminar el build, copiamos `modelos/` y `datos/` a `dist/`.
+// no ve; por eso, al terminar el build, copiamos `modelos/`, `datos/` y `fuentes/` a `dist/`.
 // (GitHub Actions publica `dist/` en cada push: ver DT-013.)
 
 // Modo "quest" (módulo 0.3): `npm run quest` abre el servidor a la red local
@@ -20,7 +20,7 @@ import { cpSync } from 'node:fs';
 
 // Carpetas que la escena descarga en tiempo de ejecución (modelos .glb y el
 // catálogo JSON, que se lee con fetch) y que Vite no ve por sí solo.
-const ARCHIVOS_A_COPIAR = ['modelos', 'datos'];
+const ARCHIVOS_A_COPIAR = ['modelos', 'datos', 'fuentes'];
 
 function copiarCarpetas() {
   return {

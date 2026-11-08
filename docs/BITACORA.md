@@ -8,6 +8,51 @@
 
 ---
 
+## 2026-11-08 — Tercera unión (módulos 1.5 y 1.6) y el aviso del modo sentado con tildes
+
+**Tipo:** organización (Git) + textos. El aviso del modo sentado se ve igual,
+pero ahora con la fuente del diseño (Inter) y con tildes.
+
+### Qué cambió
+- `git merge main` trae a `fase-2` los módulos **1.5** (fuentes MSDF con
+  tildes y eñes; textos en `datos/textos/es.json`, DT-017) y **1.6** (estado
+  de la aplicación con pruebas automáticas, DT-018), más un ajuste de la ficha.
+- **Conflictos:** solo `BITACORA.md` y `DECISIONES.md`, resueltos como
+  siempre (las dos partes; DT-017 y DT-018 antes que DT-030 a DT-033).
+  `src/main.js` y `src/casa.js` se unieron solos: el
+  `import './escena/fuentes.js'` de la Fase 1 sigue el **primero**, como debe.
+- **Textos del modo sentado** (antes escritos en mayúsculas y sin tildes
+  dentro del código) → `datos/textos/es.json`, sección nueva `movimiento`:
+
+| Clave | Texto |
+|---|---|
+| `movimiento.modoSentadoActivado` | Modo sentado: activado |
+| `movimiento.modoSentadoElevado` | Vista elevada {cm} cm |
+| `movimiento.modoSentadoYaDePie` | Ya estás a la altura de una persona de pie |
+| `movimiento.modoSentadoDesactivado` | Modo sentado: desactivado |
+| `movimiento.modoSentadoAlturaReal` | Altura real |
+
+`src/componentes/modo-sentado.js` los lee con `t('movimiento.…')`
+(`{cm}` es un marcador que se sustituye por el número).
+
+### Por qué
+La Fase 1 centralizó los textos para poder corregirlos sin tocar el código y,
+en la versión 1.1, traducirlos. Los de la Fase 2 deben seguir la misma regla.
+
+### Cómo se verificó
+- `npm run build`: catálogo, salas y **9 pruebas automáticas** de la Fase 1
+  (`npm run probar`) correctas; 30 módulos.
+- `index.html`: 24 baldosas, ficha al hacer clic, modo sentado (subida
+  0,45 m; aviso "Modo sentado: activado / Vista elevada 45 cm" con fuente
+  `Inter.json`), salto válido y giro −30°. Captura: "Ya estás…" con la tilde bien dibujada.
+- `casa.html`: mapa listo, modo sentado (0,40 m). Consola: solo `favicon.ico`.
+
+### Concepto que aparece
+- **Internacionalización (i18n):** separar los textos del código, con una
+  clave por texto y un archivo por idioma.
+
+---
+
 ## 2026-11-08 — Módulo 2.4: modo sentado con el botón Y (DT-033)
 
 **Tipo:** movimiento y accesibilidad (rama `fase-2`). Solo se nota en VR.
@@ -505,6 +550,173 @@ git worktree list                                # muestra las dos carpetas
 - Hecho: la sesión de la Fase 1 propuso el reparto (DT-015–029 para F1, DT-030+ para F2; archivos y puertos) y se aceptó; detalle en DT-030.
 - Empezar el módulo 2.1 (Teletransporte).
 - Al unir, los documentos compartidos tendrán conflictos: conservar ambas entradas.
+
+---
+
+## 2026-11-08 — Módulo 1.6: el estado de la aplicación · **Fase 1 completa**
+
+**Tipo:** servicio interno. **El visitante no ve cambios todavía**: lo usarán
+los favoritos (F6) y los idiomas (v1.1).
+
+### Qué es
+Una "memoria compartida" (`src/servicios/estado.js`) con tres datos:
+| Dato | Qué guarda | ¿Sobrevive al recargar? |
+|---|---|---|
+| `piezaSeleccionada` | La pieza cuya ficha está abierta (o `null`) | No |
+| `favoritos` | Lista de piezas favoritas | **Sí** (`localStorage`) |
+| `idioma` | `'es'` (en la v1.1, también `'en'`) | **Sí** |
+
+Funciones: `estado.obtener(clave)`, `estado.cambiar(clave, valor)`,
+`estado.alCambiar(clave, función)` (avisa en cada cambio y devuelve una función
+para dejar de escuchar), `estado.alternarFavorito(id)`, `estado.esFavorito(id)`.
+
+### Dónde se usa ya
+- La **ficha** anota la pieza al abrirse y `null` al cerrarse.
+- Los **textos** (`t()`) eligen el archivo del idioma del estado.
+- Con **`?debug`**: `window.arteanc.estado` en la consola del navegador, y
+  un mensaje en la consola cada vez que cambia la pieza o los favoritos.
+
+### Pruebas automáticas (nuevas en el proyecto)
+`pruebas/estado.test.js`: **9 pruebas** con el corredor que trae Node
+(`node --test`), sin instalar nada. `npm run probar`, y también antes de
+cada build: si una falla, GitHub no publica. Comprueban: estado inicial;
+marcar y desmarcar favoritos; que se guardan y se recuperan "al volver a
+abrir" (con un `localStorage` falso); que la pieza seleccionada no se
+guarda; que avisa solo cuando algo cambia de verdad; que nadie puede
+modificar la lista desde fuera; datos guardados estropeados; navegación
+privada; y que una clave mal escrita da un error claro.
+**Prueba de las pruebas:** se rompió a propósito el guardado de favoritos →
+falló justo la prueba "los favoritos se guardan…" → se restauró → 9 en verde.
+
+### Verificación en el navegador
+Clic en pieza01 → `piezaSeleccionada: pieza01`; clic en pieza03 → `pieza03`;
+CERRAR → `null`; favorito `pieza02` → guardado en `localStorage`;
+**recargar la página** → favoritos `["pieza02"]`, pieza seleccionada `null`.
+
+### Problema encontrado
+`node --test pruebas/` fallaba con "Cannot find module": en Node 24 hay que
+darle un patrón de archivos, `node --test "pruebas/*.test.js"`.
+
+### Conceptos que aparecen
+- **Estado de la aplicación.** Los datos que cambian mientras se usa la app.
+  Tenerlos en un solo sitio evita que cada parte guarde su propia copia.
+- **Patrón observador (publicar/suscribir).** Quien quiere enterarse se
+  suscribe (`alCambiar`) y recibe un aviso; no tiene que preguntar a cada rato.
+- **`localStorage`.** Pequeño almacén del navegador que sobrevive al cierre;
+  solo guarda texto, por eso se usa `JSON.stringify` / `JSON.parse`.
+- **Copias defensivas.** `obtener('favoritos')` devuelve una copia: quien la
+  modifique no cambia el estado sin pasar por `cambiar`.
+- **Pruebas unitarias.** Pequeños programas que comprueban que una pieza de
+  código hace lo que debe; **dobles de prueba** (el `localStorage` falso).
+
+### Balance de la Fase 1 (Datos y componentes)
+| Módulo | Resultado |
+|---|---|
+| 1.1 | Catálogo en `datos/catalogo.json` con validador (DT-014) |
+| 1.2 | `pieza-exhibida`: peana y modelo desde el catálogo |
+| 1.3 | `ficha-producto`: ficha junto a la pieza, mirando al visitante |
+| 1.4 | `datos/salas.json` generado del diseño, con validador de geometría (DT-015) |
+| 1.5 | Tildes y eñes con Inter y Cormorant; textos en `es.json` (DT-017) |
+| 1.6 | Estado con favoritos persistentes y pruebas automáticas (DT-018) |
+| 1.7 | La casa completa en greybox (`casa.html`), 90 fps en el Quest (DT-016) |
+
+**Criterios de cierre del plan:** "agregar una pieza = editar el catálogo y
+copiar su modelo" — casi: en la sala actual todavía hay que añadir su línea
+`pieza-exhibida` en `index.html`; en la casa se resolverá al asignar piezas a
+posiciones. "Textos con tildes" ✅. "HTML de la escena < 60 líneas" ❌ (hoy
+≈ 400: paredes, puertas y recepción de la sala vieja; `casa.html` sí tiene
+≈ 40). "*Greybox* recorrido en el Quest con medidas del diseño" ✅.
+
+### Para el tutor
+- Ejercicio: con `?debug`, en la consola (F12) escribir
+  `arteanc.estado.alternarFavorito('pieza01')`, recargar y comprobar con
+  `arteanc.estado.instantanea()` que sigue ahí.
+- Ejercicio: en `pruebas/estado.test.js`, escribir una prueba nueva que
+  compruebe que `esFavorito` devuelve `false` para una pieza nunca marcada.
+- Pregunta: ¿por qué la pieza seleccionada no se guarda al cerrar y los favoritos sí?
+
+### Pendientes
+- Decidir cómo cerrar la Fase 1: asignar piezas del catálogo a posiciones de
+  la casa y que `casa.html` pase a ser la escena principal (cumpliría los dos
+  criterios pendientes).
+
+---
+
+## 2026-11-08 — Módulo 1.5: tildes, eñes y textos en `datos/textos/es.json`
+
+**Tipo:** textos y tipografía. **Se ve en toda la escena.**
+
+### Qué cambió
+| Antes | Ahora |
+|---|---|
+| Fuente Roboto de A-Frame, sin tildes: "CERAMICA", "galeria", "MONUMENTO HISTORICO" | **Inter** (textos) y **Cormorant Garamond** (títulos y marca), las del diseño final: "CERÁMICA", "galería", "MONUMENTO HISTÓRICO" |
+| Truco `paraFuenteSinTildes()` que quitaba las tildes al mostrar | Borrado: ya no hace falta |
+| Textos escritos en el HTML y en el código ("CERRAR", "Precio ficticio"…) | Todos en **`datos/textos/es.json`**, leídos con `t('ficha.cerrar')` |
+| Letrero "ARTEANC" del mostrador mirando hacia el propio mueble | Girado 180°: se lee desde la galería |
+| Nombres de sala de la casa sin tildes | "CERÁMICA", "UMBRAL / RECEPCIÓN" en Cormorant |
+
+**Archivos nuevos:** `fuentes/` (Inter y Cormorant en MSDF, licencias OFL,
+`LEEME.md`), `datos/textos/es.json`, `src/datos/textos.js` (función `t`),
+`src/escena/fuentes.js`, `src/componentes/texto.js`. **Modificados:**
+`index.html` (7 textos), ficha, puertas, medidor, casa, `main.js`, `casa.js`,
+`vite.config.js` (copia `fuentes/`). DT-017.
+
+### Cómo se hicieron las fuentes
+Con `msdf-bmfont-xml` se convirtieron `Inter.ttf` y `CormorantGaramond.ttf`
+(de `docs/diseno/final/fuentes/`) en un "atlas" de 512 × 256 px con 126
+letras (ASCII + `áéíóúñü¿¡°×·–—“”«»€…`), cada una guardada como **campo de
+distancias con signo en 3 canales** (rojo, verde, azul). El generador se
+usó desde una carpeta aparte y no se instaló en el proyecto: traía 30 avisos
+de seguridad en dependencias antiguas (ver DT-017).
+
+### Problemas encontrados al probar
+1. **Las letras salían como bloques macizos.** Causa: A-Frame dibuja el texto
+   por defecto con el sombreador `sdf` (1 canal), y nuestras fuentes son `msdf`
+   (3 canales). Se diagnosticó leyendo el material del texto en el navegador
+   (`shader: "sdf"`). Solución: `shader: 'msdf'` por defecto en `fuentes.js`.
+2. **Alto de línea distinto.** La ficha calcula cuántas líneas ocupa cada
+   texto; con Inter cada línea mide **2,035** veces el ancho de una letra
+   (58 / 28,5), no 1,87 como con Roboto. Se actualizó `ALTO_LINEA`.
+3. Cormorant usa **números de estilo antiguo** ("01" parece "oı"): es propio
+   de esa tipografía. A Ozni no le gustó ("los números que escribe con esta
+   fuente no me gustan mucho") → **el título de la pieza en la ficha pasa a
+   Inter**. Cormorant queda solo para textos sin números: la marca "ARTEANC",
+   los nombres de sala y el título de bienvenida. Concepto: **cifras de
+   estilo antiguo (*old-style figures*) frente a cifras alineadas**.
+
+### Cómo se verificó
+- Todos los textos con `shader msdf / negate false` y su fuente cargada.
+- Capturas: ficha ("ARTESANÍA TRADICIONAL PERUANA", "Cerámica 01",
+  "demostración · no está"), pared ("ARTEANC" en Cormorant), placa
+  ("MONUMENTO HISTÓRICO"), mostrador desde la galería (letrero legible y
+  bienvenida con "galería"), casa ("CERÁMICA" entrando desde el patio).
+- `npm run build` + `npm run preview`: `fuentes/` se copia a `dist/` y los textos cargan.
+- **Pendiente:** Ozni lo comprueba en el Quest (nitidez dentro del visor).
+
+### Conceptos que aparecen
+- **Campo de distancias con signo (SDF / MSDF).** En vez de guardar la letra
+  como píxeles, se guarda a qué distancia del borde está cada punto: el
+  borde se reconstruye nítido a cualquier tamaño. MSDF usa 3 canales para
+  conservar las esquinas afiladas.
+- **Sombreador (*shader*).** Programa de la tarjeta gráfica que decide el
+  color de cada píxel; debe coincidir con el formato de la fuente.
+- **Internacionalización (i18n).** Separar los textos del código para poder
+  traducirlos: `t('clave')` + un archivo por idioma.
+- **Interpolación de cadenas.** `"Precio ficticio: {importe}"` + `{ importe: 'US$ 35.00' }`.
+- **Licencias de fuentes (SIL OFL).** Permiten usar e incrustar la fuente,
+  también comercialmente, conservando la licencia.
+- **Cadena de suministro (*supply chain*).** Instalar una herramienta trae
+  todas sus dependencias; por eso no se dejó en el proyecto.
+
+### Para el tutor
+- Ejercicio: en `datos/textos/es.json`, cambiar `"puertaAbrir": "ABRIR"` por
+  `"ABRIR PUERTA"` y verlo en la escena sin tocar el código.
+- Ejercicio: abrir `fuentes/Inter.png` y localizar la "ñ".
+- Pregunta: ¿por qué con `shader: sdf` las letras salían como rectángulos?
+
+### Pendientes
+- Prueba de Ozni en el Quest.
+- Siguiente: módulo 1.6 (estado: pieza seleccionada, favoritos, idioma).
 
 ---
 

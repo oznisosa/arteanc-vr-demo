@@ -9,7 +9,8 @@
     "quest": "vite --mode quest",
     "salas": "node herramientas/generar-salas.js",
     "validar": "node herramientas/validar-catalogo.js && node herramientas/validar-salas.js",
-    "build": "npm run validar && vite build",
+    "probar": "node --test \"pruebas/*.test.js\"",
+    "build": "npm run validar && npm run probar && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
